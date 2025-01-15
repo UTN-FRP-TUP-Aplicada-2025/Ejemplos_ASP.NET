@@ -79,4 +79,19 @@ WHERE Id=@Id";
         int cantidad=query.ExecuteNonQuery();
 
     }
+
+    public void Delete(int id)
+    {
+        string sqlQuery =
+@"DELETE FROM Personas
+WHERE p.Id=@Id";
+
+        using var conexion = new SqlConnection(coneccion);
+        conexion.Open();
+
+        using var query = new SqlCommand(sqlQuery, conexion);
+        query.Parameters.AddWithValue("@Id", id);
+
+        var eliminados = query.ExecuteScalar();
+    }
 }

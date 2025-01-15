@@ -7,5 +7,7 @@ namespace EjemploASP.NET_MVC.DALs
         List<Persona> GetAll();
         Persona? GetById(int id);
         void Update(Persona actualizar);
+
+        void Delete(int id);
     }
 }

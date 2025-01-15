@@ -6,6 +6,10 @@
 
 <h1>Listado de personas</h1>
 
+<form asp-action="Create">
+    <a asp-action="Create">Create</a>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -24,10 +28,15 @@
                 <td>@p.Nombre</td>
 
                 <td>
-                    <!--Redirección -->
+                    <!--Redirección 
                     <a href="@Url.Action("Editar", "Personas", new { id = p.Id })" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
+                    -->
+                    <a asp-action="Edit" asp-route-id="@p.Id"><i class="fa-solid fa-pen"></i></a> |
+                    <a asp-action="Details" asp-route-id="@p.Id"><i class="fa-solid fa-expand"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@p.Id"><i class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+

@@ -10,6 +10,7 @@ namespace EjemploASP.NET_MVC.DALs
             new Persona(){ Id=2,DNI=3343243, Nombre="Betiana"}
         };
 
+
         public List<Persona> GetAll()
         {
             return personas;
@@ -30,6 +31,13 @@ namespace EjemploASP.NET_MVC.DALs
                 p.Nombre = actualizar.Nombre;
             }
 
+        }
+
+        public void Delete(int id)
+        {
+            var persona = GetById(id);
+            if(persona!=null)
+                personas.Remove(persona);
         }
     }
 }

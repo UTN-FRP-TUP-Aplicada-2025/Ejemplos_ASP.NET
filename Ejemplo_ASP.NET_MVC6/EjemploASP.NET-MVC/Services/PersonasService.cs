@@ -13,7 +13,7 @@ namespace EjemploASP.NET_MVC.Services
             return personasDAO.GetAll();
         }
 
-        public Persona GetById(int id)
+        public Persona? GetById(int id)
         {
             return personasDAO.GetById(id);
         }
@@ -21,6 +21,11 @@ namespace EjemploASP.NET_MVC.Services
         public void Actualizar(Persona persona)
         {
             personasDAO.Update(persona);
+        }
+
+        public void Eliminar(int id)
+        {
+            personasDAO.Delete(id);
         }
     }
 }

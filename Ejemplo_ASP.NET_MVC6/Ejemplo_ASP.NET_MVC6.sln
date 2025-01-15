@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35431.28
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EjemploASP.NET-MVC", "EjemploASP.NET-MVC\EjemploASP.NET-MVC.csproj", "{BDFE69BB-BF6B-41C6-8E32-E6419038A822}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_ASP.NET_MVC6", "Ejemplo_ASP.NET_MVC6\Ejemplo_ASP.NET_MVC6.csproj", "{BDFE69BB-BF6B-41C6-8E32-E6419038A822}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScriptsSQL", "ScriptsSQL", "{A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}"
 	ProjectSection(SolutionItems) = preProject

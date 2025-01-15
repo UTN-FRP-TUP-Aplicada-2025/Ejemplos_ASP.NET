@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35431.28
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EjemploASP.NET-MVC", "EjemploASP.NET-MVC\EjemploASP.NET-MVC.csproj", "{BDFE69BB-BF6B-41C6-8E32-E6419038A822}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScriptsSQL", "ScriptsSQL", "{A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}"
+	ProjectSection(SolutionItems) = preProject
+		ScriptsSql\script.sql = ScriptsSql\script.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDFE69BB-BF6B-41C6-8E32-E6419038A822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDFE69BB-BF6B-41C6-8E32-E6419038A822}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDFE69BB-BF6B-41C6-8E32-E6419038A822}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDFE69BB-BF6B-41C6-8E32-E6419038A822}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}
+	EndGlobalSection
+EndGlobal

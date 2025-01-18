@@ -3,17 +3,36 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35431.28
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_ASP.NET_MVC6", "Ejemplo_ASP.NET_MVC6\Ejemplo_ASP.NET_MVC6.csproj", "{BDFE69BB-BF6B-41C6-8E32-E6419038A822}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_01_CRUD_Simple", "Ejemplo_01_CRUD_Simple\Ejemplo_01_CRUD_Simple.csproj", "{BDFE69BB-BF6B-41C6-8E32-E6419038A822}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScriptsSQL", "ScriptsSQL", "{A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}"
-	ProjectSection(SolutionItems) = preProject
-		ScriptsSql\script.sql = ScriptsSql\script.sql
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{18465878-A91B-40FC-AB3A-35EC69211CFF}"
 	ProjectSection(SolutionItems) = preProject
 		Readme.md = Readme.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_Login_Simple", "Ejemplo_02_Login_Simple\Ejemplo_02_Login_Simple.csproj", "{EBC23A89-D068-4FF1-ADFF-33CB07DE38B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_CRUD_Simple", "Ejemplo_CRUD_Simple", "{459F4550-3040-4804-A2E1-7E07B283CB34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_03_CRUD_Simple_Login", "Ejemplo_03_CRUD_Simple_Login\Ejemplo_03_CRUD_Simple_Login.csproj", "{F4DC82F3-B721-452E-BBAA-D2108A60D672}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_CRUD_Simple_Login", "Ejemplo_CRUD_Simple_Login", "{8E392137-9683-491B-B493-CA9D9992B67D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSSQL", "MSSQL", "{9EB0B2CF-07CC-401A-9EF4-79BCD115B7A4}"
+	ProjectSection(SolutionItems) = preProject
+		ScriptsSql\Ejemplo_CRUD_Simple_Login\MSSQL\script.sql = ScriptsSql\Ejemplo_CRUD_Simple_Login\MSSQL\script.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSQL", "MSQL", "{FB405D92-29D5-4EFC-94A0-C30232C1CC66}"
+	ProjectSection(SolutionItems) = preProject
+		ScriptsSql\Ejemplo_CRUD_Simple\MSSQL\script.sql = ScriptsSql\Ejemplo_CRUD_Simple\MSSQL\script.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{70B0CF02-FB6C-45EB-BE2F-3FC3D280116C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{BA240214-C2ED-4EF2-A9EB-EBE73D79884B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,9 +44,25 @@ Global
 		{BDFE69BB-BF6B-41C6-8E32-E6419038A822}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDFE69BB-BF6B-41C6-8E32-E6419038A822}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDFE69BB-BF6B-41C6-8E32-E6419038A822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBC23A89-D068-4FF1-ADFF-33CB07DE38B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBC23A89-D068-4FF1-ADFF-33CB07DE38B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBC23A89-D068-4FF1-ADFF-33CB07DE38B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBC23A89-D068-4FF1-ADFF-33CB07DE38B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4DC82F3-B721-452E-BBAA-D2108A60D672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4DC82F3-B721-452E-BBAA-D2108A60D672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4DC82F3-B721-452E-BBAA-D2108A60D672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4DC82F3-B721-452E-BBAA-D2108A60D672}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{459F4550-3040-4804-A2E1-7E07B283CB34} = {A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}
+		{8E392137-9683-491B-B493-CA9D9992B67D} = {A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}
+		{9EB0B2CF-07CC-401A-9EF4-79BCD115B7A4} = {8E392137-9683-491B-B493-CA9D9992B67D}
+		{FB405D92-29D5-4EFC-94A0-C30232C1CC66} = {459F4550-3040-4804-A2E1-7E07B283CB34}
+		{70B0CF02-FB6C-45EB-BE2F-3FC3D280116C} = {8E392137-9683-491B-B493-CA9D9992B67D}
+		{BA240214-C2ED-4EF2-A9EB-EBE73D79884B} = {459F4550-3040-4804-A2E1-7E07B283CB34}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

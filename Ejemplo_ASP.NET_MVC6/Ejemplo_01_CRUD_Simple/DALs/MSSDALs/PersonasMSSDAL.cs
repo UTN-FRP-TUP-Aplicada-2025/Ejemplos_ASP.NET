@@ -7,12 +7,14 @@ namespace Ejemplo_CRUD_Simple.DALs.MSSDALs;
 public class PersonasMSSDAL : IPersonasDAL
 {
     string coneccion = "Integrated Security=true; Initial Catalog=EjemploCRUDSimpleDB;Server=TSP;TrustServerCertificate=true;";
-
+    
     public List<PersonaModel> GetAll()
     {
         var lista = new List<PersonaModel>();
                
-        string sqlQuery = "SELECT * FROM Personas";
+        string sqlQuery = 
+@"SELECT * 
+FROM Personas";
 
         using var conexion = new SqlConnection(coneccion);
         conexion.Open();

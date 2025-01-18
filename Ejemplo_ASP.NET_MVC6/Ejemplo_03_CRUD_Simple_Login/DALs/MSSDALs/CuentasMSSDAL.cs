@@ -5,7 +5,8 @@ namespace EjemploASP.NET_MVC.DALs.MSSDAO;
 
 public class CuentasMSSDAL : ICuentasDAL
 {
-    string coneccion = "Integrated Security=true; Initial Catalog=EjemploCRUDSimpleLoginDB;Server=TSP;TrustServerCertificate=true;";
+    //string coneccion = "Integrated Security=true; Initial Catalog=EjemploCRUDSimpleLoginDB;Server=TSP;TrustServerCertificate=true;";
+    string coneccion = "User Id=sa;Password=MSS-fernando-123;Initial Catalog=EjemploCRUDSimpleLoginDB;Server=ejemplo02_mssql_container;TrustServerCertificate=true;";
 
     public List<CuentaModel> GetAll()
     {

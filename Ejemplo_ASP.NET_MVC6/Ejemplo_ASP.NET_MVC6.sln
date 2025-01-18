@@ -31,6 +31,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSQL", "MSQL", "{FB405D92-2
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{70B0CF02-FB6C-45EB-BE2F-3FC3D280116C}"
+	ProjectSection(SolutionItems) = preProject
+		ScriptsSql\Ejemplo_CRUD_Simple_Login\docker\Dockerfile.mss.Ejemplo_03_CRUD_Simple_Login = ScriptsSql\Ejemplo_CRUD_Simple_Login\docker\Dockerfile.mss.Ejemplo_03_CRUD_Simple_Login
+		ScriptsSql\Ejemplo_CRUD_Simple_Login\docker\Dockerfile.web.Ejemplo_03_CRUD_Simple_Login = ScriptsSql\Ejemplo_CRUD_Simple_Login\docker\Dockerfile.web.Ejemplo_03_CRUD_Simple_Login
+		ScriptsSql\Ejemplo_CRUD_Simple_Login\docker\Readme.md = ScriptsSql\Ejemplo_CRUD_Simple_Login\docker\Readme.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{BA240214-C2ED-4EF2-A9EB-EBE73D79884B}"
 EndProject

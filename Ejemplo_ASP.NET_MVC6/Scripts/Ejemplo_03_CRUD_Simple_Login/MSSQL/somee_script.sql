@@ -1,18 +1,8 @@
 
 --cambio a master porque si esta abierta no la va a poder eliminar
-USE MASTER
 
-GO
 
-DROP DATABASE IF EXISTS Ejemplo_03_CRUD_Simple_Login
-
-GO
-
-CREATE DATABASE  Ejemplo_03_CRUD_Simple_Login
-
-GO
-
-USE Ejemplo_03_CRUD_Simple_Login
+DROP TABLE IF EXISTS Cuentas;
 
 GO
 
@@ -26,11 +16,19 @@ CREATE TABLE Cuentas
 
 GO
 
+DROP TABLE IF EXISTS Roles
+
+GO
+
 CREATE TABLE Roles
 (
 	Id INT PRIMARY KEY IDENTITY(1,1),
 	Nombre NVARCHAR(50) NOT NULL UNIQUE,
 );
+
+GO
+
+DROP TABLE IF EXISTS Cuentas_Roles
 
 GO
 
@@ -40,14 +38,10 @@ CREATE TABLE Cuentas_Roles
 	Id_Rol INT NOT NULL,
 	CONSTRAINT UQ_Cuentas_Roles UNIQUE (Id_Cuenta, Id_Rol)
 );
---O
 
---CREATE TABLE Cuentas_Roles
---(
---	Id_Cuenta INT NOT NULL,
---	Id_Rol INT NOT NULL,
---	PRIMARY KEY (Id_Cuenta, Id_Rol)
---);
+GO
+
+DROP TABLE IF EXISTS Personas
 
 GO
 

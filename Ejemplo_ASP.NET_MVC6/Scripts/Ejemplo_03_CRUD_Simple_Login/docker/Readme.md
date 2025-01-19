@@ -86,7 +86,6 @@ docker ps
 docker exec -it ejemplo02_mssql_container /bin/bash
 ```
 
-revisa el dockerfile por la password
 
 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/ej02/script.sql
 

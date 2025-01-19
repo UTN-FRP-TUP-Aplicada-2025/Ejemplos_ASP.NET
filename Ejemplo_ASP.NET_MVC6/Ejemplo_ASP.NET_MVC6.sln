@@ -22,7 +22,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_03_CRUD_Simple_Logi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSSQL", "MSSQL", "{9EB0B2CF-07CC-401A-9EF4-79BCD115B7A4}"
 	ProjectSection(SolutionItems) = preProject
+		Scripts\Ejemplo_03_CRUD_Simple_Login\MSSQL\docker_script.sql = Scripts\Ejemplo_03_CRUD_Simple_Login\MSSQL\docker_script.sql
 		Scripts\Ejemplo_03_CRUD_Simple_Login\MSSQL\script.sql = Scripts\Ejemplo_03_CRUD_Simple_Login\MSSQL\script.sql
+		Scripts\Ejemplo_03_CRUD_Simple_Login\MSSQL\somee_script.sql = Scripts\Ejemplo_03_CRUD_Simple_Login\MSSQL\somee_script.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSQL", "MSQL", "{FB405D92-29D5-4EFC-94A0-C30232C1CC66}"
@@ -32,8 +34,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSQL", "MSQL", "{FB405D92-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{70B0CF02-FB6C-45EB-BE2F-3FC3D280116C}"
 	ProjectSection(SolutionItems) = preProject
-		Scripts\Ejemplo_03_CRUD_Simple_Login\docker\create.sh = Scripts\Ejemplo_03_CRUD_Simple_Login\docker\create.sh
+		Scripts\Ejemplo_03_CRUD_Simple_Login\docker\create_mssql_container.sh = Scripts\Ejemplo_03_CRUD_Simple_Login\docker\create_mssql_container.sh
 		Scripts\Ejemplo_03_CRUD_Simple_Login\docker\Dockerfile.dotnet = Scripts\Ejemplo_03_CRUD_Simple_Login\docker\Dockerfile.dotnet
+		Scripts\Ejemplo_03_CRUD_Simple_Login\docker\create_dotnet_container.sh = Scripts\Ejemplo_03_CRUD_Simple_Login\docker\create_dotnet_container.sh
 		Scripts\Ejemplo_03_CRUD_Simple_Login\docker\Dockerfile.mssql = Scripts\Ejemplo_03_CRUD_Simple_Login\docker\Dockerfile.mssql
 		Scripts\Ejemplo_03_CRUD_Simple_Login\docker\Readme.md = Scripts\Ejemplo_03_CRUD_Simple_Login\docker\Readme.md
 	EndProjectSection

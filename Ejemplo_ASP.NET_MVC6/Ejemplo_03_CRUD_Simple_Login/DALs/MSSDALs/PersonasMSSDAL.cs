@@ -7,7 +7,9 @@ public class PersonasMSSDAL : IPersonasDAL
 {
     //string conexionString = "Integrated Security=true; Initial Catalog=EjemploCRUDSimpleLoginDB;Server=TSP;TrustServerCertificate=true;";
      //string conexionString = "User Id=sa;Password=MSS-fernando-123;Initial Catalog=EjemploCRUDSimpleLoginDB;Server=ejemplo02_mssql_container;TrustServerCertificate=true;";
-    string conexionString="workstation id=Ejemplo01CRUDSimpleDB.mssql.somee.com;packet size=4096;user id=fernando-dev_SQLLogin_1;pwd=bfzixu5w6p;data source=Ejemplo01CRUDSimpleDB.mssql.somee.com;persist security info=False;initial catalog=Ejemplo01CRUDSimpleDB;TrustServerCertificate=True";
+     string conexionString = "User Id=sa;Password=MSS-fernando-123;Initial Catalog=EjemploCRUDSimpleLoginDB;Server=172.17.0.2;TrustServerCertificate=true;";
+     
+    //string conexionString="workstation id=Ejemplo01CRUDSimpleDB.mssql.somee.com;packet size=4096;user id=fernando-dev_SQLLogin_1;pwd=bfzixu5w6p;data source=Ejemplo01CRUDSimpleDB.mssql.somee.com;persist security info=False;initial catalog=Ejemplo01CRUDSimpleDB;TrustServerCertificate=True";
 
     public List<PersonaModel> GetAll()
     {

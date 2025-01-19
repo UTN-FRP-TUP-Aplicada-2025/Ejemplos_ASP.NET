@@ -1,14 +1,27 @@
 #!/bin/bash
 
 TAG='v0.1'
-TAG_R='v0.1'
+NOMBRE_IMAGEN='ejemplo01_dotnet_image'
+NOMBRE_CONTENEDOR='ejemplo01_dotnet_container'
+SOLUCION_PATH='/workspaces/Ejemplos_ASP.NET_MVC6/Ejemplo_ASP.NET_MVC6/'
 
-docker rmi ejemplo02_dotnet:$TAG_R
+# borro la imagen
+docker rmi ejemplo03_dotnet_image:$TAG
 
-docker build -f Dockerfile.dotnet -t ejemplo02_dotnet:$TAG /workspaces/Ejemplos_ASP.NET_MVC6/Ejemplo_ASP.NET_MVC6/
+# construyo la imagen
+docker build -f Dockerfile.dotnet -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
 
-docker stop ejemplo02_dotnet_container
+# paro el contenedor - por si esta corriendo
+docker stop $NOMBRE_CONTENEDOR
 
-docker rm ejemplo02_dotnet_container
+# borro el contenedor por si ya estaba
+docker rm $NOMBRE_CONTENEDOR
 
-docker run --name ejemplo02_dotnet_container -p 8080:8080 -d ejemplo02_dotnet:$TAG
+# genero el contenedor y lo corro
+docker run --name $NOMBRE_CONTENEDOR -p 8080:8080 -d $NOMBRE_IMAGEN:$TAG
+
+# listo los contenedores corriendo
+docker ps 
+
+# observo el status del contenedor
+docker logs $NOMBRE_CONTENEDOR

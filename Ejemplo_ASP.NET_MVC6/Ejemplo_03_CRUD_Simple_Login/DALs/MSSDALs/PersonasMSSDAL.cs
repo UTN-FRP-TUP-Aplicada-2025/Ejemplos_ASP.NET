@@ -5,8 +5,9 @@ namespace EjemploASP.NET_MVC.DALs.MSSDAO;
 
 public class PersonasMSSDAL : IPersonasDAL
 {
-    //string coneccion = "Integrated Security=true; Initial Catalog=EjemploCRUDSimpleLoginDB;Server=TSP;TrustServerCertificate=true;";
-    string coneccion = "User Id=sa;Password=MSS-fernando-123;Initial Catalog=EjemploCRUDSimpleLoginDB;Server=ejemplo02_mssql_container;TrustServerCertificate=true;";
+    //string conexionString = "Integrated Security=true; Initial Catalog=EjemploCRUDSimpleLoginDB;Server=TSP;TrustServerCertificate=true;";
+     //string conexionString = "User Id=sa;Password=MSS-fernando-123;Initial Catalog=EjemploCRUDSimpleLoginDB;Server=ejemplo02_mssql_container;TrustServerCertificate=true;";
+    string conexionString="workstation id=Ejemplo01CRUDSimpleDB.mssql.somee.com;packet size=4096;user id=fernando-dev_SQLLogin_1;pwd=bfzixu5w6p;data source=Ejemplo01CRUDSimpleDB.mssql.somee.com;persist security info=False;initial catalog=Ejemplo01CRUDSimpleDB;TrustServerCertificate=True";
 
     public List<PersonaModel> GetAll()
     {
@@ -14,9 +15,9 @@ public class PersonasMSSDAL : IPersonasDAL
                
         string sqlQuery = 
 @"SELECT * 
-  FROM Personas";
+FROM Personas";
 
-        using var conexion = new SqlConnection(coneccion);
+        using var conexion = new SqlConnection(conexionString);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -46,7 +47,7 @@ public class PersonasMSSDAL : IPersonasDAL
 FROM Personas p
 WHERE p.Id=@Id";
 
-        using var conexion = new SqlConnection(coneccion);
+        using var conexion = new SqlConnection(conexionString);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -74,7 +75,7 @@ WHERE p.Id=@Id";
 OUTPUT INSERTED.ID 
 VALUES (@Dni, @Nombre,@Fecha_Nacimiento)"; 
 
-        using var conexion = new SqlConnection(coneccion);
+        using var conexion = new SqlConnection(conexionString);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -93,7 +94,7 @@ VALUES (@Dni, @Nombre,@Fecha_Nacimiento)";
 @"UPDATE Personas SET Dni=@Dni, Nombre=@Nombre, Fecha_Nacimiento=@Fecha_Nacimiento 
 WHERE Id=@Id";
 
-        using var conexion = new SqlConnection(coneccion);
+        using var conexion = new SqlConnection(conexionString);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -113,7 +114,7 @@ WHERE Id=@Id";
 @"DELETE FROM Personas
 WHERE Id=@Id";
 
-        using var conexion = new SqlConnection(coneccion);
+        using var conexion = new SqlConnection(conexionString);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);

@@ -26,7 +26,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Configurar tiempo de expiración
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Configurar tiempo de expiraciï¿½n
     options.Cookie.HttpOnly = true;                // Reforzar seguridad de cookies
     options.Cookie.IsEssential = true;             // Obligatorio para cumplir RGPD
 });
@@ -41,7 +41,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 var app = builder.Build();
 
-#region preinicialización aplicación
+#region preinicializacion aplicacion
 var scope = app.Services.CreateScope();
 
 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();

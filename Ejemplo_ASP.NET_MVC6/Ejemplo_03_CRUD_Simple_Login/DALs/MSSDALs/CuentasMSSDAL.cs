@@ -5,8 +5,9 @@ namespace EjemploASP.NET_MVC.DALs.MSSDAO;
 
 public class CuentasMSSDAL : ICuentasDAL
 {
-    //string coneccion = "Integrated Security=true; Initial Catalog=EjemploCRUDSimpleLoginDB;Server=TSP;TrustServerCertificate=true;";
-    string coneccion = "User Id=sa;Password=MSS-fernando-123;Initial Catalog=EjemploCRUDSimpleLoginDB;Server=ejemplo02_mssql_container;TrustServerCertificate=true;";
+    //string conexionString = "Integrated Security=true; Initial Catalog=EjemploCRUDSimpleLoginDB;Server=TSP;TrustServerCertificate=true;";
+    //string conexionString = "User Id=sa;Password=MSS-fernando-123;Initial Catalog=EjemploCRUDSimpleLoginDB;Server=ejemplo02_mssql_container;TrustServerCertificate=true;";
+    string conexionString="workstation id=Ejemplo01CRUDSimpleDB.mssql.somee.com;packet size=4096;user id=fernando-dev_SQLLogin_1;pwd=bfzixu5w6p;data source=Ejemplo01CRUDSimpleDB.mssql.somee.com;persist security info=False;initial catalog=Ejemplo01CRUDSimpleDB;TrustServerCertificate=True";
 
     public List<CuentaModel> GetAll()
     {
@@ -16,7 +17,7 @@ public class CuentasMSSDAL : ICuentasDAL
 @"SELECT * 
 FROM Cuentas";
 
-        using var conexion = new SqlConnection(coneccion);
+        using var conexion = new SqlConnection(conexionString);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -45,7 +46,7 @@ FROM Cuentas";
 FROM Cuentas p
 WHERE p.Id=@Id";
 
-        using var conexion = new SqlConnection(coneccion);
+        using var conexion = new SqlConnection(conexionString);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -71,7 +72,7 @@ WHERE p.Id=@Id";
 OUTPUT INSERTED.ID 
 VALUES (@Nombre, @Clave)"; 
 
-        using var conexion = new SqlConnection(coneccion);
+        using var conexion = new SqlConnection(conexionString);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -88,7 +89,7 @@ VALUES (@Nombre, @Clave)";
 @"UPDATE Cuentas SET Dni=@Dni, Nombre=@Nombre 
 WHERE Id=@Id";
 
-        using var conexion = new SqlConnection(coneccion);
+        using var conexion = new SqlConnection(conexionString);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -107,7 +108,7 @@ WHERE Id=@Id";
 @"DELETE FROM Cuentas
 WHERE Id=@Id";
 
-        using var conexion = new SqlConnection(coneccion);
+        using var conexion = new SqlConnection(conexionString);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);

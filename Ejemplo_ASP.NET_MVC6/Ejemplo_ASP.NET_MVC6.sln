@@ -26,6 +26,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSSQL", "MSSQL", "{9EB0B2CF
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSQL", "MSQL", "{FB405D92-29D5-4EFC-94A0-C30232C1CC66}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Ejemplo_01_CRUD_Simple\MSSQL\script.sql = Scripts\Ejemplo_01_CRUD_Simple\MSSQL\script.sql
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{70B0CF02-FB6C-45EB-BE2F-3FC3D280116C}"
 	ProjectSection(SolutionItems) = preProject

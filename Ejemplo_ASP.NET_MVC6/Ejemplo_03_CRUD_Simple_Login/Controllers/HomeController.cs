@@ -1,9 +1,9 @@
-using Ejemplo_CRUD_Simple_Login.Models;
+using Ejemplo_03_CRUD_Simple_Login.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Ejemplo_CRUD_Simple_Login.Controllers;
+namespace Ejemplo_03_CRUD_Simple_Login.Controllers;
 
 [Authorize]
 public class HomeController : Controller

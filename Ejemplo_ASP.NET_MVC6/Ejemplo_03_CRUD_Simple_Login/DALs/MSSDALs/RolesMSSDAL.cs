@@ -5,15 +5,16 @@ using Microsoft.Data.SqlClient;
 
 namespace Ejemplo_03_CRUD_Simple_Login.DALs.MSSDAO;
 
-public class PersonasMSSDAL : IPersonasDAL
+public class RolesMSSDAL : IRolesDAL
 {
-    public List<PersonaModel> GetAll()
+    
+    public List<RolModel> GetAll()
     {
-        var lista = new List<PersonaModel>();
+        var lista = new List<RolModel>();
                
         string sqlQuery = 
 @"SELECT * 
-FROM Personas";
+FROM Cuentas";
 
         using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
@@ -25,25 +26,23 @@ FROM Personas";
         while (reader.Read())
         {
             int id = Convert.ToInt32(reader["Id"]);
-            int dni = Convert.ToInt32(reader["DNI"]);
-            string? nombre = reader["Nombre"] as string;
-            DateTime? nacimiento = reader["Fecha_Nacimiento"] as DateTime?;
+            string? name = reader["Nombre"] as string;
 
-            var objeto = new PersonaModel { Id=id, DNI = dni, Nombre = nombre, FechaNacimiento=nacimiento };
+            var objeto = new RolModel {Id=id, Nombre=name };
 
             lista.Add(objeto);
         }
         return lista;
     }
 
-    public PersonaModel? GetById(int id)
+    public RolModel? GetById(int id)
     {
-        PersonaModel persona = null;
+        RolModel objeto = null;
 
         string sqlQuery = 
-@"SELECT * 
-FROM Personas p
-WHERE p.Id=@Id";
+@"SELECT TOP 1 r.* 
+FROM Roles r
+WHERE r.Id=@Id";
 
         using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
@@ -55,50 +54,70 @@ WHERE p.Id=@Id";
         
         if (reader.Read())
         {
-            int _id = Convert.ToInt32(reader["Id"]);
-            int dni = Convert.ToInt32(reader["DNI"]);
-            string nombre = reader["Nombre"] as string;
-            DateTime? fecha = reader["Fecha_Nacimiento"] as DateTime?;
+            int idG = Convert.ToInt32(reader["Id"]);
+            string? name = reader["Nombre"] as string;
+            string? password = reader["Clave"] as string;
 
-            persona = new PersonaModel { Id = _id, DNI = dni, Nombre = nombre, FechaNacimiento=fecha };
-
+            objeto = new RolModel { Id = idG, Nombre = name };
         }
-        return persona;
+        return objeto;
     }
 
-    public bool Insert(PersonaModel nuevo)
+    public RolModel? GetByNombre(string nombre)
     {
+        RolModel objeto = null;
+
         string sqlQuery =
-@"INSERT Personas(Dni, Nombre, Fecha_Nacimiento)
-OUTPUT INSERTED.ID 
-VALUES (@Dni, @Nombre, @Fecha_Nacimiento)"; 
+@"SELECT TOP 1 r.* 
+FROM Roles r
+WHERE UPPER(TRIM(r.Nombre)) LIKE UPPER(TRIM(@Nombre))";
 
         using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Dni", nuevo.DNI);
-        query.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
-        query.Parameters.AddWithValue("@Fecha_Nacimiento", nuevo.FechaNacimiento);
+        query.Parameters.AddWithValue("@Nombre", nombre);
 
-        var respuesta = query.ExecuteScalar();
-        nuevo.Id = Convert.ToInt32(respuesta);
+        var reader = query.ExecuteReader();
+
+        if (reader.Read())
+        {
+            int id = Convert.ToInt32(reader["Id"]);
+            string? nom= reader["Nombre"] as string;
+
+            objeto = new RolModel { Id = id, Nombre = nom};
+        }
+        return objeto;
+    }
+
+    public bool Insert(RolModel nuevo)
+    {
+        string sqlQuery =
+@"INSERT Roles(Nombre)
+OUTPUT INSERTED.ID 
+VALUES (@Nombre)"; 
+
+        using var conexion = new SqlConnection(ConexionString.valor);
+        conexion.Open();
+
+        using var query = new SqlCommand(sqlQuery, conexion);
+        query.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
+
+        nuevo.Id = Convert.ToInt32( query.ExecuteScalar() );
         return nuevo.Id > 0;
     }
 
-    public bool Update(PersonaModel actualizar)
+    public bool Update(RolModel actualizar)
     {
         string sqlQuery =
-@"UPDATE Personas SET Dni=@Dni, Nombre=@Nombre, Fecha_Nacimiento=@Fecha_Nacimiento 
+@"UPDATE Roles SET Nombre=@Nombre 
 WHERE Id=@Id";
 
         using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Dni", actualizar.DNI);
         query.Parameters.AddWithValue("@Nombre", actualizar.Nombre);
-        query.Parameters.AddWithValue("@Fecha_Nacimiento", actualizar.FechaNacimiento);
         query.Parameters.AddWithValue("@Id", actualizar.Id);
 
         int cantidad=query.ExecuteNonQuery();
@@ -109,7 +128,7 @@ WHERE Id=@Id";
     public void Delete(int id)
     {
         string sqlQuery =
-@"DELETE FROM Personas
+@"DELETE FROM Roles
 WHERE Id=@Id";
 
         using var conexion = new SqlConnection(ConexionString.valor);

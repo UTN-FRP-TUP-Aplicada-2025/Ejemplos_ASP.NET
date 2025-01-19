@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Ejemplo_CRUD_Simple_Login.Models;
+namespace Ejemplo_03_CRUD_Simple_Login.Models;
 
 public class PersonaModel
 {

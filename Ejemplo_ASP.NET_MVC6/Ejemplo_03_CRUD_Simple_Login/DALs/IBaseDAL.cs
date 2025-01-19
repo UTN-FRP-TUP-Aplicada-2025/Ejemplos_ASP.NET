@@ -1,4 +1,4 @@
-﻿namespace EjemploASP.NET_MVC.DALs;
+﻿namespace Ejemplo_03_CRUD_Simple_Login.DALs;
 
 public interface IBaseDAL<T>
 {

@@ -1,6 +1,5 @@
-﻿using Ejemplo_CRUD_Simple_Login.Models;
+﻿using Ejemplo_03_CRUD_Simple_Login.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 

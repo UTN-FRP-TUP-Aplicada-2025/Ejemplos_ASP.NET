@@ -1,8 +1,9 @@
-﻿using Ejemplo_CRUD_Simple_Login.Models;
-using EjemploASP.NET_MVC.DALs;
-using EjemploASP.NET_MVC.DALs.MSSDAO;
+﻿
+using Ejemplo_03_CRUD_Simple_Login.DALs;
+using Ejemplo_03_CRUD_Simple_Login.DALs.MSSDAO;
+using Ejemplo_03_CRUD_Simple_Login.Models;
 
-namespace Ejemplo_CRUD_Simple_Login.NET_MVC.Services;
+namespace Ejemplo_03_CRUD_Simple_Login.Services;
 
 public class PersonasService
 {

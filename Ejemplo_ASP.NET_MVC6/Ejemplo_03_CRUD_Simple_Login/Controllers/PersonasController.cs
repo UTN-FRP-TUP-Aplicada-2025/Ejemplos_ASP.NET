@@ -1,9 +1,10 @@
-﻿using Ejemplo_CRUD_Simple_Login.Models;
-using Ejemplo_CRUD_Simple_Login.NET_MVC.Services;
+﻿
+using Ejemplo_03_CRUD_Simple_Login.Models;
+using Ejemplo_03_CRUD_Simple_Login.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Ejemplo_CRUD_Simple_Login.Controllers;
+namespace Ejemplo_03_CRUD_Simple_Login.Controllers;
 
 [Authorize]
 public class PersonasController : Controller

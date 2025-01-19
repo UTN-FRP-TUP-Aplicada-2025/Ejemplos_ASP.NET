@@ -1,7 +1,7 @@
 ﻿
-using Ejemplo_CRUD_Simple_Login.Models;
+using Ejemplo_03_CRUD_Simple_Login.Models;
 
-namespace EjemploASP.NET_MVC.DALs;
+namespace Ejemplo_03_CRUD_Simple_Login.DALs;
 
 public interface ICuentasDAL: IBaseDAL<CuentaModel>
 {

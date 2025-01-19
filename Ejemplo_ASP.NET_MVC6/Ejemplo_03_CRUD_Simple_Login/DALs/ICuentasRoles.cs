@@ -3,6 +3,6 @@ using Ejemplo_03_CRUD_Simple_Login.Models;
 
 namespace Ejemplo_03_CRUD_Simple_Login.DALs;
 
-public interface IPersonasDAL:IBaseDAL<PersonaModel>
+public interface ICuentasRolesDAL: IBaseDAL<CuentaRolModel>
 {
 }

@@ -1,4 +1,4 @@
-using Ejemplo_CRUD_Simple_Login.Security;
+using Ejemplo_03_CRUD_Simple_Login.Security;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,8 +17,8 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 })
 .AddRoles<IdentityRole>() 
 .AddSignInManager<SignInManager<IdentityUser>>() 
-.AddUserStore<InMemoryUserStore>() 
-.AddRoleStore<InMemoryRoleStore>()
+.AddUserStore<InDALUserStore>() 
+.AddRoleStore<InDALRoleStore>()
 .AddDefaultTokenProviders();
 
 builder.Services.AddControllersWithViews();

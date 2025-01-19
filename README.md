@@ -12,11 +12,37 @@ docker system prune -a --volumes
 docker system prune --all --force
 
 
+IP="$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ejemplo03_dotnet_container)"
+echo $IP
+
+root@9ca5901163a9:/app# export ASPNETCORE_URLS="http://0.0.0.0:5000"
+root@9ca5901163a9:/app# dotnet Ejemplo_03_CRUD_Simple_Login.dll
+
+
+
+
 Ejemplo01CRUDSimpleDB.mssql.somee.com
 
 sqlcmd -S Ejemplo01CRUDSimpleDB.mssql.somee.com -U sa -P MSS-fernando-123
 
+ping 172.17.0.2
+
+sqlcmd -S 172.17.0.2 -U sa -P MSS-fernando-123
+
+
 apt-get install -y mssql-tools 
+
+pt-get install -y iputils-ping
+
+
+/opt/mssql-tools18/bin/sqlcmd -S 172.17.0.2 -U sa -P 'MSS-fernando-123'
+
+
+/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql -C
+
+
+/opt/mssql-tools/bin/sqlcmd -S 172.17.0.2 -U sa -P 'MSS-fernando-123'  -C "Encrypt=False" 
+
 
 habilitando acceso externo
 

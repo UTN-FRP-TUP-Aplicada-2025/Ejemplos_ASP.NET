@@ -18,7 +18,7 @@ docker rmi $NOMBRE_IMAGEN:$TAG
 docker build --no-cache -f Dockerfile.dotnet -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
 
 # genero el contenedor y lo corro
-docker run --name $NOMBRE_CONTENEDOR -p 8080:8080 -d $NOMBRE_IMAGEN:$TAG
+docker run --name $NOMBRE_CONTENEDOR -p 8080:80 -d $NOMBRE_IMAGEN:$TAG
 
 # listo los contenedores corriendo
 docker ps 

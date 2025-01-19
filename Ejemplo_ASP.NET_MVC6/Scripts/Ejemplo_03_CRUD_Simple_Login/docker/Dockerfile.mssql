@@ -25,8 +25,8 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # directorio de trabajo para los scripts
 
-ARG PROJECT_PATH=MSSQL
-ARG BUILD_ROOT=/src/ej02
+ARG PROJECT_PATH=Scripts/Ejemplo_03_CRUD_Simple_Login/MSSQL
+ARG BUILD_ROOT=/src/sql_script
 
 WORKDIR $BUILD_ROOT
 

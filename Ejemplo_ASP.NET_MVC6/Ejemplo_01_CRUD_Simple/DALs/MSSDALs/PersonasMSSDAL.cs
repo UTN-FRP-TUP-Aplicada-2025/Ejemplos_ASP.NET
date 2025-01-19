@@ -6,8 +6,9 @@ namespace Ejemplo_CRUD_Simple.DALs.MSSDALs;
 
 public class PersonasMSSDAL : IPersonasDAL
 {
-    string coneccion = "Integrated Security=true; Initial Catalog=EjemploCRUDSimpleDB;Server=TSP;TrustServerCertificate=true;";
-    
+    //string conexion = "Integrated Security=true; Initial Catalog=EjemploCRUDSimpleDB;Server=TSP;TrustServerCertificate=true;";
+    string conexion = "User Id=sa;Password=MSS-fernando-123;Initial Catalog=EjemploCRUDSimpleLoginDB;Server=ejemplo02_mssql_container;TrustServerCertificate=true;";
+
     public List<PersonaModel> GetAll()
     {
         var lista = new List<PersonaModel>();
@@ -16,7 +17,7 @@ public class PersonasMSSDAL : IPersonasDAL
 @"SELECT * 
 FROM Personas";
 
-        using var conexion = new SqlConnection(coneccion);
+        using var conexion = new SqlConnection(conexion);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -45,7 +46,7 @@ FROM Personas";
 FROM Personas p
 WHERE p.Id=@Id";
 
-        using var conexion = new SqlConnection(coneccion);
+        using var conexion = new SqlConnection(conexion);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -72,7 +73,7 @@ WHERE p.Id=@Id";
 OUTPUT INSERTED.ID 
 VALUES (@Dni, @Nombre)"; 
 
-        using var conexion = new SqlConnection(coneccion);
+        using var conexion = new SqlConnection(conexion);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -89,7 +90,7 @@ VALUES (@Dni, @Nombre)";
 @"UPDATE Personas SET Dni=@Dni, Nombre=@Nombre 
 WHERE Id=@Id";
 
-        using var conexion = new SqlConnection(coneccion);
+        using var conexion = new SqlConnection(conexion);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -108,7 +109,7 @@ WHERE Id=@Id";
 @"DELETE FROM Personas
 WHERE Id=@Id";
 
-        using var conexion = new SqlConnection(coneccion);
+        using var conexion = new SqlConnection(conexion);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);

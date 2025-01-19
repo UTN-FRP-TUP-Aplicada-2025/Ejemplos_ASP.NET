@@ -9,7 +9,7 @@ SOLUCION_PATH='/workspaces/Ejemplos_ASP.NET_MVC6/Ejemplo_ASP.NET_MVC6/'
 docker rmi ejemplo03_dotnet_image:$TAG
 
 # construyo la imagen
-docker build -f Dockerfile.dotnet -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
+docker build --no-cache -f Dockerfile.dotnet -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
 
 # paro el contenedor - por si esta corriendo
 docker stop $NOMBRE_CONTENEDOR

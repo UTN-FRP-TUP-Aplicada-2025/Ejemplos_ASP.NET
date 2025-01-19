@@ -1,6 +1,17 @@
 # Ejemplos_ASP.NET_MVC6
 
 
+borrando contenedores detenidas e imagenes no utilizadas
+
+docker containter prune
+docker image prune -a
+docker network prune
+
+borra hasta la cache
+docker system prune -a --volumes
+docker system prune --all --force
+
+
 Ejemplo01CRUDSimpleDB.mssql.somee.com
 
 sqlcmd -S Ejemplo01CRUDSimpleDB.mssql.somee.com -U sa -P MSS-fernando-123

@@ -5,10 +5,16 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 USER root
 RUN apt-get update 
 RUN apt-get install -y gss-ntlmssp krb5-user libkrb5-dev openssl libssl-dev libgssapi-krb5-2 libkrb5-3
+
+RUN apt-get install -y iputils-ping
+
 RUN rm -rf /var/lib/apt/lists/*
 
-ARG PROJECT_PATH=Ejemplo_03_CRUD_Simple_Login
-ARG BUILD_ROOT=/src/ej03
+ARG PROJECT_NAME='Ejemplo_03_CRUD_Simple_Login'
+ARG PROJECT_PATH=$PROJECT_NAME
+ARG PROJECT_FILE='Ejemplo_03_CRUD_Simple_Login.csproj'
+ARG BUILD_ROOT='/src/ej03'
+ARG NOMBRE_DLL=$PROJECT_NAME'.DLL'
 
 WORKDIR $BUILD_ROOT
 
@@ -18,14 +24,16 @@ COPY ${PROJECT_PATH}/. ${BUILD_ROOT}
 
 RUN dotnet add package Microsoft.Data.SqlClient
 
+RUN dotnet clean ${BUILD_ROOT}/$PROJECT_FILE
+
 # restaurando dependencias
-RUN dotnet restore ${BUILD_ROOT}/Ejemplo_03_CRUD_Simple_Login.csproj
+RUN dotnet restore ${BUILD_ROOT}/$PROJECT_FILE
 
 # compilando
-RUN dotnet build ${BUILD_ROOT}/Ejemplo_03_CRUD_Simple_Login.csproj -c Release -o /app/build
+RUN dotnet build ${BUILD_ROOT}/$PROJECT_FILE -c Release -o /app/build
 
 # publicando
-RUN dotnet publish ${BUILD_ROOT}/Ejemplo_03_CRUD_Simple_Login.csproj -c Release -o /app/publish
+RUN dotnet publish ${BUILD_ROOT}/$PROJECT_FILE -c Release -o /app/publish
 
 # etapa: ejecución
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
@@ -40,4 +48,6 @@ COPY --from=build /app/publish .
 EXPOSE 8080
 
 # punto de entrada de la aplicación
+
 ENTRYPOINT ["dotnet", "Ejemplo_03_CRUD_Simple_Login.dll"]
+#ENTRYPOINT ["dotnet", NOMBRE_DLL]

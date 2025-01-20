@@ -1,0 +1,60 @@
+﻿@page
+@model Ejemplo_05_CRUD_Razor.Pages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Respuesta[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Respuesta[0].Camina)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Respuesta[0].UsaTransportePublico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Respuesta[0].UsaTransportePrivado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Respuesta[0].DistanciaASuDestino)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Respuesta) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Camina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsaTransportePublico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UsaTransportePrivado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DistanciaASuDestino)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

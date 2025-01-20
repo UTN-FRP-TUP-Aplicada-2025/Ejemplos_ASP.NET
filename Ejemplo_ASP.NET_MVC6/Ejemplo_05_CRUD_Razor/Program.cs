@@ -29,4 +29,25 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<AppDbContext>();
+
+        // Elimina y recrea la base de datos
+        context.Database.EnsureDeleted();
+        context.Database.EnsureCreated();
+
+        // Aquí puedes agregar datos iniciales si es necesario
+        //SedData(context);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Ocurrió un error al inicializar la base de datos.");
+    }
+}
+
 app.Run();

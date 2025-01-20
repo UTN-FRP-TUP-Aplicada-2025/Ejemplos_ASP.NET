@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
     {
+
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -20,3 +21,5 @@ public class AppDbContext : DbContext
         // Configuración adicional de modelos si es necesario
     }
 }
+
+//dotnet ef migrations add InitialCreate

@@ -73,6 +73,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{772491
 	ProjectSection(SolutionItems) = preProject
 		Scripts\Ejemplo_04_CRUD_REST_Login\docker\create_dotnet_container.sh = Scripts\Ejemplo_04_CRUD_REST_Login\docker\create_dotnet_container.sh
 		Scripts\Ejemplo_04_CRUD_REST_Login\docker\create_mssql_container.sh = Scripts\Ejemplo_04_CRUD_REST_Login\docker\create_mssql_container.sh
+		Scripts\Ejemplo_04_CRUD_REST_Login\docker\docker-compose.yml = Scripts\Ejemplo_04_CRUD_REST_Login\docker\docker-compose.yml
 		Scripts\Ejemplo_04_CRUD_REST_Login\docker\Dockerfile.dotnet = Scripts\Ejemplo_04_CRUD_REST_Login\docker\Dockerfile.dotnet
 		Scripts\Ejemplo_04_CRUD_REST_Login\docker\Dockerfile.mssql = Scripts\Ejemplo_04_CRUD_REST_Login\docker\Dockerfile.mssql
 		Scripts\Ejemplo_04_CRUD_REST_Login\docker\Readme.md = Scripts\Ejemplo_04_CRUD_REST_Login\docker\Readme.md

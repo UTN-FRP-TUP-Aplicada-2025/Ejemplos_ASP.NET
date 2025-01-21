@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Resultados";
+}
+
+<h2>Resultados del Formulario</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Campo</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entry in ViewBag.FormData as Dictionary<string, string>)
+        {
+            <tr>
+                <td>@entry.Key</td>
+                <td>@entry.Value</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,41 @@
+﻿@model List<FormFieldModel>
+
+@{
+    ViewData["Title"] = "Formulario Dinámico";
+}
+
+<h2>Formulario Dinámico</h2>
+
+<form method="post" asp-action="Submit">
+    @foreach (var field in Model)
+    {
+        <div class="mb-3">
+            <label asp-for="@field.Label" class="form-label">@field.Label</label>
+
+            @switch (field.Type)
+            {
+                case "text":
+                case "email":
+                case "password":
+                    <input type="@field.Type"
+                           name="@field.Label"
+                           class="form-control"
+                           placeholder="@field.Placeholder"
+                    @(field.Required ? "required" : "") />
+                    break;
+
+                case "dropdown":
+                    <select name="@field.Label" class="form-select" @(field.Required ? "required" : "")>
+                        <option value="">Seleccione una opción</option>
+                        @foreach (var option in field.Options)
+                        {
+                            <option value="@option">@option</option>
+                        }
+                    </select>
+                    break;
+            }
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>

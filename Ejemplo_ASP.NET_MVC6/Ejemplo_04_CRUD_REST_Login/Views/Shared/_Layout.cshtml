@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Ejemplo_03_CRUD_Simple_Login</title>
+    <title>@ViewData["Title"] - Ejemplo_04_CRUD_REST_Login</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Ejemplo_03_CRUD_Simple_Login.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Ejemplo_04_CRUD_REST_Login.styles.css" asp-append-version="true" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -14,7 +14,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ejemplo_CRUD</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ejemplo_04_CRUD_REST_Login</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -27,11 +27,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="btn btn-sm btn-primary pull-right" asp-action="Logout" asp-controller="Cuenta">Log Out</a>
-                        </li>
-
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Personas" asp-action="Index"><i class="fa-solid fa-users"></i>Personas</a>
                         </li>
@@ -47,14 +42,13 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container"> &copy; 2025 - Ejemplo_CRUD - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></div>
+        <div class="container">
+            &copy; 2025 - Ejemplo_04_CRUD_REST_Login - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
     </footer>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
-
 </body>
 </html>

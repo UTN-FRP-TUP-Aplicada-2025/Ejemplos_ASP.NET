@@ -54,6 +54,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "local", "local", "{94F750F7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_05_CRUD_Razor", "Ejemplo_05_CRUD_Razor\Ejemplo_05_CRUD_Razor.csproj", "{673937F9-185E-49BF-9933-37D4EE717359}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_04_CRUD_REST_Login", "Ejemplo_04_CRUD_REST_Login\Ejemplo_04_CRUD_REST_Login.csproj", "{C5EC2D29-179B-401B-89FC-8B81AAFDBF87}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_04_CRUD_REST_Login", "Ejemplo_04_CRUD_REST_Login", "{AFE5CBAE-162B-4515-9E78-E6F7D2801B00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSSQL", "MSSQL", "{F72F0003-3E7B-415B-9072-440270969FCE}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Ejemplo_04_CRUD_REST_Login\MSSQL\local_script.sql = Scripts\Ejemplo_04_CRUD_REST_Login\MSSQL\local_script.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +85,10 @@ Global
 		{673937F9-185E-49BF-9933-37D4EE717359}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{673937F9-185E-49BF-9933-37D4EE717359}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{673937F9-185E-49BF-9933-37D4EE717359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5EC2D29-179B-401B-89FC-8B81AAFDBF87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5EC2D29-179B-401B-89FC-8B81AAFDBF87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5EC2D29-179B-401B-89FC-8B81AAFDBF87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5EC2D29-179B-401B-89FC-8B81AAFDBF87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +101,8 @@ Global
 		{70B0CF02-FB6C-45EB-BE2F-3FC3D280116C} = {8E392137-9683-491B-B493-CA9D9992B67D}
 		{BA240214-C2ED-4EF2-A9EB-EBE73D79884B} = {459F4550-3040-4804-A2E1-7E07B283CB34}
 		{94F750F7-35AE-498E-A97C-D57ED47E802E} = {8E392137-9683-491B-B493-CA9D9992B67D}
+		{AFE5CBAE-162B-4515-9E78-E6F7D2801B00} = {A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}
+		{F72F0003-3E7B-415B-9072-440270969FCE} = {AFE5CBAE-162B-4515-9E78-E6F7D2801B00}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

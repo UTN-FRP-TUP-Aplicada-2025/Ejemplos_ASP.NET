@@ -49,8 +49,8 @@ EXPOSE 8080
 
 # punto de entrada de la aplicación
 
-#ENTRYPOINT ["dotnet", "Ejemplo_04_CRUD_REST_Login.dll"]
+ENTRYPOINT ["dotnet", "Ejemplo_04_CRUD_REST_Login.dll"]
 
-ARG NOMBRE_DLL=$PROJECT_NAME".DLL"
-ENV NOMBRE_DLL=$NOMBRE_DLL
-ENTRYPOINT ["sh", "-c", "dotnet $NOMBRE_DLL"]
+#ARG NOMBRE_DLL=$PROJECT_NAME".DLL"
+#ENV NOMBRE_DLL=$NOMBRE_DLL
+#ENTRYPOINT ["sh", "-c", "dotnet $NOMBRE_DLL"]

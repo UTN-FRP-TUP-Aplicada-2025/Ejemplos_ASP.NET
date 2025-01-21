@@ -39,7 +39,7 @@ public class AccountController : Controller
         }
 
         var claveHash = _usuarioDAO.HashPassword(usuarioModel.Clave);
-        var result = usuario != null && true;// claveHash == usuario.Clave;
+        var result = usuario != null &&  claveHash == usuario.Clave;
 
         if (result==false)// PasswordVerificationResult.Failed)
         {

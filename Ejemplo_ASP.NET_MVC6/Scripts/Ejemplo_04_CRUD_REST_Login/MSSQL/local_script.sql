@@ -71,17 +71,20 @@ VALUES (353432432,'Sebastian', '1-1-1990'),
 GO
 
 DECLARE @Password NVARCHAR(255) = '123';
-DECLARE @PasswordHash VARBINARY(64);
-SET @PasswordHash = HASHBYTES('SHA2_256', @Password);
+DECLARE @PasswordHash VARBINARY(64)= HASHBYTES('SHA2_256', CONVERT(VARCHAR(255), @Password, 2));
+SELECT @PasswordHash 
+--DECLARE @Base64Hash NVARCHAR(MAX);
+--SET @Base64Hash = CAST('' AS XML).value('xs:base64Binary(sql:variable("@PasswordHash"))', 'NVARCHAR(MAX)');
+--SELECT @Base64Hash;
 
-DECLARE @uuid UNIQUEIDENTIFIER;
-SET @uuid = NEWID();
+DECLARE @uuid UNIQUEIDENTIFIER = NEWID();
 
 INSERT INTO Usuarios(UUID, Nombre, Clave)
-VALUES(@uuid, 'Admin',  CONVERT(VARCHAR(MAX), @PasswordHash, 2) )
+VALUES(@uuid, 'Admin', CONVERT(NVARCHAR(200), @PasswordHash,2))
 
 
 GO
 
 select  * from Usuarios
 --"26D6A8AD97C75FFC548F6873E5E93CE475479E3E1A1097381E54221FB53EC1D2"
+

@@ -190,7 +190,7 @@ WHERE Id=@Id";
         byte[] inputBytes = Encoding.UTF8.GetBytes(input);
         byte[] hashBytes = sha256.ComputeHash(inputBytes);
 
-        return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+        return BitConverter.ToString(hashBytes).Replace("-", "").ToUpper();
 
     }
 }

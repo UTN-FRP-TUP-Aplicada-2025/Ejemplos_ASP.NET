@@ -13,7 +13,7 @@ RUN rm -rf /var/lib/apt/lists/*
 ARG PROJECT_NAME='Ejemplo_03_CRUD_Simple_Login'
 ARG PROJECT_PATH=$PROJECT_NAME
 ARG PROJECT_FILE='Ejemplo_03_CRUD_Simple_Login.csproj'
-ARG BUILD_ROOT='/src/ej03'
+ARG BUILD_ROOT='/src/app_dotnet'
 ARG NOMBRE_DLL=$PROJECT_NAME'.DLL'
 
 WORKDIR $BUILD_ROOT

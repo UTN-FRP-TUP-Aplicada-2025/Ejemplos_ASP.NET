@@ -4,15 +4,15 @@ USE MASTER
 
 GO
 
-DROP DATABASE IF EXISTS Ejemplo03CRUDSimpleLoginDB
+DROP DATABASE IF EXISTS Ejemplo_03_CRUD_Simple_Login_DB
 
 GO
 
-CREATE DATABASE  Ejemplo03CRUDSimpleLoginDB
+CREATE DATABASE  Ejemplo_03_CRUD_Simple_Login_nDB
 
 GO
 
-USE Ejemplo03CRUDSimpleLoginDB
+USE Ejemplo_03_CRUD_Simple_Login_DB
 
 GO
 

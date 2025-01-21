@@ -4,15 +4,15 @@ USE MASTER
 
 GO
 
-DROP DATABASE IF EXISTS Ejemplo04CRUDRESTLoginDB
+DROP DATABASE IF EXISTS Ejemplo_04_CRUD_REST_Login_DB
 
 GO
 
-CREATE DATABASE  Ejemplo04CRUDRESTLoginDB
+CREATE DATABASE  Ejemplo_04_CRUD_REST_Login_DB
 
 GO
 
-USE Ejemplo04CRUDRESTLoginDB
+USE Ejemplo_04_CRUD_REST_Login_DB
 
 GO
 
@@ -36,18 +36,11 @@ GO
 
 CREATE TABLE  Usuarios_Roles
 (
-	Id_Cuenta INT NOT NULL,
+	Id_Usuario INT NOT NULL,
 	Id_Rol INT NOT NULL,
-	CONSTRAINT UQ_Cuentas_Roles UNIQUE (Id_Cuenta, Id_Rol)
+	CONSTRAINT UQ_Usuario_Roles UNIQUE (Id_Usuario, Id_Rol)
 );
---O
 
---CREATE TABLE Cuentas_Roles
---(
---	Id_Cuenta INT NOT NULL,
---	Id_Rol INT NOT NULL,
---	PRIMARY KEY (Id_Cuenta, Id_Rol)
---);
 
 GO
 

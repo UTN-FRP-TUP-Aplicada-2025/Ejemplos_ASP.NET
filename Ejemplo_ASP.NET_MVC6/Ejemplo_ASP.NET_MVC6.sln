@@ -52,15 +52,57 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "local", "local", "{94F750F7
 		Scripts\Ejemplo_03_CRUD_Simple_Login\local\somee.ps1 = Scripts\Ejemplo_03_CRUD_Simple_Login\local\somee.ps1
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_05_CRUD_Razor", "Ejemplo_05_CRUD_Razor\Ejemplo_05_CRUD_Razor.csproj", "{673937F9-185E-49BF-9933-37D4EE717359}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_06_CRUD_Razor", "Ejemplo_06_CRUD_Razor\Ejemplo_06_CRUD_Razor.csproj", "{673937F9-185E-49BF-9933-37D4EE717359}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_04_CRUD_REST_Login", "Ejemplo_04_CRUD_REST_Login\Ejemplo_04_CRUD_REST_Login.csproj", "{C5EC2D29-179B-401B-89FC-8B81AAFDBF87}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_04_CRUD_REST_Login", "Ejemplo_04_CRUD_REST_Login", "{AFE5CBAE-162B-4515-9E78-E6F7D2801B00}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Ejemplo_04_CRUD_REST_Login\Readme.md = Scripts\Ejemplo_04_CRUD_REST_Login\Readme.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSSQL", "MSSQL", "{F72F0003-3E7B-415B-9072-440270969FCE}"
 	ProjectSection(SolutionItems) = preProject
+		Scripts\Ejemplo_04_CRUD_REST_Login\MSSQL\docker_script.sql = Scripts\Ejemplo_04_CRUD_REST_Login\MSSQL\docker_script.sql
 		Scripts\Ejemplo_04_CRUD_REST_Login\MSSQL\local_script.sql = Scripts\Ejemplo_04_CRUD_REST_Login\MSSQL\local_script.sql
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_05_Areas", "Ejemplo_05_Areas\Ejemplo_05_Areas.csproj", "{48881B95-5438-4A7D-8107-27C3783978E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{772491B5-4594-4EF4-A530-29FE18A2A3F2}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Ejemplo_04_CRUD_REST_Login\docker\create_dotnet_container.sh = Scripts\Ejemplo_04_CRUD_REST_Login\docker\create_dotnet_container.sh
+		Scripts\Ejemplo_04_CRUD_REST_Login\docker\create_mssql_container.sh = Scripts\Ejemplo_04_CRUD_REST_Login\docker\create_mssql_container.sh
+		Scripts\Ejemplo_04_CRUD_REST_Login\docker\Dockerfile.dotnet = Scripts\Ejemplo_04_CRUD_REST_Login\docker\Dockerfile.dotnet
+		Scripts\Ejemplo_04_CRUD_REST_Login\docker\Dockerfile.mssql = Scripts\Ejemplo_04_CRUD_REST_Login\docker\Dockerfile.mssql
+		Scripts\Ejemplo_04_CRUD_REST_Login\docker\Readme.md = Scripts\Ejemplo_04_CRUD_REST_Login\docker\Readme.md
+		Scripts\Ejemplo_04_CRUD_REST_Login\docker\stop.sh = Scripts\Ejemplo_04_CRUD_REST_Login\docker\stop.sh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine-tools", "Engine-tools", "{9D113567-1B98-457D-BF91-8A68B4CFF108}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Engine_Tools\install.sh = Scripts\Engine_Tools\install.sh
+		Scripts\Engine_Tools\Readme.md = Scripts\Engine_Tools\Readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_05_Areas", "Ejemplo_05_Areas", "{3D50BCED-A5F4-448A-8407-35FCBC8BE1E2}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Ejemplo_05_Areas\Readme.md = Scripts\Ejemplo_05_Areas\Readme.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{76FE814D-7DFB-433D-935B-0C16D8EF88A9}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Ejemplo_05_Areas\docker\create_dotnet_container.sh = Scripts\Ejemplo_05_Areas\docker\create_dotnet_container.sh
+		Scripts\Ejemplo_05_Areas\docker\create_mssql_container.sh = Scripts\Ejemplo_05_Areas\docker\create_mssql_container.sh
+		Scripts\Ejemplo_05_Areas\docker\Dockerfile.dotnet = Scripts\Ejemplo_05_Areas\docker\Dockerfile.dotnet
+		Scripts\Ejemplo_05_Areas\docker\Dockerfile.mssql = Scripts\Ejemplo_05_Areas\docker\Dockerfile.mssql
+		Scripts\Ejemplo_05_Areas\docker\Readme.md = Scripts\Ejemplo_05_Areas\docker\Readme.md
+		Scripts\Ejemplo_05_Areas\docker\stop.sh = Scripts\Ejemplo_05_Areas\docker\stop.sh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSSQL", "MSSQL", "{114BF462-C16A-4786-B800-30F152856328}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Ejemplo_05_Areas\MSSQL\local_script.sql = Scripts\Ejemplo_05_Areas\MSSQL\local_script.sql
 	EndProjectSection
 EndProject
 Global
@@ -89,6 +131,10 @@ Global
 		{C5EC2D29-179B-401B-89FC-8B81AAFDBF87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5EC2D29-179B-401B-89FC-8B81AAFDBF87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5EC2D29-179B-401B-89FC-8B81AAFDBF87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48881B95-5438-4A7D-8107-27C3783978E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48881B95-5438-4A7D-8107-27C3783978E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48881B95-5438-4A7D-8107-27C3783978E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48881B95-5438-4A7D-8107-27C3783978E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +149,11 @@ Global
 		{94F750F7-35AE-498E-A97C-D57ED47E802E} = {8E392137-9683-491B-B493-CA9D9992B67D}
 		{AFE5CBAE-162B-4515-9E78-E6F7D2801B00} = {A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}
 		{F72F0003-3E7B-415B-9072-440270969FCE} = {AFE5CBAE-162B-4515-9E78-E6F7D2801B00}
+		{772491B5-4594-4EF4-A530-29FE18A2A3F2} = {AFE5CBAE-162B-4515-9E78-E6F7D2801B00}
+		{9D113567-1B98-457D-BF91-8A68B4CFF108} = {A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}
+		{3D50BCED-A5F4-448A-8407-35FCBC8BE1E2} = {A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}
+		{76FE814D-7DFB-433D-935B-0C16D8EF88A9} = {3D50BCED-A5F4-448A-8407-35FCBC8BE1E2}
+		{114BF462-C16A-4786-B800-30F152856328} = {3D50BCED-A5F4-448A-8407-35FCBC8BE1E2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

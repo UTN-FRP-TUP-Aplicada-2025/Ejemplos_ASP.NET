@@ -25,7 +25,7 @@ FROM Usuarios_Roles ur";
 
         while (reader.Read())
         {
-            int idUsuario = Convert.ToInt32(reader["Id_Cuenta"]);
+            int idUsuario = Convert.ToInt32(reader["Id_Usuario"]);
             int idRol = Convert.ToInt32(reader["Id_Rol"]);
 
             var objeto = new UsuarioRolModel { IdUsuario=idUsuario, IdRol=idRol };
@@ -72,7 +72,7 @@ VALUES (@Id_Usuario, @Id_Rol)";
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Id_Cuenta", nuevo.IdUsuario);
+        query.Parameters.AddWithValue("@Id_Usuario", nuevo.IdUsuario);
         query.Parameters.AddWithValue("@Id_Rol", nuevo.IdRol);
 
         int insertados= query.ExecuteNonQuery();
@@ -82,14 +82,14 @@ VALUES (@Id_Usuario, @Id_Rol)";
     public bool Update(UsuarioRolModel actualizar)
     {
         string sqlQuery =
-@"UPDATE Cuentas_Roles SET Id_Rol=@Id_Rol
-WHERE Id_Cuenta=@Id_Cuenta";
+@"UPDATE Usuarios_Roles SET Id_Rol=@Id_Rol
+WHERE Id_Usuario=@Id_Usuario";
 
         using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Id_Cuenta", actualizar.IdUsuario);
+        query.Parameters.AddWithValue("@Id_Usurio", actualizar.IdUsuario);
         query.Parameters.AddWithValue("@Id_Rol", actualizar.IdRol);
 
         int cantidad=query.ExecuteNonQuery();
@@ -101,13 +101,13 @@ WHERE Id_Cuenta=@Id_Cuenta";
     {
         string sqlQuery =
 @"DELETE FROM Usuarios_Roles
-WHERE Id_Cuenta=@Id_Cuenta";
+WHERE Id_Usuario=@Id_Usuario";
 
         using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Id_Cuenta", id);
+        query.Parameters.AddWithValue("@Id_Usuario", id);
 
         var eliminados = query.ExecuteScalar();
     }

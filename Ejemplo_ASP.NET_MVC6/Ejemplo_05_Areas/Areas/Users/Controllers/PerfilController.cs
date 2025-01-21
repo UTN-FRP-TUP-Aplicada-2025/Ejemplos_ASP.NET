@@ -1,0 +1,15 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Ejemplo_05_Areas.Areas.Users.Controllers
+{
+    public class PerfilController : Controller
+    {
+        // GET: PerfilController
+        public ActionResult Index()
+        {
+            return View();
+        }
+        
+    }
+}

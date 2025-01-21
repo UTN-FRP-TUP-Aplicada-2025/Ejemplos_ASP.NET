@@ -4,19 +4,19 @@ USE MASTER
 
 GO
 
-DROP DATABASE IF EXISTS Ejemplo03CRUDSimpleLoginDB
+DROP DATABASE IF EXISTS Ejemplo_04_CRUD_REST_Login_DB
 
 GO
 
-CREATE DATABASE  Ejemplo03CRUDSimpleLoginDB
+CREATE DATABASE  Ejemplo_04_CRUD_REST_Login_DB
 
 GO
 
-USE Ejemplo03CRUDSimpleLoginDB
+USE Ejemplo_04_CRUD_REST_Login_DB
 
 GO
 
-CREATE TABLE Cuentas
+CREATE TABLE Usuarios
 (
 	Id INT PRIMARY KEY IDENTITY(1,1),
 	UUID  NVARCHAR(200) NOT NULL UNIQUE,
@@ -34,20 +34,12 @@ CREATE TABLE Roles
 
 GO
 
-CREATE TABLE Cuentas_Roles
+CREATE TABLE  Usuarios_Roles
 (
-	Id_Cuenta INT NOT NULL,
+	Id_Usuario INT NOT NULL,
 	Id_Rol INT NOT NULL,
-	CONSTRAINT UQ_Cuentas_Roles UNIQUE (Id_Cuenta, Id_Rol)
+	CONSTRAINT UQ_Usuarios_Roles UNIQUE (Id_Usuario, Id_Rol)
 );
---O
-
---CREATE TABLE Cuentas_Roles
---(
---	Id_Cuenta INT NOT NULL,
---	Id_Rol INT NOT NULL,
---	PRIMARY KEY (Id_Cuenta, Id_Rol)
---);
 
 GO
 
@@ -68,6 +60,24 @@ VALUES (353432432,'Sebastian', '1-1-1990'),
 (30798132, 'Teresa', '3-26-1999'),
 (35555132, 'Eduardo', '7-3-1995')
 
+GO
+
+DECLARE @Password NVARCHAR(255) = '123';
+DECLARE @PasswordHash VARBINARY(64)= HASHBYTES('SHA2_256', CONVERT(VARCHAR(255), @Password, 2));
+SELECT @PasswordHash 
+--DECLARE @Base64Hash NVARCHAR(MAX);
+--SET @Base64Hash = CAST('' AS XML).value('xs:base64Binary(sql:variable("@PasswordHash"))', 'NVARCHAR(MAX)');
+--SELECT @Base64Hash;
+
+DECLARE @uuid UNIQUEIDENTIFIER = NEWID();
+
+INSERT INTO Usuarios(UUID, Nombre, Clave)
+VALUES(@uuid, 'Admin', CONVERT(NVARCHAR(200), @PasswordHash,2))
+
+
+GO
+
+select  * from Usuarios
 
 GO
 

@@ -3,7 +3,7 @@ using Ejemplo_04_CRUD_REST_Login.DALs;
 using Ejemplo_04_CRUD_REST_Login.DALs.MSSDAO;
 using Ejemplo_04_CRUD_REST_Login.Models;
 
-namespace Ejemplo_03_CRUD_Simple_Login.Services;
+namespace Ejemplo_04_CRUD_REST_Login.Services;
 
 public class PersonasService
 {

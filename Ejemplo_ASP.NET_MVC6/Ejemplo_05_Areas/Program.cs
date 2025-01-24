@@ -19,14 +19,14 @@ app.UseAuthorization();
 
 #region area
 app.MapAreaControllerRoute(
-    name: "MyAreaProducts",
-    areaName: "Products",
-    pattern: "Products/{controller=Home}/{action=Index}/{id?}");
+    name: "Admin_default",
+    areaName: "Admin",
+    pattern: "Admin/{controller=Dashboard}/{action=Index}/{id?}");
 
 app.MapAreaControllerRoute(
-    name: "MyAreaServices",
-    areaName: "Services",
-    pattern: "Services/{controller=Home}/{action=Index}/{id?}");
+    name: "Users_default",
+    areaName: "Users",
+    pattern: "Users/{controller=Perfil}/{action=Index}/{id?}");
 #endregion 
 
 app.MapControllerRoute(

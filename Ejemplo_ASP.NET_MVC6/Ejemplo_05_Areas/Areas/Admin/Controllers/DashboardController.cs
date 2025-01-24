@@ -4,18 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace Ejemplo_05_Areas.Areas.Admin.Controllers;
 
 
-[Area("Products")]
+[Area("Admin")]
 public class DashboardController : Controller
 {
     public IActionResult Index()
     {
-        ViewData["routeInfo"] = ControllerContext.MyDisplayRouteInfo();
         return View();
     }
 
-    public IActionResult About()
-    {
-        ViewData["routeInfo"] = ControllerContext.MyDisplayRouteInfo();
-        return View();
-    }
 }

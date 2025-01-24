@@ -6,6 +6,10 @@ Swagger: `Swashbuckle.AspNetCore`
 ADO.NET: `Microsoft.Data.SqlClient`
 
 ## Configuración del Startup (Program.cs)
+ 
+### Configuración de cómo se manejan la autenticación (con cookies) y la sesión (tiempo, cookies esenciales, etc.).
+
+ Configura el sistema de autenticación para usar el esquema de Cookies. "Cookies" es el nombre del esquema de autenticación que será utilizado por el sistema para identificar a los usuarios autenticados.
 
 ```csharp
 builder.Services.AddAuthentication("Cookies")
@@ -14,9 +18,21 @@ builder.Services.AddAuthentication("Cookies")
         options.LoginPath = "/Account/Login";
         options.LogoutPath = "/Account/Logout";
     });
+```
 
+### Habilita los servicios de autorización, necesarios para aplicar restricciones de acceso basadas en políticas o roles.
+
+```csharp
 builder.Services.AddAuthorization();
+```
 
+### Configura el sistema de manejo de sesiones
+
+- IdleTimeout: Tiempo de inactividad permitido antes de que la sesión expire. En este caso, 30 minutos.
+- Cookie.HttpOnly: Indica que las cookies de la sesión no pueden ser accedidas mediante JavaScript, mejorando la seguridad.
+- Cookie.IsEssential: Indica que la cookie de sesión es esencial para el funcionamiento del sitio, lo que asegura que se establecerá incluso si el usuario ha deshabilitado las cookies no esenciales.
+
+```csharp
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30); 
@@ -25,8 +41,20 @@ builder.Services.AddSession(options =>
 });
 ```
 
+#### Inclusión el middleware necesario para aplicar estas configuraciones y asegurarse de que las solicitudes del usuario sean verificadas (autenticación/autorización) y que puedan manejar datos de sesión.
+
+- Se añade el middleware de autorización al pipeline de solicitudes.
+- Este middleware verifica si el usuario tiene permiso para acceder al recurso solicitado. Funciona junto con la autenticación para validar los permisos del usuario autenticado.
+
 ```csharp
 app.UseAuthorization();
+```
+
+### Habilita el uso de sesiones en la aplicación.
+
+Este middleware asegura que las solicitudes posteriores del cliente puedan acceder a los datos almacenados en la sesión. Por ejemplo, al usar HttpContext.Session para guardar o recuperar datos temporales relacionados con un usuario.
+
+```
 app.UseSession();
 ```
 

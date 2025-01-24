@@ -15,7 +15,7 @@ Un área es en realidad una estructura dentro de una aplicación. En un proyecto
 
 
 ### Start up
-```
+```csharp
 app.MapAreaControllerRoute(
     name: "Admin_default",
     areaName: "Admin",
@@ -25,6 +25,93 @@ app.MapAreaControllerRoute(
     name: "Users_default",
     areaName: "Users",
     pattern: "Users/{controller=Perfil}/{action=Index}/{id?}");
+```
+
+### Ejemplo de controlador
+
+```csharp
+namespace Ejemplo_05_Areas.Areas.Admin.Controllers;
+
+[Area("Admin")]
+public class DashboardController : Controller
+{
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+}
+```
+
+### Estructura del proyecto
+
+```
+Ejemplo_05_Areas
+|
+│   appsettings.Development.json
+│   appsettings.json
+│   Ejemplo_05_Areas.csproj
+│   Ejemplo_05_Areas.csproj.user
+│   Program.cs
+│   Readme.md
+│
+├───Areas
+│   ├───Admin
+│   │   ├───Controllers
+│   │   │       DashboardController.cs
+│   │   │
+│   │   ├───Models
+│   │   └───Views
+│   │       │   _ViewImports.cshtml
+│   │       │   _ViewStart.cshtml
+│   │       │
+│   │       ├───Dashboard
+│   │       │       Index.cshtml
+│   │       │
+│   │       └───Shared
+│   │               Error.cshtml
+│   │               _Layout.cshtml
+│   │               _Layout.cshtml.css
+│   │               _ValidationScriptsPartial.cshtml
+│   │
+│   └───Users
+│       ├───Controllers
+│       │       PerfilController.cs
+│       │
+│       ├───Models
+│       └───Views
+│           │   _ViewImports.cshtml
+│           │   _ViewStart.cshtml
+│           │
+│           ├───Perfil
+│           │       Index.cshtml
+│           │
+│           └───Shared
+│                   Error.cshtml
+│                   _Layout.cshtml
+│                   _Layout.cshtml.css
+│                   _ValidationScriptsPartial.cshtml
+│
+├───Controllers
+│       HomeController.cs
+│
+├───Models
+│       ErrorViewModel.cs
+│
+├───Views
+    │   _ViewImports.cshtml
+    │   _ViewStart.cshtml
+    │
+    ├───Home
+    │       Index.cshtml
+    │       Privacy.cshtml
+    │
+    └───Shared
+            Error.cshtml
+            _Layout.cshtml
+            _Layout.cshtml.css
+            _ValidationScriptsPartial.cshtml
+
 ```
 
 ### Definiciones

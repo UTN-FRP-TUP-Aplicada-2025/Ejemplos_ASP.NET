@@ -34,7 +34,7 @@ public class AccountController : Controller
 
         if (usuario == null)
         {
-            ModelState.AddModelError("", "Usuario o contraseña inválidos.");
+            ModelState.AddModelError("", "Usuario o contraseña no válidos.");
             return View();
         }
 

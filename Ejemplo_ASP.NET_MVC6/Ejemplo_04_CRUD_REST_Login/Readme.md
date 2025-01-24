@@ -20,7 +20,9 @@ builder.Services.AddAuthentication("Cookies")
     });
 ```
 
-### Habilita los servicios de autorización, necesarios para aplicar restricciones de acceso basadas en políticas o roles.
+### Habilita los servicios de autorización.
+
+Es necesarios para aplicar restricciones de acceso basadas en políticas o roles.
 
 ```csharp
 builder.Services.AddAuthorization();
@@ -41,7 +43,9 @@ builder.Services.AddSession(options =>
 });
 ```
 
-#### Inclusión el middleware necesario para aplicar estas configuraciones y asegurarse de que las solicitudes del usuario sean verificadas (autenticación/autorización) y que puedan manejar datos de sesión.
+#### Inclusión el middleware necesario para aplicar estas configuraciones
+
+Además se asegura de que las solicitudes del usuario sean verificadas (autenticación/autorización) y tambien que puedan manejar datos de sesión.
 
 - Se añade el middleware de autorización al pipeline de solicitudes.
 - Este middleware verifica si el usuario tiene permiso para acceder al recurso solicitado. Funciona junto con la autenticación para validar los permisos del usuario autenticado.

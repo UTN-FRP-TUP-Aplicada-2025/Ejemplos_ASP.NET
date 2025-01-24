@@ -4,10 +4,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 #region  identidad
-
 //builder.Services.AddSingleton<UsuarioDAO>();
 //builder.Services.AddSingleton<RolDAO>();
-
 builder.Services.AddAuthentication("Cookies")
     .AddCookie(options =>
     {
@@ -23,7 +21,6 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true; 
     options.Cookie.IsEssential = true; 
 });
-
 #endregion
 
 #region configuración de restapi y swagger

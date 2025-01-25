@@ -1,7 +1,6 @@
 ﻿using Ejemplo_04_CRUD_REST_Login.Services;
 using Ejemplo_04_CRUD_REST_Login.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ejemplo_04_CRUD_REST_Login.Controllers;

@@ -2,8 +2,6 @@
 using Ejemplo_04_CRUD_REST_Login.Models;
 
 using Microsoft.Data.SqlClient;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace Ejemplo_04_CRUD_REST_Login.DALs.MSSDAO;
 

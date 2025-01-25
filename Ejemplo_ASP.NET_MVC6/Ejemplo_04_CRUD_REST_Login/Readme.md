@@ -5,8 +5,13 @@ Swagger: `Swashbuckle.AspNetCore`
 
 ADO.NET: `Microsoft.Data.SqlClient`
 
-## Configuración del Startup (Program.cs)
  
+## Modelo de estudio
+
+<img src="./UML/mapeo.png"/>
+
+## Configuración del Startup (Program.cs)
+
 ### Configuración de cómo se manejan la autenticación (con cookies) y la sesión (tiempo, cookies esenciales, etc.).
 
  Configura el sistema de autenticación para usar el esquema de Cookies. "Cookies" es el nombre del esquema de autenticación que será utilizado por el sistema para identificar a los usuarios autenticados.
@@ -62,15 +67,22 @@ Este middleware asegura que las solicitudes posteriores del cliente puedan acced
 app.UseSession();
 ```
 
-## Ejemplo de controlador 
+## Ejemplo de controlador del Login
 
 ```csharp
+using Ejemplo_04_CRUD_REST_Login.Models;
+using Ejemplo_04_CRUD_REST_Login.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+
 namespace Ejemplo_04_CRUD_REST_Login.Controllers;
 
 [Authorize]
 public class AccountController : Controller
 {
-    IUsuariosDAL _usuarioDAO = new UsuariosMSSDAL();
+    UsuariosService _service = new UsuariosService();
 
     [AllowAnonymous]
     async public Task<ViewResult> Login(string ReturnUrl)
@@ -84,28 +96,19 @@ public class AccountController : Controller
     [HttpPost]
     [AllowAnonymous]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Login(UsuarioModel usuarioModel, string returnUrl = "/")
-    {
-        var usuario=_usuarioDAO.GetByNombre(usuarioModel.Nombre);
+    public async Task<IActionResult> Login(UsuarioModel usuario, string returnUrl = "/")
+
+        var result = _service.VerificarLogin(usuario);
 
         if (usuario == null)
         {
-            ModelState.AddModelError("", "Usuario o contraseña inválidos.");
+            ModelState.AddModelError("", "Usuario o contraseña no válidos.");
             return View();
         }
-
-        var claveHash = _usuarioDAO.HashPassword(usuarioModel.Clave);
-        var result = usuario != null &&  claveHash == usuario.Clave;
-
-        if (result==false)// PasswordVerificationResult.Failed)
-        {
-            ModelState.AddModelError("", "Usuario o contraseña inválidos.");
-            return View();
-        }
-
+      
         var claims = new List<Claim>()
         {
-             new Claim(ClaimTypes.Name, usuarioModel.Nombre),
+             new Claim(ClaimTypes.Name, usuario.Nombre),
         };
 
         var identity = new ClaimsIdentity(claims, "Cookies");
@@ -122,7 +125,6 @@ public class AccountController : Controller
         return Redirect(returnUrl);
     }
 }
-
 ```
 
 ## Vista asociada al controlador
@@ -163,6 +165,136 @@ public class AccountController : Controller
     </div>
 </div>
 
+```
+
+## Ejemplo de controlador que requirará autentificación
+
+```csharp
+using Ejemplo_04_CRUD_REST_Login.Services;
+using Ejemplo_04_CRUD_REST_Login.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Ejemplo_04_CRUD_REST_Login.Controllers;
+
+[Authorize]
+public class PersonasController : Controller
+{
+    private PersonasService servicio = new PersonasService();
+
+    // GET: PersonasController
+    [HttpGet]
+    public IActionResult Index()
+    {
+        return View(servicio.GetAll());
+    }
+
+    // GET: PruebaController1/Details/5
+    [HttpGet]
+    public ActionResult Details(int id)
+    {
+        var persona = servicio.GetById(id);
+        return View(persona);
+    }
+
+    // GET: PruebaController1/Create
+    [HttpGet]
+    public ActionResult Create()
+    {
+        return View();
+    }
+
+    // POST: PruebaController1/Create
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    //https://learn.microsoft.com/es-es/aspnet/core/security/anti-request-forgery?view=aspnetcore-9.0
+    // http://go.microsoft.com/fwlink/?LinkId=317598
+    public ActionResult Create(PersonaModel nuevo)
+    {
+        try
+        {
+            servicio.CrearNuevo(nuevo);
+            return RedirectToAction(nameof(Index));
+        }
+        catch
+        {
+            return View();
+        }
+    }
+
+    // GET: PersonaController1/Edit/5
+    //http://localhost:5033/Personas/Editar/1
+    [HttpGet]
+    public IActionResult Edit(int? id)
+    {
+        if (id == null)
+            return BadRequest();
+
+        var persona = servicio.GetById(Convert.ToInt32(id));
+        return View(persona);
+    }
+
+    // POST: PersonaController/Edit/1
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult Edit(int id, PersonaModel persona)
+    {
+        if (id != persona.Id)
+            return NotFound();
+
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                servicio.Actualizar(persona);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Error");
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        return View(persona);
+    }
+
+    // GET: PruebaController1/Delete/5
+    [HttpGet]
+    public ActionResult Delete(int? id)
+    {
+        if (id == null || id <= 0)
+            return BadRequest();
+
+        var persona = servicio.GetById(Convert.ToInt32(id));
+
+        if (persona == null)
+            return NotFound();
+
+        return View(persona);
+    }
+
+    // POST: PruebaController1/Delete/5
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult Delete(int? id, PersonaModel persona)
+    {
+        if (id == null || id <= 0)
+            return BadRequest();
+
+        try
+        {
+            if (servicio.GetById(Convert.ToInt32(id)) == null)
+                return NotFound();
+
+            servicio.Eliminar(Convert.ToInt32(id));
+
+            return RedirectToAction(nameof(Index));
+        }
+        catch
+        {
+            return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+        }
+    }
+}
 ```
 
 

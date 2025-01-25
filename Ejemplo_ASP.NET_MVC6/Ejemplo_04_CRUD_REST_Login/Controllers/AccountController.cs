@@ -1,13 +1,8 @@
-﻿using Ejemplo_04_CRUD_REST_Login.DALs;
-using Ejemplo_04_CRUD_REST_Login.DALs.MSSDAO;
-using Ejemplo_04_CRUD_REST_Login.Models;
+﻿using Ejemplo_04_CRUD_REST_Login.Models;
 using Ejemplo_04_CRUD_REST_Login.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Numerics;
 using System.Security.Claims;
 
 namespace Ejemplo_04_CRUD_REST_Login.Controllers;

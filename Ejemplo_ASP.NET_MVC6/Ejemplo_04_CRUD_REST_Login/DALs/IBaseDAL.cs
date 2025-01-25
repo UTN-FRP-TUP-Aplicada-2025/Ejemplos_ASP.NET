@@ -1,12 +1,12 @@
 ﻿namespace Ejemplo_04_CRUD_REST_Login.DALs;
 
-public interface IBaseDAL<T>
+public interface IBaseDAL<T, K>
 {
     List<T> GetAll();
-    T? GetById(int id);
+    T? GetByKey(K key);
 
     bool Insert(T nuevo);
     bool Update(T actualizar);
 
-    void Delete(int id);
+    void Delete(K id);
 }

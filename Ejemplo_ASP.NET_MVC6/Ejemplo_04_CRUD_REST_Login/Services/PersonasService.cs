@@ -16,7 +16,7 @@ public class PersonasService
 
     public PersonaModel? GetById(int id)
     {
-        return _dao.GetById(id);
+        return _dao.GetByKey(id);
     }
 
     public void CrearNuevo(PersonaModel persona)

@@ -3,9 +3,6 @@ using Ejemplo_04_CRUD_REST_Login.Models;
 
 namespace Ejemplo_04_CRUD_REST_Login.DALs;
 
-public interface IUsuariosDAL: IBaseDAL<UsuarioModel>
-{
-    UsuarioModel? GetByUUID(string uuid);
-    UsuarioModel? GetByNombre(string nombre);
-    string HashPassword(string input);
+public interface IUsuariosDAL: IBaseDAL<UsuarioModel, string>
+{  
 }

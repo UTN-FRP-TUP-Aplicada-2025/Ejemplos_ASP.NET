@@ -27,7 +27,7 @@ FROM Personas p";
             int id = Convert.ToInt32(reader["Id"]);
             int dni = Convert.ToInt32(reader["DNI"]);
             string? nombre = reader["Nombre"] as string;
-            DateTime? nacimiento = reader["Fecha_Nacimiento"] as DateTime?;
+            DateTime? nacimiento = reader["Fecha_Nacimiento"]!=DBNull.Value? Convert.ToDateTime(reader["Fecha_Nacimiento"]):(DateTime?)null;
 
             var objeto = new PersonaModel { Id=id, DNI = dni, Nombre = nombre, FechaNacimiento=nacimiento };
 
@@ -36,7 +36,7 @@ FROM Personas p";
         return lista;
     }
 
-    public PersonaModel? GetById(int id)
+    public PersonaModel? GetByKey(int id)
     {
         PersonaModel persona = null;
 

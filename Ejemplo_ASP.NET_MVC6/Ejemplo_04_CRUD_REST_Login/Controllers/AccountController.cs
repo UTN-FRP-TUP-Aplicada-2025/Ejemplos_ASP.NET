@@ -1,6 +1,7 @@
 ﻿using Ejemplo_04_CRUD_REST_Login.DALs;
 using Ejemplo_04_CRUD_REST_Login.DALs.MSSDAO;
 using Ejemplo_04_CRUD_REST_Login.Models;
+using Ejemplo_04_CRUD_REST_Login.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -14,7 +15,7 @@ namespace Ejemplo_04_CRUD_REST_Login.Controllers;
 [Authorize]
 public class AccountController : Controller
 {
-    IUsuariosDAL _usuarioDAO = new UsuariosMSSDAL();
+    UsuariosService _service = new UsuariosService();
 
     [AllowAnonymous]
     async public Task<ViewResult> Login(string ReturnUrl)
@@ -28,28 +29,20 @@ public class AccountController : Controller
     [HttpPost]
     [AllowAnonymous]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Login(UsuarioModel usuarioModel, string returnUrl = "/")
+    public async Task<IActionResult> Login(UsuarioModel usuario, string returnUrl = "/")
     {
-        var usuario=_usuarioDAO.GetByNombre(usuarioModel.Nombre);
+
+        var result = _service.VerificarLogin(usuario);
 
         if (usuario == null)
         {
             ModelState.AddModelError("", "Usuario o contraseña no válidos.");
             return View();
         }
-
-        var claveHash = _usuarioDAO.HashPassword(usuarioModel.Clave);
-        var result = usuario != null &&  claveHash == usuario.Clave;
-
-        if (result==false)// PasswordVerificationResult.Failed)
-        {
-            ModelState.AddModelError("", "Usuario o contraseña inválidos.");
-            return View();
-        }
-
+      
         var claims = new List<Claim>()
         {
-             new Claim(ClaimTypes.Name, usuarioModel.Nombre),
+             new Claim(ClaimTypes.Name, usuario.Nombre),
         };
 
         var identity = new ClaimsIdentity(claims, "Cookies");

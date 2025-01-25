@@ -14,7 +14,7 @@ public class PersonaModel
 
     [Required]
     [Display(Name = "Nombre")]
-    [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
+    [StringLength(50, ErrorMessage = "El primer nombre no puede ser mayor a 50 caracteres")]
     public string? Nombre { get; set; }
 
     [Required(ErrorMessage = "Se requiere ingresar la Fecha de nacimiento")]

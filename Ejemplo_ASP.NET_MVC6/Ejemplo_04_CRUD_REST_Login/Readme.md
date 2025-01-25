@@ -164,3 +164,21 @@ public class AccountController : Controller
 </div>
 
 ```
+
+
+ /*
+    public string HashPassword(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+            throw new ArgumentNullException(nameof(input), "Input string cannot be null or empty");
+
+        using var sha256 = SHA256.Create();
+
+        byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+        byte[] hashBytes = sha256.ComputeHash(inputBytes);
+
+        return BitConverter.ToString(hashBytes).Replace("-", "").ToUpper();
+
+    }
+
+    */

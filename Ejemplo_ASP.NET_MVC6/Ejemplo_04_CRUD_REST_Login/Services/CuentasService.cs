@@ -9,14 +9,20 @@ public class UsuariosService
 {
     IUsuariosDAL _dao = new UsuariosMSSDAL();
 
+    public bool VerificarLogin(UsuarioModel usuarioVerificar)
+    { 
+        var usuario = _dao.GetByKey(usuarioVerificar.Nombre);
+        return usuario != null && usuarioVerificar.Clave == usuario.Clave;
+    }
+
     public List<UsuarioModel> GetAll()
     {
         return _dao.GetAll();
     }
 
-    public UsuarioModel? GetById(int id)
+    public UsuarioModel? GetByNombre(string nombre)
     {
-        return _dao.GetById(id);
+        return _dao.GetByKey(nombre);
     }
 
     public void CrearNuevo(UsuarioModel persona)
@@ -29,8 +35,8 @@ public class UsuariosService
         _dao.Update(persona);
     }
 
-    public void Eliminar(int id)
+    public void Eliminar(string nombre)
     {
-        _dao.Delete(id);
+        _dao.Delete(nombre);
     }
 }

@@ -25,39 +25,39 @@ FROM Usuarios_Roles ur";
 
         while (reader.Read())
         {
-            int idUsuario = Convert.ToInt32(reader["Id_Usuario"]);
-            int idRol = Convert.ToInt32(reader["Id_Rol"]);
+            string nombreUsuario = reader["Nombre_Usuario"] as string;
+            string nombreRol = reader["Nombre_Rol"] as string;
 
-            var objeto = new UsuarioRolModel { IdUsuario=idUsuario, IdRol=idRol };
+            var objeto = new UsuarioRolModel { NombreUsuario=nombreUsuario, NombreRol=nombreRol };
 
             lista.Add(objeto);
         }
         return lista;
     }
 
-    public UsuarioRolModel? GetById(int id)
+    public UsuarioRolModel? GetByKey(string nombreUsuario)
     {
         UsuarioRolModel? objeto = null;
 
         string sqlQuery =
 @"SELECT TOP 1 ur.* 
 FROM Usuarios_Roles ur
-WHERE ur.Id=@Id";
+WHERE ur.Nombre_Usuario=@Nombre_Usuario";
 
         using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Id", id);
+        query.Parameters.AddWithValue("@Nombre_Usuario", nombreUsuario);
 
         var reader = query.ExecuteReader();
         
         if (reader.Read())
         {
-            int idUsuario = Convert.ToInt32(reader["Id_Rol"]);
-            int idRol = Convert.ToInt32(reader["Id_Usuario"]);
+            string nombreUsuarioBD = reader["Nombre_Usuario"] as string;
+            string nombreRol = reader["Nombre_Rol"] as string;
 
-            objeto = new UsuarioRolModel { IdUsuario = idUsuario, IdRol = idRol };
+            objeto = new UsuarioRolModel { NombreUsuario = nombreUsuarioBD, NombreRol = nombreRol };
         }
         return objeto;
     }
@@ -65,15 +65,15 @@ WHERE ur.Id=@Id";
     public bool Insert(UsuarioRolModel nuevo)
     {
         string sqlQuery =
-@"INSERT Usuarios_Roles(Id_Cuenta, Id_Rol)
-VALUES (@Id_Usuario, @Id_Rol)"; 
+@"INSERT Usuarios_Roles(Nombre_Cuenta, Nombre_Rol)
+VALUES (@Nombre_Usuario, @Nombre_Rol)"; 
 
         using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Id_Usuario", nuevo.IdUsuario);
-        query.Parameters.AddWithValue("@Id_Rol", nuevo.IdRol);
+        query.Parameters.AddWithValue("@Nombre_Usuario", nuevo.NombreUsuario);
+        query.Parameters.AddWithValue("@Nombre_Rol", nuevo.NombreRol);
 
         int insertados= query.ExecuteNonQuery();
         return insertados > 0;
@@ -82,32 +82,32 @@ VALUES (@Id_Usuario, @Id_Rol)";
     public bool Update(UsuarioRolModel actualizar)
     {
         string sqlQuery =
-@"UPDATE Usuarios_Roles SET Id_Rol=@Id_Rol
-WHERE Id_Usuario=@Id_Usuario";
+@"UPDATE Usuarios_Roles SET Nombre_Rol=@Nombre_Rol
+WHERE Nombre_Usuario=@Nombre_Usuario";
 
         using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Id_Usurio", actualizar.IdUsuario);
-        query.Parameters.AddWithValue("@Id_Rol", actualizar.IdRol);
+        query.Parameters.AddWithValue("@Nombre_Usurio", actualizar.NombreUsuario);
+        query.Parameters.AddWithValue("@Nombre_Rol", actualizar.NombreRol);
 
         int cantidad=query.ExecuteNonQuery();
 
         return cantidad > 0;
     }
 
-    public void Delete(int id)
+    public void Delete(string nombreUsuario)
     {
         string sqlQuery =
 @"DELETE FROM Usuarios_Roles
-WHERE Id_Usuario=@Id_Usuario";
+WHERE Nombre_Usuario=@Nombre_Usuario";
 
         using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Id_Usuario", id);
+        query.Parameters.AddWithValue("@Nombre_Usuario", nombreUsuario);
 
         var eliminados = query.ExecuteScalar();
     }

@@ -7,7 +7,6 @@ namespace Ejemplo_04_CRUD_REST_Login.DALs.MSSDAO;
 
 public class UsuariosRolesMSSDAL : IUsuariosRolesDAL
 {
-    
     public List<UsuarioRolModel> GetAll()
     {
         var lista = new List<UsuarioRolModel>();
@@ -35,29 +34,31 @@ FROM Usuarios_Roles ur";
         return lista;
     }
 
-    public UsuarioRolModel? GetByKey(string nombreUsuario)
+    public UsuarioRolModel? GetByKey(UsuarioRolModel usuarioRol)
     {
         UsuarioRolModel? objeto = null;
 
         string sqlQuery =
 @"SELECT TOP 1 ur.* 
 FROM Usuarios_Roles ur
-WHERE ur.Nombre_Usuario=@Nombre_Usuario";
+WHERE UPPER(TRIM(ur.Nombre_Usuario))=UPPER(TRIM(@Nombre_Usuario)) AND 
+        UPPER(TRIM(ur.Nombre_Rol))=UPPER(TRIM(@Nombre_Rol)) ";
 
         using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Nombre_Usuario", nombreUsuario);
+        query.Parameters.AddWithValue("@Nombre_Usuario", usuarioRol.NombreUsuario);
+        query.Parameters.AddWithValue("@Nombre_Rol", usuarioRol.NombreRol);
 
         var reader = query.ExecuteReader();
         
         if (reader.Read())
         {
             string nombreUsuarioBD = reader["Nombre_Usuario"] as string;
-            string nombreRol = reader["Nombre_Rol"] as string;
+            string nombreRolBD = reader["Nombre_Rol"] as string;
 
-            objeto = new UsuarioRolModel { NombreUsuario = nombreUsuarioBD, NombreRol = nombreRol };
+            objeto = new UsuarioRolModel { NombreUsuario = nombreUsuarioBD, NombreRol = nombreRolBD };
         }
         return objeto;
     }
@@ -97,17 +98,19 @@ WHERE Nombre_Usuario=@Nombre_Usuario";
         return cantidad > 0;
     }
 
-    public void Delete(string nombreUsuario)
+    public void Delete(UsuarioRolModel usuarioRol)
     {
         string sqlQuery =
 @"DELETE FROM Usuarios_Roles
-WHERE Nombre_Usuario=@Nombre_Usuario";
+WHERE UPPER(TRIM(ur.Nombre_Usuario))=UPPER(TRIM(@Nombre_Usuario)) AND 
+        UPPER(TRIM(ur.Nombre_Rol))=UPPER(TRIM(@Nombre_Rol)) ";
 
         using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Nombre_Usuario", nombreUsuario);
+        query.Parameters.AddWithValue("@Nombre_Usuario", usuarioRol.NombreUsuario);
+        query.Parameters.AddWithValue("@Nombre_Rol", usuarioRol.NombreRol);
 
         var eliminados = query.ExecuteScalar();
     }

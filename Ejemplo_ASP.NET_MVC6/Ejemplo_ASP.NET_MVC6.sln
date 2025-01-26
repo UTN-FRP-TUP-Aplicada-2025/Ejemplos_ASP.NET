@@ -12,29 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{18465878-A
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_03_CRUD_Simple_Login", "Ejemplo_03_CRUD_Simple_Login", "{8E392137-9683-491B-B493-CA9D9992B67D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSSQL", "MSSQL", "{9EB0B2CF-07CC-401A-9EF4-79BCD115B7A4}"
-	ProjectSection(SolutionItems) = preProject
-		Scripts\Ejemplo_03_CRUD_Simple_Login\MSSQL\docker_script.sql = Scripts\Ejemplo_03_CRUD_Simple_Login\MSSQL\docker_script.sql
-		Scripts\Ejemplo_03_CRUD_Simple_Login\MSSQL\local_script.sql = Scripts\Ejemplo_03_CRUD_Simple_Login\MSSQL\local_script.sql
-		Scripts\Ejemplo_03_CRUD_Simple_Login\MSSQL\somee_script.sql = Scripts\Ejemplo_03_CRUD_Simple_Login\MSSQL\somee_script.sql
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_0_database_MSSQL", "Ejemplo_01_0_database_MSSQL", "{FB405D92-29D5-4EFC-94A0-C30232C1CC66}"
 	ProjectSection(SolutionItems) = preProject
 		Ejemplo_01\Ejemplo_01_0_database_MSSQL\docker_script.sql = Ejemplo_01\Ejemplo_01_0_database_MSSQL\docker_script.sql
 		Ejemplo_01\Ejemplo_01_0_database_MSSQL\local_script.sql = Ejemplo_01\Ejemplo_01_0_database_MSSQL\local_script.sql
 		Ejemplo_01\Ejemplo_01_0_database_MSSQL\somee_script.sql = Ejemplo_01\Ejemplo_01_0_database_MSSQL\somee_script.sql
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{70B0CF02-FB6C-45EB-BE2F-3FC3D280116C}"
-	ProjectSection(SolutionItems) = preProject
-		Scripts\Ejemplo_03_CRUD_Simple_Login\docker\create_dotnet_container.sh = Scripts\Ejemplo_03_CRUD_Simple_Login\docker\create_dotnet_container.sh
-		Scripts\Ejemplo_03_CRUD_Simple_Login\docker\create_mssql_container.sh = Scripts\Ejemplo_03_CRUD_Simple_Login\docker\create_mssql_container.sh
-		Scripts\Ejemplo_03_CRUD_Simple_Login\docker\Dockerfile.dotnet = Scripts\Ejemplo_03_CRUD_Simple_Login\docker\Dockerfile.dotnet
-		Scripts\Ejemplo_03_CRUD_Simple_Login\docker\Dockerfile.mssql = Scripts\Ejemplo_03_CRUD_Simple_Login\docker\Dockerfile.mssql
-		Scripts\Ejemplo_03_CRUD_Simple_Login\docker\Readme.md = Scripts\Ejemplo_03_CRUD_Simple_Login\docker\Readme.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_0_Docker", "Ejemplo_01_0_Docker", "{BA240214-C2ED-4EF2-A9EB-EBE73D79884B}"
@@ -47,42 +29,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_0_Docker", "Ejem
 		Ejemplo_01\Ejemplo_01_0_Docker\stop.sh = Ejemplo_01\Ejemplo_01_0_Docker\stop.sh
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "local", "local", "{94F750F7-35AE-498E-A97C-D57ED47E802E}"
-	ProjectSection(SolutionItems) = preProject
-		Scripts\Ejemplo_03_CRUD_Simple_Login\local\somee.ps1 = Scripts\Ejemplo_03_CRUD_Simple_Login\local\somee.ps1
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_06_CRUD_Razor", "Ejemplo_06_CRUD_Razor\Ejemplo_06_CRUD_Razor.csproj", "{673937F9-185E-49BF-9933-37D4EE717359}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_04_CRUD_REST_Login", "Ejemplo_04_CRUD_REST_Login", "{AFE5CBAE-162B-4515-9E78-E6F7D2801B00}"
-	ProjectSection(SolutionItems) = preProject
-		Scripts\Ejemplo_04_CRUD_REST_Login\Readme.md = Scripts\Ejemplo_04_CRUD_REST_Login\Readme.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MSSQL", "MSSQL", "{F72F0003-3E7B-415B-9072-440270969FCE}"
-	ProjectSection(SolutionItems) = preProject
-		Scripts\Ejemplo_04_CRUD_REST_Login\MSSQL\docker_script.sql = Scripts\Ejemplo_04_CRUD_REST_Login\MSSQL\docker_script.sql
-		Scripts\Ejemplo_04_CRUD_REST_Login\MSSQL\local_script.sql = Scripts\Ejemplo_04_CRUD_REST_Login\MSSQL\local_script.sql
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_05_Areas", "Ejemplo_05_Areas\Ejemplo_05_Areas.csproj", "{48881B95-5438-4A7D-8107-27C3783978E7}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{772491B5-4594-4EF4-A530-29FE18A2A3F2}"
-	ProjectSection(SolutionItems) = preProject
-		Scripts\Ejemplo_04_CRUD_REST_Login\docker\create_dotnet_container.sh = Scripts\Ejemplo_04_CRUD_REST_Login\docker\create_dotnet_container.sh
-		Scripts\Ejemplo_04_CRUD_REST_Login\docker\create_mssql_container.sh = Scripts\Ejemplo_04_CRUD_REST_Login\docker\create_mssql_container.sh
-		Scripts\Ejemplo_04_CRUD_REST_Login\docker\docker-compose.yml = Scripts\Ejemplo_04_CRUD_REST_Login\docker\docker-compose.yml
-		Scripts\Ejemplo_04_CRUD_REST_Login\docker\Dockerfile.dotnet = Scripts\Ejemplo_04_CRUD_REST_Login\docker\Dockerfile.dotnet
-		Scripts\Ejemplo_04_CRUD_REST_Login\docker\Dockerfile.mssql = Scripts\Ejemplo_04_CRUD_REST_Login\docker\Dockerfile.mssql
-		Scripts\Ejemplo_04_CRUD_REST_Login\docker\Readme.md = Scripts\Ejemplo_04_CRUD_REST_Login\docker\Readme.md
-		Scripts\Ejemplo_04_CRUD_REST_Login\docker\stop.sh = Scripts\Ejemplo_04_CRUD_REST_Login\docker\stop.sh
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine-tools", "Engine-tools", "{9D113567-1B98-457D-BF91-8A68B4CFF108}"
-	ProjectSection(SolutionItems) = preProject
-		Scripts\Engine_Tools\install.sh = Scripts\Engine_Tools\install.sh
-		Scripts\Engine_Tools\Readme.md = Scripts\Engine_Tools\Readme.md
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{76FE814D-7DFB-433D-935B-0C16D8EF88A9}"
 	ProjectSection(SolutionItems) = preProject
@@ -119,15 +68,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_03_0_database_MSSQL
 		Ejemplo_03\Ejemplo_03_0_database_MSSQL\somee_script.sql = Ejemplo_03\Ejemplo_03_0_database_MSSQL\somee_script.sql
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tmp", "tmp", "{D55DED00-0696-443F-87A3-3066BEDDDF30}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NET.MVC", "ASP.NET.MVC", "{52EF6C6D-BA7C-4093-9B5E-C500AA261857}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NET.Razor", "ASP.NET.Razor", "{FF7E79C6-1472-409B-ABD2-66E62E9C2AC9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NET.BLAZOR", "ASP.NET.BLAZOR", "{5A1557C7-DB99-498D-9B3B-1D00AB8E85F3}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{CAC93A27-F23A-4140-86B2-60E0522CEC9A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple", "Ejemplo_02\Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple\Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple.csproj", "{8EDD9D31-93EC-4262-8712-FFA91939CDB8}"
 EndProject
@@ -219,6 +164,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_04_0_Docker", "Ejem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_04_0_Roles_Login", "Ejemplo_04\Ejemplo_04_0_Roles_Login\Ejemplo_04_0_Roles_Login.csproj", "{E28EC723-EFB4-4FAD-BBBB-93FB78C47AE9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{F06EDEE0-AE17-4D7B-854D-22EAA0E92127}"
+	ProjectSection(SolutionItems) = preProject
+		Tools\Docker\clear.all.sh = Tools\Docker\clear.all.sh
+		Tools\Docker\install.sh = Tools\Docker\install.sh
+		Tools\Docker\Readme.md = Tools\Docker\Readme.md
+		Tools\Docker\workflow.png = Tools\Docker\workflow.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imgs", "imgs", "{636DB9F1-79BC-43B0-804F-580CB1CE751E}"
+	ProjectSection(SolutionItems) = preProject
+		Tools\Docker\imgs\workflow.png = Tools\Docker\imgs\workflow.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -272,24 +230,15 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BDFE69BB-BF6B-41C6-8E32-E6419038A822} = {0CD9C2F1-7D5D-4C58-BBC8-3702D66EEE29}
 		{18465878-A91B-40FC-AB3A-35EC69211CFF} = {52EF6C6D-BA7C-4093-9B5E-C500AA261857}
-		{8E392137-9683-491B-B493-CA9D9992B67D} = {CAC93A27-F23A-4140-86B2-60E0522CEC9A}
-		{9EB0B2CF-07CC-401A-9EF4-79BCD115B7A4} = {8E392137-9683-491B-B493-CA9D9992B67D}
 		{FB405D92-29D5-4EFC-94A0-C30232C1CC66} = {0CD9C2F1-7D5D-4C58-BBC8-3702D66EEE29}
-		{70B0CF02-FB6C-45EB-BE2F-3FC3D280116C} = {8E392137-9683-491B-B493-CA9D9992B67D}
 		{BA240214-C2ED-4EF2-A9EB-EBE73D79884B} = {0CD9C2F1-7D5D-4C58-BBC8-3702D66EEE29}
-		{94F750F7-35AE-498E-A97C-D57ED47E802E} = {8E392137-9683-491B-B493-CA9D9992B67D}
 		{673937F9-185E-49BF-9933-37D4EE717359} = {FF7E79C6-1472-409B-ABD2-66E62E9C2AC9}
-		{AFE5CBAE-162B-4515-9E78-E6F7D2801B00} = {CAC93A27-F23A-4140-86B2-60E0522CEC9A}
-		{F72F0003-3E7B-415B-9072-440270969FCE} = {AFE5CBAE-162B-4515-9E78-E6F7D2801B00}
 		{48881B95-5438-4A7D-8107-27C3783978E7} = {4C0374E9-0451-45D2-A989-10A7B01636C5}
-		{772491B5-4594-4EF4-A530-29FE18A2A3F2} = {AFE5CBAE-162B-4515-9E78-E6F7D2801B00}
-		{9D113567-1B98-457D-BF91-8A68B4CFF108} = {A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}
 		{76FE814D-7DFB-433D-935B-0C16D8EF88A9} = {4C0374E9-0451-45D2-A989-10A7B01636C5}
 		{114BF462-C16A-4786-B800-30F152856328} = {4C0374E9-0451-45D2-A989-10A7B01636C5}
 		{9B28BF29-666F-412B-B902-1E43A9DEA4E4} = {5A1557C7-DB99-498D-9B3B-1D00AB8E85F3}
 		{8B96E855-64EB-4BD5-8FC5-D9DBE74AAF7C} = {174558DB-A114-4637-8CA2-5EC3AE9EFE68}
 		{4C7F35A2-60D6-408B-A04F-0818ABDD0BAD} = {174558DB-A114-4637-8CA2-5EC3AE9EFE68}
-		{CAC93A27-F23A-4140-86B2-60E0522CEC9A} = {D55DED00-0696-443F-87A3-3066BEDDDF30}
 		{8EDD9D31-93EC-4262-8712-FFA91939CDB8} = {4FBB2938-73D1-426E-B88B-4019BB8229BB}
 		{F249BA92-9F27-46EC-BCB9-3AA011F1AC80} = {4FBB2938-73D1-426E-B88B-4019BB8229BB}
 		{14C46B57-0F6E-461C-A36E-A8B1CA61B170} = {4FBB2938-73D1-426E-B88B-4019BB8229BB}
@@ -310,6 +259,8 @@ Global
 		{7C0BD1BE-B492-4480-81DD-870B7B65EFA8} = {5A4EE48B-A904-4499-AD88-FE41A7B83A86}
 		{A25C741F-A8B0-4B23-8C3E-B3AB6388FFBB} = {5A4EE48B-A904-4499-AD88-FE41A7B83A86}
 		{E28EC723-EFB4-4FAD-BBBB-93FB78C47AE9} = {5A4EE48B-A904-4499-AD88-FE41A7B83A86}
+		{F06EDEE0-AE17-4D7B-854D-22EAA0E92127} = {A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}
+		{636DB9F1-79BC-43B0-804F-580CB1CE751E} = {F06EDEE0-AE17-4D7B-854D-22EAA0E92127}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

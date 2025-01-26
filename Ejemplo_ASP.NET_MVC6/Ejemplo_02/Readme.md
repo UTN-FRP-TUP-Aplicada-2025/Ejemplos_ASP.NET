@@ -2,7 +2,7 @@
 
 ## Ejemplo 2
 
-Introducción.
+Resumen
 
 En este ejemplo trata de correr un servicio web - con páginas dinámicas y un RestAPI. Consumir el RestAPI con distintos clientes.
 

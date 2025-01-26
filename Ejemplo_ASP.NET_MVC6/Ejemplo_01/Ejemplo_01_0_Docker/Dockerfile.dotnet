@@ -5,16 +5,17 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 USER root
 RUN apt-get update 
 RUN apt-get install -y gss-ntlmssp krb5-user libkrb5-dev openssl libssl-dev libgssapi-krb5-2 libkrb5-3
-
 RUN apt-get install -y iputils-ping
-
 RUN rm -rf /var/lib/apt/lists/*
 
-ARG PROJECT_NAME='Ejemplo_01_CRUD_MVC_Simple'
+
+ARG EJEMPLO="Ejemplo_01"
+ARG PROJECT_NAME="Ejemplo_01_CRUD_MVC_Simple"
 ARG PROJECT_PATH=$PROJECT_NAME
-ARG PROJECT_FILE='Ejemplo_01_CRUD_MVC_Simple.csproj'
-ARG BUILD_ROOT='/src/app_dotnet'
-ARG NOMBRE_DLL=$PROJECT_NAME'.DLL'
+ARG PROJECT_FILE=$EJEMPLO "/Ejemplo_01_CRUD_MVC_Simple.csproj"
+ARG BUILD_ROOT="/src/app_dotnet"
+ARG NOMBRE_DLL=$PROJECT_NAME ".DLL"
+
 
 WORKDIR $BUILD_ROOT
 

@@ -3,8 +3,10 @@
 TAG='v0.1'
 
 NOMBRE_IMAGEN='ejemplo02_mssql_image'
-NOMBRE_CONTENEDOR='ejemplo02_mssql_container'
-SOLUCION_PATH='/workspaces/Ejemplos_ASP.NET_MVC6/Ejemplo_ASP.NET_MVC6/'
+NOMBRE_CONTENEDOR='ejemplo01_mssql_container'
+EJEMPLO='Ejemplo_02'
+DOCKER_FILE='Dockerfile.mssql'
+SOLUCION_PATH='/workspaces/Ejemplos_ASP.NET_MVC6/Ejemplo_ASP.NET_MVC6/'$EJEMPLO
 
 
 # paro el contenedor - por si esta corriendo
@@ -17,7 +19,7 @@ docker rm $NOMBRE_CONTENEDOR
 docker rmi $NOMBRE_IMAGEN:$TAG
 
 # construyo la imagen
-docker build --no-cache -f Dockerfile.mssql -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
+docker build --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
 
 
 # genero el contenedor y lo corro

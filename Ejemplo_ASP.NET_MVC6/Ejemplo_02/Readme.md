@@ -10,9 +10,7 @@ En este ejemplo trata de correr un servicio web - con páginas dinámicas y un Res
 ### (1) Servicio: 
 
 
-La aplicación web MVC y RestAPI estan en:
-
-`Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple`
+La aplicación web MVC y RestAPI estan en: `Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple`
 
 
 ### (2) Preparación de la base de datos. 

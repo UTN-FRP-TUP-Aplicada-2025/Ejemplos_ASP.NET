@@ -1,6 +1,6 @@
-﻿using Ejemplo_01_CRUD_MVC_Simple.Models;
+﻿using Ejemplo_01_0_CRUD_MVC_Simple.Models;
 
-namespace Ejemplo_01_CRUD_MVC_Simple.DALs.MemoryDALs;
+namespace Ejemplo_01_0_CRUD_MVC_Simple.DALs.MemoryDALs;
 
 public class PersonasMemoryDAL : IPersonasDAL
 {
@@ -17,7 +17,7 @@ public class PersonasMemoryDAL : IPersonasDAL
         return personas;
     }
 
-    public PersonaModel? GetById(int id)
+    public PersonaModel? GetByKey(int id)
     {
         return personas.Where(p => p.Id == id).FirstOrDefault();
     }
@@ -32,7 +32,7 @@ public class PersonasMemoryDAL : IPersonasDAL
     
     public bool Update(PersonaModel actualizar)
     {
-        var p = GetById(actualizar.Id);
+        var p = GetByKey(actualizar.Id);
 
         if (p != null)
         {
@@ -46,10 +46,8 @@ public class PersonasMemoryDAL : IPersonasDAL
 
     public void Delete(int id)
     {
-        var persona = GetById(id);
+        var persona = GetByKey(id);
         if(persona!=null)
             personas.Remove(persona);
     }
-
-   
 }

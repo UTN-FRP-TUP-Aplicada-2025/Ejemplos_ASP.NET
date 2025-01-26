@@ -1,6 +1,6 @@
-﻿using Ejemplo_01_CRUD_MVC_Simple.Models;
+﻿using Ejemplo_01_0_CRUD_MVC_Simple.Models;
 
-namespace Ejemplo_01_CRUD_MVC_Simple.DALs;
+namespace Ejemplo_01_0_CRUD_MVC_Simple.DALs;
 
 public interface IPersonasDAL : IBaseDAL<PersonaModel, int>
 {

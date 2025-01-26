@@ -1,4 +1,4 @@
-namespace Ejemplo_01_CRUD_MVC_Simple.Models;
+namespace Ejemplo_01_0_CRUD_MVC_Simple.Models;
 
 public class ErrorViewModel
 {

@@ -1,8 +1,8 @@
-﻿using Ejemplo_01_CRUD_MVC_Simple.DALs;
-using Ejemplo_01_CRUD_MVC_Simple.DALs.MSSDALs;
-using Ejemplo_01_CRUD_MVC_Simple.Models;
+﻿using Ejemplo_01_0_CRUD_MVC_Simple.DALs;
+using Ejemplo_01_0_CRUD_MVC_Simple.DALs.MSSDALs;
+using Ejemplo_01_0_CRUD_MVC_Simple.Models;
 
-namespace Ejemplo_01_CRUD_MVC_Simple.Services;
+namespace Ejemplo_01_0_CRUD_MVC_Simple.Services;
 
 public class PersonasService
 {
@@ -16,7 +16,7 @@ public class PersonasService
 
     public PersonaModel? GetById(int id)
     {
-        return _dao.GetById(id);
+        return _dao.GetByKey(id);
     }
 
     public void CrearNuevo(PersonaModel persona)

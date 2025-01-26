@@ -1,26 +1,26 @@
-﻿using Ejemplo_01_CRUD_MVC_Simple.Models;
-using Ejemplo_01_CRUD_MVC_Simple.Services;
+﻿using Ejemplo_01_0_CRUD_MVC_Simple.Models;
+using Ejemplo_01_0_CRUD_MVC_Simple.Services;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace Ejemplo_01_CRUD_MVC_Simple.Controllers;
+namespace Ejemplo_01_0_CRUD_MVC_Simple.Controllers;
 
 public class PersonasController : Controller
 {
-    private PersonasService servicio = new PersonasService();
+    private PersonasService _personasService = new PersonasService();
 
     // GET: PersonasController
     [HttpGet]
     public IActionResult Index()
     {
-        return View(servicio.GetAll());
+        return View(_personasService.GetAll());
     }
 
     // GET: PruebaController1/Details/5
     [HttpGet]
     public ActionResult Details(int id)
     {
-        var persona = servicio.GetById(id);
+        var persona = _personasService.GetById(id);
         return View(persona);
     }
 
@@ -40,7 +40,7 @@ public class PersonasController : Controller
     {
         try
         {
-            servicio.CrearNuevo(nuevo);
+            _personasService.CrearNuevo(nuevo);
             return RedirectToAction(nameof(Index));
         }
         catch
@@ -57,7 +57,7 @@ public class PersonasController : Controller
         if (id == null)
             return BadRequest();
 
-        var persona = servicio.GetById(Convert.ToInt32(id));
+        var persona = _personasService.GetById(Convert.ToInt32(id));
         return View(persona);
     }
 
@@ -73,7 +73,7 @@ public class PersonasController : Controller
         {
             try
             {
-                servicio.Actualizar(persona);
+                _personasService.Actualizar(persona);
             }
             catch(Exception ex)
             {
@@ -91,7 +91,7 @@ public class PersonasController : Controller
         if (id == null || id <= 0)
             return BadRequest();
 
-        var persona = servicio.GetById(Convert.ToInt32(id));
+        var persona = _personasService.GetById(Convert.ToInt32(id));
 
         if (persona == null)
             return NotFound();
@@ -109,10 +109,10 @@ public class PersonasController : Controller
 
         try
         {
-            if (servicio.GetById(Convert.ToInt32(id)) == null)
+            if (_personasService.GetById(Convert.ToInt32(id)) == null)
                 return NotFound();
 
-            servicio.Eliminar(Convert.ToInt32(id));
+            _personasService.Eliminar(Convert.ToInt32(id));
 
             return RedirectToAction(nameof(Index));
         }

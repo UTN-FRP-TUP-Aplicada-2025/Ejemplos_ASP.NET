@@ -1,5 +1,9 @@
 
 
+### Workflow
+
+<img src="imgs/workflow.png"/>
+
 
 ## instalar el servidor de tiempo
 

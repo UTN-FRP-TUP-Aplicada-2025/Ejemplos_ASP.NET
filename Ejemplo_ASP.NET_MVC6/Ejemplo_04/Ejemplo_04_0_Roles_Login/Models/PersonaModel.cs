@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Ejemplo_03_0_Login_Simple.Models;
+namespace Ejemplo_04_0_Roles_Login.Models;
 
 public class PersonaModel
 {
@@ -20,7 +20,7 @@ public class PersonaModel
     [Required(ErrorMessage = "Se requiere ingresar la Fecha de nacimiento")]
     [Display(Name = "Fecha Nacimiento")]
     [DataType(DataType.Date)]
-    [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime? FechaNacimiento { get; set; }
 
 }

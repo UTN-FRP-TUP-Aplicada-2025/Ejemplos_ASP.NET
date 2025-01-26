@@ -1,10 +1,12 @@
 using Ejemplo_04_0_Roles_Login.Models;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace Ejemplo_04_0_Roles_Login.Controllers;
 
+[Authorize]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;

@@ -1,22 +1,33 @@
 
---cambio a master porque si esta abierta no la va a poder eliminar
+
+--Nombre del servidor: Ejemplos_ASP_MVC_DB.mssql.somee.com
+--Usuario: fernando-dev_SQLLogin_1
+--Password: bfzixu5w6p
+--Nombre de la base de datos: Ejemplos_ASP_MVC_DB
+--confiar en el certificado del servidor: true
 
 
-DROP TABLE IF EXISTS Cuentas;
+USE Ejemplos_ASP_MVC_DB
+
+GO 
+
+DROP TABLE IF EXISTS Usuarios_Roles;
 
 GO
 
-CREATE TABLE Cuentas
+DROP TABLE IF EXISTS Roles;
+
+GO
+
+DROP TABLE IF EXISTS Usuarios;
+
+GO
+
+CREATE TABLE Usuarios
 (
-	Id INT PRIMARY KEY IDENTITY(1,1),
-	UUID  NVARCHAR(200) NOT NULL UNIQUE,
-	Nombre NVARCHAR(50) NOT NULL UNIQUE,
+	Nombre NVARCHAR(50) NOT NULL PRIMARY KEY,
 	Clave NVARCHAR(200) NOT NULL,
 );
-
-GO
-
-DROP TABLE IF EXISTS Roles
 
 GO
 
@@ -28,15 +39,15 @@ CREATE TABLE Roles
 
 GO
 
-DROP TABLE IF EXISTS Cuentas_Roles
+DROP TABLE IF EXISTS Usuarios_Roles
 
 GO
 
-CREATE TABLE Cuentas_Roles
+CREATE TABLE Usuarios_Roles
 (
-	Id_Cuenta INT NOT NULL,
+	Id_Usuario INT NOT NULL,
 	Id_Rol INT NOT NULL,
-	CONSTRAINT UQ_Cuentas_Roles UNIQUE (Id_Cuenta, Id_Rol)
+	CONSTRAINT UQ_Usuarios_Roles UNIQUE (Id_Usuario, Id_Rol)
 );
 
 GO
@@ -48,16 +59,24 @@ GO
 CREATE TABLE Personas
 (
 	Id INT PRIMARY KEY IDENTITY(1,1),
-	DNI INT,
-	Nombre NVARCHAR(100),
+	DNI INT NOT NULL,
+	Nombre NVARCHAR(100) NOT NULL,
 	Fecha_Nacimiento DATE
 );
 
 GO
+
+INSERT INTO Usuarios(Nombre, Clave)
+VALUES ('admin','123')
 
 INSERT INTO Personas(DNI,Nombre,Fecha_Nacimiento)
 VALUES (353432432,'Sebastian', '1-1-1990'),
 (35327489, 'Esteban', '1-1-1990'),
 (43323432, 'Luisa', '5-1-2000'),
 (30798132, 'Teresa', '3-26-1999'),
-(35555132, 'Eduardo', '7-3-1995')
+(35555132, 'Eduardo', '7-3-1995'),
+(26555132, 'Rosa', '7-3-1975'),
+(28451182, 'Griselda', '7-26-1982'),
+(28733932, 'Carina', '7-23-1982')
+
+GO

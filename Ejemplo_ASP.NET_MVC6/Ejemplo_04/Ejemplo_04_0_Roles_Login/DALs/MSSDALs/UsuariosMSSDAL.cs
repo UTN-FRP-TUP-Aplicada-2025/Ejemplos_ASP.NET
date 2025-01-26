@@ -1,8 +1,9 @@
-﻿using Ejemplo_03_0_Login_Simple.Models;
+﻿using Ejemplo_04_0_Roles_Login.DALs.MSSDALs;
+using Ejemplo_04_0_Roles_Login.Models;
 
 using Microsoft.Data.SqlClient;
 
-namespace Ejemplo_03_0_Login_Simple.DALs.MSSDALs;
+namespace Ejemplo_04_0_Roles_Login.DALs.MSSDAO;
 
 public class UsuariosMSSDAL : IUsuariosDAL
 {
@@ -14,7 +15,7 @@ public class UsuariosMSSDAL : IUsuariosDAL
 @"SELECT u.* 
 FROM Usuarios u";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
+        using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -38,7 +39,7 @@ FROM Usuarios u";
 FROM Usuarios u
 WHERE UPPER(TRIM(u.Nombre)) LIKE UPPER(TRIM(@Nombre))";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
+        using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -59,7 +60,7 @@ WHERE UPPER(TRIM(u.Nombre)) LIKE UPPER(TRIM(@Nombre))";
 @"INSERT Usuarios(Nombre, Clave)
 VALUES (@Nombre, @Clave)";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
+        using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -76,7 +77,7 @@ VALUES (@Nombre, @Clave)";
 @"UPDATE Usuarios SET Clave=@Clave
 WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre_Usuario)";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
+        using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -87,14 +88,14 @@ WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre_Usuario)";
 
         return cantidad > 0;
     }
-
+    
     public void Delete(string nombre)
     {
         string sqlQuery =
 @"DELETE FROM Usuarios
 WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre)";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
+        using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -106,13 +107,8 @@ WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre)";
     public UsuarioModel ReadAUsuario(SqlDataReader reader)
     {
         string nombre = reader["Nombre"] != DBNull.Value ? Convert.ToString(reader["Nombre"]) : "";
-        string clave = reader["Nombre"] != DBNull.Value ? Convert.ToString(reader["Nombre"]) : "";
-        
-        var objeto = new UsuarioModel { Nombre = nombre,  Clave=clave };
-
+        string clave = reader["Clave"] != DBNull.Value ? Convert.ToString(reader["Clave"]) : "";
+        var objeto = new UsuarioModel { Nombre = nombre, Clave = clave };
         return objeto;
     }
-
-   
-
 }

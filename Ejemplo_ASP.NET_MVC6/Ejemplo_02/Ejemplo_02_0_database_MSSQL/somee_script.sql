@@ -1,6 +1,14 @@
 
---en somee hay que crear primero la base de datos desde el panel de control en el portal web de este hosting.
 
+--Nombre del servidor: Ejemplos_ASP_MVC_DB.mssql.somee.com
+--Usuario: fernando-dev_SQLLogin_1
+--Password: bfzixu5w6p
+--Nombre de la base de datos: Ejemplos_ASP_MVC_DB
+--confiar en el certificado del servidor: true
+
+USE Ejemplos_ASP_MVC_DB
+
+GO
 
 DROP TABLE IF EXISTS Personas
 

@@ -1,20 +1,21 @@
-﻿using Ejemplo_03_0_Login_Simple.Models;
+﻿using Ejemplo_04_0_Roles_Login.DALs.MSSDALs;
+using Ejemplo_04_0_Roles_Login.Models;
 
 using Microsoft.Data.SqlClient;
 
-namespace Ejemplo_03_0_Login_Simple.DALs.MSSDALs;
+namespace Ejemplo_04_0_Roles_Login.DALs.MSSDAO;
 
 public class PersonasMSSDAL : IPersonasDAL
 {
     public List<PersonaModel> GetAll()
     {
         var lista = new List<PersonaModel>();
-
-        string sqlQuery =
+               
+        string sqlQuery = 
 @"SELECT p.* 
 FROM Personas p";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
+        using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -33,19 +34,19 @@ FROM Personas p";
     {
         PersonaModel objeto = null;
 
-        string sqlQuery =
+        string sqlQuery = 
 @"SELECT TOP 1 p.* 
 FROM Personas p
 WHERE p.Id=@Id";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
+        using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
         query.Parameters.AddWithValue("@Id", id);
 
         var reader = query.ExecuteReader();
-
+        
         if (reader.Read())
         {
             objeto = ReadAsPersona(reader);
@@ -58,9 +59,9 @@ WHERE p.Id=@Id";
         string sqlQuery =
 @"INSERT Personas(Dni, Nombre, Fecha_Nacimiento)
 OUTPUT INSERTED.ID 
-VALUES (@Dni, @Nombre, @Fecha_Nacimiento)";
+VALUES (@Dni, @Nombre, @Fecha_Nacimiento)"; 
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
+        using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -79,7 +80,7 @@ VALUES (@Dni, @Nombre, @Fecha_Nacimiento)";
 @"UPDATE Personas SET Dni=@Dni, Nombre=@Nombre, Fecha_Nacimiento=@Fecha_Nacimiento 
 WHERE Id=@Id";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
+        using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -88,7 +89,7 @@ WHERE Id=@Id";
         query.Parameters.AddWithValue("@Fecha_Nacimiento", actualizar.FechaNacimiento);
         query.Parameters.AddWithValue("@Id", actualizar.Id);
 
-        int cantidad = query.ExecuteNonQuery();
+        int cantidad=query.ExecuteNonQuery();
 
         return cantidad > 0;
     }
@@ -99,7 +100,7 @@ WHERE Id=@Id";
 @"DELETE FROM Personas
 WHERE Id=@Id";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
+        using var conexion = new SqlConnection(ConexionString.valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);

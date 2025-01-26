@@ -18,5 +18,6 @@ public class PersonaModel
     public string Nombre { get; set; }
 
     [DisplayName("Fecha de Nacimiento")]
+    [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
     public DateTime? FechaNacimiento { get; set; }
 }

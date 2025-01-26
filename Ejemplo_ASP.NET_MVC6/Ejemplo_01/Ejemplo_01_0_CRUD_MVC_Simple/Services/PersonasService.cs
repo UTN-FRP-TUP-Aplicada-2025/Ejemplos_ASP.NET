@@ -6,7 +6,6 @@ namespace Ejemplo_01_0_CRUD_MVC_Simple.Services;
 
 public class PersonasService
 {
-    //IPersonasDAO _dao = new PersonasMemoryDAO();
     IPersonasDAL _dao = new PersonasMSSDAL();
 
     public List<PersonaModel> GetAll()

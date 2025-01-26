@@ -1,41 +1,56 @@
-﻿@model List<Ejemplo_01_0_CRUD_MVC_Simple.Models.PersonaModel>
+﻿@model IEnumerable<Ejemplo_01_0_CRUD_MVC_Simple.Models.PersonaModel>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Listado de personas</h1>
+<h1>Index</h1>
 
-
-<a asp-action="Create"><i class="fa-solid fa-circle-plus"></i></a>
-
+<p>
+    <a asp-action="Create"><i class="fa-solid fa-circle-plus"></i></a>
+</p>
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col">DNI</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Acciones</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DNI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaNacimiento)
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.DNI</td>
-                <td>@item.Nombre</td>
-
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DNI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            </td>
                 <td>
-                    <!--Redirección 
+                    <!--Redirección
                     <a href="@Url.Action("Editar", "Personas", new { id = item.Id })" class="btn btn-primary"><i class="fa-solid fa-pencil"></i></a>
                     -->
                     <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa-solid fa-pen"></i></a> |
                     <a asp-action="Details" asp-route-id="@item.Id"><i class="fa-solid fa-expand"></i></a> |
                     <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa-solid fa-trash"></i></a>
                 </td>
-            </tr>
-        }
+        </tr>
+}
     </tbody>
 </table>
-

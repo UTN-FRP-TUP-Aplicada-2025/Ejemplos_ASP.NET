@@ -1,4 +1,5 @@
-using Ejemplo_11_blazor_webassembly;
+using Ejemplo_01_blazor_webassembly;
+
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 

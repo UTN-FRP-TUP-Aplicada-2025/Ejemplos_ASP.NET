@@ -18,8 +18,8 @@ GO
 CREATE TABLE Personas
 (
 	Id INT PRIMARY KEY IDENTITY(1,1),
-	DNI INT,
-	Nombre NVARCHAR(100),
+	DNI INT NOT NULL,
+	Nombre NVARCHAR(100) NOT NULL,
 	Fecha_Nacimiento DATE
 );
 

@@ -169,7 +169,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{F06EDE
 		Tools\Docker\clear.all.sh = Tools\Docker\clear.all.sh
 		Tools\Docker\install.sh = Tools\Docker\install.sh
 		Tools\Docker\Readme.md = Tools\Docker\Readme.md
-		Tools\Docker\workflow.png = Tools\Docker\workflow.png
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imgs", "imgs", "{636DB9F1-79BC-43B0-804F-580CB1CE751E}"

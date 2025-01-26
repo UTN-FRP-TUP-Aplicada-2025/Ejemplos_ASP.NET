@@ -108,7 +108,6 @@ WHERE Id=@Id";
         var eliminados = query.ExecuteScalar();
     }
 
-
     public PersonaModel ReadAsPersona(SqlDataReader reader)
     {
         int id = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0;

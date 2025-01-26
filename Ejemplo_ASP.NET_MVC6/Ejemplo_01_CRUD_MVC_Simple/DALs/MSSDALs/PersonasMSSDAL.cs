@@ -6,9 +6,9 @@ namespace Ejemplo_01_CRUD_MVC_Simple.DALs.MSSDALs;
 
 public class PersonasMSSDAL : IPersonasDAL
 {
-    //string conexionString = "Integrated Security=true; Initial Catalog=EjemploCRUDSimpleDB;Server=TSP;TrustServerCertificate=true;";
+    string conexionString = "Integrated Security=true; Initial Ejemplo_03_Login_Simple_DB;Server=TSP;TrustServerCertificate=true;";
     //string conexionString = "User Id=sa;Password=MSS-fernando-123;Initial Catalog=EjemploCRUDSimpleLoginDB;Server=ejemplo02_mssql_container;TrustServerCertificate=true;";
-    string conexionString="workstation id=Ejemplo01CRUDSimpleDB.mssql.somee.com;packet size=4096;user id=fernando-dev_SQLLogin_1;pwd=bfzixu5w6p;data source=Ejemplo01CRUDSimpleDB.mssql.somee.com;persist security info=False;initial catalog=Ejemplo01CRUDSimpleDB;TrustServerCertificate=True";
+    //string conexionString="workstation id=Ejemplo01CRUDSimpleDB.mssql.somee.com;packet size=4096;user id=fernando-dev_SQLLogin_1;pwd=bfzixu5w6p;data source=Ejemplo01CRUDSimpleDB.mssql.somee.com;persist security info=False;initial catalog=Ejemplo01CRUDSimpleDB;TrustServerCertificate=True";
 
     public List<PersonaModel> GetAll()
     {
@@ -38,12 +38,12 @@ FROM Personas";
         return lista;
     }
 
-    public PersonaModel? GetById(int id)
+    public PersonaModel? GetByKey(int id)
     {
         PersonaModel persona = null;
 
         string sqlQuery = 
-@"SELECT * 
+@"SELECT p.* 
 FROM Personas p
 WHERE p.Id=@Id";
 

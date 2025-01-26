@@ -12,11 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{18465878-A
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ejemplo_02_Login_Simple_1", "Ejemplo_02_Login_Simple_1\Ejemplo_02_Login_Simple_1.csproj", "{EBC23A89-D068-4FF1-ADFF-33CB07DE38B1}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_CRUD_MVC_Simple", "Ejemplo_01_CRUD_MVC_Simple", "{459F4550-3040-4804-A2E1-7E07B283CB34}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ejemplo_03_CRUD_Simple_Login_1", "Ejemplo_03_CRUD_Simple_Login_1\Ejemplo_03_CRUD_Simple_Login_1.csproj", "{F4DC82F3-B721-452E-BBAA-D2108A60D672}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_03_CRUD_Simple_Login", "Ejemplo_03_CRUD_Simple_Login", "{8E392137-9683-491B-B493-CA9D9992B67D}"
 EndProject
@@ -45,8 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{70B0CF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{BA240214-C2ED-4EF2-A9EB-EBE73D79884B}"
 	ProjectSection(SolutionItems) = preProject
-		Scripts\Ejemplo_01_CRUD_MVC_Simple\docker\create_mssql_container.sh = Scripts\Ejemplo_01_CRUD_MVC_Simple\docker\create_mssql_container.sh
 		Scripts\Ejemplo_01_CRUD_MVC_Simple\docker\create_dotnet_container.sh = Scripts\Ejemplo_01_CRUD_MVC_Simple\docker\create_dotnet_container.sh
+		Scripts\Ejemplo_01_CRUD_MVC_Simple\docker\create_mssql_container.sh = Scripts\Ejemplo_01_CRUD_MVC_Simple\docker\create_mssql_container.sh
 		Scripts\Ejemplo_01_CRUD_MVC_Simple\docker\docker-compose.yml = Scripts\Ejemplo_01_CRUD_MVC_Simple\docker\docker-compose.yml
 		Scripts\Ejemplo_01_CRUD_MVC_Simple\docker\Dockerfile.dotnet = Scripts\Ejemplo_01_CRUD_MVC_Simple\docker\Dockerfile.dotnet
 		Scripts\Ejemplo_01_CRUD_MVC_Simple\docker\Dockerfile.mssql = Scripts\Ejemplo_01_CRUD_MVC_Simple\docker\Dockerfile.mssql
@@ -59,8 +55,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "local", "local", "{94F750F7
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_06_CRUD_Razor", "Ejemplo_06_CRUD_Razor\Ejemplo_06_CRUD_Razor.csproj", "{673937F9-185E-49BF-9933-37D4EE717359}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_04_CRUD_REST_Login_1", "Ejemplo_04_CRUD_REST_Login_1\Ejemplo_04_CRUD_REST_Login_1.csproj", "{C5EC2D29-179B-401B-89FC-8B81AAFDBF87}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_04_CRUD_REST_Login", "Ejemplo_04_CRUD_REST_Login", "{AFE5CBAE-162B-4515-9E78-E6F7D2801B00}"
 	ProjectSection(SolutionItems) = preProject
@@ -152,10 +146,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_CRUD_RestAPI_y_M
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{F249BA92-9F27-46EC-BCB9-3AA011F1AC80}"
 	ProjectSection(SolutionItems) = preProject
+		Scripts\Ejemplo_02_CRUD_RestAPI_y_MVC_Simple\docker\create_dotnet_container.sh = Scripts\Ejemplo_02_CRUD_RestAPI_y_MVC_Simple\docker\create_dotnet_container.sh
 		Scripts\Ejemplo_02_CRUD_RestAPI_y_MVC_Simple\docker\create_mssql_container.sh = Scripts\Ejemplo_02_CRUD_RestAPI_y_MVC_Simple\docker\create_mssql_container.sh
 		Scripts\Ejemplo_02_CRUD_RestAPI_y_MVC_Simple\docker\docker-compose.yml = Scripts\Ejemplo_02_CRUD_RestAPI_y_MVC_Simple\docker\docker-compose.yml
 		Scripts\Ejemplo_02_CRUD_RestAPI_y_MVC_Simple\docker\Dockerfile.dotnet = Scripts\Ejemplo_02_CRUD_RestAPI_y_MVC_Simple\docker\Dockerfile.dotnet
-		Scripts\Ejemplo_02_CRUD_RestAPI_y_MVC_Simple\docker\create_dotnet_container.sh = Scripts\Ejemplo_02_CRUD_RestAPI_y_MVC_Simple\docker\create_dotnet_container.sh
 		Scripts\Ejemplo_02_CRUD_RestAPI_y_MVC_Simple\docker\Dockerfile.mssql = Scripts\Ejemplo_02_CRUD_RestAPI_y_MVC_Simple\docker\Dockerfile.mssql
 		Scripts\Ejemplo_02_CRUD_RestAPI_y_MVC_Simple\docker\stop.sh = Scripts\Ejemplo_02_CRUD_RestAPI_y_MVC_Simple\docker\stop.sh
 	EndProjectSection
@@ -177,22 +171,10 @@ Global
 		{BDFE69BB-BF6B-41C6-8E32-E6419038A822}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDFE69BB-BF6B-41C6-8E32-E6419038A822}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDFE69BB-BF6B-41C6-8E32-E6419038A822}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBC23A89-D068-4FF1-ADFF-33CB07DE38B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EBC23A89-D068-4FF1-ADFF-33CB07DE38B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBC23A89-D068-4FF1-ADFF-33CB07DE38B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EBC23A89-D068-4FF1-ADFF-33CB07DE38B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F4DC82F3-B721-452E-BBAA-D2108A60D672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F4DC82F3-B721-452E-BBAA-D2108A60D672}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F4DC82F3-B721-452E-BBAA-D2108A60D672}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F4DC82F3-B721-452E-BBAA-D2108A60D672}.Release|Any CPU.Build.0 = Release|Any CPU
 		{673937F9-185E-49BF-9933-37D4EE717359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{673937F9-185E-49BF-9933-37D4EE717359}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{673937F9-185E-49BF-9933-37D4EE717359}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{673937F9-185E-49BF-9933-37D4EE717359}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5EC2D29-179B-401B-89FC-8B81AAFDBF87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5EC2D29-179B-401B-89FC-8B81AAFDBF87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5EC2D29-179B-401B-89FC-8B81AAFDBF87}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5EC2D29-179B-401B-89FC-8B81AAFDBF87}.Release|Any CPU.Build.0 = Release|Any CPU
 		{48881B95-5438-4A7D-8107-27C3783978E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{48881B95-5438-4A7D-8107-27C3783978E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48881B95-5438-4A7D-8107-27C3783978E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -217,9 +199,7 @@ Global
 		{BDFE69BB-BF6B-41C6-8E32-E6419038A822} = {52EF6C6D-BA7C-4093-9B5E-C500AA261857}
 		{A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D} = {52EF6C6D-BA7C-4093-9B5E-C500AA261857}
 		{18465878-A91B-40FC-AB3A-35EC69211CFF} = {52EF6C6D-BA7C-4093-9B5E-C500AA261857}
-		{EBC23A89-D068-4FF1-ADFF-33CB07DE38B1} = {D55DED00-0696-443F-87A3-3066BEDDDF30}
 		{459F4550-3040-4804-A2E1-7E07B283CB34} = {A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}
-		{F4DC82F3-B721-452E-BBAA-D2108A60D672} = {D55DED00-0696-443F-87A3-3066BEDDDF30}
 		{8E392137-9683-491B-B493-CA9D9992B67D} = {CAC93A27-F23A-4140-86B2-60E0522CEC9A}
 		{9EB0B2CF-07CC-401A-9EF4-79BCD115B7A4} = {8E392137-9683-491B-B493-CA9D9992B67D}
 		{FB405D92-29D5-4EFC-94A0-C30232C1CC66} = {459F4550-3040-4804-A2E1-7E07B283CB34}
@@ -227,7 +207,6 @@ Global
 		{BA240214-C2ED-4EF2-A9EB-EBE73D79884B} = {459F4550-3040-4804-A2E1-7E07B283CB34}
 		{94F750F7-35AE-498E-A97C-D57ED47E802E} = {8E392137-9683-491B-B493-CA9D9992B67D}
 		{673937F9-185E-49BF-9933-37D4EE717359} = {FF7E79C6-1472-409B-ABD2-66E62E9C2AC9}
-		{C5EC2D29-179B-401B-89FC-8B81AAFDBF87} = {D55DED00-0696-443F-87A3-3066BEDDDF30}
 		{AFE5CBAE-162B-4515-9E78-E6F7D2801B00} = {CAC93A27-F23A-4140-86B2-60E0522CEC9A}
 		{F72F0003-3E7B-415B-9072-440270969FCE} = {AFE5CBAE-162B-4515-9E78-E6F7D2801B00}
 		{48881B95-5438-4A7D-8107-27C3783978E7} = {52EF6C6D-BA7C-4093-9B5E-C500AA261857}

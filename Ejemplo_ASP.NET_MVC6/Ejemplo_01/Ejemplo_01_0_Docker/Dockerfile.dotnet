@@ -51,11 +51,11 @@ EXPOSE 8080
 
 # punto de entrada de la aplicación
 
-# ENTRYPOINT ["dotnet", "Ejemplo_02_CRUD_RestAPI_y_MVC_Simple.dll"]
+ENTRYPOINT ["dotnet", "Ejemplo_01_0_CRUD_MVC_Simple.dll"]
 
-ENV NOMBRE_DLL="${PROJECT_NAME}.DLL"
-ENTRYPOINT ["dotnet", ${NOMBRE_DLL}]
+#ENV NOMBRE_DLL="${PROJECT_NAME}.DLL"
+#ENTRYPOINT ["dotnet", $NOMBRE_DLL]
 
-#ARG NOMBRE_DLL=${PROJECT_NAME}".DLL"
+#ARG NOMBRE_DLL="${PROJECT_NAME}.DLL"
 #ENV NOMBRE_DLL=$NOMBRE_DLL
 #ENTRYPOINT ["sh", "-c", "dotnet $NOMBRE_DLL"]

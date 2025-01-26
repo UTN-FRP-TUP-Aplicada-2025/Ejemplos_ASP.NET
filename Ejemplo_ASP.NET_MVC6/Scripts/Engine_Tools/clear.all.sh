@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# parar todo los contenedores que comienzan con ejemplo
+docker ps -q --filter "name=^ejemplo" | xargs docker stop
+
 # borrar todas las imágenes
 docker rmi $(docker images -q) -f
 

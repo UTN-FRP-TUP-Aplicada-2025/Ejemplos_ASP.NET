@@ -1,0 +1,51 @@
+# imagen oficial mss 
+FROM mcr.microsoft.com/mssql/server:2022-latest
+
+# variables de entorno
+ENV ACCEPT_EULA=Y
+ENV MSSQL_SA_PASSWORD=MSS-fernando-123
+
+
+# herramientas para mss
+USER root
+RUN apt-get update && \
+    apt-get install -y curl apt-transport-https gnupg2
+
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /etc/apt/trusted.gpg.d/microsoft.gpg
+
+RUN echo "deb [arch=amd64] https://packages.microsoft.com/ubuntu/20.04/prod focal main" > /etc/apt/sources.list.d/mssql-release.list
+
+RUN apt-get update
+
+# instalando paquetes
+RUN apt-get install -y unixodbc || echo "Failed to install unixodbc"
+
+RUN ACCEPT_EULA=Y apt-get install -y msodbcsql18 || echo "Failed to install msodbcsql17"
+RUN apt-get install -y mssql-tools || echo "Failed to install mssql-tools"
+
+RUN apt-get install -y unixodbc-dev || echo "Failed to install unixodbc-dev"
+
+RUN apt-get install -y nano || echo "Failed to install nano"
+
+#COPY my_sql_server_cert.crt /usr/local/share/ca-certificates/
+
+RUN update-ca-certificates
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN ln -s /opt/mssql-tools18 /opt/mssql-tools
+
+# directorio de trabajo para los scripts
+
+ARG PROJECT_PATH=Scripts/Ejemplo_02_CRUD_RestAPI_y_MVC_Simple/MSSQL
+ARG BUILD_ROOT=/src/sql_script
+
+WORKDIR $BUILD_ROOT
+
+COPY ${PROJECT_PATH}/. ${BUILD_ROOT}
+
+# puerto del servicio
+EXPOSE 1433
+
+# punto de entrada
+ENTRYPOINT ["/opt/mssql/bin/sqlservr"]

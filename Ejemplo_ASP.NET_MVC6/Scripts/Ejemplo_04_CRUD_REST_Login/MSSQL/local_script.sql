@@ -18,37 +18,28 @@ GO
 
 CREATE TABLE Usuarios
 (
-	Id INT PRIMARY KEY IDENTITY(1,1),
-	UUID  NVARCHAR(200) NOT NULL UNIQUE,
-	Nombre NVARCHAR(50) NOT NULL UNIQUE,
+	Nombre NVARCHAR(50) PRIMARY KEY NOT NULL,
 	Clave NVARCHAR(200) NOT NULL,
 );
 
-GO
 
 CREATE TABLE Roles
 (
-	Id INT PRIMARY KEY IDENTITY(1,1),
-	Nombre NVARCHAR(50) NOT NULL UNIQUE,
+	Nombre NVARCHAR(50) PRIMARY KEY NOT NULL,
 );
-
-GO
 
 CREATE TABLE  Usuarios_Roles
 (
-	Id_Usuario INT NOT NULL,
-	Id_Rol INT NOT NULL,
-	CONSTRAINT UQ_Usuario_Roles UNIQUE (Id_Usuario, Id_Rol)
+	Nombre_Usuario INT NOT NULL,
+	Nombre_Rol INT NOT NULL,
+	CONSTRAINT UQ_Usuario_Roles UNIQUE (Nombre_Usuario, Nombre_Rol)
 );
-
-
-GO
 
 CREATE TABLE Personas
 (
 	Id INT PRIMARY KEY IDENTITY(1,1),
-	DNI INT,
-	Nombre NVARCHAR(100),
+	DNI INT NOT NULL,
+	Nombre NVARCHAR(100) NOT NULL,
 	Fecha_Nacimiento DATE
 );
 
@@ -63,21 +54,25 @@ VALUES (353432432,'Sebastian', '1-1-1990'),
 
 GO
 
-DECLARE @Password NVARCHAR(255) = '123';
-DECLARE @PasswordHash VARBINARY(64)= HASHBYTES('SHA2_256', CONVERT(VARCHAR(255), @Password, 2));
-SELECT @PasswordHash 
+--DECLARE @Password NVARCHAR(255) = '123';
+--DECLARE @PasswordHash VARBINARY(64)= HASHBYTES('SHA2_256', CONVERT(VARCHAR(255), @Password, 2));
+--SELECT @PasswordHash 
 --DECLARE @Base64Hash NVARCHAR(MAX);
 --SET @Base64Hash = CAST('' AS XML).value('xs:base64Binary(sql:variable("@PasswordHash"))', 'NVARCHAR(MAX)');
 --SELECT @Base64Hash;
 
-DECLARE @uuid UNIQUEIDENTIFIER = NEWID();
+--DECLARE @uuid UNIQUEIDENTIFIER = NEWID();
 
-INSERT INTO Usuarios(UUID, Nombre, Clave)
-VALUES(@uuid, 'Admin', CONVERT(NVARCHAR(200), @PasswordHash,2))
+--INSERT INTO Usuarios(UUID, Nombre, Clave)
+--VALUES(@uuid, 'Admin', CONVERT(NVARCHAR(200), @PasswordHash,2))
 
+
+INSERT INTO Usuarios(Nombre, Clave)
+VALUES('Admin', '123'),
+('Usuario', 'abc')
 
 GO
 
-select  * from Usuarios
---"26D6A8AD97C75FFC548F6873E5E93CE475479E3E1A1097381E54221FB53EC1D2"
+select * from Usuarios
+
 

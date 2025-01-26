@@ -132,6 +132,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple", "Ejemplo_02\Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple\Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple.csproj", "{8EDD9D31-93EC-4262-8712-FFA91939CDB8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_0_Docker", "Ejemplo_02_0_Docker", "{F249BA92-9F27-46EC-BCB9-3AA011F1AC80}"
+	ProjectSection(SolutionItems) = preProject
+		Ejemplo_02\Ejemplo_02_0_Docker\create_dotnet_container.sh = Ejemplo_02\Ejemplo_02_0_Docker\create_dotnet_container.sh
+		Ejemplo_02\Ejemplo_02_0_Docker\create_mssql_container.sh = Ejemplo_02\Ejemplo_02_0_Docker\create_mssql_container.sh
+		Ejemplo_02\Ejemplo_02_0_Docker\docker-compose.yml = Ejemplo_02\Ejemplo_02_0_Docker\docker-compose.yml
+		Ejemplo_02\Ejemplo_02_0_Docker\Dockerfile.dotnet = Ejemplo_02\Ejemplo_02_0_Docker\Dockerfile.dotnet
+		Ejemplo_02\Ejemplo_02_0_Docker\Dockerfile.mssql = Ejemplo_02\Ejemplo_02_0_Docker\Dockerfile.mssql
+		Ejemplo_02\Ejemplo_02_0_Docker\stop.sh = Ejemplo_02\Ejemplo_02_0_Docker\stop.sh
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_0_database_MSSQL", "Ejemplo_02_0_database_MSSQL", "{14C46B57-0F6E-461C-A36E-A8B1CA61B170}"
 	ProjectSection(SolutionItems) = preProject
@@ -176,8 +184,16 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_07", "Ejemplo_07", "{E56A11F3-0E25-4747-9339-7E3601FD8B66}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_2_Cliente_HTML_Simple", "Ejemplo_02_2_Cliente_HTML_Simple", "{9A96B121-E48E-4247-87E8-A0DEE0CC9298}"
+	ProjectSection(SolutionItems) = preProject
+		Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\Index.html = Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\Index.html
+		Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\readme.md = Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\readme.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_3_Cliente_PowerShell", "Ejemplo_02_3_Cliente_PowerShell", "{06857E11-13E3-4034-8F3A-0C4B2A7E6831}"
+	ProjectSection(SolutionItems) = preProject
+		Ejemplo_02\Ejemplo_02_3_Cliente_PowerShell\Readme.md = Ejemplo_02\Ejemplo_02_3_Cliente_PowerShell\Readme.md
+		Ejemplo_02\Ejemplo_02_3_Cliente_PowerShell\script.ps1 = Ejemplo_02\Ejemplo_02_3_Cliente_PowerShell\script.ps1
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_0_Docs", "Ejemplo_02_0_Docs", "{3AEA8710-1F6B-4D44-85E1-640D022A6718}"
 EndProject

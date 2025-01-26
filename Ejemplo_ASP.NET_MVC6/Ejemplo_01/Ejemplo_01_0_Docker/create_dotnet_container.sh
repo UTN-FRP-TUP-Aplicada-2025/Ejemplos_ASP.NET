@@ -4,8 +4,8 @@
 
 TAG='v0.1'
 
-NOMBRE_IMAGEN='ejemplo01_mssql_image'
-NOMBRE_CONTENEDOR='ejemplo01_mssql_container'
+NOMBRE_IMAGEN='ejemplo01_dotnet_image'
+NOMBRE_CONTENEDOR='ejemplo01_dotnet_container'
 EJEMPLO='Ejemplo_01'
 DOCKER_FILE='Dockerfile.dotnet'
 SOLUCION_PATH='/workspaces/Ejemplos_ASP.NET_MVC6/Ejemplo_ASP.NET_MVC6/'$EJEMPLO
@@ -24,7 +24,7 @@ docker build --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
 
 # genero el contenedor y lo corro
 # restart always permite el reinicio automático
-docker run --restart always --name $NOMBRE_CONTENEDOR -p 8080:80 -d $NOMBRE_IMAGEN:$TAG
+docker run --restart always --name $NOMBRE_CONTENEDOR -p 8284:80 -d $NOMBRE_IMAGEN:$TAG
 
 # listo los contenedores corriendo
 docker ps 
@@ -33,3 +33,6 @@ docker ps
 docker logs $NOMBRE_CONTENEDOR
 
 # docker restart $NOMBRE_CONTENEDOR
+
+# Conexión desde el host
+#docker exec -it ejemplo01_dotnet_container /bin/bash

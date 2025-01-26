@@ -47,7 +47,7 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # exponiendo el puerto 8080 para acceder - activar el public en forwader port
-EXPOSE 8080
+EXPOSE 8284
 
 # punto de entrada de la aplicación
 

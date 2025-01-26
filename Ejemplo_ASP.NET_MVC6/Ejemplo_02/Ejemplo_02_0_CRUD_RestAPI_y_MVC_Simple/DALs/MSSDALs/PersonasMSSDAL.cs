@@ -75,7 +75,7 @@ VALUES (@Dni, @Nombre)";
     public bool Update(PersonaModel actualizar)
     {
         string sqlQuery =
-@"UPDATE Personas SET Dni=@Dni, Nombre=@Nombre 
+@"UPDATE Personas SET Dni=@Dni, Nombre=@Nombre , Fecha_Nacimiento=@FechaNacimiento
 WHERE Id=@Id";
 
         using var conexion = new SqlConnection(ConexionString.Valor);
@@ -84,6 +84,7 @@ WHERE Id=@Id";
         using var query = new SqlCommand(sqlQuery, conexion);
         query.Parameters.AddWithValue("@Dni", actualizar.DNI);
         query.Parameters.AddWithValue("@Nombre", actualizar.Nombre);
+        query.Parameters.AddWithValue("@FechaNacimiento", actualizar.Nombre);
         query.Parameters.AddWithValue("@Id", actualizar.Id);
 
         int cantidad=query.ExecuteNonQuery();

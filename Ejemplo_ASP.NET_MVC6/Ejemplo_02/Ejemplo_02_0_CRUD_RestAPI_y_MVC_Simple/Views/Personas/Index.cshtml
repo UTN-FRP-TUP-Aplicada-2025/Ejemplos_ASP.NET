@@ -1,4 +1,6 @@
-﻿@model List<Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple.Models.PersonaModel>
+﻿@using Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple.Models
+
+@model List<PersonaModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,16 +15,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DNI)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().DNI)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Nombre)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaNacimiento)
+                @Html.DisplayNameFor(model => model.FirstOrDefault().FechaNacimiento)
             </th>
             <th></th>
         </tr>

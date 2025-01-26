@@ -14,7 +14,7 @@ public class PersonasMSSDAL : IPersonasDAL
 @"SELECT p.* 
 FROM Personas p";
 
-        using var conexion = new SqlConnection(ConexionString.valor);
+        using var conexion = new SqlConnection(ConexionString.Valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -44,7 +44,7 @@ FROM Personas p";
 FROM Personas p
 WHERE p.Id=@Id";
 
-        using var conexion = new SqlConnection(ConexionString.valor);
+        using var conexion = new SqlConnection(ConexionString.Valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -72,7 +72,7 @@ WHERE p.Id=@Id";
 OUTPUT INSERTED.ID 
 VALUES (@Dni, @Nombre, @Fecha_Nacimiento)";
 
-        using var conexion = new SqlConnection(ConexionString.valor);
+        using var conexion = new SqlConnection(ConexionString.Valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -91,7 +91,7 @@ VALUES (@Dni, @Nombre, @Fecha_Nacimiento)";
 @"UPDATE Personas SET Dni=@Dni, Nombre=@Nombre, Fecha_Nacimiento=@Fecha_Nacimiento 
 WHERE Id=@Id";
 
-        using var conexion = new SqlConnection(ConexionString.valor);
+        using var conexion = new SqlConnection(ConexionString.Valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -111,7 +111,7 @@ WHERE Id=@Id";
 @"DELETE FROM Personas
 WHERE Id=@Id";
 
-        using var conexion = new SqlConnection(ConexionString.valor);
+        using var conexion = new SqlConnection(ConexionString.Valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);

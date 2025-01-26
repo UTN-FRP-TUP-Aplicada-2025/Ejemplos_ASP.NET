@@ -14,7 +14,7 @@ public class UsuariosMSSDAL : IUsuariosDAL
 @"SELECT u.* 
 FROM Usuarios u";
 
-        using var conexion = new SqlConnection(ConexionString.valor);
+        using var conexion = new SqlConnection(ConexionString.Valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -42,7 +42,7 @@ FROM Usuarios u";
 FROM Usuarios u
 WHERE UPPER(TRIM(u.Nombre)) LIKE UPPER(TRIM(@Nombre))";
 
-        using var conexion = new SqlConnection(ConexionString.valor);
+        using var conexion = new SqlConnection(ConexionString.Valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -66,7 +66,7 @@ WHERE UPPER(TRIM(u.Nombre)) LIKE UPPER(TRIM(@Nombre))";
 @"INSERT Usuarios(Nombre, Clave)
 VALUES (@Nombre, @Clave)";
 
-        using var conexion = new SqlConnection(ConexionString.valor);
+        using var conexion = new SqlConnection(ConexionString.Valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -83,7 +83,7 @@ VALUES (@Nombre, @Clave)";
 @"UPDATE Usuarios SET Clave=@Clave
 WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre_Usuario)";
 
-        using var conexion = new SqlConnection(ConexionString.valor);
+        using var conexion = new SqlConnection(ConexionString.Valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
@@ -101,7 +101,7 @@ WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre_Usuario)";
 @"DELETE FROM Usuarios
 WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre)";
 
-        using var conexion = new SqlConnection(ConexionString.valor);
+        using var conexion = new SqlConnection(ConexionString.Valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);

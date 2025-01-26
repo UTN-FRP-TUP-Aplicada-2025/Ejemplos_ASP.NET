@@ -3,9 +3,12 @@
 # para el contenedor, construye la imagen, y crea y corre el contenedor
 
 TAG='v0.1'
-NOMBRE_IMAGEN='ejemplo01_dotnet_image'
-NOMBRE_CONTENEDOR='ejemplo01_dotnet_container'
-SOLUCION_PATH='/workspaces/Ejemplos_ASP.NET_MVC6/Ejemplo_ASP.NET_MVC6/'
+
+NOMBRE_IMAGEN='ejemplo01_mssql_image'
+NOMBRE_CONTENEDOR='ejemplo01_mssql_container'
+EJEMPLO='Ejemplo_01'
+DOCKER_FILE='Dockerfile.dotnet'
+SOLUCION_PATH='/workspaces/Ejemplos_ASP.NET_MVC6/Ejemplo_ASP.NET_MVC6/'$EJEMPLO
 
 # paro el contenedor - por si esta corriendo
 docker stop $NOMBRE_CONTENEDOR
@@ -17,7 +20,7 @@ docker rm $NOMBRE_CONTENEDOR
 docker rmi $NOMBRE_IMAGEN:$TAG
 
 # construyo la imagen
-docker build --no-cache -f Dockerfile.dotnet -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
+docker build --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
 
 # genero el contenedor y lo corro
 # restart always permite el reinicio automático

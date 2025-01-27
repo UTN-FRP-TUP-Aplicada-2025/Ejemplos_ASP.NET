@@ -15,7 +15,7 @@ La aplicación web MVC y RestAPI estan en: `Ejemplo_01_0_CRUD_MVC_Simple`
 
 ### (2) Preparación de la base de datos. 
 
-En `Ejemplo_01_0_database_MSSQL` se encuentan los script T-SQL (Transaction SQL). 
+En `Ejemplo_01_0_database_MSSQL` se encuentan los script T-SQL (Transaction SQL) para crear la base de datos, crear las tablas e insertar valores iniciales. 
 
 - `local_script.sql`: es el script para correrlo en la base local.
 
@@ -26,7 +26,7 @@ En `Ejemplo_01_0_database_MSSQL` se encuentan los script T-SQL (Transaction SQL)
 Cualquiera sea el caso elegido, hay que ajustar la cadena de conexión en `(1)` en la clase `Ejemplo_01_0_CRUD_MVC_Simple.DALs.MSSDALs.ConexionString`
 
 
-### Program.cs
+## Program.cs
 
 #### Resumen
 Primero se crea el contenedor, se configuran los servicios y luego se conectan esos servicios a un middleware por medio o en un pipeline. 
@@ -35,13 +35,13 @@ Primero se crea el contenedor, se configuran los servicios y luego se conectan e
 
 ##### 1. Contenedor de Dependencias (DI Container)
 
-El contenedor de dependencias es ==el motor que maneja todos los servicios que la aplicación necesita==. En ASP.NET Core, este contenedor se configura usando `builder.Services` durante la fase de creación de la aplicación. Los servicios pueden ser cosas como la autenticación, bases de datos, servicios personalizados, controladores, y más.
+El contenedor de dependencias es ==**el motor que maneja todos los servicios que la aplicación necesita **==. En ASP.NET Core, este contenedor se configura usando `builder.Services` durante la fase de creación de la aplicación. Los servicios pueden ser cosas como la autenticación, bases de datos, servicios personalizados, controladores, y más.
 
-==El contenedor mantiene un registro de esos servicios y sus dependencias==. Básicamente, el contenedor sabe cómo crear y gestionar estos servicios cuando la aplicación los necesite.
+==**El contenedor mantiene un registro de esos servicios y sus dependencias**==. Básicamente, el contenedor sabe cómo crear y gestionar estos servicios cuando la aplicación los necesite.
 
 Cuando se llama a `builder.Services.AddAuthentication()`, el contenedor registra todo lo necesario para que el sistema de autenticación funcione.
 
-==¿Qué hace el contenedor?:==
+==**¿Qué hace el contenedor?:**==
 
 En el contenedor contendrá todos los objetos necesarios y se encargará de inyectarlos donde se haya indicando.
 En el se preparan todos los servicios y las configuraciones que la aplicación necesita para funcionar.
@@ -52,7 +52,7 @@ El middleware son piezas de código que interceptan y procesan cada solicitud HTT
 
 Cuando se llama a `app.UseAuthentication()`, se indica que con este middleware verifique si la solicitud tiene credenciales de autenticación válidas. Si no las tiene, puede redirigir al usuario al login, por ejemplo.
 
-==¿Qué hace el middleware?:==
+==**¿Qué hace el middleware?:**==
 
 Modifica o decide cómo tratar las solicitudes antes de que lleguen a su destino.
 
@@ -62,25 +62,25 @@ El pipeline es el camino de ejecución por donde pasan las solicitudes HTTP. El p
 
 Si se tiene las siguientes invocaciones  `app.UseAuthentication()`, `app.UseAuthorization()`, y `app.UseRouting()`, cada uno de esos middleware será parte del pipeline y se ejecutará secuencialmente, procesando la solicitud de la forma que se haya configurado.
 
-==¿Qué hace el pipeline?:==
+==**¿Qué hace el pipeline?:**==
 
 Define el flujo de la solicitud a través de los middleware. A medida que la solicitud avanza, el pipeline puede modificarla, detenerla o redirigirla.
 
 ##### Relación entre Contenedor, Middleware y Pipeline
 
-==Contenedor de Dependencias:==
+==**Contenedor de Dependencias:**==
 
 Durante la creación de la aplicación con `WebApplication.CreateBuilder()`, se configura y registra todos los servicios que la aplicación va a necesitar. Estos servicios se gestionan a través del contenedor de dependencias.
 
-==Servicios del Contenedor y Middleware:==
+==**Servicios del Contenedor y Middleware:**==
 
-Algunos de esos servicios, como la autenticación (AddAuthentication), la autorización (AddAuthorization), y las sesiones (AddSession), son configurados dentro de los middleware. Así que, aunque los servicios se definen en el contenedor, el middleware se asegura de que esos servicios sean usados correctamente en cada solicitud HTTP que entra.
+Algunos de esos servicios, como la autenticación (`AddAuthentication`), la autorización (`AddAuthorization`), y las sesiones (`AddSession`), son configurados dentro de los middleware. Así que, aunque los servicios se definen en el contenedor, el middleware se asegura de que esos servicios sean usados correctamente en cada solicitud HTTP que entra.
 
-==Pipeline:==
+==**Pipeline:**==
 
 El pipeline es donde esos servicios y middleware interactúan. Cuando se agrega un middleware con `app.UseX()`, básicamente se le está diciendo a la aplicación que ejecute ese servicio en el pipeline en un orden específico, para que se encargue de las solicitudes en el camino.
 
-==Ejemplo del flujo de creación de la aplicación==
+==**Ejemplo del flujo de creación de la aplicación**==
 
 1- El contenedor asegurará que los servicios de autenticación y autorización estén disponibles.
 

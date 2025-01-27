@@ -3,6 +3,7 @@ using Ejemplo_03_0_Login_Simple.Services;
 
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 
 using System.Security.Claims;
@@ -13,6 +14,13 @@ namespace Ejemplo_03_0_Login_Simple.Controllers;
 public class AccountController : Controller
 {
     UsuariosService _service = new UsuariosService();
+
+    private readonly ILogger<HomeController> _logger;
+
+    public AccountController(ILogger<HomeController> logger)
+    {
+        _logger = logger;
+    }
 
     [AllowAnonymous]
     async public Task<ViewResult> Login(string ReturnUrl)
@@ -28,7 +36,6 @@ public class AccountController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(UsuarioModel usuario, string returnUrl = "/")
     {
-
         var result = _service.VerificarLogin(usuario);
 
         if (usuario == null)
@@ -52,6 +59,8 @@ public class AccountController : Controller
 
     public async Task<RedirectResult> Logout(string returnUrl = "/")
     {
+        
+
         await HttpContext.SignOutAsync();
         return Redirect(returnUrl);
     }

@@ -21,7 +21,7 @@ En `Ejemplo_02_0_database_MSSQL` se encuentan los script T-SQL (Transaction SQL)
 
 - `docker_script.sql`: son los scripts para la creación y ejecución de los contenedores
 
-- `somee_script.sql`: hay que primero crear la cuenta en somee.co, dar el alta de la base, conectarse usando el managemente de sql-server y luego correr el T-SQL
+- `somee_script.sql`: hay que primero crear la cuenta en somee.com, dar el alta de la base, conectarse usando el managemente de sql-server y luego correr el T-SQL
 
 Cualquiera sea el caso elegido, hay que ajustar la cadena de conexión en `(1)` en la clase `Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple.DALs.MSSDALs.ConexionString`
 

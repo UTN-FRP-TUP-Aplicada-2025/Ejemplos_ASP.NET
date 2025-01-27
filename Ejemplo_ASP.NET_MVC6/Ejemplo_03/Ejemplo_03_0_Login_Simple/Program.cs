@@ -41,10 +41,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-#region habilitando session
-app.UseAuthentication(); // Middleware para la autenticación
-app.UseAuthorization();  // Middleware para la autorización
-app.UseSession();        // Middleware para la sesión
+#region habilitando middleware adicionales
+app.UseAuthentication(); //middleware para la autenticación
+app.UseAuthorization();  //middleware para la autorización
+app.UseSession();        //middleware para la sesión
 #endregion
 
 app.MapControllerRoute(

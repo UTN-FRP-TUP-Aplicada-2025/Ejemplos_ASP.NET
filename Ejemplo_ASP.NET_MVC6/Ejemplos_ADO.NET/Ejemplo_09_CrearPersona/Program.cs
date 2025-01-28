@@ -1,33 +1,38 @@
-﻿using Ej07_Consulta_Personas.Models;
+﻿using Ejemplo_09_CrearPersona.Models;
+using Ejemplo_09_CrearPersona.Utils;
+
 using Microsoft.Data.SqlClient;
 
-void CrearNuevaPersona(Persona nueva)
+
+var cadenaConexion = ConexionString.Valor;
+
+var nuevo = new PersonaModel
 {
-    var cadenaConexion = "workstation id=GuidoAlumnoDB.mssql.somee.com;packet size=4096;user id=guidoagustin_SQLLogin_1;pwd=fmvfrm1h5h;data source=GuidoAlumnoDB.mssql.somee.com;persist security info=False;initial catalog=GuidoAlumnoDB;TrustServerCertificate=True";
-
-    var query =
-    @"insert into Personas (Nombre) 
-      OUTPUT INSERTED.ID 
-      values (@Nombre)";
-
-    using var conexion = new SqlConnection(cadenaConexion);   //hace que se cierre
-    conexion.Open();
-
-    var comando = new SqlCommand(query, conexion);
-    comando.Parameters.AddWithValue("@Nombre", nueva.Nombre);
-
-    var newId = comando.ExecuteScalar();
-
-    Console.WriteLine(newId);
-}
-
-
-//ejemplo de uso
-
-var nueva = new Persona { 
-    Nombre="Marianela",
+    Nombre = "Marianela",
+    DNI = 32343242,
+    FechaNacimiento = new DateTime(1998,2,23)
 };
 
-CrearNuevaPersona(nueva);
+#region conexion al servidor
+using var conexion = new SqlConnection(ConexionString.Valor);
+conexion.Open();
+#endregion
 
-Console.WriteLine(nueva);
+#region preparo el comando sql
+string sqlQuery =
+@"INSERT Personas(Dni, Nombre, Fecha_Nacimiento)
+OUTPUT INSERTED.ID 
+VALUES (@Dni, @Nombre, @Fecha_Nacimiento)";
+
+using var query = new SqlCommand(sqlQuery, conexion);
+query.Parameters.AddWithValue("@Dni", nuevo.DNI);
+query.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
+query.Parameters.AddWithValue("@Fecha_Nacimiento", nuevo.FechaNacimiento);
+#endregion
+
+#region ejecuto el comando
+var respuesta = query.ExecuteScalar();
+nuevo.Id = Convert.ToInt32(respuesta);
+#endregion 
+
+Console.WriteLine(nuevo);

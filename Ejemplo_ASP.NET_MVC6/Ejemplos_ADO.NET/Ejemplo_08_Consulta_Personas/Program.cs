@@ -1,5 +1,5 @@
-﻿using Ejemplo_08_Consulta_Personas.Models;
-using Ejemplo_08_Consulta_Personas.Utils;
+﻿using Ejemplo_09_CrearPersona.Models;
+using Ejemplo_09_CrearPersona.Utils;
 using Microsoft.Data.SqlClient;
 using System.Data;
 

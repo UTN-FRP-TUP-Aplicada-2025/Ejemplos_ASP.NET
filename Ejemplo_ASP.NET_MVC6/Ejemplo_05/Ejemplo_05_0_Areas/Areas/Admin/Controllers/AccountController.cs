@@ -10,7 +10,7 @@ using System.Security.Claims;
 namespace Ejemplo_05_Areas.Admin.Controllers;
 
 [Area("Admin")]
-[Authorize(Roles = "Admin")]
+//[Authorize(Roles = "Admin")]
 public class AccountController : Controller
 {
     UsuariosService _service = new UsuariosService();

@@ -5,7 +5,7 @@ namespace Ejemplo_05_Areas.User.Admin.Controllers;
 
 
 [Area("User")]
-[Authorize(Roles = "User")]
+//[Authorize(Roles = "User")]
 public class Home : Controller
 {
     // GET: Home

@@ -30,7 +30,7 @@ internal class PersonaClientService
 
         var personas = new List<PersonaDTO>();
 
-        string url = "https://localhost:7154/api/Personas";
+        string url = "https://localhost:7154/api/Personas/";
 
         using var client = new HttpClient();
 

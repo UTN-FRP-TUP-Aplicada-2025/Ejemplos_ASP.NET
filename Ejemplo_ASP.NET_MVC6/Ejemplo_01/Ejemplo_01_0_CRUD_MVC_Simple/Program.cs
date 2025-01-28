@@ -33,10 +33,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
 // redirige las consultas de los usuarios a HTTPS sino estan usando este protocolo
 app.UseHttpsRedirection();
-
 
 app.UseStaticFiles();
 

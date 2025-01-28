@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="container-fluid row m-2 p-2">
+
+    <div class="card m-2" style="width: 18rem; ">
+        <div class="card-header">
+            <h5 class="card-title">Registro de Personas</h5>
+        </div>
+       <div class="card-body">
+            <p class="card-text">Personas registradas en este sistema</p>
+        </div>
+        <div class="card-footer  text-center">
+            <a asp-action="Index" asp-controller="Personas" class="btn btn-primary">Ir</a>
+        </div>
+    </div>
+
+    <div class="card m-2" style="width: 18rem;">
+        <div class="card-header">
+            <h5 class="card-title">Ejemplo</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Otros</p>
+        </div>
+        <div class="card-footer  text-center">
+            <a href="#" class="btn btn-primary">Ir</a>
+        </div>
+    </div>
+
+</div>

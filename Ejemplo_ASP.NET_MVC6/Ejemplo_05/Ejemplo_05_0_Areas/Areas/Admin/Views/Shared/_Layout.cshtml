@@ -2,48 +2,135 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>@ViewData["Title"] - Ejemplo_05_Areas</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
     <link rel="stylesheet" href="~/Ejemplo_05_Areas.styles.css" asp-append-version="true" />
+
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/Admin/css/style.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ejemplo_05_Areas</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    <div class="wrapper">
+        <header>
+            <div class="wrapper">
+                <aside id="sidebar">
+                    <div class="d-flex">
+                        <button class="toggle-btn" type="button">
+                            <i class="lni lni-grid-alt"></i>
+                        </button>
+                        <div class="sidebar-logo">
+                            <a href="#">Ejemplo</a>
+                        </div>
+                    </div>
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                <i class="lni lni-user"></i>
+                                <span>Profile</span>
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                <i class="lni lni-agenda"></i>
+                                <span>Task</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                               data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                                <i class="lni lni-protection"></i>
+                                <span>Auth</span>
+                            </a>
+                            <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Login</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Register</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                               data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+                                <i class="lni lni-layout"></i>
+                                <span>Multi Level</span>
+                            </a>
+                            <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
+                                       data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
+                                        Two Links
+                                    </a>
+                                    <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
+                                        <li class="sidebar-item">
+                                            <a href="#" class="sidebar-link">Link 1</a>
+                                        </li>
+                                        <li class="sidebar-item">
+                                            <a href="#" class="sidebar-link">Link 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                <i class="lni lni-popup"></i>
+                                <span>Notification</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="#" class="sidebar-link">
+                                <i class="lni lni-cog"></i>
+                                <span>Setting</span>
+                            </a>
                         </li>
                     </ul>
+                    <div class="sidebar-footer">
+                        <a href="#" class="sidebar-link">
+                            <i class="lni lni-exit"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </aside>
+
+                <div class="main p-3">
+                    <div class="media">
+                        <iframe class="iframe" src="./formulario.html" title="Formulario"></iframe>
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
+        </header>
+     
+        <main class="main p-3">
+            <div class="media">
+                @RenderBody()
+            </div>
         </main>
+        
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2025 - Ejemplo_05_Areas - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - Ejemplo_05_Areas - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+   
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="/Admin/js/script.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

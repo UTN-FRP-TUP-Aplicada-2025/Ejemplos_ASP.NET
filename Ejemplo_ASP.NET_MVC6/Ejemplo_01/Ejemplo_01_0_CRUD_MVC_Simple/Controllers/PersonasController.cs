@@ -64,9 +64,12 @@ public class PersonasController : Controller
     // POST: PersonaController/Edit/1
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id, PersonaModel persona)
+    public ActionResult Edit(int id, PersonaModel? persona)
     {
-        if(id != persona.Id)
+        if (persona != null || id<=0)
+            return BadRequest();
+
+        if (id != persona.Id)
             return NotFound();
 
         if (ModelState.IsValid)

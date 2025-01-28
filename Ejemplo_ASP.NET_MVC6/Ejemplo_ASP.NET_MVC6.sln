@@ -182,7 +182,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo01_disenio", "prueba
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_a_static_page", "Ejemplo_01_a_static_page", "{00441252-27BB-4060-BD93-DD17F3C9E96A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Panel_", "Panel_", "{461C3850-28BF-4769-BEDF-FC9CCDF9754B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_08_dialogos", "Ejemplo_08_dialogos", "{16FF19AE-0307-43E3-92DB-E54C05C6FCB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_08_form_dialogos", "Ejemplo_08\Ejemplo_08_form_dialogos\Ejemplo_08_form_dialogos.csproj", "{3A50A03B-C23C-4DEB-802B-0E4EB5BD3547}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_05_0_Somee", "Ejemplo_05_0_Somee", "{2B97B8FC-8DB9-4294-9D8D-A491BD63928E}"
+	ProjectSection(SolutionItems) = preProject
+		Ejemplo_05\Ejemplo_05_0_Somee\Readme.md = Ejemplo_05\Ejemplo_05_0_Somee\Readme.md
+		Ejemplo_05\Ejemplo_05_0_Somee\publish.png = Ejemplo_05\Ejemplo_05_0_Somee\publish.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -234,6 +242,10 @@ Global
 		{F2598D6F-FBD6-44DE-9CA8-F47C25C2EF0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2598D6F-FBD6-44DE-9CA8-F47C25C2EF0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2598D6F-FBD6-44DE-9CA8-F47C25C2EF0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A50A03B-C23C-4DEB-802B-0E4EB5BD3547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A50A03B-C23C-4DEB-802B-0E4EB5BD3547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A50A03B-C23C-4DEB-802B-0E4EB5BD3547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A50A03B-C23C-4DEB-802B-0E4EB5BD3547}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -274,7 +286,9 @@ Global
 		{95225434-9AB7-4C85-8206-81AAE7C38038} = {4C0374E9-0451-45D2-A989-10A7B01636C5}
 		{F2598D6F-FBD6-44DE-9CA8-F47C25C2EF0F} = {00441252-27BB-4060-BD93-DD17F3C9E96A}
 		{00441252-27BB-4060-BD93-DD17F3C9E96A} = {52EF6C6D-BA7C-4093-9B5E-C500AA261857}
-		{461C3850-28BF-4769-BEDF-FC9CCDF9754B} = {00441252-27BB-4060-BD93-DD17F3C9E96A}
+		{16FF19AE-0307-43E3-92DB-E54C05C6FCB5} = {52EF6C6D-BA7C-4093-9B5E-C500AA261857}
+		{3A50A03B-C23C-4DEB-802B-0E4EB5BD3547} = {16FF19AE-0307-43E3-92DB-E54C05C6FCB5}
+		{2B97B8FC-8DB9-4294-9D8D-A491BD63928E} = {4C0374E9-0451-45D2-A989-10A7B01636C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

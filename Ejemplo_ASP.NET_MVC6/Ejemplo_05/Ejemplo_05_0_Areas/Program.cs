@@ -1,6 +1,56 @@
+using Microsoft.AspNetCore.Mvc;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
+#region configuración de restapi y swagger
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddSwaggerGen(); //este alcanza si solo es restapi
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "Ejemplo API",
+        Version = "v1"
+    });
+
+    //para filtrar los controladores que fueron tagueados con el atributo: [ApiController]
+    //sino mapea los controladores de la vista
+    c.DocInclusionPredicate((docName, apiDesc) =>
+    {
+        var controllerActionDescriptor = apiDesc.ActionDescriptor as Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor;
+        return controllerActionDescriptor != null &&
+               controllerActionDescriptor.ControllerTypeInfo.GetCustomAttributes(typeof(ApiControllerAttribute), true).Any();
+    });
+});
+#endregion
+
+//#region  identidad
+
+//builder.Services.AddAuthentication("Cookies")
+//    .AddCookie(options =>
+//    {
+//        options.LoginPath = "/Account/Login";
+//        options.LogoutPath = "/Account/Logout";
+//        options.Cookie.Name = "Cookie_authenticacion";
+//        options.Cookie.MaxAge = TimeSpan.FromMinutes(1);
+//    });
+
+//builder.Services.AddAuthorization();
+
+//builder.Services.AddSession(options =>
+//{
+//    options.IdleTimeout = TimeSpan.FromMinutes(1);
+//    options.Cookie.HttpOnly = true;
+//    options.Cookie.IsEssential = true;
+//    options.Cookie.Name = "Cookie_session";
+//});
+
+//builder.Services.AddDataProtection();
+
+//#endregion
 
 var app = builder.Build();
 
@@ -11,26 +61,40 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();
-
-app.UseAuthorization();
 
 #region area
 app.MapAreaControllerRoute(
     name: "Admin_default",
     areaName: "Admin",
-    pattern: "Admin/{controller=Dashboard}/{action=Index}/{id?}");
+    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
 
 app.MapAreaControllerRoute(
     name: "Users_default",
-    areaName: "Users",
-    pattern: "Users/{controller=Perfil}/{action=Index}/{id?}");
+    areaName: "User",
+    pattern: "User/{controller=Home}/{action=Index}/{id?}");
 #endregion 
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+#region configuración api y swagger
+//if (app.Environment.IsDevelopment()) //comentar para que corra en modo release
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+app.MapControllers();
+#endregion
+
+//#region habilitando middleware adicionales
+//app.UseAuthentication(); //middleware para la autenticación
+app.UseAuthorization();  //middleware para la autorización
+//app.UseSession();        //middleware para la sesión
+//#endregion
 
 app.Run();

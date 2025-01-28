@@ -1,6 +1,5 @@
 ﻿using Ej07_Consulta_Personas.Models;
 using Microsoft.Data.SqlClient;
-using System.Data;
 
 void CrearNuevaPersona(Persona nueva)
 {

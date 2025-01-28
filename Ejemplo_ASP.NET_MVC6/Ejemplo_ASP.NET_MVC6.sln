@@ -197,7 +197,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos_DAOs", "Ejemplos_D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos_Obj_A_Relacional", "Ejemplos_Obj_A_Relacional", "{93C7DF73-0540-4666-90C9-86CFBED82FB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ej01_Adapter_Select", "Ejemplos_ADO.NET\Ej01_Adapter_Select\Ej01_Adapter_Select.csproj", "{C682FC96-880B-40E9-9C4E-B8B6E0C81294}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_01_Adapter_Select", "Ejemplos_ADO.NET\Ejemplo_01_Adapter_Select\Ejemplo_01_Adapter_Select.csproj", "{C682FC96-880B-40E9-9C4E-B8B6E0C81294}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clientes", "Clientes", "{004697D2-7084-4669-A793-9A348D883672}"
 EndProject
@@ -207,33 +207,33 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicios", "Servicios", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Despliegue", "Despliegue", "{7931F833-6B64-460E-975A-A42042391EB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ej02_Reader_Select", "Ejemplos_ADO.NET\Ej02_Reader_Select\Ej02_Reader_Select.csproj", "{D47E0965-7528-47AA-AC05-313FA88A55C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_Reader_Select", "Ejemplos_ADO.NET\Ejemplo_02_Reader_Select\Ejemplo_02_Reader_Select.csproj", "{D47E0965-7528-47AA-AC05-313FA88A55C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ej03_Insert", "Ejemplos_ADO.NET\Ej03_Insert\Ej03_Insert.csproj", "{7DBD313F-590B-4FE7-9630-760A613C8C46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_03_Insert", "Ejemplos_ADO.NET\Ejemplo_03_Insert\Ejemplo_03_Insert.csproj", "{7DBD313F-590B-4FE7-9630-760A613C8C46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ej04_Insert_return_ID", "Ejemplos_ADO.NET\Ej04_Insert_return_ID\Ej04_Insert_return_ID.csproj", "{CA788C18-231D-408B-B0CB-1345AAEF8A48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_04_Insert_return_ID", "Ejemplos_ADO.NET\Ejemplo_04_Insert_return_ID\Ejemplo_04_Insert_return_ID.csproj", "{CA788C18-231D-408B-B0CB-1345AAEF8A48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ej05_Update", "Ejemplos_ADO.NET\Ej05_Update\Ej05_Update.csproj", "{72EB44B1-C2FC-4E92-8A9D-8295A13426AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_05_Update", "Ejemplos_ADO.NET\Ejemplo_05_Update\Ejemplo_05_Update.csproj", "{72EB44B1-C2FC-4E92-8A9D-8295A13426AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EJ06_Select_by_Id", "Ejemplos_ADO.NET\EJ06_Select_by_Id\EJ06_Select_by_Id.csproj", "{B14AA4C8-F963-4379-9C23-FD95896EBA13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_06_Select_by_Id", "Ejemplos_ADO.NET\Ejemplo_06_Select_by_Id\Ejemplo_06_Select_by_Id.csproj", "{B14AA4C8-F963-4379-9C23-FD95896EBA13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ej07_Delete", "Ejemplos_ADO.NET\Ej07_Delete\Ej07_Delete.csproj", "{2B9A3433-F023-475B-A717-200551D558ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_07_Delete", "Ejemplos_ADO.NET\Ejemplo_07_Delete\Ejemplo_07_Delete.csproj", "{2B9A3433-F023-475B-A717-200551D558ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ej08_Consulta_Personas", "Ejemplos_ADO.NET\Ej08_Consulta_Personas\Ej08_Consulta_Personas.csproj", "{C57CB13E-C2BC-4340-B395-6C81D3FDA22B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_08_Consulta_Personas", "Ejemplos_ADO.NET\Ejemplo_08_Consulta_Personas\Ejemplo_08_Consulta_Personas.csproj", "{C57CB13E-C2BC-4340-B395-6C81D3FDA22B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Despliegue", "Despliegue", "{48839DB8-A9E1-41B7-AE4B-4BD224294CEC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicios", "Servicios", "{CF97E0FF-B32F-4365-B39C-83151146C088}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ej09_CrearPersona", "Ejemplos_ADO.NET\Ej09_CrearPersona\Ej09_CrearPersona.csproj", "{6F3E343F-A419-46FD-AE2B-413A59F66D46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_09_CrearPersona", "Ejemplos_ADO.NET\Ejemplo_09_CrearPersona\Ejemplo_09_CrearPersona.csproj", "{6F3E343F-A419-46FD-AE2B-413A59F66D46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ej10_ActualizarPersona", "Ejemplos_ADO.NET\Ej10_ActualizarPersona\Ej10_ActualizarPersona.csproj", "{41A6E8E1-41DC-4158-BF06-D872D327B4A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_10_ActualizarPersona", "Ejemplos_ADO.NET\Ejemplo_10_ActualizarPersona\Ejemplo_10_ActualizarPersona.csproj", "{41A6E8E1-41DC-4158-BF06-D872D327B4A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ej11_Consulta_Persona_Por_ID", "Ejemplos_ADO.NET\Ej11_Consulta_Persona_Por_ID\Ej11_Consulta_Persona_Por_ID.csproj", "{F9EFCCB9-7E02-4ACE-98ED-2FC396FDAE83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_11_Consulta_Persona_Por_ID", "Ejemplos_ADO.NET\Ejemplo_11_Consulta_Persona_Por_ID\Ejemplo_11_Consulta_Persona_Por_ID.csproj", "{F9EFCCB9-7E02-4ACE-98ED-2FC396FDAE83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ej12_Eliminar_Persona", "Ejemplos_ADO.NET\Ej12_Eliminar_Persona\Ej12_Eliminar_Persona.csproj", "{217ED486-B591-4728-941D-19BFAF838FD6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_12_Eliminar_Persona", "Ejemplos_ADO.NET\Ejemplo_12_Eliminar_Persona\Ejemplo_12_Eliminar_Persona.csproj", "{217ED486-B591-4728-941D-19BFAF838FD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_13_Personas", "Ejemplos_ADO.NET\Ej13_Administracion_Personas\Ejemplo_13_Personas.csproj", "{B9F7A9DF-9F23-419B-B8DE-3B21F516D30E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_13_Personas", "Ejemplos_ADO.NET\Ejemplo_13_Administracion_Personas\Ejemplo_13_Personas.csproj", "{B9F7A9DF-9F23-419B-B8DE-3B21F516D30E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Despliegue", "Despliegue", "{CCE06902-555D-4DE1-BF78-1FD65B619E46}"
 EndProject

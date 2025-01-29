@@ -9,7 +9,16 @@ USE Ejemplos_ASP_MVC_DB
 
 GO
 
-DROP TABLE IF EXISTS Personas
+DROP TABLE IF EXISTS Usuarios;
+DROP TABLE IF EXISTS  Personas;
+
+GO
+
+CREATE TABLE Usuarios
+(
+	Nombre NVARCHAR(50) PRIMARY KEY NOT NULL,
+	Clave NVARCHAR(200) NOT NULL,
+);
 
 GO
 
@@ -20,6 +29,7 @@ CREATE TABLE Personas
 	Nombre NVARCHAR(100) NOT NULL,
 	Fecha_Nacimiento DATE
 );
+
 
 GO
 
@@ -32,3 +42,17 @@ VALUES (353432432,'Sebastian', '1-1-1990'),
 (26555132, 'Rosa', '7-3-1975'),
 (28451182, 'Griselda', '7-26-1982'),
 (28733932, 'Carina', '7-23-1982')
+
+INSERT INTO Usuarios(Nombre, Clave)
+VALUES('Admin', '123'),
+('Usuario', 'abc');
+
+
+GO
+
+select * from Personas;
+
+select * from Usuarios;
+
+
+GO

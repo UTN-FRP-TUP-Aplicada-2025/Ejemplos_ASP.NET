@@ -17,6 +17,14 @@ USE Ejemplo_03_0_Login_Simple_DB
 
 GO
 
+CREATE TABLE Usuarios
+(
+	Nombre NVARCHAR(50) PRIMARY KEY NOT NULL,
+	Clave NVARCHAR(200) NOT NULL,
+);
+
+GO
+
 CREATE TABLE Personas
 (
 	Id INT PRIMARY KEY IDENTITY(1,1),
@@ -24,6 +32,7 @@ CREATE TABLE Personas
 	Nombre NVARCHAR(100) NOT NULL,
 	Fecha_Nacimiento DATE
 );
+
 
 GO
 
@@ -37,6 +46,16 @@ VALUES (353432432,'Sebastian', '1-1-1990'),
 (28451182, 'Griselda', '7-26-1982'),
 (28733932, 'Carina', '7-23-1982')
 
+INSERT INTO Usuarios(Nombre, Clave)
+VALUES('Admin', '123'),
+('Usuario', 'abc');
+
+
 GO
 
-SELECT * FROM Personas
+select * from Personas;
+
+select * from Usuarios;
+
+
+GO

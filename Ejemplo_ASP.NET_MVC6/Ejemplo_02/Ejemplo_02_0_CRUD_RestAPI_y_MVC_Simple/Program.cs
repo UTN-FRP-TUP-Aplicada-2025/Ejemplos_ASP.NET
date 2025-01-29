@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-#region configuración de restapi y swagger
+#region configuracion de restapi y swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen(); //este alcanza si solo es restapi
@@ -47,7 +47,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-#region configuración api y swagger
+#region configuraciï¿½n api y swagger
 
 
 //if (app.Environment.IsDevelopment()) //comentar para que corra en modo release

@@ -16,6 +16,24 @@ USE Ejemplo_04_0_Roles_Login_DB
 
 GO
 
+CREATE TABLE Usuarios
+(
+	Nombre NVARCHAR(50) PRIMARY KEY NOT NULL,
+	Clave NVARCHAR(200) NOT NULL,
+);
+
+CREATE TABLE Roles
+(
+	Nombre NVARCHAR(50) PRIMARY KEY NOT NULL,
+);
+
+CREATE TABLE  Usuarios_Roles
+(
+	Nombre_Usuario INT NOT NULL,
+	Nombre_Rol INT NOT NULL,
+	CONSTRAINT UQ_Usuarios_Roles UNIQUE (Nombre_Usuario, Nombre_Rol)
+);
+
 CREATE TABLE Personas
 (
 	Id INT PRIMARY KEY IDENTITY(1,1),
@@ -34,7 +52,17 @@ VALUES (353432432,'Sebastian', '1-1-1990'),
 (35555132, 'Eduardo', '7-3-1995'),
 (26555132, 'Rosa', '7-3-1975'),
 (28451182, 'Griselda', '7-26-1982'),
-(28733932, 'Carina', '7-23-1982')
+(28733932, 'Carina', '7-23-1982');
+
+INSERT INTO Usuarios(Nombre, Clave)
+VALUES('Admin', '123'),
+('Usuario', 'abc');
+
+GO
+
+select * from Personas;
+
+select * from Usuarios
 
 GO
 

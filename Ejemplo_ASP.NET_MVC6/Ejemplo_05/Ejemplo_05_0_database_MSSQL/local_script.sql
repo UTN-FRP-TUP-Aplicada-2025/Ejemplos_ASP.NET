@@ -4,25 +4,36 @@ USE MASTER
 
 GO
 
-DROP DATABASE IF EXISTS Ejemplo_05_Areas_DB
+
+DROP DATABASE IF EXISTS Ejemplo_05_0_Roles_Login_DB
 
 GO
 
-CREATE DATABASE  Ejemplo_05_Areas_DB
+CREATE DATABASE  Ejemplo_05_0_Roles_Login_DB
 
 GO
 
-USE Ejemplo_05_Areas_DB
+USE Ejemplo_05_0_Roles_Login_DB
 
 GO
 
-CREATE TABLE Cuentas
+CREATE TABLE Usuarios
 (
-	Nombre NVARCHAR(50) NOT NULL PRIMARY KEY,
+	Nombre NVARCHAR(50) PRIMARY KEY NOT NULL,
 	Clave NVARCHAR(200) NOT NULL,
 );
 
-GO
+CREATE TABLE Roles
+(
+	Nombre NVARCHAR(50) PRIMARY KEY NOT NULL,
+);
+
+CREATE TABLE  Usuarios_Roles
+(
+	Nombre_Usuario INT NOT NULL,
+	Nombre_Rol INT NOT NULL,
+	CONSTRAINT UQ_Usuarios_Roles UNIQUE (Nombre_Usuario, Nombre_Rol)
+);
 
 CREATE TABLE Personas
 (
@@ -31,7 +42,6 @@ CREATE TABLE Personas
 	Nombre NVARCHAR(100) NOT NULL,
 	Fecha_Nacimiento DATE
 );
-
 
 GO
 
@@ -43,8 +53,31 @@ VALUES (353432432,'Sebastian', '1-1-1990'),
 (35555132, 'Eduardo', '7-3-1995'),
 (26555132, 'Rosa', '7-3-1975'),
 (28451182, 'Griselda', '7-26-1982'),
-(28733932, 'Carina', '7-23-1982')
+(28733932, 'Carina', '7-23-1982');
+
+INSERT INTO Usuarios(Nombre, Clave)
+VALUES('Admin', '123'),
+('Usuario', 'abc');
 
 GO
 
-SELECT * FROM Personas
+select * from Personas;
+
+select * from Usuarios;
+
+
+GO
+
+
+
+--DECLARE @Password NVARCHAR(255) = '123';
+--DECLARE @PasswordHash VARBINARY(64)= HASHBYTES('SHA2_256', CONVERT(VARCHAR(255), @Password, 2));
+--SELECT @PasswordHash 
+--DECLARE @Base64Hash NVARCHAR(MAX);
+--SET @Base64Hash = CAST('' AS XML).value('xs:base64Binary(sql:variable("@PasswordHash"))', 'NVARCHAR(MAX)');
+--SELECT @Base64Hash;
+
+--DECLARE @uuid UNIQUEIDENTIFIER = NEWID();
+
+--INSERT INTO Usuarios(UUID, Nombre, Clave)
+--VALUES(@uuid, 'Admin', CONVERT(NVARCHAR(200), @PasswordHash,2))

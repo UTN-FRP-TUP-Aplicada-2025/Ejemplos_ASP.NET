@@ -1,6 +1,7 @@
 # etapa: construcción
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
+
 USER root
 RUN apt-get update 
 RUN apt-get install -y gss-ntlmssp krb5-user libkrb5-dev openssl libssl-dev libgssapi-krb5-2 libkrb5-3
@@ -46,7 +47,7 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # exponiendo el puerto 8080 para acceder - activar el public en forwader port
-EXPOSE 8284
+EXPOSE 8080
 
 # punto de entrada de la aplicación
 

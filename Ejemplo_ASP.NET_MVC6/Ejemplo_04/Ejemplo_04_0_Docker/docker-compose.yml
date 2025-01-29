@@ -1,6 +1,6 @@
 services:
   app:
-    image: ejemplo01_dotnet_image
+    image: ejemplo05_dotnet_image
     ports:
       - "8080:8080"
     restart: always

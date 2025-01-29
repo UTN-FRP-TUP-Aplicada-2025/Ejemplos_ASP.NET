@@ -23,7 +23,7 @@ docker rmi $NOMBRE_IMAGEN:$TAG
 docker build --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
 
 # genero el contenedor y lo corro
-# restart always permite el reinicio automático
+# restart always permite el reinicio automatico
 docker run --restart always --name $NOMBRE_CONTENEDOR -p 8080:8080 -d $NOMBRE_IMAGEN:$TAG
 
 # listo los contenedores corriendo
@@ -34,5 +34,5 @@ docker logs $NOMBRE_CONTENEDOR
 
 # docker restart $NOMBRE_CONTENEDOR
 
-# Conexión desde el host
+# Conexion desde el host
 #docker exec -it ejemplo05_dotnet_container /bin/bash

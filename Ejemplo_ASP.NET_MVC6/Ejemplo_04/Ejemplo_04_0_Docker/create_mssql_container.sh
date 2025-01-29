@@ -2,7 +2,7 @@
 
 TAG='v0.1'
 
-NOMBRE_IMAGEN='ejemplo01_mssql_image'
+NOMBRE_IMAGEN='ejemplo04_mssql_image'
 NOMBRE_CONTENEDOR='ejemplo04_mssql_container'
 EJEMPLO='Ejemplo_04'
 DOCKER_FILE='Dockerfile.mssql'
@@ -35,7 +35,7 @@ sleep 20
 
 docker exec -it $NOMBRE_CONTENEDOR /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql -C
 
-# Conexión desde el host
+# Conexion desde el host
 #docker exec -it ejemplo01_mssql_container /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql -C
 #docker exec -it ejemplo01_mssql_container /bin/bash
 

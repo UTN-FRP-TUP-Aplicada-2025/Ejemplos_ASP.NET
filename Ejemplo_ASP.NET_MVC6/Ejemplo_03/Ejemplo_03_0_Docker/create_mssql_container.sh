@@ -8,7 +8,6 @@ EJEMPLO='Ejemplo_03'
 DOCKER_FILE='Dockerfile.mssql'
 SOLUCION_PATH='/workspaces/Ejemplos_ASP.NET_MVC6/Ejemplo_ASP.NET_MVC6/'$EJEMPLO
 
-
 # paro el contenedor - por si esta corriendo
 docker stop $NOMBRE_CONTENEDOR
 
@@ -36,8 +35,8 @@ sleep 20
 docker exec -it $NOMBRE_CONTENEDOR /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql -C
 
 # Conexión desde el host
-#docker exec -it ejemplo01_mssql_container /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql -C
-#docker exec -it ejemplo01_mssql_container /bin/bash
+#docker exec -it ejemplo03_mssql_container /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql -C
+#docker exec -it ejemplo03_mssql_container /bin/bash
 
 # consulta de la ip
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'  ejemplo03_mssql_container

@@ -3,7 +3,7 @@
 TAG='v0.1'
 
 NOMBRE_IMAGEN='ejemplo02_mssql_image'
-NOMBRE_CONTENEDOR='ejemplo01_mssql_container'
+NOMBRE_CONTENEDOR='ejemplo02_mssql_container'
 EJEMPLO='Ejemplo_02'
 DOCKER_FILE='Dockerfile.mssql'
 SOLUCION_PATH='/workspaces/Ejemplos_ASP.NET_MVC6/Ejemplo_ASP.NET_MVC6/'$EJEMPLO

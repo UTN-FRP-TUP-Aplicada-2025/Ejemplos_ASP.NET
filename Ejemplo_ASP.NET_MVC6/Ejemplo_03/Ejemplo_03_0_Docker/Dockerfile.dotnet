@@ -10,30 +10,32 @@ RUN apt-get install -y iputils-ping
 
 RUN rm -rf /var/lib/apt/lists/*
 
-ARG PROJECT_NAME='Ejemplo_03_CRUD_Simple_Login'
-ARG PROJECT_PATH=$PROJECT_NAME
-ARG PROJECT_FILE='Ejemplo_03_CRUD_Simple_Login.csproj'
-ARG BUILD_ROOT='/src/app_dotnet'
-ARG NOMBRE_DLL=$PROJECT_NAME'.DLL'
+ARG SOLUTION_NAME="Ejemplo_03"
+ARG PROJECT_NAME="Ejemplo_03_0_Login_Simple"
+ARG BUILD_ROOT="/src/app_dotnet"
+ARG NOMBRE_DLL="${PROJECT_NAME}.DLL"
+
+ARG BASE_PATH="/workspaces/Ejemplos_ASP.NET_MVC6/Ejemplo_ASP.NET_MVC6"
+ARG PROJECT_PATH="${BASE_PATH}/${SOLUTION_NAME}"
+
+# copiando archivos desde la carpeta actual
+# copia el proyecto 1. 
+COPY "${PROJECT_NAME}/." "${BUILD_ROOT}/${PROJECT_NAME}/"
 
 WORKDIR $BUILD_ROOT
 
-# copiando archivos desde la carpeta actual
-COPY ${PROJECT_PATH}/. ${BUILD_ROOT}
+RUN dotnet add "${PROJECT_NAME}/${PROJECT_NAME}.csproj" package Microsoft.Data.SqlClient
 
-
-RUN dotnet add package Microsoft.Data.SqlClient
-
-RUN dotnet clean ${BUILD_ROOT}/$PROJECT_FILE
+RUN dotnet clean ${PROJECT_NAME}
 
 # restaurando dependencias
-RUN dotnet restore ${BUILD_ROOT}/$PROJECT_FILE
+RUN dotnet restore "${PROJECT_NAME}/${PROJECT_NAME}.csproj"
 
 # compilando
-RUN dotnet build ${BUILD_ROOT}/$PROJECT_FILE -c Release -o /app/build
+RUN dotnet build "${PROJECT_NAME}/${PROJECT_NAME}.csproj" -c Release -o /app/build
 
 # publicando
-RUN dotnet publish ${BUILD_ROOT}/$PROJECT_FILE -c Release -o /app/publish
+RUN dotnet publish "${PROJECT_NAME}/${PROJECT_NAME}.csproj" -c Release -o /app/publish
 
 # etapa: ejecución
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
@@ -45,9 +47,15 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # exponiendo el puerto 8080 para acceder - activar el public en forwader port
-EXPOSE 8080
+EXPOSE 8284
 
 # punto de entrada de la aplicación
 
-ENTRYPOINT ["dotnet", "Ejemplo_03_CRUD_Simple_Login.dll"]
-#ENTRYPOINT ["dotnet", NOMBRE_DLL]
+ENTRYPOINT ["dotnet", "Ejemplo_03_0_Login_Simple.dll"]
+
+#ENV NOMBRE_DLL="${PROJECT_NAME}.DLL"
+#ENTRYPOINT ["dotnet", $NOMBRE_DLL]
+
+#ARG NOMBRE_DLL="${PROJECT_NAME}.DLL"
+#ENV NOMBRE_DLL=$NOMBRE_DLL
+#ENTRYPOINT ["sh", "-c", "dotnet $NOMBRE_DLL"]

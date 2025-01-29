@@ -3,7 +3,7 @@
 TAG='v0.1'
 
 NOMBRE_IMAGEN='ejemplo02_mssql_image'
-NOMBRE_CONTENEDOR='ejemplo01_mssql_container'
+NOMBRE_CONTENEDOR='ejemplo02_mssql_container'
 EJEMPLO='Ejemplo_02'
 DOCKER_FILE='Dockerfile.mssql'
 SOLUCION_PATH='/workspaces/Ejemplos_ASP.NET_MVC6/Ejemplo_ASP.NET_MVC6/'$EJEMPLO
@@ -19,8 +19,7 @@ docker rm $NOMBRE_CONTENEDOR
 docker rmi $NOMBRE_IMAGEN:$TAG
 
 # construyo la imagen
-docker build --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
-
+docker build  --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
 
 # genero el contenedor y lo corro
 docker run --name $NOMBRE_CONTENEDOR -p 1433:1433 -d $NOMBRE_IMAGEN:$TAG
@@ -31,17 +30,20 @@ docker ps
 # observo el status del contenedor
 docker logs $NOMBRE_CONTENEDOR
 
-
-#IP_CONTENEDOR=docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $NOMBRE_CONTENEDOR
-
-# configurando la base de datos
-
-#docker exec -it $NOMBRE_CONTENEDOR /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql
-#/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql -C
-
 # espero hasta levante el contenedor
 sleep 20
 
 docker exec -it $NOMBRE_CONTENEDOR /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql -C
 
-#docker exec -it ejemplo03_mssql_container /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql -C
+# Conexión desde el host
+#docker exec -it ejemplo01_mssql_container /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql -C
+#docker exec -it ejemplo01_mssql_container /bin/bash
+
+# consulta de la ip
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'  ejemplo01_mssql_container
+
+#IP_CONTENEDOR=docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $NOMBRE_CONTENEDOR
+# configurando la base de datos
+#docker exec -it $NOMBRE_CONTENEDOR /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql
+#/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql -C
+

@@ -4,7 +4,11 @@
 
 TAG='v0.1'
 
+<<<<<<< HEAD
 NOMBRE_IMAGEN='ejemplo02_dotnet_image'
+=======
+NOMBRE_IMAGEN='ejemplo03_dotnet_image'
+>>>>>>> refs/remotes/origin/main
 NOMBRE_CONTENEDOR='ejemplo03_dotnet_container'
 EJEMPLO='Ejemplo_03'
 DOCKER_FILE='Dockerfile.dotnet'
@@ -23,8 +27,13 @@ docker rmi $NOMBRE_IMAGEN:$TAG
 docker build --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
 
 # genero el contenedor y lo corro
+<<<<<<< HEAD
 # restart always permite el reinicio automÃ¡tico
 docker run --restart always --name $NOMBRE_CONTENEDOR -p 8080:8080 -d $NOMBRE_IMAGEN:$TAG
+=======
+# restart always permite el reinicio automático
+docker run --restart always --name $NOMBRE_CONTENEDOR -p 8284:80 -d $NOMBRE_IMAGEN:$TAG
+>>>>>>> refs/remotes/origin/main
 
 # listo los contenedores corriendo
 docker ps 
@@ -32,7 +41,14 @@ docker ps
 # observo el status del contenedor
 docker logs $NOMBRE_CONTENEDOR
 
+<<<<<<< HEAD
 # docker restart $NOMBRE_CONTENEDOR
 
 # ConexiÃ³n desde el host
 #docker exec -it ejemplo01_dotnet_container /bin/bash
+=======
+# docker restart ejemplo02_dotnet_container
+
+# Conexión desde el host
+#docker exec -it ejemplo02_dotnet_container /bin/bash
+>>>>>>> refs/remotes/origin/main

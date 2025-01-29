@@ -24,7 +24,11 @@ docker build --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
 
 # genero el contenedor y lo corro
 # restart always permite el reinicio automático
+<<<<<<< HEAD
 docker run --restart always --name $NOMBRE_CONTENEDOR -p 8080:8080 -d $NOMBRE_IMAGEN:$TAG
+=======
+docker run --restart always --name $NOMBRE_CONTENEDOR -p 8284:80 -d $NOMBRE_IMAGEN:$TAG
+>>>>>>> refs/remotes/origin/main
 
 # listo los contenedores corriendo
 docker ps 
@@ -32,7 +36,14 @@ docker ps
 # observo el status del contenedor
 docker logs $NOMBRE_CONTENEDOR
 
+<<<<<<< HEAD
 # docker restart $NOMBRE_CONTENEDOR
 
 # Conexión desde el host
 #docker exec -it ejemplo01_dotnet_container /bin/bash
+=======
+# docker restart ejemplo02_dotnet_container
+
+# Conexión desde el host
+#docker exec -it ejemplo02_dotnet_container /bin/bash
+>>>>>>> refs/remotes/origin/main

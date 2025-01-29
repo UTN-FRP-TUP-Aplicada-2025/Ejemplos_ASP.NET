@@ -4,6 +4,7 @@ USE MASTER
 
 GO
 
+
 DROP DATABASE IF EXISTS Ejemplo_03_0_Login_Simple_DB
 
 GO
@@ -16,14 +17,6 @@ USE Ejemplo_03_0_Login_Simple_DB
 
 GO
 
-CREATE TABLE Cuentas
-(
-	Nombre NVARCHAR(50) NOT NULL PRIMARY KEY,
-	Clave NVARCHAR(200) NOT NULL,
-);
-
-GO
-
 CREATE TABLE Personas
 (
 	Id INT PRIMARY KEY IDENTITY(1,1),
@@ -31,7 +24,6 @@ CREATE TABLE Personas
 	Nombre NVARCHAR(100) NOT NULL,
 	Fecha_Nacimiento DATE
 );
-
 
 GO
 

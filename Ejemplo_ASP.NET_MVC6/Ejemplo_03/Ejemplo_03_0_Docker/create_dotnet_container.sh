@@ -35,4 +35,4 @@ docker logs $NOMBRE_CONTENEDOR
 # docker restart $NOMBRE_CONTENEDOR
 
 # Conexión desde el host
-#docker exec -it ejemplo01_dotnet_container /bin/bash
+#docker exec -it ejemplo03_dotnet_container /bin/bash

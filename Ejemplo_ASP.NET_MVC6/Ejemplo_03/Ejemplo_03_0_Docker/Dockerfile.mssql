@@ -38,7 +38,6 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN ln -s /opt/mssql-tools18 /opt/mssql-tools
 
 
-
 # directorio de trabajo para los scripts
 
 ARG EJEMPLO="Ejemplo_03"

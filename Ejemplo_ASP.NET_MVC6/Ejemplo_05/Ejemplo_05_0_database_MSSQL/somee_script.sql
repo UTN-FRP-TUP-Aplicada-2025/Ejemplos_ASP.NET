@@ -1,26 +1,11 @@
 
-
 --Nombre del servidor: Ejemplos_ASP_MVC_DB.mssql.somee.com
 --Usuario: fernando-dev_SQLLogin_1
 --Password: bfzixu5w6p
 --Nombre de la base de datos: Ejemplos_ASP_MVC_DB
 --confiar en el certificado del servidor: true
 
-
-
-USE Ejemplo_05_Areas_DB
-
-GO
-
-DROP TABLE IF EXISTS Cuentas
-
-GO
-
-CREATE TABLE Usuarios
-(
-	Nombre NVARCHAR(20) NOT NULL PRIMARY KEY,
-	Clave NVARCHAR(200) NOT NULL,
-);
+USE Ejemplos_ASP_MVC_DB
 
 GO
 
@@ -36,11 +21,7 @@ CREATE TABLE Personas
 	Fecha_Nacimiento DATE
 );
 
-
 GO
-
-INSERT INTO Usuarios(Nombre, Clave)
-VALUES ('admin','123')
 
 INSERT INTO Personas(DNI,Nombre,Fecha_Nacimiento)
 VALUES (353432432,'Sebastian', '1-1-1990'),
@@ -50,12 +31,4 @@ VALUES (353432432,'Sebastian', '1-1-1990'),
 (35555132, 'Eduardo', '7-3-1995'),
 (26555132, 'Rosa', '7-3-1975'),
 (28451182, 'Griselda', '7-26-1982'),
-(28733932, 'Carina', '7-23-1982'),
-(25733932, 'Cintia', '11-3-1981'),
-(27911002, 'Adrian', '2-10-1980'),
-(28743930, 'Andrés', '2-20-1981')
-
-
-GO
-
-SELECT * FROM Personas
+(28733932, 'Carina', '7-23-1982')

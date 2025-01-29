@@ -25,6 +25,7 @@ CREATE TABLE Personas
 	Fecha_Nacimiento DATE
 );
 
+
 GO
 
 INSERT INTO Personas(DNI,Nombre,Fecha_Nacimiento)

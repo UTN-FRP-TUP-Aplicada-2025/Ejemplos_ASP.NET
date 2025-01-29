@@ -1,54 +1,11 @@
 
-
 --Nombre del servidor: Ejemplos_ASP_MVC_DB.mssql.somee.com
 --Usuario: fernando-dev_SQLLogin_1
 --Password: bfzixu5w6p
 --Nombre de la base de datos: Ejemplos_ASP_MVC_DB
 --confiar en el certificado del servidor: true
 
-
 USE Ejemplos_ASP_MVC_DB
-
-GO 
-
-DROP TABLE IF EXISTS Usuarios_Roles;
-
-GO
-
-DROP TABLE IF EXISTS Roles;
-
-GO
-
-DROP TABLE IF EXISTS Usuarios;
-
-GO
-
-CREATE TABLE Usuarios
-(
-	Nombre NVARCHAR(50) NOT NULL PRIMARY KEY,
-	Clave NVARCHAR(200) NOT NULL,
-);
-
-GO
-
-CREATE TABLE Roles
-(
-	Id INT PRIMARY KEY IDENTITY(1,1),
-	Nombre NVARCHAR(50) NOT NULL UNIQUE,
-);
-
-GO
-
-DROP TABLE IF EXISTS Usuarios_Roles
-
-GO
-
-CREATE TABLE Usuarios_Roles
-(
-	Id_Usuario INT NOT NULL,
-	Id_Rol INT NOT NULL,
-	CONSTRAINT UQ_Usuarios_Roles UNIQUE (Id_Usuario, Id_Rol)
-);
 
 GO
 
@@ -66,9 +23,6 @@ CREATE TABLE Personas
 
 GO
 
-INSERT INTO Usuarios(Nombre, Clave)
-VALUES ('admin','123')
-
 INSERT INTO Personas(DNI,Nombre,Fecha_Nacimiento)
 VALUES (353432432,'Sebastian', '1-1-1990'),
 (35327489, 'Esteban', '1-1-1990'),
@@ -78,5 +32,3 @@ VALUES (353432432,'Sebastian', '1-1-1990'),
 (26555132, 'Rosa', '7-3-1975'),
 (28451182, 'Griselda', '7-26-1982'),
 (28733932, 'Carina', '7-23-1982')
-
-GO

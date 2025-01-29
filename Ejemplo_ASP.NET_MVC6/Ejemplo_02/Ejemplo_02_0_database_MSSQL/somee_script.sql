@@ -1,5 +1,4 @@
 
-
 --Nombre del servidor: Ejemplos_ASP_MVC_DB.mssql.somee.com
 --Usuario: fernando-dev_SQLLogin_1
 --Password: bfzixu5w6p
@@ -33,7 +32,3 @@ VALUES (353432432,'Sebastian', '1-1-1990'),
 (26555132, 'Rosa', '7-3-1975'),
 (28451182, 'Griselda', '7-26-1982'),
 (28733932, 'Carina', '7-23-1982')
-
-GO
-
-SELECT * FROM Personas

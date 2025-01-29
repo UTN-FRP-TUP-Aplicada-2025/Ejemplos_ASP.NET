@@ -11,7 +11,7 @@ RUN apt-get install -y iputils-ping
 RUN rm -rf /var/lib/apt/lists/*
 
 ARG SOLUTION_NAME="Ejemplo_03"
-ARG PROJECT_NAME="Ejemplo_03_0_database_MSSQL"
+ARG PROJECT_NAME="Ejemplo_03_0_Login_Simple"
 ARG BUILD_ROOT="/src/app_dotnet"
 ARG NOMBRE_DLL="${PROJECT_NAME}.DLL"
 
@@ -47,11 +47,11 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # exponiendo el puerto 8080 para acceder - activar el public en forwader port
-EXPOSE 8284
+EXPOSE 8080
 
 # punto de entrada de la aplicación
 
-ENTRYPOINT ["dotnet", "Ejemplo_03_0_database_MSSQL.dll"]
+ENTRYPOINT ["dotnet", "Ejemplo_03_0_Login_Simple.dll"]
 
 #ENV NOMBRE_DLL="${PROJECT_NAME}.DLL"
 #ENTRYPOINT ["dotnet", $NOMBRE_DLL]

@@ -7,7 +7,6 @@ FROM mcr.microsoft.com/mssql/server:2022-latest
 ENV ACCEPT_EULA=Y
 ENV MSSQL_SA_PASSWORD=MSS-fernando-123
 
-
 # herramientas para mss
 USER root
 RUN apt-get update && \
@@ -36,7 +35,6 @@ RUN update-ca-certificates
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN ln -s /opt/mssql-tools18 /opt/mssql-tools
-
 
 
 # directorio de trabajo para los scripts

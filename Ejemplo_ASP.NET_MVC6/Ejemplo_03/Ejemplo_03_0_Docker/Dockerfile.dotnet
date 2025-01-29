@@ -11,7 +11,7 @@ RUN apt-get install -y iputils-ping
 RUN rm -rf /var/lib/apt/lists/*
 
 ARG SOLUTION_NAME="Ejemplo_03"
-ARG PROJECT_NAME="Ejemplo_03_0_Login_Simple"
+ARG PROJECT_NAME="Ejemplo_03_0_database_MSSQL"
 ARG BUILD_ROOT="/src/app_dotnet"
 ARG NOMBRE_DLL="${PROJECT_NAME}.DLL"
 
@@ -51,7 +51,7 @@ EXPOSE 8284
 
 # punto de entrada de la aplicación
 
-ENTRYPOINT ["dotnet", "Ejemplo_03_0_Login_Simple.dll"]
+ENTRYPOINT ["dotnet", "Ejemplo_03_0_database_MSSQL.dll"]
 
 #ENV NOMBRE_DLL="${PROJECT_NAME}.DLL"
 #ENTRYPOINT ["dotnet", $NOMBRE_DLL]

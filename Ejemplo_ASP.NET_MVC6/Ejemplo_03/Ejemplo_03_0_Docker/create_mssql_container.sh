@@ -19,12 +19,7 @@ docker rm $NOMBRE_CONTENEDOR
 docker rmi $NOMBRE_IMAGEN:$TAG
 
 # construyo la imagen
-<<<<<<< HEAD
-docker build --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
-
-=======
 docker build  --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
->>>>>>> refs/remotes/origin/main
 
 # genero el contenedor y lo corro
 docker run --name $NOMBRE_CONTENEDOR -p 1433:1433 -d $NOMBRE_IMAGEN:$TAG
@@ -40,12 +35,12 @@ sleep 20
 
 docker exec -it $NOMBRE_CONTENEDOR /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql -C
 
-# Conexión desde el host
-#docker exec -it ejemplo03_mssql_container /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql -C
-#docker exec -it ejemplo03_mssql_container /bin/bash
+# Conexiï¿½n desde el host
+#docker exec -it ejemplo01_mssql_container /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/sql_script/docker_script.sql -C
+#docker exec -it ejemplo01_mssql_container /bin/bash
 
 # consulta de la ip
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'  ejemplo03_mssql_container
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'  ejemplo01_mssql_container
 
 #IP_CONTENEDOR=docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $NOMBRE_CONTENEDOR
 # configurando la base de datos

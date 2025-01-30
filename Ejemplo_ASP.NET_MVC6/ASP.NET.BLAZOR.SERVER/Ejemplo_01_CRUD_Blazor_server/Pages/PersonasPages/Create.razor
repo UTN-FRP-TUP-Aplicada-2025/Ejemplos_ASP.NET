@@ -1,0 +1,65 @@
+﻿@page "/personas1/create"
+
+@using Ejemplo_01_CRUD_Blazor_server.Models
+@using Ejemplo_01_CRUD_Blazor_server.Services
+
+@using Ejemplo_01_CRUD_Blazor_server.Models
+
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h2>Personas</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="personaModel" OnValidSubmit="AddPersona" FormName="create" Enhance>
+
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" role="alert"/>
+
+            <div class="mb-3">
+                <label for="id" class="form-label">Id:</label> 
+                <InputNumber id="id" @bind-Value="personaModel.Id" class="form-control" aria-required="true" />
+                <ValidationMessage For="() => personaModel.Id" class="text-danger" />
+            </div>        
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <InputText id="nombre" @bind-Value="personaModel.Nombre" class="form-control" />
+                <ValidationMessage For="() => personaModel.Nombre" class="text-danger" />
+            </div>
+            <div class="mb-3">
+                <label for="dni" class="form-label">DNI:</label> 
+                <InputNumber id="dni" @bind-Value="personaModel.DNI" class="form-control" />
+                <ValidationMessage For="() => personaModel.DNI" class="text-danger" />
+            </div>        
+            <div class="mb-3">
+                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento:</label>
+                <InputDate id="fechaNacimiento" @bind-Value="personaModel.FechaNacimiento" class="form-control" />
+                <ValidationMessage For="() => personaModel.FechaNacimiento" class="text-danger" />
+            </div>        
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/personas1">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    private PersonaModel personaModel { get; set; } = new();
+
+    private PersonasService _personasService = new PersonasService();
+
+    private async Task AddPersona()
+    {
+        _personasService.CrearNuevo(personaModel);
+        
+        NavigationManager.NavigateTo("/personas1");
+    }
+}

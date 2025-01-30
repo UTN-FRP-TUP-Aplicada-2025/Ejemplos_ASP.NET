@@ -1,0 +1,2 @@
+﻿Microsoft.AspNetCore.Components
+Microsoft.AspNetCore.Components.QuickGrid

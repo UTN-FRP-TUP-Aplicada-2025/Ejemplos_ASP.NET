@@ -1,0 +1,58 @@
+﻿@page "/personas1/details"
+
+@using Ejemplo_01_CRUD_Blazor_server.Models
+@using Ejemplo_01_CRUD_Blazor_server.Services
+
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Detalles del registro seleccionado</h1>
+
+<div>
+    <h2>Respuesta</h2>
+    <hr />
+    @if (personaModel is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+
+            <dt class="col-sm-2">Id</dt>
+            <dd class="col-sm-10">@personaModel.Id</dd>
+
+            <dt class="col-sm-2">DNI</dt>
+            <dd class="col-sm-10">@personaModel.DNI</dd>
+
+            <dt class="col-sm-2">Nombre</dt>
+            <dd class="col-sm-10">@personaModel.Nombre</dd>
+
+            <dt class="col-sm-2">FechaNacimiento</dt>
+            <dd class="col-sm-10">@personaModel.FechaNacimiento</dd>
+        </dl>
+        <div>
+            <a href="@($"/personas1/edit?id={personaModel.Id}")">Edit</a> |
+            <a href="@($"/personas1")">Volver al Listado</a>
+        </div>
+    }
+</div>
+
+@code {
+    private PersonaModel? personaModel;
+
+    private PersonasService _personasService = new PersonasService();
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        personaModel = _personasService.GetById(Id);
+
+        if (personaModel is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}

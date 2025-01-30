@@ -1,0 +1,58 @@
+﻿@page "/personas1"
+
+
+
+@using Ejemplo_01_CRUD_Blazor_server.Models
+@using Ejemplo_01_CRUD_Blazor_server.Services
+
+
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="personas1/create">Create New</a>
+</p>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>DNI</th>
+            <th>Nombre</th>
+            <th>Fecha Nacimiento</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in personasModel)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.DNI</td>
+                <td>@item.Nombre</td>
+                <td>@item.FechaNacimiento?.ToShortDateString()</td>
+                <td>
+                    <a href="@($"personas1/edit?id={item.Id}")">Edit</a> |
+                    <a href="@($"personas1/details?id={item.Id}")">Details</a> |
+                    <a href="@($"personas1/delete?id={item.Id}")">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+
+    PersonasService _service = new PersonasService();
+    List<PersonaModel> personasModel;
+
+    protected override void OnInitialized()
+    {
+        //context = DbFactory.CreateDbContext();
+        personasModel = _service.GetAll();
+    }
+
+}

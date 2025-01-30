@@ -1,0 +1,108 @@
+﻿@page "/personas"
+
+@using Ejemplo_01_CRUD_Blazor_server.Models
+@using Ejemplo_01_CRUD_Blazor_server.Services
+
+@layout AccountLayout
+
+@inject NavigationManager NavManager
+@* @rendermode InteractiveServer *@
+
+<h1>Starfleet Starship Database</h1>
+
+<h2>New Ship Entry Form</h2>
+
+<EditForm Model="personaModel" OnValidSubmit="Submit" FormName="Persona3">
+
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>
+            Persona:
+            <InputNumber class="form-control" @bind-Value="personaModel!.DNI" />
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Persona:
+            <InputText class="form-control"  @bind-Value="personaModel!.Nombre" />
+        </label>
+    </div>
+
+    <div>
+        <button class="btn btn-primary" type="submit">Submit</button> 
+    </div>
+</EditForm>
+
+
+
+@if (personas == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Fecha Nacimiento</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in personas)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.DNI</td>
+                    <td>@item.Nombre</td><td>@item.FechaNacimiento?.ToShortDateString()</td>
+                    <td><button @onclick="() => editar(item.Id)" >Editar</button>|
+                        <button @onclick="() => eliminar(item.Id)">Eliminar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    [SupplyParameterFromForm]
+    private PersonaModel? personaModel { get; set; }
+    private List<PersonaModel> personas { get; set; }
+
+    private PersonasService _service = new();
+
+
+    protected override void OnInitialized()
+    {
+        personaModel ??= new PersonaModel() { };
+        personas = _service.GetAll();
+
+    }
+
+    private void Submit()
+    {
+        personaModel.FechaNacimiento = DateTime.Now;
+        _service.CrearNuevo(personaModel);
+
+        //  personas.Add(personaModel);
+
+        //NavManager.NavigateTo("/fetchdata");
+    }
+
+    private void editar(int id)
+    {
+        personaModel = _service.GetById(id);
+        personas = _service.GetAll();
+    }
+
+    private void eliminar(int id)
+    {
+        _service.Eliminar(id);
+        personas = _service.GetAll();
+    }
+}

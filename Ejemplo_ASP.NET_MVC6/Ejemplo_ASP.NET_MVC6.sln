@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35431.28
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ejemplo_01_0_CRUD_MVC_Simple", "Ejemplo_01\Ejemplo_01_0_CRUD_MVC_Simple\Ejemplo_01_0_CRUD_MVC_Simple.csproj", "{BDFE69BB-BF6B-41C6-8E32-E6419038A822}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ejemplo_01_0_CRUD_MVC_Simple", "ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_CRUD_MVC_Simple\Ejemplo_01_0_CRUD_MVC_Simple.csproj", "{BDFE69BB-BF6B-41C6-8E32-E6419038A822}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}"
 EndProject
@@ -14,104 +14,78 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{18465878-A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_0_database_MSSQL", "Ejemplo_01_0_database_MSSQL", "{FB405D92-29D5-4EFC-94A0-C30232C1CC66}"
 	ProjectSection(SolutionItems) = preProject
-		Ejemplo_01\Ejemplo_01_0_database_MSSQL\docker_script.sql = Ejemplo_01\Ejemplo_01_0_database_MSSQL\docker_script.sql
-		Ejemplo_01\Ejemplo_01_0_database_MSSQL\local_script.sql = Ejemplo_01\Ejemplo_01_0_database_MSSQL\local_script.sql
-		Ejemplo_01\Ejemplo_01_0_database_MSSQL\somee_script.sql = Ejemplo_01\Ejemplo_01_0_database_MSSQL\somee_script.sql
+		ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_database_MSSQL\docker_script.sql = ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_database_MSSQL\docker_script.sql
+		ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_database_MSSQL\local_script.sql = ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_database_MSSQL\local_script.sql
+		ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_database_MSSQL\somee_script.sql = ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_database_MSSQL\somee_script.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_0_Docker", "Ejemplo_01_0_Docker", "{BA240214-C2ED-4EF2-A9EB-EBE73D79884B}"
 	ProjectSection(SolutionItems) = preProject
-		Ejemplo_01\Ejemplo_01_0_Docker\docker-compose.yml = Ejemplo_01\Ejemplo_01_0_Docker\docker-compose.yml
-		Ejemplo_01\Ejemplo_01_0_Docker\Dockerfile.dotnet = Ejemplo_01\Ejemplo_01_0_Docker\Dockerfile.dotnet
-		Ejemplo_01\Ejemplo_01_0_Docker\Dockerfile.mssql = Ejemplo_01\Ejemplo_01_0_Docker\Dockerfile.mssql
+		ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_Docker\docker-compose.yml = ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_Docker\docker-compose.yml
+		ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_Docker\Dockerfile.dotnet = ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_Docker\Dockerfile.dotnet
+		ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_Docker\Dockerfile.mssql = ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_Docker\Dockerfile.mssql
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_06_CRUD_Razor", "Ejemplo_06_CRUD_Razor\Ejemplo_06_CRUD_Razor.csproj", "{673937F9-185E-49BF-9933-37D4EE717359}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_05_0_Docker", "Ejemplo_05_0_Docker", "{76FE814D-7DFB-433D-935B-0C16D8EF88A9}"
-	ProjectSection(SolutionItems) = preProject
-		Ejemplo_04\Ejemplo_04_0_Docker\docker-compose.yml = Ejemplo_04\Ejemplo_04_0_Docker\docker-compose.yml
-		Ejemplo_05\Ejemplo_05_0_Docker\Dockerfile.dotnet = Ejemplo_05\Ejemplo_05_0_Docker\Dockerfile.dotnet
-		Ejemplo_05\Ejemplo_05_0_Docker\Dockerfile.mssql = Ejemplo_05\Ejemplo_05_0_Docker\Dockerfile.mssql
-		Ejemplo_05\Ejemplo_05_0_Docker\Readme.md = Ejemplo_05\Ejemplo_05_0_Docker\Readme.md
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_05_0_database_MSSQL", "Ejemplo_05_0_database_MSSQL", "{114BF462-C16A-4786-B800-30F152856328}"
-	ProjectSection(SolutionItems) = preProject
-		Ejemplo_05\Ejemplo_05_0_database_MSSQL\docker_script.sql = Ejemplo_05\Ejemplo_05_0_database_MSSQL\docker_script.sql
-		Ejemplo_05\Ejemplo_05_0_database_MSSQL\local_script.sql = Ejemplo_05\Ejemplo_05_0_database_MSSQL\local_script.sql
-		Ejemplo_05\Ejemplo_05_0_database_MSSQL\somee_script.sql = Ejemplo_05\Ejemplo_05_0_database_MSSQL\somee_script.sql
-	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_01_blazor_webassembly", "Ejemplo_11_blazor_webassembly\Ejemplo_01_blazor_webassembly.csproj", "{9B28BF29-666F-412B-B902-1E43A9DEA4E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_01_blazor_webassembly", "ASP.NET.MVC.BLAZOR.WEBASSEMBLY\Ejemplo_11_blazor_webassembly\Ejemplo_01_blazor_webassembly.csproj", "{9B28BF29-666F-412B-B902-1E43A9DEA4E4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_03_0_Docker", "Ejemplo_03_0_Docker", "{8B96E855-64EB-4BD5-8FC5-D9DBE74AAF7C}"
 	ProjectSection(SolutionItems) = preProject
-		Ejemplo_02\Ejemplo_02_0_Docker\docker-compose.yml = Ejemplo_02\Ejemplo_02_0_Docker\docker-compose.yml
-		Ejemplo_03\Ejemplo_03_0_Docker\Dockerfile.dotnet = Ejemplo_03\Ejemplo_03_0_Docker\Dockerfile.dotnet
-		Ejemplo_03\Ejemplo_03_0_Docker\Dockerfile.mssql = Ejemplo_03\Ejemplo_03_0_Docker\Dockerfile.mssql
-		Ejemplo_03\Ejemplo_03_0_Docker\Readme.md = Ejemplo_03\Ejemplo_03_0_Docker\Readme.md
+		ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_Docker\Dockerfile.dotnet = ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_Docker\Dockerfile.dotnet
+		ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_Docker\Dockerfile.mssql = ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_Docker\Dockerfile.mssql
+		ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_Docker\Readme.md = ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_Docker\Readme.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_03_0_database_MSSQL", "Ejemplo_03_0_database_MSSQL", "{4C7F35A2-60D6-408B-A04F-0818ABDD0BAD}"
 	ProjectSection(SolutionItems) = preProject
-		Ejemplo_03\Ejemplo_03_0_database_MSSQL\docker_script.sql = Ejemplo_03\Ejemplo_03_0_database_MSSQL\docker_script.sql
-		Ejemplo_03\Ejemplo_03_0_database_MSSQL\local_script.sql = Ejemplo_03\Ejemplo_03_0_database_MSSQL\local_script.sql
-		Ejemplo_03\Ejemplo_03_0_database_MSSQL\somee_script.sql = Ejemplo_03\Ejemplo_03_0_database_MSSQL\somee_script.sql
+		ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_database_MSSQL\docker_script.sql = ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_database_MSSQL\docker_script.sql
+		ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_database_MSSQL\local_script.sql = ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_database_MSSQL\local_script.sql
+		ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_database_MSSQL\somee_script.sql = ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_database_MSSQL\somee_script.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NET.MVC", "ASP.NET.MVC", "{52EF6C6D-BA7C-4093-9B5E-C500AA261857}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NET.Razor", "ASP.NET.Razor", "{FF7E79C6-1472-409B-ABD2-66E62E9C2AC9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NET.Blazor.Server", "ASP.NET.Blazor.Server", "{FF7E79C6-1472-409B-ABD2-66E62E9C2AC9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NET.BLAZOR", "ASP.NET.BLAZOR", "{5A1557C7-DB99-498D-9B3B-1D00AB8E85F3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NET.Blazor.WebAssembly", "ASP.NET.Blazor.WebAssembly", "{5A1557C7-DB99-498D-9B3B-1D00AB8E85F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple", "Ejemplo_02\Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple\Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple.csproj", "{8EDD9D31-93EC-4262-8712-FFA91939CDB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple", "ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple\Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple.csproj", "{8EDD9D31-93EC-4262-8712-FFA91939CDB8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_0_Docker", "Ejemplo_02_0_Docker", "{F249BA92-9F27-46EC-BCB9-3AA011F1AC80}"
 	ProjectSection(SolutionItems) = preProject
-		Ejemplo_02\Ejemplo_02_0_Docker\docker-compose.yml = Ejemplo_02\Ejemplo_02_0_Docker\docker-compose.yml
-		Ejemplo_02\Ejemplo_02_0_Docker\Dockerfile.dotnet = Ejemplo_02\Ejemplo_02_0_Docker\Dockerfile.dotnet
-		Ejemplo_02\Ejemplo_02_0_Docker\Dockerfile.mssql = Ejemplo_02\Ejemplo_02_0_Docker\Dockerfile.mssql
+		ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_Docker\docker-compose.yml = ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_Docker\docker-compose.yml
+		ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_Docker\Dockerfile.dotnet = ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_Docker\Dockerfile.dotnet
+		ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_Docker\Dockerfile.mssql = ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_Docker\Dockerfile.mssql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_0_database_MSSQL", "Ejemplo_02_0_database_MSSQL", "{14C46B57-0F6E-461C-A36E-A8B1CA61B170}"
 	ProjectSection(SolutionItems) = preProject
-		Ejemplo_02\Ejemplo_02_0_database_MSSQL\docker_script.sql = Ejemplo_02\Ejemplo_02_0_database_MSSQL\docker_script.sql
-		Ejemplo_02\Ejemplo_02_0_database_MSSQL\local_script.sql = Ejemplo_02\Ejemplo_02_0_database_MSSQL\local_script.sql
-		Ejemplo_02\Ejemplo_02_0_database_MSSQL\somee_script.sql = Ejemplo_02\Ejemplo_02_0_database_MSSQL\somee_script.sql
+		ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_database_MSSQL\docker_script.sql = ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_database_MSSQL\docker_script.sql
+		ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_database_MSSQL\local_script.sql = ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_database_MSSQL\local_script.sql
+		ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_database_MSSQL\somee_script.sql = ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_database_MSSQL\somee_script.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_06_Login_Roles_Areas", "Ejemplo_06_Login_Roles_Areas\Ejemplo_06_Login_Roles_Areas.csproj", "{96805640-91B5-434F-B578-E2A8C60F5DBF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_06_Login_Roles_Areas", "ASP.NET.MVC\Ejemplo_06_Login_Roles_Areas\Ejemplo_06_Login_Roles_Areas.csproj", "{96805640-91B5-434F-B578-E2A8C60F5DBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_07_Login_Identity", "Ejemplo_07_Login_Identity\Ejemplo_07_Login_Identity.csproj", "{AF5F840A-1AE8-482D-AAB5-57C27F1C27B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_07_Login_Identity", "ASP.NET.MVC\Ejemplo_07_Login_Identity\Ejemplo_07_Login_Identity.csproj", "{AF5F840A-1AE8-482D-AAB5-57C27F1C27B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_1_Cliente_RestAPI", "Ejemplo_02\Ejemplo_02_1_Cliente_RestAPI\Ejemplo_02_1_Cliente_RestAPI.csproj", "{C8FBF9B4-13E3-43DD-9D20-568676B1CC7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_1_Cliente_RestAPI", "ASP.NET.MVC\Ejemplo_02\Ejemplo_02_1_Cliente_RestAPI\Ejemplo_02_1_Cliente_RestAPI.csproj", "{C8FBF9B4-13E3-43DD-9D20-568676B1CC7C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_rest_mvc_y_clientes", "Ejemplo_02_rest_mvc_y_clientes", "{4FBB2938-73D1-426E-B88B-4019BB8229BB}"
 	ProjectSection(SolutionItems) = preProject
-		Ejemplo_02\Readme.md = Ejemplo_02\Readme.md
+		ASP.NET.MVC\Ejemplo_02\Readme.md = ASP.NET.MVC\Ejemplo_02\Readme.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_crud_mvc", "Ejemplo_01_crud_mvc", "{0CD9C2F1-7D5D-4C58-BBC8-3702D66EEE29}"
-	ProjectSection(SolutionItems) = preProject
-		Ejemplo_01\Readme.md = Ejemplo_01\Readme.md
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_03_login", "Ejemplo_03_login", "{174558DB-A114-4637-8CA2-5EC3AE9EFE68}"
-	ProjectSection(SolutionItems) = preProject
-		Ejemplo_03\Readme.md = Ejemplo_03\Readme.md
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_04_login_y_roles", "Ejemplo_04_login_y_roles", "{5A4EE48B-A904-4499-AD88-FE41A7B83A86}"
-	ProjectSection(SolutionItems) = preProject
-		Ejemplo_04\Readme.md = Ejemplo_04\Readme.md
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_05_areas", "Ejemplo_05_areas", "{4C0374E9-0451-45D2-A989-10A7B01636C5}"
-	ProjectSection(SolutionItems) = preProject
-		Ejemplo_05\Readme.md = Ejemplo_05\Readme.md
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_06", "Ejemplo_06", "{9B1FDB03-2E77-4D37-9B1B-95A48D08B597}"
 EndProject
@@ -119,33 +93,33 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_07", "Ejemplo_07", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_2_Cliente_HTML_Simple", "Ejemplo_02_2_Cliente_HTML_Simple", "{9A96B121-E48E-4247-87E8-A0DEE0CC9298}"
 	ProjectSection(SolutionItems) = preProject
-		Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\Index.html = Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\Index.html
-		Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\readme.md = Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\readme.md
+		ASP.NET.MVC\Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\Index.html = ASP.NET.MVC\Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\Index.html
+		ASP.NET.MVC\Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\readme.md = ASP.NET.MVC\Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\readme.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_3_Cliente_PowerShell", "Ejemplo_02_3_Cliente_PowerShell", "{06857E11-13E3-4034-8F3A-0C4B2A7E6831}"
 	ProjectSection(SolutionItems) = preProject
-		Ejemplo_02\Ejemplo_02_3_Cliente_PowerShell\Readme.md = Ejemplo_02\Ejemplo_02_3_Cliente_PowerShell\Readme.md
-		Ejemplo_02\Ejemplo_02_3_Cliente_PowerShell\script.ps1 = Ejemplo_02\Ejemplo_02_3_Cliente_PowerShell\script.ps1
+		ASP.NET.MVC\Ejemplo_02\Ejemplo_02_3_Cliente_PowerShell\Readme.md = ASP.NET.MVC\Ejemplo_02\Ejemplo_02_3_Cliente_PowerShell\Readme.md
+		ASP.NET.MVC\Ejemplo_02\Ejemplo_02_3_Cliente_PowerShell\script.ps1 = ASP.NET.MVC\Ejemplo_02\Ejemplo_02_3_Cliente_PowerShell\script.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_0_Docs", "Ejemplo_02_0_Docs", "{3AEA8710-1F6B-4D44-85E1-640D022A6718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_03_0_Login_Simple", "Ejemplo_03\Ejemplo_03_0_Login_Simple\Ejemplo_03_0_Login_Simple.csproj", "{656D64E4-E622-4DE6-B908-C6957D8FE2EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_03_0_Login_Simple", "ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_Login_Simple\Ejemplo_03_0_Login_Simple.csproj", "{656D64E4-E622-4DE6-B908-C6957D8FE2EE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_04_0_database_MSSQL", "Ejemplo_04_0_database_MSSQL", "{7C0BD1BE-B492-4480-81DD-870B7B65EFA8}"
 	ProjectSection(SolutionItems) = preProject
-		Ejemplo_04\Ejemplo_04_0_database_MSSQL\docker_script.sql = Ejemplo_04\Ejemplo_04_0_database_MSSQL\docker_script.sql
-		Ejemplo_04\Ejemplo_04_0_database_MSSQL\local_script.sql = Ejemplo_04\Ejemplo_04_0_database_MSSQL\local_script.sql
-		Ejemplo_04\Ejemplo_04_0_database_MSSQL\somee_script.sql = Ejemplo_04\Ejemplo_04_0_database_MSSQL\somee_script.sql
+		ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_database_MSSQL\docker_script.sql = ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_database_MSSQL\docker_script.sql
+		ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_database_MSSQL\local_script.sql = ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_database_MSSQL\local_script.sql
+		ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_database_MSSQL\somee_script.sql = ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_database_MSSQL\somee_script.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_04_0_Docker", "Ejemplo_04_0_Docker", "{A25C741F-A8B0-4B23-8C3E-B3AB6388FFBB}"
 	ProjectSection(SolutionItems) = preProject
-		Ejemplo_04\Ejemplo_04_0_Docker\docker-compose.yml = Ejemplo_04\Ejemplo_04_0_Docker\docker-compose.yml
-		Ejemplo_04\Ejemplo_04_0_Docker\Dockerfile.dotnet = Ejemplo_04\Ejemplo_04_0_Docker\Dockerfile.dotnet
-		Ejemplo_04\Ejemplo_04_0_Docker\Dockerfile.mssql = Ejemplo_04\Ejemplo_04_0_Docker\Dockerfile.mssql
-		Ejemplo_04\Ejemplo_04_0_Docker\Readme.md = Ejemplo_04\Ejemplo_04_0_Docker\Readme.md
+		ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_Docker\docker-compose.yml = ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_Docker\docker-compose.yml
+		ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_Docker\Dockerfile.dotnet = ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_Docker\Dockerfile.dotnet
+		ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_Docker\Dockerfile.mssql = ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_Docker\Dockerfile.mssql
+		ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_Docker\Readme.md = ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_Docker\Readme.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_04_0_Roles_Login", "Ejemplo_04\Ejemplo_04_0_Roles_Login\Ejemplo_04_0_Roles_Login.csproj", "{E28EC723-EFB4-4FAD-BBBB-93FB78C47AE9}"
@@ -162,7 +136,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imgs", "imgs", "{636DB9F1-7
 		Tools\Docker\imgs\workflow.png = Tools\Docker\imgs\workflow.png
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_05_Areas", "Ejemplo_05\Ejemplo_05_0_Areas\Ejemplo_05_Areas.csproj", "{95225434-9AB7-4C85-8206-81AAE7C38038}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_05_Areas", "ASP.NET.MVC\Ejemplo_05\Ejemplo_05_0_Areas\Ejemplo_05_Areas.csproj", "{95225434-9AB7-4C85-8206-81AAE7C38038}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo01_disenio", "prueba\Ejemplo01_disenio.csproj", "{F2598D6F-FBD6-44DE-9CA8-F47C25C2EF0F}"
 EndProject
@@ -170,16 +144,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_a_static_page", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_08_dialogos", "Ejemplo_08_dialogos", "{16FF19AE-0307-43E3-92DB-E54C05C6FCB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_08_form_dialogos", "Ejemplo_08\Ejemplo_08_form_dialogos\Ejemplo_08_form_dialogos.csproj", "{3A50A03B-C23C-4DEB-802B-0E4EB5BD3547}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_08_form_dialogos", "ASP.NET.MVC\Ejemplo_08\Ejemplo_08_form_dialogos\Ejemplo_08_form_dialogos.csproj", "{3A50A03B-C23C-4DEB-802B-0E4EB5BD3547}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{2B97B8FC-8DB9-4294-9D8D-A491BD63928E}"
-	ProjectSection(SolutionItems) = preProject
-		Ejemplo_05\Ejemplo_05_0_Docker\create_dotnet_container.sh = Ejemplo_05\Ejemplo_05_0_Docker\create_dotnet_container.sh
-		Ejemplo_05\Ejemplo_05_0_Docker\create_mssql_container.sh = Ejemplo_05\Ejemplo_05_0_Docker\create_mssql_container.sh
-		Ejemplo_05\Ejemplo_05_0_Somee\publish.png = Ejemplo_05\Ejemplo_05_0_Somee\publish.png
-		Ejemplo_05\Ejemplo_05_0_Somee\Readme.md = Ejemplo_05\Ejemplo_05_0_Somee\Readme.md
-		Ejemplo_05\Ejemplo_05_0_Docker\stop.sh = Ejemplo_05\Ejemplo_05_0_Docker\stop.sh
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ADO.NET", "ADO.NET", "{349F2EED-424B-4141-927C-E1FADDA6922A}"
 EndProject
@@ -189,7 +156,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos_DAOs", "Ejemplos_D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos_Obj_A_Relacional", "Ejemplos_Obj_A_Relacional", "{93C7DF73-0540-4666-90C9-86CFBED82FB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_01_Adapter_Select", "Ejemplos_ADO.NET\Ejemplo_01_Adapter_Select\Ejemplo_01_Adapter_Select.csproj", "{C682FC96-880B-40E9-9C4E-B8B6E0C81294}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_01_Adapter_Select", "ADO.NET\Ejemplo_01_Adapter_Select\Ejemplo_01_Adapter_Select.csproj", "{C682FC96-880B-40E9-9C4E-B8B6E0C81294}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clientes", "Clientes", "{004697D2-7084-4669-A793-9A348D883672}"
 EndProject
@@ -199,33 +166,33 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicios", "Servicios", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Despliegue", "Despliegue", "{7931F833-6B64-460E-975A-A42042391EB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_Reader_Select", "Ejemplos_ADO.NET\Ejemplo_02_Reader_Select\Ejemplo_02_Reader_Select.csproj", "{D47E0965-7528-47AA-AC05-313FA88A55C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_Reader_Select", "ADO.NET\Ejemplo_02_Reader_Select\Ejemplo_02_Reader_Select.csproj", "{D47E0965-7528-47AA-AC05-313FA88A55C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_03_Insert", "Ejemplos_ADO.NET\Ejemplo_03_Insert\Ejemplo_03_Insert.csproj", "{7DBD313F-590B-4FE7-9630-760A613C8C46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_03_Insert", "ADO.NET\Ejemplo_03_Insert\Ejemplo_03_Insert.csproj", "{7DBD313F-590B-4FE7-9630-760A613C8C46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_04_Insert_return_ID", "Ejemplos_ADO.NET\Ejemplo_04_Insert_return_ID\Ejemplo_04_Insert_return_ID.csproj", "{CA788C18-231D-408B-B0CB-1345AAEF8A48}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_04_Insert_return_ID", "ADO.NET\Ejemplo_04_Insert_return_ID\Ejemplo_04_Insert_return_ID.csproj", "{CA788C18-231D-408B-B0CB-1345AAEF8A48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_05_Update", "Ejemplos_ADO.NET\Ejemplo_05_Update\Ejemplo_05_Update.csproj", "{72EB44B1-C2FC-4E92-8A9D-8295A13426AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_05_Update", "ADO.NET\Ejemplo_05_Update\Ejemplo_05_Update.csproj", "{72EB44B1-C2FC-4E92-8A9D-8295A13426AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_06_Select_by_Id", "Ejemplos_ADO.NET\Ejemplo_06_Select_by_Id\Ejemplo_06_Select_by_Id.csproj", "{B14AA4C8-F963-4379-9C23-FD95896EBA13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_06_Select_by_Id", "ADO.NET\Ejemplo_06_Select_by_Id\Ejemplo_06_Select_by_Id.csproj", "{B14AA4C8-F963-4379-9C23-FD95896EBA13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_07_Delete", "Ejemplos_ADO.NET\Ejemplo_07_Delete\Ejemplo_07_Delete.csproj", "{2B9A3433-F023-475B-A717-200551D558ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_07_Delete", "ADO.NET\Ejemplo_07_Delete\Ejemplo_07_Delete.csproj", "{2B9A3433-F023-475B-A717-200551D558ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_08_Consulta_Personas", "Ejemplos_ADO.NET\Ejemplo_08_Consulta_Personas\Ejemplo_08_Consulta_Personas.csproj", "{C57CB13E-C2BC-4340-B395-6C81D3FDA22B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_08_Consulta_Personas", "ADO.NET\Ejemplo_08_Consulta_Personas\Ejemplo_08_Consulta_Personas.csproj", "{C57CB13E-C2BC-4340-B395-6C81D3FDA22B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Despliegue", "Despliegue", "{48839DB8-A9E1-41B7-AE4B-4BD224294CEC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicios", "Servicios", "{CF97E0FF-B32F-4365-B39C-83151146C088}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_09_CrearPersona", "Ejemplos_ADO.NET\Ejemplo_09_CrearPersona\Ejemplo_09_CrearPersona.csproj", "{6F3E343F-A419-46FD-AE2B-413A59F66D46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_09_CrearPersona", "ADO.NET\Ejemplo_09_CrearPersona\Ejemplo_09_CrearPersona.csproj", "{6F3E343F-A419-46FD-AE2B-413A59F66D46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_10_ActualizarPersona", "Ejemplos_ADO.NET\Ejemplo_10_ActualizarPersona\Ejemplo_10_ActualizarPersona.csproj", "{41A6E8E1-41DC-4158-BF06-D872D327B4A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_10_ActualizarPersona", "ADO.NET\Ejemplo_10_ActualizarPersona\Ejemplo_10_ActualizarPersona.csproj", "{41A6E8E1-41DC-4158-BF06-D872D327B4A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_11_Consulta_Persona_Por_ID", "Ejemplos_ADO.NET\Ejemplo_11_Consulta_Persona_Por_ID\Ejemplo_11_Consulta_Persona_Por_ID.csproj", "{F9EFCCB9-7E02-4ACE-98ED-2FC396FDAE83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_11_Consulta_Persona_Por_ID", "ADO.NET\Ejemplo_11_Consulta_Persona_Por_ID\Ejemplo_11_Consulta_Persona_Por_ID.csproj", "{F9EFCCB9-7E02-4ACE-98ED-2FC396FDAE83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_12_Eliminar_Persona", "Ejemplos_ADO.NET\Ejemplo_12_Eliminar_Persona\Ejemplo_12_Eliminar_Persona.csproj", "{217ED486-B591-4728-941D-19BFAF838FD6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_12_Eliminar_Persona", "ADO.NET\Ejemplo_12_Eliminar_Persona\Ejemplo_12_Eliminar_Persona.csproj", "{217ED486-B591-4728-941D-19BFAF838FD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_13_Personas", "Ejemplos_ADO.NET\Ejemplo_13_Administracion_Personas\Ejemplo_13_Personas.csproj", "{B9F7A9DF-9F23-419B-B8DE-3B21F516D30E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_13_Personas", "ADO.NET\Ejemplo_13_Administracion_Personas\Ejemplo_13_Personas.csproj", "{B9F7A9DF-9F23-419B-B8DE-3B21F516D30E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Despliegue", "Despliegue", "{CCE06902-555D-4DE1-BF78-1FD65B619E46}"
 EndProject
@@ -233,9 +200,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicios", "Servicios", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scritps", "Scritps", "{4F9675A2-B47C-422C-BA60-0C6B23B1FAC2}"
 	ProjectSection(SolutionItems) = preProject
-		Ejemplo_01\Ejemplo_01_0_Docker\create_dotnet_container.sh = Ejemplo_01\Ejemplo_01_0_Docker\create_dotnet_container.sh
-		Ejemplo_01\Ejemplo_01_0_Docker\create_mssql_container.sh = Ejemplo_01\Ejemplo_01_0_Docker\create_mssql_container.sh
-		Ejemplo_01\Ejemplo_01_0_Docker\stop.sh = Ejemplo_01\Ejemplo_01_0_Docker\stop.sh
+		ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_Docker\create_dotnet_container.sh = ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_Docker\create_dotnet_container.sh
+		ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_Docker\create_mssql_container.sh = ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_Docker\create_mssql_container.sh
+		ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_Docker\stop.sh = ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_Docker\stop.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Despliegue", "Despliegue", "{E011D733-6B01-4E6B-AE1D-31A9A48C139F}"
@@ -248,23 +215,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicios", "Servicios", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{D87E8AC7-8A7D-434D-AAA5-2EF26FD91326}"
 	ProjectSection(SolutionItems) = preProject
-		Ejemplo_02\Ejemplo_02_0_Docker\create_dotnet_container.sh = Ejemplo_02\Ejemplo_02_0_Docker\create_dotnet_container.sh
-		Ejemplo_02\Ejemplo_02_0_Docker\create_mssql_container.sh = Ejemplo_02\Ejemplo_02_0_Docker\create_mssql_container.sh
-		Ejemplo_02\Ejemplo_02_0_Docker\stop.sh = Ejemplo_02\Ejemplo_02_0_Docker\stop.sh
+		ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_Docker\create_dotnet_container.sh = ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_Docker\create_dotnet_container.sh
+		ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_Docker\create_mssql_container.sh = ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_Docker\create_mssql_container.sh
+		ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_Docker\stop.sh = ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_Docker\stop.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{370932FA-CFFD-429C-982C-80AB44DC622A}"
 	ProjectSection(SolutionItems) = preProject
-		Ejemplo_03\Ejemplo_03_0_Docker\create_dotnet_container.sh = Ejemplo_03\Ejemplo_03_0_Docker\create_dotnet_container.sh
-		Ejemplo_03\Ejemplo_03_0_Docker\create_mssql_container.sh = Ejemplo_03\Ejemplo_03_0_Docker\create_mssql_container.sh
-		Ejemplo_03\Ejemplo_03_0_Docker\stop.sh = Ejemplo_03\Ejemplo_03_0_Docker\stop.sh
+		ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_Docker\create_dotnet_container.sh = ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_Docker\create_dotnet_container.sh
+		ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_Docker\create_mssql_container.sh = ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_Docker\create_mssql_container.sh
+		ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_Docker\stop.sh = ASP.NET.MVC\Ejemplo_03\Ejemplo_03_0_Docker\stop.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{177B0802-75D4-4772-A17C-A7C5C8BB5D88}"
 	ProjectSection(SolutionItems) = preProject
-		Ejemplo_04\Ejemplo_04_0_Docker\create_dotnet_container.sh = Ejemplo_04\Ejemplo_04_0_Docker\create_dotnet_container.sh
-		Ejemplo_04\Ejemplo_04_0_Docker\create_mssql_container.sh = Ejemplo_04\Ejemplo_04_0_Docker\create_mssql_container.sh
-		Ejemplo_04\Ejemplo_04_0_Docker\stop.sh = Ejemplo_04\Ejemplo_04_0_Docker\stop.sh
+		ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_Docker\create_dotnet_container.sh = ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_Docker\create_dotnet_container.sh
+		ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_Docker\create_mssql_container.sh = ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_Docker\create_mssql_container.sh
+		ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_Docker\stop.sh = ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_Docker\stop.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicios", "Servicios", "{AA195E37-92B2-4D8E-99AA-70EFD511FF39}"
@@ -279,6 +246,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Despliegue", "Despliegue", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Despliegue", "Despliegue", "{378A088B-8D09-4A1F-9674-5C08E6213A04}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_05_0_Somee", "Ejemplo_05_0_Somee", "{B5D4BBE0-8939-4B5D-97D6-59D6DAD80F7B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_04_0_Somee", "Ejemplo_04_0_Somee", "{D516BCD6-3812-4311-AAB7-BF4B385EDFA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_01_Blazor_Server", "Ejemplo_01_Blazor_Server\Ejemplo_01_Blazor_Server.csproj", "{E73AD6B6-E826-4BC4-8BA8-D552DA0C2A00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -289,10 +262,6 @@ Global
 		{BDFE69BB-BF6B-41C6-8E32-E6419038A822}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDFE69BB-BF6B-41C6-8E32-E6419038A822}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDFE69BB-BF6B-41C6-8E32-E6419038A822}.Release|Any CPU.Build.0 = Release|Any CPU
-		{673937F9-185E-49BF-9933-37D4EE717359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{673937F9-185E-49BF-9933-37D4EE717359}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{673937F9-185E-49BF-9933-37D4EE717359}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{673937F9-185E-49BF-9933-37D4EE717359}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9B28BF29-666F-412B-B902-1E43A9DEA4E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B28BF29-666F-412B-B902-1E43A9DEA4E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B28BF29-666F-412B-B902-1E43A9DEA4E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -385,6 +354,10 @@ Global
 		{B9F7A9DF-9F23-419B-B8DE-3B21F516D30E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9F7A9DF-9F23-419B-B8DE-3B21F516D30E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9F7A9DF-9F23-419B-B8DE-3B21F516D30E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E73AD6B6-E826-4BC4-8BA8-D552DA0C2A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E73AD6B6-E826-4BC4-8BA8-D552DA0C2A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E73AD6B6-E826-4BC4-8BA8-D552DA0C2A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E73AD6B6-E826-4BC4-8BA8-D552DA0C2A00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -394,7 +367,6 @@ Global
 		{18465878-A91B-40FC-AB3A-35EC69211CFF} = {52EF6C6D-BA7C-4093-9B5E-C500AA261857}
 		{FB405D92-29D5-4EFC-94A0-C30232C1CC66} = {48839DB8-A9E1-41B7-AE4B-4BD224294CEC}
 		{BA240214-C2ED-4EF2-A9EB-EBE73D79884B} = {48839DB8-A9E1-41B7-AE4B-4BD224294CEC}
-		{673937F9-185E-49BF-9933-37D4EE717359} = {FF7E79C6-1472-409B-ABD2-66E62E9C2AC9}
 		{76FE814D-7DFB-433D-935B-0C16D8EF88A9} = {E011D733-6B01-4E6B-AE1D-31A9A48C139F}
 		{114BF462-C16A-4786-B800-30F152856328} = {E011D733-6B01-4E6B-AE1D-31A9A48C139F}
 		{9B28BF29-666F-412B-B902-1E43A9DEA4E4} = {5A1557C7-DB99-498D-9B3B-1D00AB8E85F3}
@@ -466,6 +438,9 @@ Global
 		{4E9AB7CB-3C70-40D0-B221-B847AA80B2B3} = {9B1FDB03-2E77-4D37-9B1B-95A48D08B597}
 		{71B1943D-BEC0-412F-8747-2623D23D8EC8} = {E56A11F3-0E25-4747-9339-7E3601FD8B66}
 		{378A088B-8D09-4A1F-9674-5C08E6213A04} = {16FF19AE-0307-43E3-92DB-E54C05C6FCB5}
+		{B5D4BBE0-8939-4B5D-97D6-59D6DAD80F7B} = {E011D733-6B01-4E6B-AE1D-31A9A48C139F}
+		{D516BCD6-3812-4311-AAB7-BF4B385EDFA3} = {B2BC471C-A765-42EE-B43A-8A3A4AE57CEC}
+		{E73AD6B6-E826-4BC4-8BA8-D552DA0C2A00} = {FF7E79C6-1472-409B-ABD2-66E62E9C2AC9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

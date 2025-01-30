@@ -1,0 +1,54 @@
+﻿@page "/respuesta/details"
+@using Microsoft.EntityFrameworkCore
+@using Ejemplo_06_CRUD_Razor_server.Models
+@inject IDbContextFactory<Ejemplo_06_CRUD_Razor_server.common.AppDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Details</PageTitle>
+
+<h1>Details</h1>
+
+<div>
+    <h2>Respuesta</h2>
+    <hr />
+    @if (respuesta is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else {
+        <dl class="row">
+            <dt class="col-sm-2">Email</dt>
+            <dd class="col-sm-10">@respuesta.Email</dd>
+            <dt class="col-sm-2">Camina</dt>
+            <dd class="col-sm-10">@respuesta.Camina</dd>
+            <dt class="col-sm-2">UsaTransportePublico</dt>
+            <dd class="col-sm-10">@respuesta.UsaTransportePublico</dd>
+            <dt class="col-sm-2">UsaTransportePrivado</dt>
+            <dd class="col-sm-10">@respuesta.UsaTransportePrivado</dd>
+            <dt class="col-sm-2">DistanciaASuDestino</dt>
+            <dd class="col-sm-10">@respuesta.DistanciaASuDestino</dd>
+        </dl>
+        <div>
+            <a href="@($"/respuesta/edit?id={respuesta.Id}")">Edit</a> |
+            <a href="@($"/respuesta")">Back to List</a>
+        </div>
+    }
+</div>
+
+@code {
+    private Respuesta? respuesta;
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        respuesta = await context.Respuestas.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (respuesta is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+}

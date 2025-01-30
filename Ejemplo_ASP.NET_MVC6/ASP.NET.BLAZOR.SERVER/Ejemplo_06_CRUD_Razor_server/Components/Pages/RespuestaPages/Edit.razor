@@ -1,0 +1,109 @@
+﻿@page "/respuesta/edit"
+@using Microsoft.EntityFrameworkCore
+@using Ejemplo_06_CRUD_Razor_server.Models
+@inject IDbContextFactory<Ejemplo_06_CRUD_Razor_server.common.AppDbContext> DbFactory
+@inject NavigationManager NavigationManager
+
+<PageTitle>Edit</PageTitle>
+
+<h1>Edit</h1>
+
+<h2>Respuesta</h2>
+<hr />
+@if (Respuesta is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="Respuesta" OnValidSubmit="UpdateRespuesta" FormName="edit" Enhance>
+                <DataAnnotationsValidator />
+                <ValidationSummary role="alert"/>
+                <input type="hidden" name="Respuesta.Id" value="@Respuesta.Id" />
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <InputText id="email" @bind-Value="Respuesta.Email" class="form-control" aria-required="true"/>
+                    <ValidationMessage For="() => Respuesta.Email" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="camina" class="form-label">Camina:</label>
+                    <InputCheckbox id="camina" @bind-Value="Respuesta.Camina" class="form-check-input" />
+                    <ValidationMessage For="() => Respuesta.Camina" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="usatransportepublico" class="form-label">UsaTransportePublico:</label>
+                    <InputCheckbox id="usatransportepublico" @bind-Value="Respuesta.UsaTransportePublico" class="form-check-input" />
+                    <ValidationMessage For="() => Respuesta.UsaTransportePublico" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="usatransporteprivado" class="form-label">UsaTransportePrivado:</label>
+                    <InputCheckbox id="usatransporteprivado" @bind-Value="Respuesta.UsaTransportePrivado" class="form-check-input" />
+                    <ValidationMessage For="() => Respuesta.UsaTransportePrivado" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="distanciaasudestino" class="form-label">DistanciaASuDestino:</label>
+                    <InputNumber id="distanciaasudestino" @bind-Value="Respuesta.DistanciaASuDestino" class="form-control" />
+                    <ValidationMessage For="() => Respuesta.DistanciaASuDestino" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </EditForm>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="/respuesta">Back to List</a>
+</div>
+
+@code {
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    [SupplyParameterFromForm]
+    private Respuesta? Respuesta { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        using var context = DbFactory.CreateDbContext();
+        Respuesta ??= await context.Respuestas.FirstOrDefaultAsync(m => m.Id == Id);
+
+        if (Respuesta is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    // To protect from overposting attacks, enable the specific properties you want to bind to.
+    // For more information, see https://learn.microsoft.com/aspnet/core/blazor/forms/#mitigate-overposting-attacks.
+    private async Task UpdateRespuesta()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Attach(Respuesta!).State = EntityState.Modified;
+
+        try
+        {
+            await context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!RespuestaExists(Respuesta!.Id))
+            {
+                NavigationManager.NavigateTo("notfound");
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        NavigationManager.NavigateTo("/respuesta");
+    }
+
+    private bool RespuestaExists(int id)
+    {
+        using var context = DbFactory.CreateDbContext();
+        return context.Respuestas.Any(e => e.Id == id);
+    }
+}

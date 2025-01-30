@@ -1,0 +1,40 @@
+﻿@page "/respuesta"
+@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.QuickGrid
+@using Ejemplo_06_CRUD_Razor_server.Models
+@using Ejemplo_06_CRUD_Razor_server.common
+@implements IAsyncDisposable
+@inject IDbContextFactory<Ejemplo_06_CRUD_Razor_server.common.AppDbContext> DbFactory
+
+<PageTitle>Index</PageTitle>
+
+<h1>Index</h1>
+
+<p>
+    <a href="respuesta/create">Create New</a>
+</p>
+
+<QuickGrid Class="table" Items="context.Respuestas">
+    <PropertyColumn Property="respuesta => respuesta.Email" />
+    <PropertyColumn Property="respuesta => respuesta.Camina" />
+    <PropertyColumn Property="respuesta => respuesta.UsaTransportePublico" />
+    <PropertyColumn Property="respuesta => respuesta.UsaTransportePrivado" />
+    <PropertyColumn Property="respuesta => respuesta.DistanciaASuDestino" />
+
+    <TemplateColumn Context="respuesta">
+        <a href="@($"respuesta/edit?id={respuesta.Id}")">Edit</a> |
+        <a href="@($"respuesta/details?id={respuesta.Id}")">Details</a> |
+        <a href="@($"respuesta/delete?id={respuesta.Id}")">Delete</a>
+    </TemplateColumn>
+</QuickGrid>
+
+@code {
+    private AppDbContext context = default!;
+
+    protected override void OnInitialized()
+    {
+        context = DbFactory.CreateDbContext();
+    }
+
+    public async ValueTask DisposeAsync() => await context.DisposeAsync();
+}

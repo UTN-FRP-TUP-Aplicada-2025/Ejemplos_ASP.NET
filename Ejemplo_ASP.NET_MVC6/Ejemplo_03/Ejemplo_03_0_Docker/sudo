@@ -1,1 +1,0 @@
-deb [arch=amd64] https://packages.microsoft.com/ubuntu/20.04/prod focal main /etc/apt/sources.list.d/mssql-release.list

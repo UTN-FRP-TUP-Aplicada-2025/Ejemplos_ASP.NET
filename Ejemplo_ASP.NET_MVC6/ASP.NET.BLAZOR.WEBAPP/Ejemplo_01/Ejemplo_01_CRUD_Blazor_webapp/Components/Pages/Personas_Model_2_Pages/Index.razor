@@ -1,10 +1,9 @@
-﻿@page "/personas1"
+﻿@page "/personas_model_2"
 
+@using Ejemplo_01_CRUD_Blazor_webapp.Models
+@using Ejemplo_01_CRUD_Blazor_webapp.Services
 
-
-@using Ejemplo_01_CRUD_Blazor_server.Models
-@using Ejemplo_01_CRUD_Blazor_server.Services
-
+@rendermode InteractiveServer
 
 
 <PageTitle>Index</PageTitle>
@@ -12,10 +11,8 @@
 <h1>Index</h1>
 
 <p>
-    <a href="personas1/create">Create New</a>
+    <a href="personas_model_2/create">Crear nuevo registro de persona</a>
 </p>
-
-
 
 <table class="table">
     <thead>
@@ -35,9 +32,9 @@
                 <td>@item.Nombre</td>
                 <td>@item.FechaNacimiento?.ToShortDateString()</td>
                 <td>
-                    <a href="@($"personas1/edit?id={item.Id}")">Edit</a> |
-                    <a href="@($"personas1/details?id={item.Id}")">Details</a> |
-                    <a href="@($"personas1/delete?id={item.Id}")">Delete</a>
+                    <a href="@($"personas_model_2/edit?id={item.Id}")"><i class="fa-solid fa-pen"></i></a> |
+                    <a href="@($"personas_model_2/details?id={item.Id}")"><i class="fa-solid fa-expand"></i></a> |
+                    <a href="@($"personas_model_2/delete?id={item.Id}")"><i class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
         }

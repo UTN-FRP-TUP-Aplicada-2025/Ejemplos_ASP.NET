@@ -1,11 +1,12 @@
-﻿@page "/personas1/create"
+﻿@page "/personas_model_2/create"
 
-@using Ejemplo_01_CRUD_Blazor_server.Models
-@using Ejemplo_01_CRUD_Blazor_server.Services
-
-@using Ejemplo_01_CRUD_Blazor_server.Models
+@using Ejemplo_01_CRUD_Blazor_webapp.Models
+@using Ejemplo_01_CRUD_Blazor_webapp.Services
 
 @inject NavigationManager NavigationManager
+
+@rendermode InteractiveServer
+
 
 <PageTitle>Create</PageTitle>
 
@@ -47,7 +48,7 @@
 </div>
 
 <div>
-    <a href="/personas1">Back to List</a>
+    <a href="/personas_model_2"><i class="fa-solid fa-arrow-left"></i></a>
 </div>
 
 @code {

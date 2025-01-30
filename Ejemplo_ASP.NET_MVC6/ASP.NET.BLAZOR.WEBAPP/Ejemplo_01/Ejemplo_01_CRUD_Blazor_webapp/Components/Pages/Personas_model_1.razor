@@ -1,12 +1,13 @@
-﻿@page "/personas"
+﻿@page "/personas_model_1"
 
-@using Ejemplo_01_CRUD_Blazor_server.Models
-@using Ejemplo_01_CRUD_Blazor_server.Services
+@using Ejemplo_01_CRUD_Blazor_webapp.Models
+@using Ejemplo_01_CRUD_Blazor_webapp.Services
 
-@layout AccountLayout
+@* @layout AccountLayout *@
 
 @inject NavigationManager NavManager
-@* @rendermode InteractiveServer *@
+
+@rendermode InteractiveServer
 
 <h1>Starfleet Starship Database</h1>
 
@@ -60,8 +61,15 @@ else
                     <td>@item.Id</td>
                     <td>@item.DNI</td>
                     <td>@item.Nombre</td><td>@item.FechaNacimiento?.ToShortDateString()</td>
-                    <td><button @onclick="() => editar(item.Id)" >Editar</button>|
-                        <button @onclick="() => eliminar(item.Id)">Eliminar</button>
+                    <td>
+                      @*   <button @onclick="() => editar(item.Id)"><i class="fa-solid fa-pen"></i></button>|
+                        <button @onclick="() => eliminar(item.Id)"><i class="fa-solid fa-trash"></i></button> *@
+                        <a href="#" @onclick="() => editar(item.Id)">
+                            <i class="fa-solid fa-pen"></i>
+                        </a> |
+                        <a href="#" @onclick="() => eliminar(item.Id)">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
                     </td>
                 </tr>
             }
@@ -88,10 +96,7 @@ else
     {
         personaModel.FechaNacimiento = DateTime.Now;
         _service.CrearNuevo(personaModel);
-
-        //  personas.Add(personaModel);
-
-        //NavManager.NavigateTo("/fetchdata");
+        personas.Add(personaModel);
     }
 
     private void editar(int id)

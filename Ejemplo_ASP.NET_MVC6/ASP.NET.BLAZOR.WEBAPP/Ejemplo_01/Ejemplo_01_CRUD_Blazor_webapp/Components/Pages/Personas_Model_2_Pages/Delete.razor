@@ -1,11 +1,11 @@
-﻿@page "/personas1/delete"
+﻿@page "/personas_model_2/delete"
 
-
-@using Ejemplo_01_CRUD_Blazor_server.Models
-@using Ejemplo_01_CRUD_Blazor_server.Services
-
+@using Ejemplo_01_CRUD_Blazor_webapp.Models
+@using Ejemplo_01_CRUD_Blazor_webapp.Services
 
 @inject NavigationManager NavigationManager
+
+@rendermode InteractiveServer
 
 <PageTitle>Delete</PageTitle>
 
@@ -42,7 +42,7 @@
 
         <EditForm method="post" Model="personaModel" OnValidSubmit="DeletePersona" FormName="delete" Enhance>
             <button type="submit" class="btn btn-danger" disabled="@(personaModel is null)">Delete</button> |
-            <a href="/personas1">Volver al listado</a>
+            <a href="/personas1"><i class="fa-solid fa-arrow-left"></i></a>
         </EditForm>
     }
 </div>

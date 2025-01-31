@@ -7,11 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ejemplo_01_0_CRUD_MVC_Simpl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{18465878-A91B-40FC-AB3A-35EC69211CFF}"
-	ProjectSection(SolutionItems) = preProject
-		Readme.md = Readme.md
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_0_database_MSSQL", "Ejemplo_01_0_database_MSSQL", "{FB405D92-29D5-4EFC-94A0-C30232C1CC66}"
 	ProjectSection(SolutionItems) = preProject
 		ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_database_MSSQL\docker_script.sql = ASP.NET.MVC\Ejemplo_01\Ejemplo_01_0_database_MSSQL\docker_script.sql
@@ -47,6 +42,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_03_0_database_MSSQL", "Ejemplo_03_0_database_MSSQL", "{4C7F35A2-60D6-408B-A04F-0818ABDD0BAD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NET.MVC", "ASP.NET.MVC", "{52EF6C6D-BA7C-4093-9B5E-C500AA261857}"
+	ProjectSection(SolutionItems) = preProject
+		ASP.NET.MVC\Readme.md = ASP.NET.MVC\Readme.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NET.Blazor.Server", "ASP.NET.Blazor.Server", "{FF7E79C6-1472-409B-ABD2-66E62E9C2AC9}"
 EndProject
@@ -67,6 +65,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_rest_mvc_y_clientes", "Ejemplo_02_rest_mvc_y_clientes", "{4FBB2938-73D1-426E-B88B-4019BB8229BB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_crud_mvc", "Ejemplo_01_crud_mvc", "{0CD9C2F1-7D5D-4C58-BBC8-3702D66EEE29}"
+	ProjectSection(SolutionItems) = preProject
+		ASP.NET.MVC\Ejemplo_01\Readme.md = ASP.NET.MVC\Ejemplo_01\Readme.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_03_login", "Ejemplo_03_login", "{174558DB-A114-4637-8CA2-5EC3AE9EFE68}"
 EndProject
@@ -224,6 +225,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_01_CRUD_Blazor_webapp", "ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_CRUD_Blazor_webapp\Ejemplo_01_CRUD_Blazor_webapp.csproj", "{02981F8D-F67F-42F9-A3B6-F844FE1539F3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NET.Blazor.Webapp", "ASP.NET.Blazor.Webapp", "{96AA8DB2-3673-4684-8B9E-E979F138E3B9}"
+	ProjectSection(SolutionItems) = preProject
+		ASP.NET.BLAZOR.WEBAPP\Readme.md = ASP.NET.BLAZOR.WEBAPP\Readme.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01", "Ejemplo_01", "{F5FCC2A3-134B-4EED-BA2D-FA6266C300FA}"
 EndProject
@@ -232,12 +236,26 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Despliegue", "Despliegue", "{5EC0DF16-17F6-4441-A54F-0A5BB8B982A5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_0_Somee", "Ejemplo_01_0_Somee", "{6CB34354-AA59-476D-B5E4-A67D5FBAEEB3}"
+	ProjectSection(SolutionItems) = preProject
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\docker-compose.yml = ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\docker-compose.yml
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Dockerfile.dotnet = ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Dockerfile.dotnet
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Dockerfile.mssql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Dockerfile.mssql
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_0_database_MSSQL", "Ejemplo_01_0_database_MSSQL", "{7369DBEA-8A8C-44FD-8786-16E41AC830B4}"
 	ProjectSection(SolutionItems) = preProject
 		ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_database_MSSQL\docker_script.sql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_database_MSSQL\docker_script.sql
 		ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_database_MSSQL\local_script.sql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_database_MSSQL\local_script.sql
 		ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_database_MSSQL\somee_script.sql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_database_MSSQL\somee_script.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_0_Docker", "Ejemplo_01_0_Docker", "{409611E8-1182-4EBE-A202-13C03F45C1FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{57A7D9EF-B644-432D-AFD0-70CD662DA7D2}"
+	ProjectSection(SolutionItems) = preProject
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Scripts\create_dotnet_container.sh = ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Scripts\create_dotnet_container.sh
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Scripts\create_mssql_container.sh = ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Scripts\create_mssql_container.sh
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Scripts\stop.sh = ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Scripts\stop.sh
 	EndProjectSection
 EndProject
 Global
@@ -360,7 +378,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BDFE69BB-BF6B-41C6-8E32-E6419038A822} = {CF97E0FF-B32F-4365-B39C-83151146C088}
-		{18465878-A91B-40FC-AB3A-35EC69211CFF} = {52EF6C6D-BA7C-4093-9B5E-C500AA261857}
 		{FB405D92-29D5-4EFC-94A0-C30232C1CC66} = {48839DB8-A9E1-41B7-AE4B-4BD224294CEC}
 		{BA240214-C2ED-4EF2-A9EB-EBE73D79884B} = {48839DB8-A9E1-41B7-AE4B-4BD224294CEC}
 		{76FE814D-7DFB-433D-935B-0C16D8EF88A9} = {E011D733-6B01-4E6B-AE1D-31A9A48C139F}
@@ -443,6 +460,8 @@ Global
 		{5EC0DF16-17F6-4441-A54F-0A5BB8B982A5} = {F5FCC2A3-134B-4EED-BA2D-FA6266C300FA}
 		{6CB34354-AA59-476D-B5E4-A67D5FBAEEB3} = {5EC0DF16-17F6-4441-A54F-0A5BB8B982A5}
 		{7369DBEA-8A8C-44FD-8786-16E41AC830B4} = {5EC0DF16-17F6-4441-A54F-0A5BB8B982A5}
+		{409611E8-1182-4EBE-A202-13C03F45C1FD} = {5EC0DF16-17F6-4441-A54F-0A5BB8B982A5}
+		{57A7D9EF-B644-432D-AFD0-70CD662DA7D2} = {6CB34354-AA59-476D-B5E4-A67D5FBAEEB3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

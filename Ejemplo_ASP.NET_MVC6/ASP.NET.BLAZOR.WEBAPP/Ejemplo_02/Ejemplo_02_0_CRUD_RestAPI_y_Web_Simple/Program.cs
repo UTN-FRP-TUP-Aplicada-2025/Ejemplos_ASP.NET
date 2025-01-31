@@ -1,15 +1,26 @@
+using Ejemplo_02_0_CRUD_RestAPI_y_Web_Simple.Components;
+
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+
+// Agregar Razor Runtime Compilation (para cambios en vistas sin recompilar)
+builder.Services.Configure<MvcRazorRuntimeCompilationOptions>(options =>
+{
+    options.FileProviders.Add(new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
+        builder.Environment.ContentRootPath));
+});
 
 #region configuracion de restapi y swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen(); //este alcanza si solo es restapi
-builder.Services.AddSwaggerGen(c => 
+builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
@@ -32,20 +43,17 @@ var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Error", createScopeForErrors: true);
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
+app.UseAntiforgery();
 
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode();
 
 #region configuracion api y swagger
 

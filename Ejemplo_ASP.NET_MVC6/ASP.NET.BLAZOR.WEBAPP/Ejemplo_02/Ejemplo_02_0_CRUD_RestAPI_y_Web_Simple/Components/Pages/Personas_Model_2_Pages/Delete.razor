@@ -1,0 +1,74 @@
+﻿@page "/personas_model_2/delete"
+
+@using Ejemplo_02_0_CRUD_RestAPI_y_Web_Simple.Models
+@using Ejemplo_02_0_CRUD_RestAPI_y_Web_Simple.Services
+
+@inject NavigationManager NavigationManager
+
+@rendermode InteractiveServer
+
+<PageTitle>Delete</PageTitle>
+
+<h1>Delete</h1>
+
+<p>¿Estas seguro que requieres borrar este registro?</p>
+
+<div>
+    <h2>Personas</h2>
+
+    <hr />
+    @if (personaModel is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <dl class="row">
+            <dt class="col-sm-2">Id</dt>
+            <dd class="col-sm-10">@personaModel.Id</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">DNI</dt>
+            <dd class="col-sm-10">@personaModel.DNI</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">Nombre</dt>
+            <dd class="col-sm-10">@personaModel.Nombre</dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">Fecha Nacimiento</dt>
+            <dd class="col-sm-10">@personaModel.FechaNacimiento</dd>
+        </dl>
+
+        <EditForm method="post" Model="personaModel" OnValidSubmit="DeletePersona" FormName="delete" Enhance>
+            <button type="submit" class="btn btn-danger" disabled="@(personaModel is null)">Delete</button> |
+            <a href="/personas1"><i class="fa-solid fa-arrow-left"></i></a>
+        </EditForm>
+    }
+</div>
+
+@code {
+    private PersonaModel? personaModel;
+
+    private PersonasService _personasService = new PersonasService();
+
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        personaModel = _personasService.GetById(Id);
+
+        if (personaModel is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    private async Task DeletePersona()
+    {
+        _personasService.Eliminar(Id);
+
+        NavigationManager.NavigateTo("/personas1");
+    }
+}

@@ -62,11 +62,32 @@ else
                     <td>@item.DNI</td>
                     <td>@item.Nombre</td><td>@item.FechaNacimiento?.ToShortDateString()</td>
                     <td>
-                      @*   <button @onclick="() => editar(item.Id)"><i class="fa-solid fa-pen"></i></button>|
-                        <button @onclick="() => eliminar(item.Id)"><i class="fa-solid fa-trash"></i></button> *@
-                        <a href="./" @onclick="() => editar(item.Id)"><i class="fa-solid fa-pen"></i></a> |
-                        <a href="./" @onclick="() => ver(item.Id)"> <i class="fa-solid fa-expand"></i></a> |
-                        <a href="./" @onclick="() => eliminar(item.Id)"><i class="fa-solid fa-trash"></i></a>
+                        <button class="link-button"  @onclick="() => editar(item.Id)"><i class="fa-solid fa-pen"></i></button>
+                        <button class="link-button" @onclick="() => ver(item.Id)"><i class="fa-solid fa-expand"></i></button>|
+                        <button class="link-button" @onclick="() => eliminar(item.Id)"><i class="fa-solid fa-trash"></i></button>
+                       @*  <span class="link" @onclick="() => editar(item.Id)"><i class="fa-solid fa-pen"></i></span> |
+                        <span class="link" @onclick="() => ver(item.Id)"><i class="fa-solid fa-expand"></i></span> |
+                        <span class="link" @onclick="() => eliminar(item.Id)"><i class="fa-solid fa-trash"></i></span> *@
+
+                       @*  <a href="javascript:void(0)" @onclick="() => ver(item.Id)" @onclick:preventDefault>
+                            <i class="fa-solid fa-expand"></i>
+                        </a> |
+                        <a href="javascript:void(0)" @onclick="() => editar(item.Id)" @onclick:preventDefault>
+                            <i class="fa-solid fa-pen"></i>
+                        </a> |
+                        <a href="javascript:void(0)" @onclick="() => eliminar(item.Id)" @onclick:preventDefault>
+                            <i class="fa-solid fa-trash"></i>
+                        </a> *@
+
+                      @*   <BlazorLink OnClick="() => ver(item.Id)">
+    <i class="fa-solid fa-expand"></i>
+</BlazorLink> |
+<BlazorLink OnClick="() => editar(item.Id)">
+    <i class="fa-solid fa-pen"></i>
+</BlazorLink> |
+<BlazorLink OnClick="() => eliminar(item.Id)">
+    <i class="fa-solid fa-trash"></i>
+</BlazorLink> *@
                     </td>
                 </tr>
             }
@@ -77,6 +98,7 @@ else
 @code {
     [SupplyParameterFromForm]
     private PersonaModel? personaModel { get; set; }
+
     private List<PersonaModel> personas { get; set; }
 
     private PersonasService _service = new();

@@ -1,78 +1,48 @@
-﻿@page "/Account/Login"
-@attribute [AllowAnonymous]
+﻿@page "/login"
+@inject SignInManager<IdentityUser> SignInManager
+@inject NavigationManager Navigation
 
-@using Ejemplo_03_0_Login_Simple.Services
-@using Ejemplo_03_0_Login_Simple.Models
-@using System.Security.Claims
-@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.Authorization
+<h3>Iniciar Sesión</h3>
 
-@rendermode InteractiveServer
+<EditForm Model="@loginModel" OnValidSubmit="HandleLogin">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-@inject NavigationManager NavigationManager
-@inject AuthenticationStateProvider AuthenticationStateProvider
-
-
-@if(error)
-{
-    <p class="text-danger">Usuario o contraseña no válidos.</p>
-}
-
-<div class="row">
-    <div class="col-md-4">
-        <EditForm method="post" Model="usuarioModel" OnValidSubmit="onLogin" FormName="login" Enhance>
-
-            <DataAnnotationsValidator />
-
-            <ValidationSummary role="alert" />
-
-            <div class="mb-3">
-                <label for="email" class="form-label">Usuario:</label>
-                <InputText id="nombre" @bind-Value="usuarioModel.Nombre" class="form-control" aria-required="true" />
-
-            </div>
-
-            <div class="mb-3">
-                <label for="clave" class="form-label">Clave:</label>
-                <InputText id="clave" @bind-Value="usuarioModel.Clave" class="form-control" type="password" />
-            </div>
-
-            <button type="submit" class="btn btn-primary">Ingresar</button>
-        </EditForm>
+    <div>
+        <label for="email">Email:</label>
+        <InputText id="email" @bind-Value="loginModel.Email" />
     </div>
-</div>
 
+    <div>
+        <label for="password">Contraseña:</label>
+        <InputText type="password" id="password" @bind-Value="loginModel.Password" />
+    </div>
+
+    <button type="submit">Iniciar Sesión</button>
+</EditForm>
 
 @code {
-    private UsuarioModel usuarioModel { get; set; } = new();
+    private LoginModel loginModel = new LoginModel();
 
-    private UsuariosService _usuariosService = new UsuariosService();
-
-    private bool error=false;
-
-    private async Task onLogin()
+    private async Task HandleLogin()
     {
-        var result = _usuariosService.VerificarLogin(usuarioModel);
-
-        if (usuarioModel == null)
+        var result = await SignInManager.PasswordSignInAsync(loginModel.Email, loginModel.Password, false, lockoutOnFailure: false);
+        if (result.Succeeded)
         {
-            error = true;
-            return;
+            Navigation.NavigateTo("/");
         }
-
-        var claims = new List<Claim>()
+        else
         {
-             new Claim(ClaimTypes.Name, usuarioModel.Nombre),
-        };
-
-        var identity = new ClaimsIdentity(claims, "Cookies");
-        var principal = new ClaimsPrincipal(identity);
-
-        if (AuthenticationStateProvider is CustomAuthStateProvider authProvider)
-        {
-            await authProvider.Login(principal);
+            // Mostrar mensaje de error
         }
+    }
 
-        NavigationManager.NavigateTo("/", true);
+    public class LoginModel
+    {
+        [Required]
+        public string Email { get; set; }
+
+        [Required]
+        public string Password { get; set; }
     }
 }

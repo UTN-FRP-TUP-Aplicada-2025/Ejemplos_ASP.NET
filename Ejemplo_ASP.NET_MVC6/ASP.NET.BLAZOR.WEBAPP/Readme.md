@@ -68,7 +68,10 @@ Se admiten formularios HTML estándar. Cree un formulario utilizando la <form>eti
     [SupplyParameterFromForm]
     private Starship? Model { get; set; }
 
-    protected override void OnInitialized() => Model ??= new();
+    protected override void OnInitialized()
+    {
+        Model ??= new();
+    }
 
     private void Submit() => Logger.LogInformation("Id = {Id}", Model?.Id);
 

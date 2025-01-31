@@ -1,5 +1,78 @@
-﻿<h3>Login</h3>
+﻿@page "/Account/Login"
+@attribute [AllowAnonymous]
+
+@using Ejemplo_03_0_Login_Simple.Services
+@using Ejemplo_03_0_Login_Simple.Models
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+
+@rendermode InteractiveServer
+
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+
+@if(error)
+{
+    <p class="text-danger">Usuario o contraseña no válidos.</p>
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="usuarioModel" OnValidSubmit="onLogin" FormName="login" Enhance>
+
+            <DataAnnotationsValidator />
+
+            <ValidationSummary role="alert" />
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Usuario:</label>
+                <InputText id="nombre" @bind-Value="usuarioModel.Nombre" class="form-control" aria-required="true" />
+
+            </div>
+
+            <div class="mb-3">
+                <label for="clave" class="form-label">Clave:</label>
+                <InputText id="clave" @bind-Value="usuarioModel.Clave" class="form-control" type="password" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+        </EditForm>
+    </div>
+</div>
+
 
 @code {
+    private UsuarioModel usuarioModel { get; set; } = new();
 
+    private UsuariosService _usuariosService = new UsuariosService();
+
+    private bool error=false;
+
+    private async Task onLogin()
+    {
+        var result = _usuariosService.VerificarLogin(usuarioModel);
+
+        if (usuarioModel == null)
+        {
+            error = true;
+            return;
+        }
+
+        var claims = new List<Claim>()
+        {
+             new Claim(ClaimTypes.Name, usuarioModel.Nombre),
+        };
+
+        var identity = new ClaimsIdentity(claims, "Cookies");
+        var principal = new ClaimsPrincipal(identity);
+
+        if (AuthenticationStateProvider is CustomAuthStateProvider authProvider)
+        {
+            await authProvider.Login(principal);
+        }
+
+        NavigationManager.NavigateTo("/", true);
+    }
 }

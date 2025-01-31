@@ -1,7 +1,9 @@
 ﻿@page "/personas_model_1"
+@attribute [Authorize]
 
-@using Ejemplo_01_CRUD_Blazor_webapp.Models
-@using Ejemplo_01_CRUD_Blazor_webapp.Services
+@using Ejemplo_03_0_Login_Simple.Models
+@using Ejemplo_03_0_Login_Simple.Services
+@using Microsoft.AspNetCore.Authorization
 
 @* @layout AccountLayout *@
 
@@ -13,7 +15,7 @@
 
 <h2>New Ship Entry Form</h2>
 
-<EditForm Model="personaModel" OnValidSubmit="Submit" FormName="Persona3">
+<EditForm Model="personaModel" OnValidSubmit="Submit" FormName="personas_model_1">
 
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -96,19 +98,19 @@ else
         personas.Add(personaModel);
     }
 
-    private void editar(int id)
+    private void editar(int? id)
     {
-        personaModel = _service.GetById(id);
+        personaModel = _service.GetById((int)id);
         personas = _service.GetAll();
     }
 
-    private void eliminar(int id)
+    private void eliminar(int? id)
     {
-        _service.Eliminar(id);
+        _service.Eliminar((int)id);
         personas = _service.GetAll();
     }
 
-    private void ver(int id)
+    private void ver(int? id)
     {
     }
 }

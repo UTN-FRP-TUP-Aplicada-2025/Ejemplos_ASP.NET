@@ -1,36 +1,44 @@
 using Ejemplo_03_0_Login_Simple.Components;
-
+using Ejemplo_03_0_Login_Simple.Services;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
+builder.Services.AddRazorComponents().AddInteractiveServerComponents();
+
 builder.Services.AddAuthentication("Cookies")
     .AddCookie(options =>
     {
-        options.LoginPath = "/Account/Login";
-        options.LogoutPath = "/Account/Logout";
+        options.LoginPath = "/Account/Login";    // Ruta de login
+        options.LogoutPath = "/Account/Logout"; // Ruta de logout
         options.Cookie.Name = "Cookie_authenticacion";
         options.Cookie.MaxAge = TimeSpan.FromMinutes(1);
     });
 
-// Add services to the container.
-builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
+builder.Services.AddAuthorization();
 
-// Agregar Razor Runtime Compilation (para cambios en vistas sin recompilar)
-builder.Services.Configure<MvcRazorRuntimeCompilationOptions>(options =>
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
 {
-    options.FileProviders.Add(new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
-        builder.Environment.ContentRootPath));
+    options.IdleTimeout = TimeSpan.FromMinutes(1);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+    options.Cookie.Name = "Cookie_session";
 });
+
+builder.Services.AddDataProtection();
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
+
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -39,13 +47,13 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
-
 #region habilitando middleware adicionales
 app.UseAuthentication(); //middleware para la autenticación
 app.UseAuthorization();  //middleware para la autorización
 app.UseSession();        //middleware para la sesión
+
 #endregion
+
+app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
 
 app.Run();

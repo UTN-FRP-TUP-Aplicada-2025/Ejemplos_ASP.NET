@@ -1,7 +1,9 @@
 ﻿@page "/personas_model_3"
+@attribute [Authorize]
 
-@using Ejemplo_01_CRUD_Blazor_webapp.Models
-@using Ejemplo_01_CRUD_Blazor_webapp.Services
+@using Ejemplo_03_0_Login_Simple.Models
+@using Ejemplo_03_0_Login_Simple.Services
+@using Microsoft.AspNetCore.Authorization
 @inject NavigationManager NavManager
 
 @rendermode InteractiveServer

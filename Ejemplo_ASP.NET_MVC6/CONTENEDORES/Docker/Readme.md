@@ -52,6 +52,8 @@ sudo ln -sf /usr/share/zoneinfo/America/Argentina/Buenos_Aires /etc/localtime
 revisar el /etc/timezone
 
 ```bash
+https://www.youtube.com/watch?v=Z5uBcczJxUY
+
 cat /etc/timezone
 ```
 

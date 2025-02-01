@@ -11,7 +11,7 @@ public class UsuarioModel
 
     [Required]
     [UIHint("password")]
-    [StringLength(50, ErrorMessage = "El primer nombre no puede ser mayor a 20 caracteres")]
+    [StringLength(200, ErrorMessage = "El primer nombre no puede ser mayor a 200 caracteres")]
     public string Clave { get; set; }
 
     public string ReturnUrl { get; set; } = "/";

@@ -2,6 +2,11 @@
 
 ## Ejemplos ASP.NET Blazor WebAPP
 
+https://learn.microsoft.com/en-us/aspnet/core/blazor/tutorials/movie-database-app/part-1?view=aspnetcore-8.0&pivots=vs
+https://github.com/dotnet/blazor-samples
+[Blazor-samples-8.0](https://github.com/dotnet/blazor-samples/tree/main/8.0)
+
+
 
 ## [Blazor](https://learn.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-8.0)
 

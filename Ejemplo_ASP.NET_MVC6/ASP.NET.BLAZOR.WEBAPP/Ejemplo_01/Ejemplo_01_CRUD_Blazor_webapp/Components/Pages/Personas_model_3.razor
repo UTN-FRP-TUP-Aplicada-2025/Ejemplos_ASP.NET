@@ -100,14 +100,15 @@ else
     private bool editando = false;
     private bool mostrandoFormulario = false;
 
-    protected override void OnInitialized()
+    async protected override void OnInitialized()
     {
-        CargarPersonas();
+        await CargarPersonas();
     }
 
-    private void CargarPersonas()
+    async private Task CargarPersonas()
     {
-        personas = _service.GetAll();
+        personas = await _service.GetAll();
+        StateHasChanged();
     }
 
     private void NuevaPersona()
@@ -117,38 +118,38 @@ else
         mostrandoFormulario = true;
     }
 
-    private void Editar(int id)
+    async private Task Editar(int id)
     {
-        personaModel = _service.GetById(id);
+        personaModel =await _service.GetById(id);
         editando = true;
         mostrandoFormulario = true;
     }
 
-    private void GuardarPersona()
+    async private Task GuardarPersona()
     {
         if (editando)
         {
-            _service.Actualizar(personaModel);
+            await _service.Actualizar(personaModel);
         }
         else
         {
             personaModel.FechaNacimiento = DateTime.Now;
-            _service.CrearNuevo(personaModel);
+            await _service.CrearNuevo(personaModel);
         }
 
-        CargarPersonas();
+        await CargarPersonas();
         mostrandoFormulario = false;
     }
 
-    private void Eliminar(int id)
+    async private Task Eliminar(int id)
     {
-        _service.Eliminar(id);
-        CargarPersonas();
+        await _service.Eliminar(id);
+        await CargarPersonas();
     }
 
-    private void VerDetalles(int id)
+    async private Task VerDetalles(int id)
     {
-        personaSeleccionada = _service.GetById(id);
+        personaSeleccionada = await _service.GetById(id);
     }
 
     private void CerrarDetalles()

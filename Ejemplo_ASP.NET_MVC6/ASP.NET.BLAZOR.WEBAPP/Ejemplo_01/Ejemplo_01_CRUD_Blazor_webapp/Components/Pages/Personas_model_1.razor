@@ -1,43 +1,87 @@
 ﻿@page "/personas_model_1"
 
+@rendermode InteractiveServer
+
+@* cuando se depende de asincronos *@
+@attribute [StreamRendering]
+
 @using Ejemplo_01_CRUD_Blazor_webapp.Models
 @using Ejemplo_01_CRUD_Blazor_webapp.Services
 
-@* @layout AccountLayout *@
+@using Microsoft.AspNetCore.Authorization
+
 
 @inject NavigationManager NavManager
 
-@rendermode InteractiveServer
-
-<h1>Starfleet Starship Database</h1>
-
-<h2>New Ship Entry Form</h2>
-
-<EditForm Model="personaModel" OnValidSubmit="Submit" FormName="personas_model_1">
-
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-
-    <div class="form-group">
-        <label>
-            Persona:
-            <InputNumber class="form-control" @bind-Value="personaModel!.DNI" />
-        </label>
-    </div>
-
+@if (isVisibleFormDetailRegistro == true)
+{
     <div>
-        <label>
-            Persona:
-            <InputText class="form-control"  @bind-Value="personaModel!.Nombre" />
-        </label>
+        <h2>Respuesta</h2>
+        <hr />
+        @if (personas is null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <dl class="row">
+
+                <dt class="col-sm-2">Id</dt>
+                <dd class="col-sm-10">@Model?.Id</dd>
+
+                <dt class="col-sm-2">DNI</dt>
+                <dd class="col-sm-10">@Model?.DNI</dd>
+
+                <dt class="col-sm-2">Nombre</dt>
+                <dd class="col-sm-10">@Model?.Nombre</dd>
+
+                <dt class="col-sm-2">FechaNacimiento</dt>
+                <dd class="col-sm-10">@Model?.FechaNacimiento</dd>
+            </dl>
+            <div>
+                <button class="link-button" @onclick="() => viewFormDetailRegistro(Model.Id)"><i class="fa-solid fa-pen"></i></button>
+            </div>
+        }
     </div>
+}
+else if (isVisibleFormNewEditRegistro == true)
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="Model" OnValidSubmit="editPersona" FormName="create" Enhance>
 
-    <div>
-        <button class="btn btn-primary" type="submit">Submit</button> 
+                <DataAnnotationsValidator />
+                <ValidationSummary class="text-danger" role="alert" />
+
+                <div class="mb-3">
+                    <label for="id" class="form-label">Id:</label>
+                    <InputNumber id="id" @bind-Value="Model.Id" class="form-control" aria-required="true" />
+                    <ValidationMessage For="() => Model.Id" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <InputText id="nombre" @bind-Value="Model.Nombre" class="form-control" />
+                    <ValidationMessage For="() => Model.Nombre" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="dni" class="form-label">DNI:</label>
+                    <InputNumber id="dni" @bind-Value="Model.DNI" class="form-control" />
+                    <ValidationMessage For="() => Model.DNI" class="text-danger" />
+                </div>
+                <div class="mb-3">
+                    <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento:</label>
+                    <InputDate id="fechaNacimiento" @bind-Value="Model.FechaNacimiento" class="form-control" />
+                    <ValidationMessage For="() => Model.FechaNacimiento" class="text-danger" />
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </EditForm>
+        </div>
     </div>
-</EditForm>
+}
 
-
+<p>
+    <button class="link-button" @onclick="() => viewFormNewRegistro()"><i class="fa-solid fa-pen"></i></button>
+</p>
 
 @if (personas == null)
 {
@@ -60,34 +104,12 @@ else
                 <tr>
                     <td>@item.Id</td>
                     <td>@item.DNI</td>
-                    <td>@item.Nombre</td><td>@item.FechaNacimiento?.ToShortDateString()</td>
+                    <td>@item.Nombre</td>
+                    <td>@item.FechaNacimiento?.ToShortDateString()</td>
                     <td>
-                        <button class="link-button"  @onclick="() => editar(item.Id)"><i class="fa-solid fa-pen"></i></button>
-                        <button class="link-button" @onclick="() => ver(item.Id)"><i class="fa-solid fa-expand"></i></button>|
+                        <button class="link-button" @onclick="() => viewFormDetailRegistro(item.Id)"><i class="fa-solid fa-pen"></i></button>
+                        <button class="link-button" @onclick="() => viewFormDetailRegistro(item.Id)"><i class="fa-solid fa-expand"></i></button>|
                         <button class="link-button" @onclick="() => eliminar(item.Id)"><i class="fa-solid fa-trash"></i></button>
-                       @*  <span class="link" @onclick="() => editar(item.Id)"><i class="fa-solid fa-pen"></i></span> |
-                        <span class="link" @onclick="() => ver(item.Id)"><i class="fa-solid fa-expand"></i></span> |
-                        <span class="link" @onclick="() => eliminar(item.Id)"><i class="fa-solid fa-trash"></i></span> *@
-
-                       @*  <a href="javascript:void(0)" @onclick="() => ver(item.Id)" @onclick:preventDefault>
-                            <i class="fa-solid fa-expand"></i>
-                        </a> |
-                        <a href="javascript:void(0)" @onclick="() => editar(item.Id)" @onclick:preventDefault>
-                            <i class="fa-solid fa-pen"></i>
-                        </a> |
-                        <a href="javascript:void(0)" @onclick="() => eliminar(item.Id)" @onclick:preventDefault>
-                            <i class="fa-solid fa-trash"></i>
-                        </a> *@
-
-                      @*   <BlazorLink OnClick="() => ver(item.Id)">
-    <i class="fa-solid fa-expand"></i>
-</BlazorLink> |
-<BlazorLink OnClick="() => editar(item.Id)">
-    <i class="fa-solid fa-pen"></i>
-</BlazorLink> |
-<BlazorLink OnClick="() => eliminar(item.Id)">
-    <i class="fa-solid fa-trash"></i>
-</BlazorLink> *@
                     </td>
                 </tr>
             }
@@ -97,41 +119,83 @@ else
 
 @code {
     [SupplyParameterFromForm]
-    private PersonaModel? personaModel { get; set; }
+    private PersonaModel? Model { get; set; }
 
-    private List<PersonaModel> personas { get; set; }
+    private List<PersonaModel>? personas { get; set; } = new();
 
-    private PersonasService _service = new();
+    private bool isVisibleFormDetailRegistro;
+    private bool isVisibleFormNewEditRegistro;
 
+    private PersonasService _personasService = new();
 
-    protected override void OnInitialized()
+    //s1 agregue esta variable
+    private bool _isLoaded = false;
+
+    async protected override void OnInitialized()
     {
-        personaModel ??= new PersonaModel() { };
-        personas = _service.GetAll();
+        Model ??= new PersonaModel() { };
 
+        //aquí no me funcionó
+        //s1
+        personas = await _personasService.GetAll();
+        StateHasChanged();
     }
 
-    private void Submit()
+    // //s1 agregue este evento
+    // protected override async Task OnAfterRenderAsync(bool firstRender)
+    // {
+    //     if (firstRender && !_isLoaded)
+    //     {
+    //         personas = await _personasService.GetAll();
+    //         _isLoaded = true;
+    //         StateHasChanged(); // Notifica al componente que debe volver a renderizarse
+    //     }
+    // }
+
+    async protected Task viewFormNewRegistro()
     {
-        personaModel.FechaNacimiento = DateTime.Now;
-        _service.CrearNuevo(personaModel);
-        personas.Add(personaModel);
+        isVisibleFormNewEditRegistro = true;
+        isVisibleFormDetailRegistro = false;
     }
 
-    private void editar(int id)
+    async protected Task viewFormDetailRegistro(int? id)
     {
-        personaModel = _service.GetById(id);
-        personas = _service.GetAll();
+        isVisibleFormNewEditRegistro = true;
+        isVisibleFormDetailRegistro = false;
+        Model = await _personasService.GetById((int)id);
     }
 
-    private void eliminar(int id)
+
+
+    async private Task Submit()
     {
-        _service.Eliminar(id);
-        personas = _service.GetAll();
+        Model.FechaNacimiento = DateTime.Now;
+
+        await _personasService.CrearNuevo(Model);
+
+        personas.Add(Model);
     }
 
-    private void ver(int id)
+    private async Task AddPersona()
     {
-        personaModel = _service.GetById(id);
+        _personasService.CrearNuevo(Model);
+    }
+
+    private async Task editPersona()
+    {
+        try
+        {
+            _personasService.Actualizar(Model);
+        }
+        catch (Exception e)
+        {
+
+        }
+    }
+
+    async private Task eliminar(int? id)
+    {
+        await _personasService.Eliminar((int)id);
+        personas = await _personasService.GetAll();
     }
 }

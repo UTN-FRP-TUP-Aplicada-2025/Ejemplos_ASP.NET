@@ -14,42 +14,45 @@
     <a href="personas_model_2/create">Crear nuevo registro de persona</a>
 </p>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>DNI</th>
-            <th>Nombre</th>
-            <th>Fecha Nacimiento</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in personasModel)
-        {
+@if( personasModel!=null)
+{
+    <table class="table">
+        <thead>
             <tr>
-                <td>@item.Id</td>
-                <td>@item.DNI</td>
-                <td>@item.Nombre</td>
-                <td>@item.FechaNacimiento?.ToShortDateString()</td>
-                <td>
-                    <a href="@($"personas_model_2/edit?id={item.Id}")"><i class="fa-solid fa-pen"></i></a> |
-                    <a href="@($"personas_model_2/details?id={item.Id}")"><i class="fa-solid fa-expand"></i></a> |
-                    <a href="@($"personas_model_2/delete?id={item.Id}")"><i class="fa-solid fa-trash"></i></a>
-                </td>
+                <th>Id</th>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Fecha Nacimiento</th>
             </tr>
-        }
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            @foreach (var item in personasModel)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.DNI</td>
+                    <td>@item.Nombre</td>
+                    <td>@item.FechaNacimiento?.ToShortDateString()</td>
+                    <td>
+                        <a href="@($"personas_model_2/edit?id={item.Id}")"><i class="fa-solid fa-pen"></i></a> |
+                        <a href="@($"personas_model_2/details?id={item.Id}")"><i class="fa-solid fa-expand"></i></a> |
+                        <a href="@($"personas_model_2/delete?id={item.Id}")"><i class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 @code {
 
     PersonasService _service = new PersonasService();
     List<PersonaModel> personasModel;
 
-    protected override void OnInitialized()
+    async protected override void OnInitialized()
     {
+        StateHasChanged();
         //context = DbFactory.CreateDbContext();
-        personasModel = _service.GetAll();
+        personasModel = await _service.GetAll();
     }
 
 }

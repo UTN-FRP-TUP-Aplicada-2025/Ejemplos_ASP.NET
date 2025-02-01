@@ -1,4 +1,5 @@
-﻿using Ejemplo_01_CRUD_Blazor_webapp.DALs;
+﻿
+using Ejemplo_01_CRUD_Blazor_webapp.DALs;
 using Ejemplo_01_CRUD_Blazor_webapp.DALs.MSSDALs;
 using Ejemplo_01_CRUD_Blazor_webapp.Models;
 
@@ -8,28 +9,28 @@ public class PersonasService
 {
     IPersonasDAL _dao = new PersonasMSSDAL();
 
-    public List<PersonaModel> GetAll()
+    async public Task<List<PersonaModel>> GetAll()
     {
-        return _dao.GetAll();
+        return await _dao.GetAll();
     }
 
-    public PersonaModel? GetById(int id)
+    async public Task<PersonaModel?> GetById(int id)
     {
-        return _dao.GetByKey(id);
+        return await _dao.GetByKey(id);
     }
 
-    public void CrearNuevo(PersonaModel persona)
+    async public Task<bool> CrearNuevo(PersonaModel persona)
     {
-        _dao.Insert(persona);
+        return await _dao.Insert(persona);
     }
 
-    public void Actualizar(PersonaModel persona)
+    async public Task<bool> Actualizar(PersonaModel persona)
     {
-        _dao.Update(persona);
+        return await _dao.Update(persona);
     }
 
-    public void Eliminar(int id)
+    async public Task<bool> Eliminar(int id)
     {
-        _dao.Delete(id);
+        return await _dao.Delete(id);
     }
 }

@@ -372,6 +372,38 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_01_Personas", "EF.N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_01", "MAUI\Ejemplo_01\Ejemplo_01.csproj", "{0945572A-F23E-4D83-A394-89A35578E0FD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_09", "Ejemplo_09", "{FD76978C-D9F7-49FB-979C-02A88E40545B}"
+	ProjectSection(SolutionItems) = preProject
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Readme.md = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Readme.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_09_0_Template_HTML", "ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Template_HTML\Ejemplo_09_0_Template_HTML.csproj", "{139AB886-D0E6-48A2-A48B-E5B9C5185FE7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicios", "Servicios", "{3A503486-D83B-4362-BADC-75CA0A65C81C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Despliegue", "Despliegue", "{F7CDC99C-E7D3-4FB6-84BE-AA94B1FD83AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_09_0_database_MSSQL", "Ejemplo_09_0_database_MSSQL", "{644A6EC9-729F-4746-A4B7-C91D9E5DAA26}"
+	ProjectSection(SolutionItems) = preProject
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_database_MSSQL\docker_script.sql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_database_MSSQL\docker_script.sql
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_database_MSSQL\local_script.sql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_database_MSSQL\local_script.sql
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_database_MSSQL\somee_script.sql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_database_MSSQL\somee_script.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_09_0_Docker", "Ejemplo_09_0_Docker", "{C4A3F99C-994A-49E6-9AA3-47454E759DDE}"
+	ProjectSection(SolutionItems) = preProject
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\docker-compose.yml = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\docker-compose.yml
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Dockerfile.dotnet = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Dockerfile.dotnet
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Dockerfile.mssql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Dockerfile.mssql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{E701527F-7102-44CB-B703-CB44D9E31995}"
+	ProjectSection(SolutionItems) = preProject
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Scripts\create_dotnet_container.sh = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Scripts\create_dotnet_container.sh
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Scripts\create_mssql_container.sh = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Scripts\create_mssql_container.sh
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Scripts\stop.sh = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Scripts\stop.sh
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -504,6 +536,10 @@ Global
 		{0945572A-F23E-4D83-A394-89A35578E0FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0945572A-F23E-4D83-A394-89A35578E0FD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0945572A-F23E-4D83-A394-89A35578E0FD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{139AB886-D0E6-48A2-A48B-E5B9C5185FE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{139AB886-D0E6-48A2-A48B-E5B9C5185FE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{139AB886-D0E6-48A2-A48B-E5B9C5185FE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{139AB886-D0E6-48A2-A48B-E5B9C5185FE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -610,6 +646,13 @@ Global
 		{6D661E61-5340-4968-800C-C2B75A1476AA} = {453FD033-83AE-4596-9003-4889BA0F5378}
 		{FA73E7AC-A098-47D1-99FD-D0423DA0668C} = {4371EF38-EE53-446D-89E3-20F8B29050C4}
 		{0945572A-F23E-4D83-A394-89A35578E0FD} = {5EE701FC-7444-468B-9AEF-2C419FC836F1}
+		{FD76978C-D9F7-49FB-979C-02A88E40545B} = {96AA8DB2-3673-4684-8B9E-E979F138E3B9}
+		{139AB886-D0E6-48A2-A48B-E5B9C5185FE7} = {3A503486-D83B-4362-BADC-75CA0A65C81C}
+		{3A503486-D83B-4362-BADC-75CA0A65C81C} = {FD76978C-D9F7-49FB-979C-02A88E40545B}
+		{F7CDC99C-E7D3-4FB6-84BE-AA94B1FD83AD} = {FD76978C-D9F7-49FB-979C-02A88E40545B}
+		{644A6EC9-729F-4746-A4B7-C91D9E5DAA26} = {F7CDC99C-E7D3-4FB6-84BE-AA94B1FD83AD}
+		{C4A3F99C-994A-49E6-9AA3-47454E759DDE} = {F7CDC99C-E7D3-4FB6-84BE-AA94B1FD83AD}
+		{E701527F-7102-44CB-B703-CB44D9E31995} = {C4A3F99C-994A-49E6-9AA3-47454E759DDE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

@@ -57,7 +57,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        personaModel = _personasService.GetById(Id);
+        personaModel = await _personasService.GetById(Id);
 
         if (personaModel is null)
         {
@@ -67,7 +67,7 @@
 
     private async Task DeletePersona()
     {
-        _personasService.Eliminar(Id);
+        await _personasService.Eliminar(Id);
 
         NavigationManager.NavigateTo("/personas_model_2");
     }

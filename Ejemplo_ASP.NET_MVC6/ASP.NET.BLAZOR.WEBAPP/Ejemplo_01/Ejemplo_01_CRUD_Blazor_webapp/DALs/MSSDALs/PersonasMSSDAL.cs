@@ -1,5 +1,4 @@
 ﻿using Ejemplo_01_CRUD_Blazor_webapp.Models;
-using Ejemplo_01_CRUD_Blazor_webapp.MSSDALs;
 
 using Microsoft.Data.SqlClient;
 
@@ -7,7 +6,7 @@ namespace Ejemplo_01_CRUD_Blazor_webapp.DALs.MSSDALs;
 
 public class PersonasMSSDAL : IPersonasDAL
 {
-    public List<PersonaModel> GetAll()
+    async public Task<List<PersonaModel>> GetAll()
     {
         var lista = new List<PersonaModel>();
 
@@ -16,13 +15,13 @@ public class PersonasMSSDAL : IPersonasDAL
 FROM Personas p";
 
         using var conexion = new SqlConnection(ConexionString.Valor);
-        conexion.Open();
+        await conexion.OpenAsync();
 
         using var query = new SqlCommand(sqlQuery, conexion);
 
-        var reader = query.ExecuteReader();
+        var reader =await query.ExecuteReaderAsync();
 
-        while (reader.Read())
+        while ( await reader.ReadAsync())
         {
             var objeto = ReadAsPersona(reader);
             lista.Add(objeto);
@@ -30,54 +29,54 @@ FROM Personas p";
         return lista;
     }
 
-    public PersonaModel? GetByKey(int id)
+    async public Task<PersonaModel?> GetByKey(int id)
     {
         PersonaModel objeto = null;
 
         string sqlQuery =
-@"SELECT p.* 
+@"SELECT TOP 1 p.* 
 FROM Personas p
 WHERE p.Id=@Id";
 
         using var conexion = new SqlConnection(ConexionString.Valor);
-        conexion.Open();
+        await conexion.OpenAsync();
 
         using var query = new SqlCommand(sqlQuery, conexion);
         query.Parameters.AddWithValue("@Id", id);
 
-        var reader = query.ExecuteReader();
+        var reader = await query.ExecuteReaderAsync();
 
-        if (reader.Read())
+        if (await reader.ReadAsync())
         {
             objeto = ReadAsPersona(reader);
-
         }
         return objeto;
     }
 
-    public bool Insert(PersonaModel nuevo)
+    async public Task<bool> Insert(PersonaModel nuevo)
     {
         string sqlQuery =
-@"INSERT Personas(DNI, Nombre, Fecha_Nacimiento)
+@"INSERT Personas(Dni, Nombre, Fecha_Nacimiento)
 OUTPUT INSERTED.ID 
-VALUES (@Dni, @Nombre, @FechaNacimiento)";
+VALUES (@Dni, @Nombre, @Fecha_Nacimiento)";
 
         using var conexion = new SqlConnection(ConexionString.Valor);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
         query.Parameters.AddWithValue("@Dni", nuevo.DNI);
-        query.Parameters.AddWithValue("@FechaNacimiento", nuevo.FechaNacimiento);
         query.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
+        query.Parameters.AddWithValue("@Fecha_Nacimiento", nuevo.FechaNacimiento);
 
-        nuevo.Id = Convert.ToInt32(query.ExecuteScalar());
+        var respuesta =await query.ExecuteScalarAsync();
+        nuevo.Id = Convert.ToInt32(respuesta);
         return nuevo.Id > 0;
     }
 
-    public bool Update(PersonaModel actualizar)
+    async public Task<bool> Update(PersonaModel actualizar)
     {
         string sqlQuery =
-@"UPDATE Personas SET Dni=@Dni, Nombre=@Nombre, Fecha_Nacimiento=@FechaNacimiento
+@"UPDATE Personas SET Dni=@Dni, Nombre=@Nombre, Fecha_Nacimiento=@Fecha_Nacimiento 
 WHERE Id=@Id";
 
         using var conexion = new SqlConnection(ConexionString.Valor);
@@ -86,27 +85,29 @@ WHERE Id=@Id";
         using var query = new SqlCommand(sqlQuery, conexion);
         query.Parameters.AddWithValue("@Dni", actualizar.DNI);
         query.Parameters.AddWithValue("@Nombre", actualizar.Nombre);
-        query.Parameters.AddWithValue("@FechaNacimiento", actualizar.FechaNacimiento);
+        query.Parameters.AddWithValue("@Fecha_Nacimiento", actualizar.FechaNacimiento);
         query.Parameters.AddWithValue("@Id", actualizar.Id);
 
-        int cantidad = query.ExecuteNonQuery();
+        int cantidad =await query.ExecuteNonQueryAsync();
 
         return cantidad > 0;
     }
 
-    public void Delete(int id)
+    async public Task<bool> Delete(int id)
     {
         string sqlQuery =
 @"DELETE FROM Personas
 WHERE Id=@Id";
 
         using var conexion = new SqlConnection(ConexionString.Valor);
-        conexion.Open();
+        await conexion.OpenAsync();
 
         using var query = new SqlCommand(sqlQuery, conexion);
         query.Parameters.AddWithValue("@Id", id);
 
-        var eliminados = query.ExecuteScalar();
+        int? eliminados = await query.ExecuteNonQueryAsync();
+
+        return eliminados > 0;
     }
 
     public PersonaModel ReadAsPersona(SqlDataReader reader)

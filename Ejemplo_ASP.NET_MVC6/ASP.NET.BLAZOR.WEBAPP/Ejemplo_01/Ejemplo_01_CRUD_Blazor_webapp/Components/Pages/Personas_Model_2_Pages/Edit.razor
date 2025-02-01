@@ -75,7 +75,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        personaModel = _personasService.GetById(Id);
+        personaModel = await _personasService.GetById(Id);
 
         if (personaModel is null)
         {

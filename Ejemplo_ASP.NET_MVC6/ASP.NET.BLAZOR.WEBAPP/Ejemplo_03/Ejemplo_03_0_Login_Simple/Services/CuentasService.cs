@@ -9,34 +9,34 @@ public class UsuariosService
 {
     IUsuariosDAL _dao = new UsuariosMSSDAL();
 
-    public bool VerificarLogin(UsuarioModel usuarioVerificar)
+    async public Task<bool> VerificarLogin(UsuarioModel usuarioVerificar)
     { 
-        var usuario = _dao.GetByKey(usuarioVerificar.Nombre);
+        var usuario = await _dao.GetByKey(usuarioVerificar.Nombre);
         return usuario != null && usuarioVerificar.Clave == usuario.Clave;
     }
 
-    public List<UsuarioModel> GetAll()
+    async public Task<List<UsuarioModel>> GetAll()
     {
-        return _dao.GetAll();
+        return await _dao.GetAll();
     }
 
-    public UsuarioModel? GetByNombre(string nombre)
+    async public Task<UsuarioModel?> GetByNombre(string nombre)
     {
-        return _dao.GetByKey(nombre);
+        return await _dao.GetByKey(nombre);
     }
 
-    public void CrearNuevo(UsuarioModel persona)
+    async public Task<bool> CrearNuevo(UsuarioModel persona)
     {
-        _dao.Insert(persona);
+        return await _dao.Insert(persona);
     }
 
-    public void Actualizar(UsuarioModel persona)
+    async public Task<bool> Actualizar(UsuarioModel persona)
     {
-        _dao.Update(persona);
+        return await _dao.Update(persona);
     }
 
-    public void Eliminar(string nombre)
+    async public Task<bool> Eliminar(string nombre)
     {
-        _dao.Delete(nombre);
+        return await _dao.Delete(nombre);
     }
 }

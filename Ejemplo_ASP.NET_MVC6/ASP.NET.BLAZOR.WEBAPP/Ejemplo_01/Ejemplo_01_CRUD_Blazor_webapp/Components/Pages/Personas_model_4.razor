@@ -13,23 +13,23 @@
 {
     <h2>@(editando ? "Editar Persona" : "Nueva Persona")</h2>
 
-    <EditForm Model="personaModel" OnValidSubmit="GuardarPersona">
+    <EditForm Model="Model" OnValidSubmit="GuardarPersona">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
         <div class="mb-3">
             <label>DNI:</label>
-            <InputNumber class="form-control" @bind-Value="personaModel!.DNI" />
+            <InputNumber class="form-control" @bind-Value="Model!.DNI" />
         </div>
 
         <div class="mb-3">
             <label>Nombre:</label>
-            <InputText class="form-control" @bind-Value="personaModel!.Nombre" />
+            <InputText class="form-control" @bind-Value="Model!.Nombre" />
         </div>
 
         <div class="mb-3">
             <label>Fecha de Nacimiento:</label>
-            <InputDate class="form-control" @bind-Value="personaModel!.FechaNacimiento" />
+            <InputDate class="form-control" @bind-Value="Model!.FechaNacimiento" />
         </div>
 
         <button class="btn btn-primary" type="submit">Guardar</button>
@@ -93,62 +93,63 @@ else
 }
 
 @code {
-    private PersonaModel personaModel { get; set; } = new();
+    private PersonaModel Model { get; set; } = new();
     private PersonaModel? personaSeleccionada;
     private List<PersonaModel> personas { get; set; } = new();
-    private PersonasService _service = new();
+    private PersonasService _personasService = new();
     private bool editando = false;
     private bool mostrandoFormulario = false;
 
-    protected override void OnInitialized()
+    async protected override void OnInitialized()
     {
-        CargarPersonas();
+        await CargarPersonas();
     }
 
-    private void CargarPersonas()
+    async private Task CargarPersonas()
     {
-        personas = _service.GetAll();
+        personas = await _personasService.GetAll();
+        StateHasChanged();
     }
 
     private void NuevaPersona()
     {
-        personaModel = new PersonaModel();
+        Model = new PersonaModel();
         editando = false;
         mostrandoFormulario = true;
     }
 
-    private void Editar(int id)
+    async private Task Editar(int id)
     {
-        personaModel = _service.GetById(id);
+        Model = await _personasService.GetById(id);
         editando = true;
         mostrandoFormulario = true;
     }
 
-    private void GuardarPersona()
+    async private Task GuardarPersona()
     {
         if (editando)
         {
-            _service.Actualizar(personaModel);
+            await _personasService.Actualizar(Model);
         }
         else
         {
-            personaModel.FechaNacimiento = DateTime.Now;
-            _service.CrearNuevo(personaModel);
+            Model.FechaNacimiento = DateTime.Now;
+            await _personasService.CrearNuevo(Model);
         }
 
-        CargarPersonas();
+        await CargarPersonas();
         mostrandoFormulario = false;
     }
 
-    private void Eliminar(int id)
+    async private Task Eliminar(int id)
     {
-        _service.Eliminar(id);
+        await _personasService.Eliminar(id);
         CargarPersonas();
     }
 
-    private void VerDetalles(int id)
+    async private Task VerDetalles(int id)
     {
-        personaSeleccionada = _service.GetById(id);
+        personaSeleccionada = await _personasService.GetById(id);
     }
 
     private void CerrarDetalles()

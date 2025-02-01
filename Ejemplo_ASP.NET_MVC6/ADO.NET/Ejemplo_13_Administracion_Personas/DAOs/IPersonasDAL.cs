@@ -4,11 +4,11 @@ namespace Ejemplo_13_Personas.DALs;
 
 public interface IPersonasDAL : IBaseDAL<PersonaModel, int>
 {
-    List<PersonaModel> GetAll();
-    PersonaModel? GetByKey(int id);
+    Task<List<PersonaModel>> GetAll();
+    Task<PersonaModel?> GetByKey(int id);
 
-    bool Insert(PersonaModel nuevo);
-    bool Update(PersonaModel actualizar);
+    Task<bool> Insert(PersonaModel nuevo);
+    Task<bool> Update(PersonaModel actualizar);
 
-    void Delete(int id);
+    Task Delete(int id);
 }

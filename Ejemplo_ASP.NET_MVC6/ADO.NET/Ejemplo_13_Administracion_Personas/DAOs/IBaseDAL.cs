@@ -1,12 +1,14 @@
-﻿namespace Ejemplo_13_Personas.DALs;
+﻿using System.Threading.Tasks;
+
+namespace Ejemplo_13_Personas.DALs;
 
 public interface IBaseDAL<T, K>
 {
-    List<T> GetAll();
-    T? GetByKey(K key);
+    Task<List<T>> GetAll();
+    Task<T?> GetByKey(K key);
 
-    bool Insert(T nuevo);
-    bool Update(T actualizar);
+    Task<bool> Insert(T nuevo);
+    Task<bool> Update(T actualizar);
 
-    void Delete(K id);
+    Task Delete(K id);
 }

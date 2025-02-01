@@ -1,9 +1,10 @@
 ﻿
-using Ejemplo_05_Areas.DALs.MSSDALs;
-using Ejemplo_13_Personas.DALs;
 
-IPersonasDAL _dao = new PersonasMSSDAL();
-var Models = _dao.GetAll();
+using Ejemplo_13_Personas.Services;
+
+PersonasService _personaService = new();
+
+var Models = await _personaService.GetAll();
 
 // simulando la respuesta a una consulta por un recurso - genera el codigo html dinamicamente.
 

@@ -419,6 +419,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Despliegue", "Despliegue", "{24276036-8E67-48EC-A74D-9559D6874762}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_05_0_database_MSSQL", "Ejemplo_05_0_database_MSSQL", "{11F319C4-40CD-433A-8FC1-2FDC4010C1CD}"
+	ProjectSection(SolutionItems) = preProject
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_05\Ejemplo_05_0_database_MSSQL\docker_script.sql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_05\Ejemplo_05_0_database_MSSQL\docker_script.sql
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_05\Ejemplo_05_0_database_MSSQL\local_script.sql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_05\Ejemplo_05_0_database_MSSQL\local_script.sql
+		ASP.NET.BLAZOR.WEBAPP\Ejemplo_05\Ejemplo_05_0_database_MSSQL\somee_script.sql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_05\Ejemplo_05_0_database_MSSQL\somee_script.sql
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_05_0_Docker", "Ejemplo_05_0_Docker", "{AE956241-3975-4574-B1E9-460AD94133B4}"
 EndProject

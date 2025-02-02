@@ -2,19 +2,28 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 app.UseStaticFiles();
-
 app.UseDefaultFiles();
 
 app.Use(async (context, next) =>
 {
-    var fileProvider = app.Services.GetRequiredService<IWebHostEnvironment>().WebRootFileProvider;
+    var env = app.Services.GetRequiredService<IWebHostEnvironment>();
+    var fileProvider = env.WebRootFileProvider;
     var contents = fileProvider.GetDirectoryContents("/");
+
+    // Si la solicitud es a la raíz y no existe index.html, listar archivos
     if (context.Request.Path == "/")
     {
-        context.Response.ContentType = "text/html";
+        var indexFile = contents.FirstOrDefault(f => f.Name.Equals("index.html", StringComparison.OrdinalIgnoreCase));
 
-        // Crear una lista de enlaces para cada archivo
+        if (indexFile != null)
+        {
+            context.Response.Redirect("/index.html");
+            return;
+        }
+
+        context.Response.ContentType = "text/html";
         var html = "<h1>Archivos en la raíz:</h1><ul>";
+
         foreach (var item in contents)
         {
             var name = item.Name;
@@ -27,9 +36,8 @@ app.Use(async (context, next) =>
     }
     else
     {
-        await next(); // Continuar con otros middlewares si no es la raíz
+        await next(); // Continuar con otros middlewares
     }
 });
-
 
 app.Run();

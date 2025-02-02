@@ -5,15 +5,23 @@ USE MASTER
 GO
 
 
-DROP DATABASE IF EXISTS Ejemplo_09_0_Template_HTML_DB
+DROP DATABASE IF EXISTS Ejemplo_05_0_Areas_DB
 
 GO
 
-CREATE DATABASE  Ejemplo_09_0_Template_HTML_DB
+CREATE DATABASE  Ejemplo_05_0_Areas_DB
 
 GO
 
-USE Ejemplo_09_0_Template_HTML_DB
+USE Ejemplo_05_0_Areas_DB
+
+GO
+
+CREATE TABLE Usuarios
+(
+	Nombre NVARCHAR(50) PRIMARY KEY NOT NULL,
+	Clave NVARCHAR(200) NOT NULL,
+);
 
 GO
 
@@ -40,8 +48,22 @@ VALUES
 (28733932, 'Carina', '7-23-1982'),
 (24254932, 'Arturo', '6-2-1963'),
 (28374602, 'Andres', '3-2-1980'),
-(30694152, 'Estefania', '5-2-1985')
+(30694152, 'Estefania', '5-2-1985'),
+(45235754, 'Norberto', '2-6-2004'),
+(32432223, 'Ricardo', '2-6-2000'),
+(23432224, 'Aurelio', '2-6-2004'),
+(37232232, 'Cesar', '2-2-1987')
+
+INSERT INTO Usuarios(Nombre, Clave)
+VALUES('Admin', '123'),
+('Usuario', 'abc');
+
 
 GO
 
-SELECT * FROM Personas
+select * from Personas;
+
+select * from Usuarios;
+
+
+GO

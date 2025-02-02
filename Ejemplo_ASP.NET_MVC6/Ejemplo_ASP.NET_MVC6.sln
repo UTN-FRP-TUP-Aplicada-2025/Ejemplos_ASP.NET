@@ -368,7 +368,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_01_Personas", "EF.N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_01", "MAUI\Ejemplo_01\Ejemplo_01.csproj", "{0945572A-F23E-4D83-A394-89A35578E0FD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_09_template_html", "Ejemplo_09_template_html", "{FD76978C-D9F7-49FB-979C-02A88E40545B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_09_siemple_template_html", "Ejemplo_09_siemple_template_html", "{FD76978C-D9F7-49FB-979C-02A88E40545B}"
 	ProjectSection(SolutionItems) = preProject
 		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Readme.md = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Readme.md
 	EndProjectSection
@@ -407,7 +407,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{642C
 		ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Scripts\stop.sh = ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Scripts\stop.sh
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_05_areas", "Ejemplo_05_areas", "{8E73760D-8ED1-49F3-8710-E2CF2D0E88B6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_05_areas_templates", "Ejemplo_05_areas_templates", "{8E73760D-8ED1-49F3-8710-E2CF2D0E88B6}"
 	ProjectSection(SolutionItems) = preProject
 		ASP.NET.BLAZOR.WEBAPP\Ejemplo_05\Readme.md = ASP.NET.BLAZOR.WEBAPP\Ejemplo_05\Readme.md
 	EndProjectSection
@@ -423,6 +423,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_05_0_Docker", "Ejemplo_05_0_Docker", "{AE956241-3975-4574-B1E9-460AD94133B4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_05_0_Somee", "Ejemplo_05_0_Somee", "{209A9F88-1318-41A4-899F-4FA6CA2FD597}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_Mapas", "ASP.NET.STATIC_FILE\Ejemplo_02\Ejemplo_02_Mapas\Ejemplo_02_Mapas.csproj", "{398F76F6-976D-494A-9E41-A588E1ED39D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -564,6 +566,10 @@ Global
 		{EE09D51E-31D2-4A73-AC24-E53A7E11C0E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE09D51E-31D2-4A73-AC24-E53A7E11C0E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE09D51E-31D2-4A73-AC24-E53A7E11C0E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{398F76F6-976D-494A-9E41-A588E1ED39D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{398F76F6-976D-494A-9E41-A588E1ED39D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{398F76F6-976D-494A-9E41-A588E1ED39D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{398F76F6-976D-494A-9E41-A588E1ED39D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -684,6 +690,7 @@ Global
 		{11F319C4-40CD-433A-8FC1-2FDC4010C1CD} = {24276036-8E67-48EC-A74D-9559D6874762}
 		{AE956241-3975-4574-B1E9-460AD94133B4} = {24276036-8E67-48EC-A74D-9559D6874762}
 		{209A9F88-1318-41A4-899F-4FA6CA2FD597} = {24276036-8E67-48EC-A74D-9559D6874762}
+		{398F76F6-976D-494A-9E41-A588E1ED39D9} = {30FC4A2A-51F0-42C7-A988-699FB3031E74}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

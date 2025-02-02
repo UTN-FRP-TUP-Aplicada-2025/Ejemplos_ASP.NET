@@ -1,4 +1,4 @@
-﻿namespace Ejemplo_09_CrearPersona.Utils;
+﻿namespace Ejemplo_08_Consulta_Personas.Utils;
 
 public class ConexionString
 {

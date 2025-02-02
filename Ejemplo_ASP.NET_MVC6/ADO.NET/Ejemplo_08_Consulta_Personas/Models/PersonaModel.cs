@@ -21,4 +21,9 @@ public class PersonaModel
     [DisplayName("Fecha de Nacimiento")]
     [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
     public DateTime? FechaNacimiento { get; set; }
+
+    public override string ToString()
+    {
+        return $"{Id};{DNI};{Nombre};{FechaNacimiento:dd/MM/yyyy}";
+    }
 }

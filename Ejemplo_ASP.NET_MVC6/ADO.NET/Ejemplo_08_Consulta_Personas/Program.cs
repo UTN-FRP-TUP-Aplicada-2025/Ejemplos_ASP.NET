@@ -1,5 +1,5 @@
-﻿using Ejemplo_09_CrearPersona.Models;
-using Ejemplo_09_CrearPersona.Utils;
+﻿using Ejemplo_08_Consulta_Personas.Models;
+using Ejemplo_08_Consulta_Personas.Utils;
 using Microsoft.Data.SqlClient;
 using System.Data;
 
@@ -30,10 +30,12 @@ List<PersonaModel> ReadAsPersonas(DataTable dt)
 
 var cadenaconexion = ConexionString.Valor;
 
-var query = "SELECT * FROM PERSONAS";
+var query = 
+@"SELECT p.* 
+FROM Personas p";
 
 using var conexion = new SqlConnection(cadenaconexion);
-conexion.Open();
+await conexion.OpenAsync();
 
 using var comando = new SqlCommand(query, conexion);
 var dt = new DataTable();

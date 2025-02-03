@@ -20,7 +20,7 @@
     <HeadOutlet /> *@
 
 </head>
-<body>
+<body style="opacity: 0">
 
     <!-- Navigation-->
     <nav class="navbar navbar-light bg-light static-top">
@@ -261,5 +261,10 @@
 
     <script src="/public/_framework/blazor.web.js"></script>
 
+    <style>
+        body {
+            opacity: 1 !important;
+        }
+    </style>
 </body>
 </html>

@@ -12,20 +12,17 @@
 }
 
 <script type="text/javascript">
-    function onEnviar() {
-        // Crea una nueva instancia de XMLHttpRequest
+    function onEnviar() 
+    {
         var xhr = new XMLHttpRequest();
 
-        // Configura la solicitud GET a la API
         xhr.open('GET', 'https://ejemplo05areas.somee.com/api/Personas', true);
-
-        // Establece los encabezados
+               
         xhr.setRequestHeader('Accept', 'application/json');
-
-        // Define qué hacer cuando la solicitud se complete
+               
         xhr.onload = function () {
-            if (xhr.status >= 200 && xhr.status < 300) {
-                // Si la respuesta es exitosa, procesa los datos
+            if (xhr.status >= 200 && xhr.status < 300) 
+            {
                 try {
                     var data = JSON.parse(xhr.responseText);
                     mostrarTabla(data);
@@ -33,30 +30,25 @@
                     console.error('Error al parsear la respuesta:', error);
                 }
             } else {
-                // Si hay un error en la solicitud, muestra el mensaje
                 console.error('Error en la solicitud. Código de estado:', xhr.status);
             }
         };
 
-        // Maneja errores de red
         xhr.onerror = function () {
             console.error('Error de red al realizar la solicitud.');
         };
 
-        // Envía la solicitud
         xhr.send();
     }
 
-    function mostrarTabla(data) {
-        // Selecciona por id el contenedor de la tabla
+    function mostrarTabla(data) 
+    {
         const container = document.getElementById('tabla-container');
-        container.innerHTML = ''; // Elimina los elementos dentro del contenedor
+        container.innerHTML = '';
 
-        // Crea la tabla
         const table = document.createElement('table');
         table.className = 'table table-bordered table-striped';
 
-        // Cabecera de la tabla
         const thead = document.createElement('thead');
         thead.innerHTML = `
             <tr>
@@ -68,7 +60,6 @@
         `;
         table.appendChild(thead);
 
-        // Cuerpo de la tabla con los datos
         const tbody = document.createElement('tbody');
         data.forEach(persona => {
             const row = document.createElement('tr');
@@ -82,7 +73,6 @@
         });
         table.appendChild(tbody);
 
-        // Añade la tabla al contenedor
         container.appendChild(table);
     }
 </script>

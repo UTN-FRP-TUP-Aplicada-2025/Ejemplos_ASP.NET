@@ -1,5 +1,4 @@
-﻿@page "/admin/personas"
-@layout AdminLayout
+﻿@page "/personas"
 
 @attribute [Authorize]
 @rendermode InteractiveServer
@@ -7,22 +6,16 @@
 @* cuando se depende de asincronos *@
 @attribute [StreamRendering]
 
-@using Ejemplo_05_0_Areas.Components.Layout
-@using Ejemplo_05_0_Areas.Models
-@using Ejemplo_05_0_Areas.Services
+@using Ejemplo_03_0_Login_Simple.Components.Layout
+@using Ejemplo_03_0_Login_Simple.Models
+@using Ejemplo_03_0_Login_Simple.Services
+
 @using Microsoft.AspNetCore.Authorization
 
 
 @inject NavigationManager NavManager
 
-
-@if (isLoading)
-{
-    <div><em>Loading...</em></div>
-}
-else
-{
-<section class="section">
+<div class="row">
     <div class="row">
         <div class="col-lg-6">
 
@@ -131,10 +124,10 @@ else
 
         </div>
     </div>
-</section>
+</div>
 
 
-<section class="section text-center">
+<div class="row">
     <div class="row">
         <div class="col-lg-12">
 
@@ -182,14 +175,9 @@ else
             </div>
         </div>
     </div>
-</section>
-}
+</div>
 
-
-@code 
-{
-     private bool isLoading = true;
-
+@code {
     [SupplyParameterFromForm]
     private PersonaModel? Model { get; set; }
 
@@ -211,8 +199,6 @@ else
         //aquí no me funcionó
         //s1
         personas = await _personasService.GetAll();
-
-        isLoading = false;
         StateHasChanged();
     }
 

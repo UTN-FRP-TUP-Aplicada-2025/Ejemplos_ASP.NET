@@ -1,17 +1,38 @@
 ﻿@page "/admin/logout"
+
+@using Microsoft.AspNetCore.Authentication;
+
 @layout LoginLayout
 @* @rendermode InteractiveServer *@
 
 @using Ejemplo_05_0_Areas.Components.Layout
-@using Microsoft.AspNetCore.Identity
 
-@inject SignInManager<IdentityUser> SignInManager
+@inject IHttpContextAccessor HttpContextAccessor
 @inject NavigationManager Navigation
 
-@code {
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Authentication.Cookies
+
+
+
+@code
+{
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     await base.OnInitializedAsync();
+    //     if (HttpContent.User.Identity.IsAuthenticated)
+    //     { 
+            
+    //     }
+    // }
+
     protected override async Task OnInitializedAsync()
     {
-        await SignInManager.SignOutAsync();
-        Navigation.NavigateTo("/");
+        var httpContext = HttpContextAccessor.HttpContext;
+        if (httpContext != null)
+        {
+            await httpContext.SignOutAsync("Cookies");
+            Navigation.NavigateTo("/", forceLoad: true);
+        }
     }
 }

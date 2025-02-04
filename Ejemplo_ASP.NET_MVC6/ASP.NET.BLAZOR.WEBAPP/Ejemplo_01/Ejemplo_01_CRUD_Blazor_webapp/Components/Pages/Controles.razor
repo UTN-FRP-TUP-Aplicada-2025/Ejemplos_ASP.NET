@@ -1,0 +1,49 @@
+﻿@page "/controles"
+@inject NavigationManager NavigationManager
+
+<div class="col">
+
+    <div class="row">
+        <input type="checkbox" @bind="isChecked" />
+
+
+    </div>
+
+    <div>
+        <label>Password:</label> <input value="@Password" @oninput="OnPasswordChanged" type="@(showPassword ? "text" : "password")" />
+    </div>
+
+    <div class="row">
+        <label>@OnClick</label>
+        <button class="btn btn-primary" @onclick="OnClick">Click me!</button>
+    </div>
+
+    <div class="row">
+        <button @onclick="Navigate">Navigate</button>
+    </div>
+
+</div>
+
+@code {
+    bool isChecked;
+
+    bool showPassword;
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    [Parameter]
+    public string Password { get; set; }
+
+    [Parameter]
+    public EventCallback<string> PasswordChanged { get; set; }
+    private Task OnPasswordChanged(ChangeEventArgs e)
+    {
+        Password = e.Value.ToString();
+        return PasswordChanged.InvokeAsync(Password);
+    }
+    void Navigate()
+    {
+        NavigationManager.NavigateTo("counter");
+    }
+}

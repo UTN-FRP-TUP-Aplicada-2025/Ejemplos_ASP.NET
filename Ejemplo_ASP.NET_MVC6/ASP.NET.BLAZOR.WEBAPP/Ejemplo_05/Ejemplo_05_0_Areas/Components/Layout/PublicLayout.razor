@@ -1,5 +1,15 @@
 ﻿@inherits LayoutComponentBase
 
+@inject IHttpContextAccessor HttpContextAccessor
+@inject NavigationManager Navigation
+
+@using Microsoft.AspNetCore.Components.Authorization
+
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Authentication.Cookies
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,24 +19,93 @@
 
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/public/css/styles.css" rel="stylesheet" />
 
-@* este lo comente porque no se porque queda anidado
+    <HeadContent>
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/public/css/styles.css" rel="stylesheet" type="text/css" />
+    </HeadContent>
+
+    @* este lo comente porque no se porque queda anidado
     <HeadOutlet /> *@
 
+    @* <HeadOutlet /> *@
 </head>
 <body style="opacity: 0">
 
     <!-- Navigation-->
     <nav class="navbar navbar-light bg-light static-top">
         <div class="container">
-            <a class="navbar-brand" href="#!">Start Bootstrap</a>
-            <a class="btn btn-primary" href="/admin/login">Sign Up</a>
+            <a class="navbar-brand" href="/admin/personas">Registro</a>
+            <AuthorizeView>
+                <NotAuthorized>
+                    <a class="btn btn-primary" href="/admin/login">Sign Up</a>
+                </NotAuthorized>
+
+                <Authorized>
+                    <li class="nav-item dropdown pe-3">
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                            <img src="/admin/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                            <span class="d-none d-md-block dropdown-toggle ps-2">@context.User.Identity?.Name</span>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                            <li class="dropdown-header">
+                                <h6>@context.User.Identity?.Name</h6>
+                                <span>Usuario registrado</span>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                    <i class="bi bi-person"></i>
+                                    <span>Mi Perfil</span>
+                                </a>
+                            </li>
+
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                    <i class="bi bi-gear"></i>
+                                    <span>Configuración</span>
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center" href="/admin/logout">
+                                    <i class="bi bi-gear"></i>
+                                    <span>Cerrar sesión</span>
+                                </a>
+
+                                @* no llama al evento ninguno de los de abajo
+                                    
+                                <a class="dropdown-item d-flex align-items-center" href="#" @onclick="Logout" @onclick:preventDefault>
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Cerrar sesión</span>
+                                </a> *@
+
+                                @* <button class="dropdown-item d-flex align-items-center" @onclick="Logout">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Cerrar sesión</span>
+                                </button> *@
+
+                                @* <button @onclick="Logout">Cerrar sesión</button> *@
+
+                                @* <a class="dropdown-item d-flex align-items-center" href="#" @onclick="Logout" @onclick:preventDefault>
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Cerrar sesión</span>
+                                </a> *@
+                            </li>
+                        </ul>
+                    </li>
+                </Authorized>
+
+            </AuthorizeView>
         </div>
     </nav>
     <!-- Masthead-->
@@ -268,3 +347,17 @@
     </style>
 </body>
 </html>
+
+@code {
+   
+
+    private async Task Logout()
+    {
+        var httpContext = HttpContextAccessor.HttpContext;
+        if (httpContext != null)
+        {
+            await httpContext.SignOutAsync("Cookies");
+            Navigation.NavigateTo("/admin/login", forceLoad: true);
+        }
+    }
+}

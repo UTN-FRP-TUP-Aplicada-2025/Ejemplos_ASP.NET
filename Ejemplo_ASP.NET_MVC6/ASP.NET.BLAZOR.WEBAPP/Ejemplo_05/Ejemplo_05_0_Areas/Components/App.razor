@@ -6,13 +6,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
-    @*     
-    <HeadOutlet /> *@
+
+    <!--es un componente especial que Blazor usa para inyectar dinámicamente contenido dentro del head de la página-->    
+    <HeadOutlet />
 </head>
-<body>
+<body style="opacity: 0">
     
     <Routes />
     
-     <script src="/_framework/blazor.web.js"></script> 
+     <script src="/_framework/blazor.web.js"></script>
+
+
+    <style>
+        body {
+            opacity: 1 !important;
+        }
+    </style>
 </body>
 </html>

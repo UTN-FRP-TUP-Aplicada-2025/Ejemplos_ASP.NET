@@ -1,4 +1,8 @@
 ﻿
+pasando parametros
+paremtros de una ruta
+https://learn.microsoft.com/en-us/aspnet/core/blazor/components/?view=aspnetcore-9.0
+
 https://learn.microsoft.com/en-us/aspnet/core/blazor/security/?view=aspnetcore-9.0&tabs=visual-studio-code
 
 https://learn.microsoft.com/en-us/aspnet/core/blazor/security/additional-scenarios?view=aspnetcore-9.0#pass-tokens-to-a-server-side-blazor-app

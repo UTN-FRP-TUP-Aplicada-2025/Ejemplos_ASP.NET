@@ -1,5 +1,5 @@
 using Ejemplo_03_0_Login_Simple.Components;
-using Ejemplo_03_0_Login_Simple.Services;
+
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 
@@ -8,8 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Agregar servicios al contenedor.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
-
-
 
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

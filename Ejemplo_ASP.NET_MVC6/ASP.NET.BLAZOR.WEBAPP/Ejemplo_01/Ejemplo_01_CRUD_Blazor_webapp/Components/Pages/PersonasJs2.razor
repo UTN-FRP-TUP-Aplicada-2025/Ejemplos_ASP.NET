@@ -1,0 +1,88 @@
+﻿@page "/personasjs2"
+
+<h3>Jst</h3>
+
+<h1 class="mb-4">Listado de Personas</h1>
+
+<button id="miBoton" class="btn btn-primary mb-3" onclick="onEnviar()">Solicitar</button>
+
+<div id="tabla-container"></div>
+
+@code {
+}
+
+<script type="text/javascript">
+    function onEnviar() {
+        // Crea una nueva instancia de XMLHttpRequest
+        var xhr = new XMLHttpRequest();
+
+        // Configura la solicitud GET a la API
+        xhr.open('GET', 'https://ejemplo05areas.somee.com/api/Personas', true);
+
+        // Establece los encabezados
+        xhr.setRequestHeader('Accept', 'application/json');
+
+        // Define qué hacer cuando la solicitud se complete
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                // Si la respuesta es exitosa, procesa los datos
+                try {
+                    var data = JSON.parse(xhr.responseText);
+                    mostrarTabla(data);
+                } catch (error) {
+                    console.error('Error al parsear la respuesta:', error);
+                }
+            } else {
+                // Si hay un error en la solicitud, muestra el mensaje
+                console.error('Error en la solicitud. Código de estado:', xhr.status);
+            }
+        };
+
+        // Maneja errores de red
+        xhr.onerror = function () {
+            console.error('Error de red al realizar la solicitud.');
+        };
+
+        // Envía la solicitud
+        xhr.send();
+    }
+
+    function mostrarTabla(data) {
+        // Selecciona por id el contenedor de la tabla
+        const container = document.getElementById('tabla-container');
+        container.innerHTML = ''; // Elimina los elementos dentro del contenedor
+
+        // Crea la tabla
+        const table = document.createElement('table');
+        table.className = 'table table-bordered table-striped';
+
+        // Cabecera de la tabla
+        const thead = document.createElement('thead');
+        thead.innerHTML = `
+            <tr>
+                <th>ID</th>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Fecha de Nacimiento</th>
+            </tr>
+        `;
+        table.appendChild(thead);
+
+        // Cuerpo de la tabla con los datos
+        const tbody = document.createElement('tbody');
+        data.forEach(persona => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${persona.id}</td>
+                <td>${persona.dni}</td>
+                <td>${persona.nombre}</td>
+                <td>${new Date(persona.fechaNacimiento).toLocaleDateString()}</td>
+            `;
+            tbody.appendChild(row);
+        });
+        table.appendChild(tbody);
+
+        // Añade la tabla al contenedor
+        container.appendChild(table);
+    }
+</script>

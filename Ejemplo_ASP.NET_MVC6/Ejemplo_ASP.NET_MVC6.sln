@@ -90,6 +90,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_07", "Ejemplo_07", "{E56A11F3-0E25-4747-9339-7E3601FD8B66}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_2_Cliente_HTML_Simple", "Ejemplo_02_2_Cliente_HTML_Simple", "{9A96B121-E48E-4247-87E8-A0DEE0CC9298}"
+	ProjectSection(SolutionItems) = preProject
+		ASP.NET.MVC\Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\index.html = ASP.NET.MVC\Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\index.html
+		ASP.NET.MVC\Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\readme.md = ASP.NET.MVC\Ejemplo_02\Ejemplo_02_2_Cliente_HTML_Simple\readme.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_3_Cliente_PowerShell", "Ejemplo_02_3_Cliente_PowerShell", "{06857E11-13E3-4034-8F3A-0C4B2A7E6831}"
 EndProject
@@ -257,7 +261,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "07_ASP.NET.Blazor.Webapp", 
 		ASP.NET.BLAZOR.WEBAPP\Readme.md = ASP.NET.BLAZOR.WEBAPP\Readme.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_crud_mvc", "Ejemplo_01_crud_mvc", "{F5FCC2A3-134B-4EED-BA2D-FA6266C300FA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_crud_webapp", "Ejemplo_01_crud_webapp", "{F5FCC2A3-134B-4EED-BA2D-FA6266C300FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicios", "Servicios", "{36DA0313-D53B-4DB8-AC4E-1CB3BE4F7C75}"
 EndProject
@@ -282,7 +286,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_01_0_Docker", "Ejem
 		ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Dockerfile.mssql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Dockerfile.mssql
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_rest_mvc_y_clientes", "Ejemplo_02_rest_mvc_y_clientes", "{B6872E8B-3BD4-49AB-802D-6FDF1774A172}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_webapp_rest_y_clientes", "Ejemplo_02_webapp_rest_y_clientes", "{B6872E8B-3BD4-49AB-802D-6FDF1774A172}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_03_login", "Ejemplo_03_login", "{0E63512D-27AF-4588-8B30-6077DF057B85}"
 	ProjectSection(SolutionItems) = preProject
@@ -431,6 +435,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_05_0_Somee", "Ejemp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_Mapas", "ASP.NET.STATIC_FILE\Ejemplo_02\Ejemplo_02_Mapas\Ejemplo_02_Mapas.csproj", "{398F76F6-976D-494A-9E41-A588E1ED39D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_0_CRUD_RestAPI_Simple", "ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_CRUD_RestAPI_Simple\Ejemplo_02_0_CRUD_RestAPI_Simple.csproj", "{9DBEACD3-3926-4E77-9449-21AF14466CF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -575,6 +581,10 @@ Global
 		{398F76F6-976D-494A-9E41-A588E1ED39D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{398F76F6-976D-494A-9E41-A588E1ED39D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{398F76F6-976D-494A-9E41-A588E1ED39D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DBEACD3-3926-4E77-9449-21AF14466CF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DBEACD3-3926-4E77-9449-21AF14466CF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DBEACD3-3926-4E77-9449-21AF14466CF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DBEACD3-3926-4E77-9449-21AF14466CF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -696,6 +706,7 @@ Global
 		{AE956241-3975-4574-B1E9-460AD94133B4} = {24276036-8E67-48EC-A74D-9559D6874762}
 		{209A9F88-1318-41A4-899F-4FA6CA2FD597} = {24276036-8E67-48EC-A74D-9559D6874762}
 		{398F76F6-976D-494A-9E41-A588E1ED39D9} = {30FC4A2A-51F0-42C7-A988-699FB3031E74}
+		{9DBEACD3-3926-4E77-9449-21AF14466CF7} = {7C92D0D0-D57D-490C-B84E-0EEE86D64AAD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

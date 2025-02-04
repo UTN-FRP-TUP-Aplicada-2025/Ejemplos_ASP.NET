@@ -9,6 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigins", policy =>
+    {
+        policy.SetIsOriginAllowed(origin => string.IsNullOrEmpty(origin) || origin == "null")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+
 // Agregar Razor Runtime Compilation (para cambios en vistas sin recompilar)
 builder.Services.Configure<MvcRazorRuntimeCompilationOptions>(options =>
 {
@@ -66,5 +77,7 @@ app.MapRazorComponents<App>()
 
 app.MapControllers();
 #endregion
+
+app.UseCors("AllowSpecificOrigins"); // Aplicar la política de CORS
 
 app.Run();

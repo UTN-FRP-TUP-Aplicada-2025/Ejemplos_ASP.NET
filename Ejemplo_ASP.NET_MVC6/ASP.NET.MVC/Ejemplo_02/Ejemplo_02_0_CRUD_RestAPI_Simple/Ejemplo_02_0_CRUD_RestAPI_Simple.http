@@ -1,0 +1,6 @@
+@Ejemplo_02_0_CRUD_RestAPI_Simple_HostAddress = http://localhost:5116
+
+GET {{Ejemplo_02_0_CRUD_RestAPI_Simple_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

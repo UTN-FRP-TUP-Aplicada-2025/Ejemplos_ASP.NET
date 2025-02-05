@@ -2,8 +2,39 @@
 using System.Data.Common;
 
 
-//Lazy idea aquí es elimina una relacion de uno a muchos - al eliminar el contenedor 
-//eliminamos en cascada los muchos
+/*Resumen:
+ 
+ aquí trata de eliminar una registro que tiene una relación de uno a muchos - al eliminar el contenedor 
+ eliminamos en cascada a los muchos.
+
+En t-sql sería:
+ 
+DECLARE @Nombre_Usuario NVARCHAR(50)='Eduardo';
+
+BEGIN TRANSACTION;
+
+BEGIN TRY
+    
+    DELETE FROM Usuarios_Roles
+    WHERE UPPER(Nombre_Usuario) = UPPER(@Nombre_Usuario);
+
+    DELETE FROM Usuarios
+    WHERE UPPER(Nombre) = UPPER(@Nombre_Usuario);
+
+    COMMIT TRANSACTION;
+    PRINT 'Transacción completada con éxito.';
+
+END TRY
+BEGIN CATCH
+
+    ROLLBACK TRANSACTION;
+    PRINT 'Error detectado. Transacción deshecha.';
+
+    THROW;
+END CATCH;
+ 
+ 
+ */
 
 var usuario = "eduardo";
 
@@ -40,7 +71,7 @@ try
     transaction.Commit();
     Console.WriteLine("Transacción completada exitosamente.");
 
-
+    //caso 2
     /*
     comando.CommandText = queryDeleteUsuarios;
     comando.Parameters.AddWithValue("@Nombre_Usuario", usuario);
@@ -48,7 +79,6 @@ try
     Console.WriteLine($"Cantidad de eliminados: {usuariosEliminados} registros");
 
     comando.CommandText = queryDeleteUsuarios_Roles;
-    comando.Parameters.AddWithValue("@Nombre_Usuario", usuario);
     int relacionesARolesEliminadas = comando.ExecuteNonQuery();
     Console.WriteLine($"Cantidad de eliminados: {relacionesARolesEliminadas} registros");
 

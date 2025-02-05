@@ -484,6 +484,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_14_Transacciones", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_08_Transacciones", "ADO.NET\Ejemplo_08_Transacciones\Ejemplo_08_Transacciones.csproj", "{5240AE21-F20B-4B9A-899B-4054F99A5D7E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos", "Ejemplos", "{69367B9A-D1D6-4162-A260-99D7B60648C1}"
+	ProjectSection(SolutionItems) = preProject
+		SQL-Server\Ejemplos\transacciones.sql = SQL-Server\Ejemplos\transacciones.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -795,6 +800,7 @@ Global
 		{2A9008E5-7371-4276-A148-B898EF8F8218} = {349F2EED-424B-4141-927C-E1FADDA6922A}
 		{42491090-A440-41A1-895A-1E22CA011697} = {2A9008E5-7371-4276-A148-B898EF8F8218}
 		{5240AE21-F20B-4B9A-899B-4054F99A5D7E} = {96A18C08-C52B-485C-A1FD-11FDA92D277F}
+		{69367B9A-D1D6-4162-A260-99D7B60648C1} = {7D8F43B2-F705-42A0-BD07-4B6939F07CF4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

@@ -360,9 +360,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_04_0_Roles_Login", "ASP.NET.MVC\Ejemplo_04\Ejemplo_04_0_Roles_Login\Ejemplo_04_0_Roles_Login.csproj", "{6D661E61-5340-4968-800C-C2B75A1476AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "08_MAUI_APP", "08_MAUI_APP", "{5EE701FC-7444-468B-9AEF-2C419FC836F1}"
-	ProjectSection(SolutionItems) = preProject
-		MAUI\Ejemplo_02_maui_blazor\Ejemplo_02_maui_blazor.csproj = MAUI\Ejemplo_02_maui_blazor\Ejemplo_02_maui_blazor.csproj
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00_SQL-Server", "00_SQL-Server", "{7D8F43B2-F705-42A0-BD07-4B6939F07CF4}"
 	ProjectSection(SolutionItems) = preProject
@@ -441,17 +438,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_0_CRUD_RestAPI_Simple", "ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_CRUD_RestAPI_Simple\Ejemplo_02_0_CRUD_RestAPI_Simple.csproj", "{9DBEACD3-3926-4E77-9449-21AF14466CF7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10_caso_de_estudio", "10_caso_de_estudio", "{71465C4C-AEC8-4456-9996-B34DF995AF4A}"
-	ProjectSection(SolutionItems) = preProject
-		ENCUESTA\Encuesta.APP\Encuesta.APP.csproj = ENCUESTA\Encuesta.APP\Encuesta.APP.csproj
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_01", "MAUI\Ejemplo_02_mvc_db\Ejemplo_01.csproj", "{C4739D39-68E3-4139-9749-CAFFFC22A4FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encuesta.Web", "ENCUESTA\Encuesta.Web\Encuesta.Web\Encuesta.Web.csproj", "{C96F1A75-D3EC-42F3-A13E-DA19A32851B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "encuesta", "encuesta", "{EFCF1C3C-55D8-4ADC-809F-13722CFE7F16}"
 	ProjectSection(SolutionItems) = preProject
-		ENCUESTA\Encuesta.APP\Encuesta.APP.csproj = ENCUESTA\Encuesta.APP\Encuesta.APP.csproj
 		ENCUESTA\Readme.md = ENCUESTA\Readme.md
 	EndProjectSection
 EndProject
@@ -475,6 +466,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Script", "Script", "{D2C572
 		ENCUESTA\Docker\Scripts\create_mssql_container.sh = ENCUESTA\Docker\Scripts\create_mssql_container.sh
 		ENCUESTA\Docker\Scripts\stop.sh = ENCUESTA\Docker\Scripts\stop.sh
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_maui_blazor", "MAUI\Ejemplo_02_maui_blazor\Ejemplo_02_maui_blazor.csproj", "{58FBECA3-18E6-48B1-A048-AB2222CD44E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_03_mvc_db", "MAUI\Ejemplo_03_mvc_db\Ejemplo_03_mvc_db.csproj", "{8F091FF2-3366-41F6-AD2F-AE0ABC6570A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -624,16 +619,22 @@ Global
 		{9DBEACD3-3926-4E77-9449-21AF14466CF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DBEACD3-3926-4E77-9449-21AF14466CF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DBEACD3-3926-4E77-9449-21AF14466CF7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4739D39-68E3-4139-9749-CAFFFC22A4FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4739D39-68E3-4139-9749-CAFFFC22A4FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4739D39-68E3-4139-9749-CAFFFC22A4FC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{C4739D39-68E3-4139-9749-CAFFFC22A4FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4739D39-68E3-4139-9749-CAFFFC22A4FC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4739D39-68E3-4139-9749-CAFFFC22A4FC}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{C96F1A75-D3EC-42F3-A13E-DA19A32851B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C96F1A75-D3EC-42F3-A13E-DA19A32851B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C96F1A75-D3EC-42F3-A13E-DA19A32851B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C96F1A75-D3EC-42F3-A13E-DA19A32851B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58FBECA3-18E6-48B1-A048-AB2222CD44E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58FBECA3-18E6-48B1-A048-AB2222CD44E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58FBECA3-18E6-48B1-A048-AB2222CD44E0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{58FBECA3-18E6-48B1-A048-AB2222CD44E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58FBECA3-18E6-48B1-A048-AB2222CD44E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58FBECA3-18E6-48B1-A048-AB2222CD44E0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8F091FF2-3366-41F6-AD2F-AE0ABC6570A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F091FF2-3366-41F6-AD2F-AE0ABC6570A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F091FF2-3366-41F6-AD2F-AE0ABC6570A6}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{8F091FF2-3366-41F6-AD2F-AE0ABC6570A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F091FF2-3366-41F6-AD2F-AE0ABC6570A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F091FF2-3366-41F6-AD2F-AE0ABC6570A6}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -756,12 +757,13 @@ Global
 		{209A9F88-1318-41A4-899F-4FA6CA2FD597} = {24276036-8E67-48EC-A74D-9559D6874762}
 		{398F76F6-976D-494A-9E41-A588E1ED39D9} = {30FC4A2A-51F0-42C7-A988-699FB3031E74}
 		{9DBEACD3-3926-4E77-9449-21AF14466CF7} = {7C92D0D0-D57D-490C-B84E-0EEE86D64AAD}
-		{C4739D39-68E3-4139-9749-CAFFFC22A4FC} = {5EE701FC-7444-468B-9AEF-2C419FC836F1}
 		{C96F1A75-D3EC-42F3-A13E-DA19A32851B8} = {EFCF1C3C-55D8-4ADC-809F-13722CFE7F16}
 		{EFCF1C3C-55D8-4ADC-809F-13722CFE7F16} = {71465C4C-AEC8-4456-9996-B34DF995AF4A}
 		{26E8370F-2AF0-42B2-AEB2-99FFD2DBCF3B} = {EFCF1C3C-55D8-4ADC-809F-13722CFE7F16}
 		{87DE6A56-0E6D-4FA3-823D-0A98370F6A5D} = {EFCF1C3C-55D8-4ADC-809F-13722CFE7F16}
 		{D2C572E7-DE21-4E96-8E28-241036D1F16F} = {87DE6A56-0E6D-4FA3-823D-0A98370F6A5D}
+		{58FBECA3-18E6-48B1-A048-AB2222CD44E0} = {5EE701FC-7444-468B-9AEF-2C419FC836F1}
+		{8F091FF2-3366-41F6-AD2F-AE0ABC6570A6} = {5EE701FC-7444-468B-9AEF-2C419FC836F1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

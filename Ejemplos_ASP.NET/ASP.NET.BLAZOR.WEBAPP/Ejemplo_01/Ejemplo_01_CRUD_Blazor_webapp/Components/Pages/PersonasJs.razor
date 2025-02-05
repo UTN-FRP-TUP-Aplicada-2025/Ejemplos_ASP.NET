@@ -1,0 +1,63 @@
+﻿@page "/personasjs"
+
+<h3>Jst</h3>
+
+<h1 class="mb-4">Listado de Personas</h1>
+
+<button id="miBoton" class="btn btn-primary mb-3" onclick="onEnviar()">Solicitar</button>
+
+<div id="tabla-container"></div>
+
+@code {
+}
+
+<script type="text/javascript">
+    function onEnviar() 
+    {
+        fetch('https://ejemplo05areas.somee.com/api/Personas', 
+        {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => mostrarTabla(data))
+        .catch(error => console.error('Error:', error));
+    }
+
+    function mostrarTabla(data)
+    {
+        const container = document.getElementById('tabla-container');
+        container.innerHTML = ''; 
+
+        const table = document.createElement('table');
+        table.className = 'table table-bordered table-striped';
+
+        const thead = document.createElement('thead');
+        thead.innerHTML = `
+            <tr>
+                <th>ID</th>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Fecha de Nacimiento</th>
+            </tr>
+        `;
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        data.forEach(persona => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${persona.id}</td>
+                <td>${persona.dni}</td>
+                <td>${persona.nombre}</td>
+                <td>${new Date(persona.fechaNacimiento).toLocaleDateString()}</td>
+            `;
+            tbody.appendChild(row);
+        });
+        table.appendChild(tbody);
+
+        container.appendChild(table);
+    }
+</script>

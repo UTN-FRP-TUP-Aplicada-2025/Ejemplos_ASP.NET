@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+#region cors
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigins", policy =>
@@ -18,14 +19,15 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod();
     });
 });
+#endregion
 
-
-// Agregar Razor Runtime Compilation (para cambios en vistas sin recompilar)
+#region carga en caliente
 builder.Services.Configure<MvcRazorRuntimeCompilationOptions>(options =>
 {
     options.FileProviders.Add(new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
         builder.Environment.ContentRootPath));
 });
+#endregion
 
 #region configuracion de restapi y swagger
 builder.Services.AddControllers();
@@ -68,16 +70,16 @@ app.MapRazorComponents<App>()
 
 #region configuracion api y swagger
 
-
 //if (app.Environment.IsDevelopment()) //comentar para que corra en modo release
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.MapControllers();
 #endregion
 
-app.UseCors("AllowSpecificOrigins"); // Aplicar la política de CORS
+#region cors
+app.UseCors("AllowSpecificOrigins");
+#endregion 
 
 app.Run();

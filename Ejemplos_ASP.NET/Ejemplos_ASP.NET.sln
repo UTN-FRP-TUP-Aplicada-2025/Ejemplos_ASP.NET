@@ -308,8 +308,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_02_0_database_MSSQL
 		ASP.NET.BLAZOR.WEBAPP\Ejemplo_02\Ejemplo_02_0_database_MSSQL\somee_script.sql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_02\Ejemplo_02_0_database_MSSQL\somee_script.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_03_0_Login_Simple", "ASP.NET.BLAZOR.WEBAPP\Ejemplo_03\Ejemplo_03_0_Login_Simple\Ejemplo_03_0_Login_Simple.csproj", "{FB7F7D76-46DF-44E6-A696-70AA05E03979}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_03_0_database_MSSQL", "Ejemplo_03_0_database_MSSQL", "{FE44FCA1-1141-4743-8D40-F11BAA4245A9}"
 	ProjectSection(SolutionItems) = preProject
 		ASP.NET.BLAZOR.WEBAPP\Ejemplo_03\Ejemplo_03_0_database_MSSQL\docker_script.sql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_03\Ejemplo_03_0_database_MSSQL\docker_script.sql
@@ -373,38 +371,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_01_Personas", "EF.N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_01", "MAUI\Ejemplo_01\Ejemplo_01.csproj", "{0945572A-F23E-4D83-A394-89A35578E0FD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_09_siemple_template_html", "Ejemplo_09_siemple_template_html", "{FD76978C-D9F7-49FB-979C-02A88E40545B}"
-	ProjectSection(SolutionItems) = preProject
-		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Readme.md = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Readme.md
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_09_0_Template_HTML", "ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Template_HTML\Ejemplo_09_0_Template_HTML.csproj", "{139AB886-D0E6-48A2-A48B-E5B9C5185FE7}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servicios", "Servicios", "{3A503486-D83B-4362-BADC-75CA0A65C81C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Despliegue", "Despliegue", "{F7CDC99C-E7D3-4FB6-84BE-AA94B1FD83AD}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_09_0_database_MSSQL", "Ejemplo_09_0_database_MSSQL", "{644A6EC9-729F-4746-A4B7-C91D9E5DAA26}"
-	ProjectSection(SolutionItems) = preProject
-		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_database_MSSQL\docker_script.sql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_database_MSSQL\docker_script.sql
-		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_database_MSSQL\local_script.sql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_database_MSSQL\local_script.sql
-		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_database_MSSQL\somee_script.sql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_database_MSSQL\somee_script.sql
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_09_0_Docker", "Ejemplo_09_0_Docker", "{C4A3F99C-994A-49E6-9AA3-47454E759DDE}"
-	ProjectSection(SolutionItems) = preProject
-		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\docker-compose.yml = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\docker-compose.yml
-		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Dockerfile.dotnet = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Dockerfile.dotnet
-		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Dockerfile.mssql = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Dockerfile.mssql
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{E701527F-7102-44CB-B703-CB44D9E31995}"
-	ProjectSection(SolutionItems) = preProject
-		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Scripts\create_dotnet_container.sh = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Scripts\create_dotnet_container.sh
-		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Scripts\create_mssql_container.sh = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Scripts\create_mssql_container.sh
-		ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Scripts\stop.sh = ASP.NET.BLAZOR.WEBAPP\Ejemplo_09_template_html\Ejemplo_09_0_Docker\Scripts\stop.sh
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{642C2DDE-E6D5-45C3-ABBD-B61A68FC08B9}"
 	ProjectSection(SolutionItems) = preProject
 		ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Scripts\create_dotnet_container.sh = ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Scripts\create_dotnet_container.sh
@@ -412,7 +378,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{642C
 		ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Scripts\stop.sh = ASP.NET.BLAZOR.WEBAPP\Ejemplo_01\Ejemplo_01_0_Docker\Scripts\stop.sh
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_05_areas_templates", "Ejemplo_05_areas_templates", "{8E73760D-8ED1-49F3-8710-E2CF2D0E88B6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplo_05_0_Integracion", "Ejemplo_05_0_Integracion", "{8E73760D-8ED1-49F3-8710-E2CF2D0E88B6}"
 	ProjectSection(SolutionItems) = preProject
 		ASP.NET.BLAZOR.WEBAPP\Ejemplo_05\Readme.md = ASP.NET.BLAZOR.WEBAPP\Ejemplo_05\Readme.md
 	EndProjectSection
@@ -487,9 +453,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos", "Ejemplos", "{69
 		SQL-Server\Ejemplos\transacciones.sql = SQL-Server\Ejemplos\transacciones.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_05_0_Login_2", "ASP.NET.BLAZOR.WEBAPP\Ejemplo_05\Ejemplo_05_0_Login_2\Ejemplo_05_0_Login_2.csproj", "{80FD5D0E-2B19-4848-A259-BDBE5277ADCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_05_0_Integracion", "ASP.NET.BLAZOR.WEBAPP\Ejemplo_05\Ejemplo_05_0_Integracion\Ejemplo_05_0_Integracion.csproj", "{48D5C0F1-A8AB-4C69-B6A8-12A8D1F8514E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_05_0_Areas", "ASP.NET.BLAZOR.WEBAPP\Ejemplo_05\Ejemplo_05_0_Area\Ejemplo_05_0_Areas.csproj", "{E56CC180-54EF-483B-8F96-6D747D417C1B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_03_0_Login_Cookie", "ASP.NET.BLAZOR.WEBAPP\Ejemplo_03\Ejemplo_03_0_Login_Cookie\Ejemplo_03_0_Login_Cookie.csproj", "{97116473-17C7-4524-A98F-BE866C0D9496}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -605,10 +571,6 @@ Global
 		{2FB30683-E0DC-4B38-8359-A17A00ECE68D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FB30683-E0DC-4B38-8359-A17A00ECE68D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FB30683-E0DC-4B38-8359-A17A00ECE68D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB7F7D76-46DF-44E6-A696-70AA05E03979}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB7F7D76-46DF-44E6-A696-70AA05E03979}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB7F7D76-46DF-44E6-A696-70AA05E03979}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB7F7D76-46DF-44E6-A696-70AA05E03979}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6D661E61-5340-4968-800C-C2B75A1476AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6D661E61-5340-4968-800C-C2B75A1476AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D661E61-5340-4968-800C-C2B75A1476AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -623,10 +585,6 @@ Global
 		{0945572A-F23E-4D83-A394-89A35578E0FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0945572A-F23E-4D83-A394-89A35578E0FD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0945572A-F23E-4D83-A394-89A35578E0FD}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{139AB886-D0E6-48A2-A48B-E5B9C5185FE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{139AB886-D0E6-48A2-A48B-E5B9C5185FE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{139AB886-D0E6-48A2-A48B-E5B9C5185FE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{139AB886-D0E6-48A2-A48B-E5B9C5185FE7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{398F76F6-976D-494A-9E41-A588E1ED39D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{398F76F6-976D-494A-9E41-A588E1ED39D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{398F76F6-976D-494A-9E41-A588E1ED39D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -663,14 +621,14 @@ Global
 		{5240AE21-F20B-4B9A-899B-4054F99A5D7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5240AE21-F20B-4B9A-899B-4054F99A5D7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5240AE21-F20B-4B9A-899B-4054F99A5D7E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80FD5D0E-2B19-4848-A259-BDBE5277ADCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80FD5D0E-2B19-4848-A259-BDBE5277ADCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80FD5D0E-2B19-4848-A259-BDBE5277ADCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80FD5D0E-2B19-4848-A259-BDBE5277ADCB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E56CC180-54EF-483B-8F96-6D747D417C1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E56CC180-54EF-483B-8F96-6D747D417C1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E56CC180-54EF-483B-8F96-6D747D417C1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E56CC180-54EF-483B-8F96-6D747D417C1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48D5C0F1-A8AB-4C69-B6A8-12A8D1F8514E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48D5C0F1-A8AB-4C69-B6A8-12A8D1F8514E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48D5C0F1-A8AB-4C69-B6A8-12A8D1F8514E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48D5C0F1-A8AB-4C69-B6A8-12A8D1F8514E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97116473-17C7-4524-A98F-BE866C0D9496}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97116473-17C7-4524-A98F-BE866C0D9496}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97116473-17C7-4524-A98F-BE866C0D9496}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97116473-17C7-4524-A98F-BE866C0D9496}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -766,7 +724,6 @@ Global
 		{2FB30683-E0DC-4B38-8359-A17A00ECE68D} = {96B5FEDE-5CCD-4DC0-95DF-C4D4C4EBB46E}
 		{53C11715-5D43-416C-B12D-207CC0BC10A0} = {B6872E8B-3BD4-49AB-802D-6FDF1774A172}
 		{76B4627C-C35D-4A9D-833B-2148177D8D60} = {53C11715-5D43-416C-B12D-207CC0BC10A0}
-		{FB7F7D76-46DF-44E6-A696-70AA05E03979} = {F10AA1EE-35D1-47AF-BF3A-EB6809D6FFAA}
 		{FE44FCA1-1141-4743-8D40-F11BAA4245A9} = {EF24CACC-F78F-42CD-B00F-FF4A6E93CC58}
 		{1AC246FB-B70A-4592-9E93-296A578D0647} = {EF24CACC-F78F-42CD-B00F-FF4A6E93CC58}
 		{D6222AC0-A8CD-4800-87C2-EABD0C91182C} = {53C11715-5D43-416C-B12D-207CC0BC10A0}
@@ -776,13 +733,6 @@ Global
 		{6D661E61-5340-4968-800C-C2B75A1476AA} = {453FD033-83AE-4596-9003-4889BA0F5378}
 		{FA73E7AC-A098-47D1-99FD-D0423DA0668C} = {5B2357FA-9BBB-48FF-A8C5-DBAA5A148820}
 		{0945572A-F23E-4D83-A394-89A35578E0FD} = {5EE701FC-7444-468B-9AEF-2C419FC836F1}
-		{FD76978C-D9F7-49FB-979C-02A88E40545B} = {96AA8DB2-3673-4684-8B9E-E979F138E3B9}
-		{139AB886-D0E6-48A2-A48B-E5B9C5185FE7} = {3A503486-D83B-4362-BADC-75CA0A65C81C}
-		{3A503486-D83B-4362-BADC-75CA0A65C81C} = {FD76978C-D9F7-49FB-979C-02A88E40545B}
-		{F7CDC99C-E7D3-4FB6-84BE-AA94B1FD83AD} = {FD76978C-D9F7-49FB-979C-02A88E40545B}
-		{644A6EC9-729F-4746-A4B7-C91D9E5DAA26} = {F7CDC99C-E7D3-4FB6-84BE-AA94B1FD83AD}
-		{C4A3F99C-994A-49E6-9AA3-47454E759DDE} = {F7CDC99C-E7D3-4FB6-84BE-AA94B1FD83AD}
-		{E701527F-7102-44CB-B703-CB44D9E31995} = {C4A3F99C-994A-49E6-9AA3-47454E759DDE}
 		{642C2DDE-E6D5-45C3-ABBD-B61A68FC08B9} = {409611E8-1182-4EBE-A202-13C03F45C1FD}
 		{8E73760D-8ED1-49F3-8710-E2CF2D0E88B6} = {96AA8DB2-3673-4684-8B9E-E979F138E3B9}
 		{6148ADFD-674F-4894-B08E-EB6C0BCE4529} = {8E73760D-8ED1-49F3-8710-E2CF2D0E88B6}
@@ -806,8 +756,8 @@ Global
 		{42491090-A440-41A1-895A-1E22CA011697} = {2A9008E5-7371-4276-A148-B898EF8F8218}
 		{5240AE21-F20B-4B9A-899B-4054F99A5D7E} = {96A18C08-C52B-485C-A1FD-11FDA92D277F}
 		{69367B9A-D1D6-4162-A260-99D7B60648C1} = {7D8F43B2-F705-42A0-BD07-4B6939F07CF4}
-		{80FD5D0E-2B19-4848-A259-BDBE5277ADCB} = {6148ADFD-674F-4894-B08E-EB6C0BCE4529}
-		{E56CC180-54EF-483B-8F96-6D747D417C1B} = {6148ADFD-674F-4894-B08E-EB6C0BCE4529}
+		{48D5C0F1-A8AB-4C69-B6A8-12A8D1F8514E} = {6148ADFD-674F-4894-B08E-EB6C0BCE4529}
+		{97116473-17C7-4524-A98F-BE866C0D9496} = {F10AA1EE-35D1-47AF-BF3A-EB6809D6FFAA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

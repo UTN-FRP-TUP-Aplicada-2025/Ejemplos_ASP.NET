@@ -1,0 +1,17 @@
+﻿@using Ejemplo_05_0_Integracion.Components.Layout
+@using Microsoft.AspNetCore.Components.Authorization
+
+<Router AppAssembly="typeof(Program).Assembly">
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(PublicLayout)" />
+    </Found>
+    <NotFound>
+        <h3>Página no encontrada</h3>
+    </NotFound>
+</Router>
+@* <Router AppAssembly="typeof(Program).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.PublicLayout)" />
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+    </Found>
+</Router> *@

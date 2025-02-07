@@ -1,0 +1,32 @@
+﻿@page "/admin/logout"
+@layout LoginLayout
+
+
+@* esta using hace visible a SignOutAsync*@
+@using Microsoft.AspNetCore.Authentication;
+
+@* si se activa este falla porque necesita enviar el request http - sino trabaja con el websocker
+     y no puede escribir la cabecera con la cookie
+*@
+@* @rendermode InteractiveServer *@
+
+@using Ejemplo_05_0_Integracion.Components.Layout
+
+@inject IHttpContextAccessor HttpContextAccessor
+@inject NavigationManager Navigation
+
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Authentication.Cookies
+
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        var httpContext = HttpContextAccessor.HttpContext;
+        if (httpContext != null)
+        {
+            await httpContext.SignOutAsync("Cookies");
+            Navigation.NavigateTo("/", forceLoad: true);
+        }
+    }
+}

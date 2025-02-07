@@ -1,0 +1,43 @@
+﻿@inherits LayoutComponentBase
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+
+    <!--es un componente especial que Blazor usa para inyectar dinámicamente contenido dentro del head de la página-->    
+    <HeadOutlet />
+</head>
+<body style="opacity: 0">
+    
+    @if (isLoading)
+    {
+        <Routes />
+    }
+    
+     <script src="/_framework/blazor.web.js"></script>
+
+
+    <style>
+        body {
+            opacity: 1 !important;
+        }
+    </style>
+</body>
+</html>
+
+
+@code
+{
+    private bool isLoading = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+
+        isLoading = true;
+    }
+
+}

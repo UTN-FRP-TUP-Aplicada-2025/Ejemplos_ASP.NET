@@ -1,17 +1,22 @@
 ﻿
-using Microsoft.Data.SqlClient;
-using System.Data;
+using Microsoft.Data.Sqlite;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 
 var personaNombre = "Marianela";
-var cadenaconexion = "Server=localhost;Database=BaseMaxima;Integrated Security=True;TrustServerCertificate=True";
 
-var query = "INSERT INTO Personas (Nombre) Values ('@Nombre1')";
+//https://github.com/dotnet/docs/blob/main/samples/snippets/standard/data/sqlite/HelloWorldSample/Program.cs
 
-using var conexion = new SqlConnection(cadenaconexion);
+var databasePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "personas_db.db");
+var cadenaconexion = $"Data Source={databasePath};";
+
+var query = "INSERT INTO Personas (Nombre) Values ('@Nombre')";
+
+using var conexion = new SqliteConnection(cadenaconexion);
 conexion.Open();
 
-using var comando = new SqlCommand(query, conexion);
-comando.Parameters.AddWithValue("@Nombre1", personaNombre);
+using var comando = new SqliteCommand(query, conexion);
+comando.Parameters.AddWithValue("@Nombre", personaNombre);
 
 var cantidad = comando.ExecuteNonQuery();
 

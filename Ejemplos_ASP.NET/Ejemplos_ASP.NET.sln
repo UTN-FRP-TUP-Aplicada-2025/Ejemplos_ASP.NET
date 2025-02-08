@@ -400,7 +400,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_Mapas", "ASP.NET
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_0_CRUD_RestAPI_Simple", "ASP.NET.MVC\Ejemplo_02\Ejemplo_02_0_CRUD_RestAPI_Simple\Ejemplo_02_0_CRUD_RestAPI_Simple.csproj", "{9DBEACD3-3926-4E77-9449-21AF14466CF7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10_caso_de_estudio", "10_caso_de_estudio", "{71465C4C-AEC8-4456-9996-B34DF995AF4A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "11_caso_de_estudio", "11_caso_de_estudio", "{71465C4C-AEC8-4456-9996-B34DF995AF4A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encuesta.Web", "ENCUESTA\Encuesta.Web\Encuesta.Web\Encuesta.Web.csproj", "{C96F1A75-D3EC-42F3-A13E-DA19A32851B8}"
 EndProject
@@ -468,7 +468,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "somee", "somee", "{4107EC98-0492-41C0-BD34-833EC2AAF9AC}"
 	ProjectSection(SolutionItems) = preProject
 		HOSTING\somee\alta_websites.png = HOSTING\somee\alta_websites.png
+		HOSTING\somee\crear_certificado_1.png = HOSTING\somee\crear_certificado_1.png
+		HOSTING\somee\crear_certificado_2.png = HOSTING\somee\crear_certificado_2.png
 		HOSTING\somee\datos_website.png = HOSTING\somee\datos_website.png
+		HOSTING\somee\publish_vs_pantalla1.png = HOSTING\somee\publish_vs_pantalla1.png
+		HOSTING\somee\publish_vs_pantalla2.png = HOSTING\somee\publish_vs_pantalla2.png
 		HOSTING\somee\Readme.md = HOSTING\somee\Readme.md
 	EndProjectSection
 EndProject

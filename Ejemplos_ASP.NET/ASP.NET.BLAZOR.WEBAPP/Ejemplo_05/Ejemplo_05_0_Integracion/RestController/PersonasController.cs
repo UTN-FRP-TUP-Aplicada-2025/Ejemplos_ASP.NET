@@ -1,6 +1,6 @@
 ﻿using Ejemplo_05_0_Integracion.Models;
 using Ejemplo_05_0_Integracion.Services;
-
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ejemplo_05_0_Integracion.RestControllers;
@@ -13,41 +13,62 @@ public class PersonasController : ControllerBase
 
     // GET: api/<PersonasController>
     [HttpGet]
-    public IActionResult Get()
+    async public Task<IActionResult> Get()
     {
-        return Ok(_servicio.GetAll());
+        return Ok(await _servicio.GetAll());
     }
 
     // GET api/<PersonasController>/5
     [HttpGet("{id}")]
-    public IActionResult Get(int id)
+    async public Task<IActionResult> Get(int id)
     {
-        var persona = _servicio.GetById(id);
-        return Ok(persona);
+        var objeto = await _servicio.GetById(id);
+        if (objeto == null)
+            return NotFound();
+
+        return Ok(objeto);
     }
 
     // POST api/<PersonasController>
     [HttpPost]
-    public IActionResult Post([FromBody] PersonaModel persona)
+    async public Task<IActionResult> Post([FromBody] PersonaModel persona)
     {
-        _servicio.CrearNuevo(persona);
-        return RedirectToAction(nameof(Index));
+        if (persona==null && persona.Id<=0)
+            return BadRequest();
+
+        await _servicio.CrearNuevo(persona);
+      
+
+        if (persona.Id<=0)
+            return NotFound();
+
+        return Ok(persona);
     }
 
     // PUT api/<PersonasController>/5
     [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
-    {
-    }
-
-    // DELETE api/<PersonasController>/5
-    [HttpDelete("{id}")]
-    public IActionResult Delete(int? id)
+    async public Task<IActionResult> Put(int id, [FromBody] PersonaModel persona)
     {
         if (id == null || id <= 0)
             return BadRequest();
 
-        var persona = _servicio.GetById(Convert.ToInt32(id));
+        var objeto = await _servicio.GetById(Convert.ToInt32(id));
+        if(objeto == null)
+            return NotFound();
+
+        await _servicio.Actualizar(persona);
+
+        return Ok();
+    }
+
+    // DELETE api/<PersonasController>/5
+    [HttpDelete("{id}")]
+    async public Task<IActionResult> Delete(int? id)
+    {
+        if (id == null || id <= 0)
+            return BadRequest();
+
+        var persona = await _servicio.GetById(Convert.ToInt32(id));
 
         if (persona == null)
             return NotFound();

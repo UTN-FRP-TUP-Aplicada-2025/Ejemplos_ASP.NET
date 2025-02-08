@@ -12,17 +12,17 @@
 @using Microsoft.AspNetCore.Identity
 @using System.Security.Claims
 
-@inject NavigationManager Navigation
+@* esta using hace visible a SignOutAsync*@
+@using Microsoft.AspNetCore.Authentication
 
 @* necesario para el acceso al contexto *@
-@using Microsoft.AspNetCore.Authentication
 @inject IHttpContextAccessor HttpContextAccessor
+
+@inject NavigationManager Navigation
 
 @* @rendermode InteractiveServer *@
 
 <PageTitle>Login</PageTitle>
-
-
 
 <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
     <div class="container">
@@ -103,13 +103,6 @@
     </div>
 
 </section>
-
-
-
-
-<h2>Usuario</h2>
-
-<hr />
 
 
 @code {

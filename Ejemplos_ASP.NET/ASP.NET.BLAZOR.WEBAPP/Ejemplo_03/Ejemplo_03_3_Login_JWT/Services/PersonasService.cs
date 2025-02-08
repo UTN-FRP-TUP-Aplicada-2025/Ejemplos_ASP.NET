@@ -1,9 +1,9 @@
 ﻿
-using Ejemplo_03_0_Login_Cookie.DALs;
-using Ejemplo_03_0_Login_Cookie.DALs.MSSDALs;
-using Ejemplo_03_0_Login_Cookie.Models;
+using Ejemplo_03_3_Login_JW.DALs;
+using Ejemplo_03_3_Login_JW.DALs.MSSDALs;
+using Ejemplo_03_3_Login_JW.Models;
 
-namespace Ejemplo_03_0_Login_Cookie.Services;
+namespace Ejemplo_03_3_Login_JW.Services;
 
 public class PersonasService
 {

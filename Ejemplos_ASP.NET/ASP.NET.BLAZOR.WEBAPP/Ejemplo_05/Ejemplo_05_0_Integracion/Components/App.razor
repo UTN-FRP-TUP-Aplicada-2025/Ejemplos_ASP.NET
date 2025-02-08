@@ -10,34 +10,48 @@
     <!--es un componente especial que Blazor usa para inyectar dinámicamente contenido dentro del head de la página-->    
     <HeadOutlet />
 </head>
-<body style="opacity: 0">
-    
-    @if (isLoading)
-    {
-        <Routes />
-    }
-    
-     <script src="/_framework/blazor.web.js"></script>
+<body style="opacity: 0;">
 
+    @if (isLoading)
+    { 
+    <Routes />
+     } 
+
+    <script src="_framework/blazor.web.js"></script>
+
+    <script src="/js/prueba.js"></script>
+
+
+    @*
+        funciona
+        
+        <script src="js/prueba.js"></script>
+
+    <script>
+        MYAPP.promptUser();
+    </script>*@
 
     <style>
         body {
-            opacity: 1 !important;
+        opacity: 1 !important;
         }
     </style>
 </body>
 </html>
 
 
+
+@inject IJSRuntime JSRuntime
 @code
 {
     private bool isLoading = false;
 
     protected override async Task OnInitializedAsync()
     {
-        
 
+       // await JSRuntime.InvokeVoidAsync("initializeTemplate");
         isLoading = true;
     }
+
 
 }

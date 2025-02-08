@@ -1,0 +1,48 @@
+﻿@page "/my-component"
+
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+@* eso funcionan con estos OnAfterRenderAsync *@
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<button class="btn btn-warning" @onclick="HandleButtonClick">Show Alert</button>
+
+@code {
+    private IJSObjectReference? module;
+
+
+    
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     module = await JS.InvokeAsync<IJSObjectReference>("import", "/js/myModule.js");
+    //     StateHasChanged();
+    // }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        //for apps (current project)
+        module = await JS.InvokeAsync<IJSObjectReference>("import", "/js/myModule.js");
+
+    //for Razor class library
+    //module = await JS.InvokeAsync<IJSObjectReference>("import", "./_content/PackageIdOrAssemblyName/js/myModule.js")
+    }
+  
+
+    private async Task HandleButtonClick()
+    {
+        if (module is not null)
+        {
+            await module.InvokeVoidAsync("showAlert", "JavaScript Isolation Demo");
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (module is not null)
+        {
+            await module.DisposeAsync();
+        }
+    }
+}

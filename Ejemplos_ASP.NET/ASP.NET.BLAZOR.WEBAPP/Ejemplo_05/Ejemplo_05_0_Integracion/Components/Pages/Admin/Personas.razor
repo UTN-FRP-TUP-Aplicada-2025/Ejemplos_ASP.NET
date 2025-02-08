@@ -18,175 +18,185 @@
 
 @inject NavigationManager NavManager
 
+<div class="pagetitle">
+    <h1>Registro de personas</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item">admin</li>
+            <li class="breadcrumb-item active">Personas</li>
+        </ol>
+    </nav>
+</div>
 
-@if (isLoading==true)
-{
-    <div><em>Loading...</em></div>
-}
-else
-{
-    <section class="section">
-        <div class="row">
-            <div class="col-lg-6">
-
-                <div class="card">
-                    <div class="card-body">
-
-                        @if (isVisibleFormDetailRegistro == true)
-                        {
-                            <h5 class="card-title">Detalle del Registro de persona</h5>
-
-                            @if (personas is null)
-                            {
-                                <p><em>Loading...</em></p>
-                            }
-                            else
-                            {
-                                <dl class="row">
-
-                                    <dt class="col-sm-2">Id</dt>
-                                    <dd class="col-sm-10">@Model?.Id</dd>
-
-                                    <dt class="col-sm-2">DNI</dt>
-                                    <dd class="col-sm-10">@Model?.DNI</dd>
-
-                                    <dt class="col-sm-2">Nombre</dt>
-                                    <dd class="col-sm-10">@Model?.Nombre</dd>
-
-                                    <dt class="col-sm-2">FechaNacimiento</dt>
-                                    <dd class="col-sm-10">@Model?.FechaNacimiento</dd>
-                                </dl>
-                                <div>
-                                    <button class="link-button" @onclick="() => viewFormEditRegistro(Model.Id)"><i class="fa-solid fa-pen"></i></button>
-                                </div>
-                            }
-
-                        }
-                        else if (isVisibleFormCreateRegistro == true)
-                        {
-
-                            <h5 class="card-title">Alta de Registro de persona</h5>
+<!--
+    https://www.nuget.org/packages/Blazor.Breadcrumb
+-->
 
 
-                            <EditForm method="post" Model="Model" OnValidSubmit="onCreatePersona" FormName="FormCreate" Enhance>
+<section class="section">
+    <div class="row">
+        <div class="col-lg-6">
 
-                                <DataAnnotationsValidator />
-                                <ValidationSummary class="text-danger" role="alert" />
+            <div class="card">
+                <div class="card-body">
 
-                                <div class="mb-3">
-                                    <label for="id" class="form-label">Id:</label>
-                                    <InputNumber id="id" @bind-Value="Model.Id" class="form-control" aria-required="true" />
-                                    <ValidationMessage For="() => Model.Id" class="text-danger" />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="nombre" class="form-label">Nombre:</label>
-                                    <InputText id="nombre" @bind-Value="Model.Nombre" class="form-control" />
-                                    <ValidationMessage For="() => Model.Nombre" class="text-danger" />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="dni" class="form-label">DNI:</label>
-                                    <InputNumber id="dni" @bind-Value="Model.DNI" class="form-control" />
-                                    <ValidationMessage For="() => Model.DNI" class="text-danger" />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento:</label>
-                                    <InputDate id="fechaNacimiento" @bind-Value="Model.FechaNacimiento" class="form-control" />
-                                    <ValidationMessage For="() => Model.FechaNacimiento" class="text-danger" />
-                                </div>
-                                <button type="submit" class="btn btn-primary">Create</button>
-                            </EditForm>
+                    @if (isVisibleFormDetailRegistro == true)
+                    {
+                        <h5 class="card-title">Detalle del Registro de persona</h5>
 
-                        }
-                        else if (isVisibleFormEditRegistro == true)
-                        {
-
-                            <h5 class="card-title">Alta de Registro de persona</h5>
-                            <EditForm method="post" Model="Model" OnValidSubmit="onEditPersona" FormName="FormEdit" Enhance>
-
-                                <DataAnnotationsValidator />
-                                <ValidationSummary class="text-danger" role="alert" />
-
-                                <div class="mb-3">
-                                    <label for="id" class="form-label">Id:</label>
-                                    <InputNumber id="id" @bind-Value="Model.Id" class="form-control" aria-required="true" />
-                                    <ValidationMessage For="() => Model.Id" class="text-danger" />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="nombre" class="form-label">Nombre:</label>
-                                    <InputText id="nombre" @bind-Value="Model.Nombre" class="form-control" />
-                                    <ValidationMessage For="() => Model.Nombre" class="text-danger" />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="dni" class="form-label">DNI:</label>
-                                    <InputNumber id="dni" @bind-Value="Model.DNI" class="form-control" />
-                                    <ValidationMessage For="() => Model.DNI" class="text-danger" />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento:</label>
-                                    <InputDate id="fechaNacimiento" @bind-Value="Model.FechaNacimiento" class="form-control" />
-                                    <ValidationMessage For="() => Model.FechaNacimiento" class="text-danger" />
-                                </div>
-                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                            </EditForm>
-                        }
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <section class="section text-center">
-        <div class="row">
-            <div class="col-lg-12">
-
-                <div class="card">
-                    <div class="card-body">
-                        <p>
-                            <button class="link-button" @onclick="() => viewFormCreateRegistro()"><i class="fa-solid fa-pen"></i></button>
-                        </p>
-
-                        @if (personas == null)
+                        @if (personas is null)
                         {
                             <p><em>Loading...</em></p>
                         }
                         else
                         {
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>DNI</th>
-                                        <th>Nombre</th>
-                                        <th>Fecha Nacimiento</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in personas)
-                                    {
-                                        <tr>
-                                            <td>@item.Id</td>
-                                            <td>@item.DNI</td>
-                                            <td>@item.Nombre</td>
-                                            <td>@item.FechaNacimiento?.ToShortDateString()</td>
-                                            <td>
-                                                <button class="link-button" @onclick="() => viewFormEditRegistro(item.Id)"><i class="fa-solid fa-pen"></i></button>
-                                                <button class="link-button" @onclick="() => viewFormDetailRegistro(item.Id)"><i class="fa-solid fa-expand"></i></button>|
-                                                <button class="link-button" @onclick="() => onEliminarPersona(item.Id)"><i class="fa-solid fa-trash"></i></button>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+                            <dl class="row">
+
+                                <dt class="col-sm-2">Id</dt>
+                                <dd class="col-sm-10">@Model?.Id</dd>
+
+                                <dt class="col-sm-2">DNI</dt>
+                                <dd class="col-sm-10">@Model?.DNI</dd>
+
+                                <dt class="col-sm-2">Nombre</dt>
+                                <dd class="col-sm-10">@Model?.Nombre</dd>
+
+                                <dt class="col-sm-2">FechaNacimiento</dt>
+                                <dd class="col-sm-10">@Model?.FechaNacimiento</dd>
+                            </dl>
+                            <div>
+                                <button class="link-button" @onclick="() => viewFormEditRegistro(Model.Id)"><i class="fa-solid fa-pen"></i></button>
+                            </div>
                         }
 
-                    </div>
+                    }
+                    else if (isVisibleFormCreateRegistro == true)
+                    {
+
+                        <h5 class="card-title">Alta de Registro de persona</h5>
+
+
+                        <EditForm method="post" Model="Model" OnValidSubmit="onCreatePersona" FormName="FormCreate" Enhance>
+
+                            <DataAnnotationsValidator />
+                            <ValidationSummary class="text-danger" role="alert" />
+
+                            <div class="mb-3">
+                                <label for="id" class="form-label">Id:</label>
+                                <InputNumber id="id" @bind-Value="Model.Id" class="form-control" aria-required="true" />
+                                <ValidationMessage For="() => Model.Id" class="text-danger" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <InputText id="nombre" @bind-Value="Model.Nombre" class="form-control" />
+                                <ValidationMessage For="() => Model.Nombre" class="text-danger" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="dni" class="form-label">DNI:</label>
+                                <InputNumber id="dni" @bind-Value="Model.DNI" class="form-control" />
+                                <ValidationMessage For="() => Model.DNI" class="text-danger" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento:</label>
+                                <InputDate id="fechaNacimiento" @bind-Value="Model.FechaNacimiento" class="form-control" />
+                                <ValidationMessage For="() => Model.FechaNacimiento" class="text-danger" />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </EditForm>
+
+                    }
+                    else if (isVisibleFormEditRegistro == true)
+                    {
+
+                        <h5 class="card-title">Alta de Registro de persona</h5>
+                        <EditForm method="post" Model="Model" OnValidSubmit="onEditPersona" FormName="FormEdit" Enhance>
+
+                            <DataAnnotationsValidator />
+                            <ValidationSummary class="text-danger" role="alert" />
+
+                            <div class="mb-3">
+                                <label for="id" class="form-label">Id:</label>
+                                <InputNumber id="id" @bind-Value="Model.Id" class="form-control" aria-required="true" />
+                                <ValidationMessage For="() => Model.Id" class="text-danger" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <InputText id="nombre" @bind-Value="Model.Nombre" class="form-control" />
+                                <ValidationMessage For="() => Model.Nombre" class="text-danger" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="dni" class="form-label">DNI:</label>
+                                <InputNumber id="dni" @bind-Value="Model.DNI" class="form-control" />
+                                <ValidationMessage For="() => Model.DNI" class="text-danger" />
+                            </div>
+                            <div class="mb-3">
+                                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento:</label>
+                                <InputDate id="fechaNacimiento" @bind-Value="Model.FechaNacimiento" class="form-control" />
+                                <ValidationMessage For="() => Model.FechaNacimiento" class="text-danger" />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        </EditForm>
+                    }
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Personas</h5>
+
+                    <p>
+                        <button class="link-button" @onclick="() => viewFormCreateRegistro()"><i class="fa-solid fa-pen"></i></button>
+                    </p>
+
+                    @if (personas == null)
+                    {
+                        <p><em>Loading...</em></p>
+                    }
+                    else
+                    {
+                        <table class="table datatable">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>DNI</th>
+                                    <th>Nombre</th>
+                                    <th data-type="date" data-format="MM/DD/YYYY">Fecha Nacimiento</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in personas)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.DNI</td>
+                                        <td>@item.Nombre</td>
+                                        <td>@item.FechaNacimiento?.ToShortDateString()</td>
+                                        <td>
+                                            <button class="link-button" @onclick="() => viewFormEditRegistro(item.Id)"><i class="fa-solid fa-pen"></i></button>
+                                            <button class="link-button" @onclick="() => viewFormDetailRegistro(item.Id)"><i class="fa-solid fa-expand"></i></button>|
+                                            <button class="link-button" @onclick="() => onEliminarPersona(item.Id)"><i class="fa-solid fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+
                 </div>
             </div>
         </div>
-    </section>
-}
+    </div>
+</section>
+
 
 
 @code
@@ -203,7 +213,7 @@ else
     private bool isVisibleFormEditRegistro;
 
     //private PersonasService _personasService = new();
-    // [Inject] 
+    // [Inject]
     // PersonasService _personasService;
 
 
@@ -286,5 +296,19 @@ else
     {
         await _personasService.Eliminar((int)id);
         personas = await _personasService.GetAll();
+    }
+
+
+
+    //requiere @rendermode InteractiveServer
+    [Inject] IJSRuntime JS { get; set; }
+    private bool _initialized;
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && !_initialized)
+        {
+            _initialized = true;
+            await JS.InvokeVoidAsync("MYAPP.initializeTemplate");
+        }
     }
 }

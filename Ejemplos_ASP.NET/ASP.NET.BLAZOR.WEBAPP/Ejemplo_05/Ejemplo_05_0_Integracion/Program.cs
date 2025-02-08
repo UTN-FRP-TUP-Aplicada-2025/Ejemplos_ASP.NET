@@ -170,7 +170,9 @@ app.Use(async (context, next) =>
     if (context.Request.Path.StartsWithSegments("/swagger") &&
         !context.User.Identity.IsAuthenticated)
     {
-        context.Response.Redirect("/admin/login?returnurl=/swagger");
+        //context.Response.Redirect("/admin/login?returnurl=/swagger");
+        var returnUrl = context.Request.Query["returnurl"];
+        context.Response.Redirect($"/admin/login?returnurl={returnUrl}");
         return;
     }
     await next();

@@ -1,8 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
 @inherits LayoutComponentBase
 
-@inject IHttpContextAccessor HttpContextAccessor
 
+@* @rendermode InteractiveServer
+@inject IHttpContextAccessor HttpContextAccessor
+ *@
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +36,7 @@
         <!-- Template Main CSS File -->
         <link href="/admin/assets/css/style.css" rel="stylesheet" type="text/css">
 
+
         <!-- =======================================================
         * Template Name: NiceAdmin
         * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -43,30 +46,31 @@
         ======================================================== -->
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" type="text/css">
+
+
     </HeadContent>
 
-    @* <HeadOutlet /> *@
 </head>
-<body>
+<body class="toggle-sidebar" style="opacity: 0 !important;">
 
     @* <body> *@
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="" class="logo d-flex align-items-center">
+            <a href="/index.html" class="logo d-flex align-items-center">
                 <img src="/admin/assets/img/logo.png" alt="">
                 <span class="d-none d-lg-block">Registro</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
-
+        <!--
         <div class="search-bar">
-            <form class="search-form d-flex align-items-center" method="POST" action="#">
-                <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-            </form>
-        </div><!-- End Search Bar -->
+        <form class="search-form d-flex align-items-center" method="POST" action="#">
+        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+        </form>
+        </div> End Search Bar -->
 
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
@@ -145,7 +149,7 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li class="dropdown-footer">
-                            <a href="#">Show all notifications</a>
+                            <a href="#">Mostrar todas las notificaciones</a>
                         </li>
 
                     </ul><!-- End Notification Dropdown Items -->
@@ -170,7 +174,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                                <img src="/admin/assets/img/messages-1.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>Maria Hudson</h4>
                                     <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -184,7 +188,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                                <img src="/admin/assets/img/messages-2.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>Anna Nelson</h4>
                                     <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -198,7 +202,7 @@
 
                         <li class="message-item">
                             <a href="#">
-                                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                                <img src="/admin/assets/img/messages-3.jpg" alt="" class="rounded-circle">
                                 <div>
                                     <h4>David Muldon</h4>
                                     <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -317,9 +321,13 @@
                             <i class="bi bi-circle"></i><span>Contador</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="/swagger">
+                            <i class="bi bi-circle"></i><span>Swagger</span>
+                        </a>
+                    </li>
                 </ul>
             </li><!-- End Tables Nav -->
-
 
             <li class="nav-heading">Pages</li>
 
@@ -337,7 +345,9 @@
 
     <main id="main" class="main">
         <div class="pagetitle">
-            @Body
+            <LayoutView>
+                @Body
+            </LayoutView>
         </div>
     </main>
 
@@ -358,7 +368,7 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="/admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
+    @* <script src="/admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
     <script src="/admin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/admin/assets/vendor/chart.js/chart.umd.js"></script>
     <script src="/admin/assets/vendor/echarts/echarts.min.js"></script>
@@ -367,14 +377,19 @@
     <script src="/admin/assets/vendor/tinymce/tinymce.min.js"></script>
     <script src="/admin/assets/vendor/php-email-form/validate.js"></script>
 
-    <!-- Template Main JS File -->
-    <script src="/admin/assets/js/main.js"></script>
+ *@
+
+
 
     <style>
         body {
             opacity: 1 !important;
         }
     </style>
+    <script>
 
+        MYAPP.initializeTemplate();
+
+    </script>
 </body>
 </html>

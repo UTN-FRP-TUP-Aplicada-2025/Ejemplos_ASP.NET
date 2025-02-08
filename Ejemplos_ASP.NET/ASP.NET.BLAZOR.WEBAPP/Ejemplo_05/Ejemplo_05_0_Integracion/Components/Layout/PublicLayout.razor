@@ -187,7 +187,9 @@
                     <h2>Fully Responsive Design</h2>
                     <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
                 </div>
+                
             </div>
+
             <div class="row g-0">
                 <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-2.jpg')"></div>
                 <div class="col-lg-6 my-auto showcase-text">
@@ -329,13 +331,20 @@
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
-    <script src="/public/_framework/blazor.web.js"></script>
+   @*  <script src="/public/_framework/blazor.web.js"></script> *@
 
     <style>
         body {
             opacity: 1 !important;
         }
     </style>
+
+
+    @* <script src="js/prueba.js"></script>
+
+    <script>
+        MYAPP.promptUser();
+    </script> *@
 </body>
 </html>
 
@@ -352,4 +361,6 @@
             Navigation.NavigateTo("/admin/login", forceLoad: true);
         }
     }
+
+   
 }

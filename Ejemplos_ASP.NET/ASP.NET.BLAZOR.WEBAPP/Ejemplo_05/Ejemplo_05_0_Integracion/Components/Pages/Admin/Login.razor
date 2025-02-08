@@ -1,6 +1,7 @@
 ﻿@page "/admin/login"
 @layout LoginLayout
 
+
 @* si habilito esto falla cuando quiero autenticarme con cookie - onLogin() *@
 @* @rendermode InteractiveServer *@
 
@@ -20,6 +21,8 @@
 
 @inject NavigationManager Navigation
 
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
+
 @* @rendermode InteractiveServer *@
 
 <PageTitle>Login</PageTitle>
@@ -36,7 +39,7 @@
                     </a>
                 </div><!-- End Logo -->
 
-                <EditForm method="post" Model="Model" OnValidSubmit="onValidarLogin" FormName="LoginForm" Enhance>
+                <EditForm method="post" Model="Model" OnValidSubmit="onValidarLogin" FormName="LoginForm"  Enhance>
 
                     <DataAnnotationsValidator />
                     <ValidationSummary class="text-danger" role="alert" />
@@ -145,7 +148,7 @@
                         
             // if (string.IsNullOrEmpty(returnUrl))
             // {
-            //     returnUrl = "/admin/personas";
+                returnUrl = "/admin/personas";
             // }
 
            //  var returnUrl = Navigation.Uri.Contains("returnurl=")

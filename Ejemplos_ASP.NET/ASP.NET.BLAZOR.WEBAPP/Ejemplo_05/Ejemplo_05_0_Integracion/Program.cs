@@ -36,8 +36,6 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.ReturnUrlParameter = "returnurl";
         //
         options.Cookie.IsEssential = true;//algunos navegadores bloquean las cookies que no son esenciales
-        options.Cookie.Name = "Cookies";
-        options.LoginPath = "/Login";
         options.Cookie.MaxAge = null;// TimeSpan.FromMinutes(30);
         //                             //options.IdleTimeout = TimeSpan.FromDays(30); //tiempo de inactividad
         options.Cookie.HttpOnly = true; //evita acceso de javascript
@@ -84,31 +82,31 @@ builder.Services.AddSwaggerGen(c =>
 
     //para filtrar los controladores que fueron tagueados con el atributo: [ApiController]
     //sino mapea los controladores de la vista
-    //c.DocInclusionPredicate((docName, apiDesc) =>
+    c.DocInclusionPredicate((docName, apiDesc) =>
+    {
+        var controllerActionDescriptor = apiDesc.ActionDescriptor as Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor;
+        return controllerActionDescriptor != null &&
+               controllerActionDescriptor.ControllerTypeInfo.GetCustomAttributes(typeof(ApiControllerAttribute), true).Any();
+    });
+
+    //c.AddSecurityDefinition("cookieAuth", new OpenApiSecurityScheme
     //{
-    //    var controllerActionDescriptor = apiDesc.ActionDescriptor as Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor;
-    //    return controllerActionDescriptor != null &&
-    //           controllerActionDescriptor.ControllerTypeInfo.GetCustomAttributes(typeof(ApiControllerAttribute), true).Any();
+    //    Type = SecuritySchemeType.ApiKey,
+    //    In = ParameterLocation.Cookie,
+    //    Name = "auth_token",
+    //    Description = "Autenticación basada en cookies"
     //});
 
-    c.AddSecurityDefinition("cookieAuth", new OpenApiSecurityScheme
-    {
-        Type = SecuritySchemeType.ApiKey,
-        In = ParameterLocation.Cookie,
-        Name = "auth_token",
-        Description = "Autenticación basada en cookies"
-    });
-
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "cookieAuth" }
-            },
-            new List<string>()
-        }
-    });
+    //c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    //{
+    //    {
+    //        new OpenApiSecurityScheme
+    //        {
+    //            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "cookieAuth" }
+    //        },
+    //        new List<string>()
+    //    }
+    //});
 });
 #endregion
 
@@ -163,28 +161,16 @@ app.UseAntiforgery();
 }
 
 
-
-//app.Use(async (context, next) =>
-//{
-//    if (context.Request.Path.StartsWithSegments("/swagger/*") &&
-//        !context.User.Identity.IsAuthenticated)
-//    {
-//        context.Response.Redirect("/Login"); // Redirige a la página de login
-//        return;
-//    }
-//    await next();
-//});
-
-
 app.UseAuthentication();
 app.UseAuthorization();
 
+/*esto funciona*/
 app.Use(async (context, next) =>
 {
     if (context.Request.Path.StartsWithSegments("/swagger") &&
         !context.User.Identity.IsAuthenticated)
     {
-        context.Response.Redirect("/admin/login");
+        context.Response.Redirect("/admin/login?returnurl=/swagger");
         return;
     }
     await next();
@@ -192,70 +178,6 @@ app.Use(async (context, next) =>
 app.UseSwagger();
 app.UseSwaggerUI();
 
-//app.UseSwaggerUI(c =>
-//{
-//    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Ejemplo API v1");
-
-//    c.ConfigObject.AdditionalItems["persistAuthorization"] = true;
-//});
-
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapGet("/swagger/*", async context => ///swagger/{*file}
-//    {
-//        if (!context.User.Identity.IsAuthenticated)
-//        {
-//            context.Response.Redirect("/admin/login");
-//            return;
-//        }
-
-//        //var file = context.GetRouteValue("file")?.ToString();
-//        //var filePath = Path.Combine(builder.Environment.WebRootPath, "swagger", file);
-//        //if (!System.IO.File.Exists(filePath))
-//        //{
-//        //    context.Response.StatusCode = 404;
-//        //    return;
-//        //}
-
-//        await context.Response.SendFileAsync(filePath);
-//    });
-//});
-
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapGet("/swagger/*", async context => ///swagger/{*file}
-//       {
-//           if (!context.User.Identity.IsAuthenticated)
-//           {
-//               context.Response.Redirect("/admin/login");
-//               return;
-//           }
-//           await next();
-//       });
-//});
-
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapGet("/swagger/{*file}", async context =>
-//    {
-//        if (!context.User.Identity.IsAuthenticated)
-//        {
-//            context.Response.Redirect("/admin/login");
-//            return;
-//        }
-
-//        var file = context.GetRouteValue("file")?.ToString();
-//        var filePath = Path.Combine(builder.Environment.WebRootPath, "swagger", file);
-
-//        if (!System.IO.File.Exists(filePath))
-//        {
-//            context.Response.StatusCode = 404;
-//            return;
-//        }
-
-//        await context.Response.SendFileAsync(filePath);
-//    });
-//});
 
 app.MapControllers();// antes de MapRazorComponents
 
@@ -264,3 +186,6 @@ app.MapControllers();// antes de MapRazorComponents
 app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
 
 app.Run();
+
+//A valid antiforgery token was not provided with the request. Add an antiforgery token, or disable antiforgery validation for this endpoint.
+// CSRF (Cross-Site Request Forgery)

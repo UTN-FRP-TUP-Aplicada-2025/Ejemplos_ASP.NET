@@ -139,7 +139,20 @@
         if (httpContext != null)
         {
             await httpContext.SignInAsync("Cookies", principal);
-            Navigation.NavigateTo("/admin/personas", forceLoad: true);
+            //Navigation.NavigateTo("/admin/personas", forceLoad: true);
+
+             var returnUrl = httpContext.Request.Query["returnurl"];
+                        
+            // if (string.IsNullOrEmpty(returnUrl))
+            // {
+            //     returnUrl = "/admin/personas";
+            // }
+
+           //  var returnUrl = Navigation.Uri.Contains("returnurl=")
+           // ? Navigation.Uri.Split("returnurl=")[1]
+           // : "/admin/personas";
+
+            Navigation.NavigateTo(returnUrl, forceLoad: true);
         }
         else
         {

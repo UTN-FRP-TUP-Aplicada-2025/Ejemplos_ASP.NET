@@ -65,7 +65,7 @@ h1:focus {
     margin: 0; /* Sin margen adicional */
 }
 
-    .link-button:hover {
-        color: darkblue; /* Cambia el color al pasar el mouse */
-        text-decoration: none; /* Opcional: quita el subrayado al pasar el mouse */
-    }
+.link-button:hover {
+    color: darkblue; /* Cambia el color al pasar el mouse */
+    text-decoration: none; /* Opcional: quita el subrayado al pasar el mouse */
+}

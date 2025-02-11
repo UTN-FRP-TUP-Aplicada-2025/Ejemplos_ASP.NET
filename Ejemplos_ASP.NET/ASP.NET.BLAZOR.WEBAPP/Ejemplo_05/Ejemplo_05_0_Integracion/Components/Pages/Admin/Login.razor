@@ -16,8 +16,7 @@
 @* esta using hace visible a SignOutAsync*@
 @using Microsoft.AspNetCore.Authentication
 
-@* necesario para el acceso al contexto *@
-@inject IHttpContextAccessor HttpContextAccessor
+
 
 @inject NavigationManager Navigation
 
@@ -108,7 +107,8 @@
 </section>
 
 
-@code {
+
+@* @code {
     // [CascadingParameter]
     // public HttpContext? httpContext { get; set; }
 
@@ -164,3 +164,4 @@
 
     }
 }
+ *@

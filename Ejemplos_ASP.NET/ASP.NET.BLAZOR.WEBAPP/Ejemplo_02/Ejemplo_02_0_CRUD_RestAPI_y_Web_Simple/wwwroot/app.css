@@ -52,3 +52,20 @@ h1:focus {
 .darker-border-checkbox.form-check-input {
     border-color: #929292;
 }
+
+
+.link-button {
+    background: none; /* Sin fondo */
+    border: none; /* Sin borde */
+    color: blue; /* Color de enlace */
+    text-decoration: underline; /* Subrayado como un enlace */
+    cursor: pointer; /* Cursor de puntero */
+    font-size: inherit; /* Hereda el tamaño de fuente del contenedor */
+    padding: 0; /* Sin relleno adicional */
+    margin: 0; /* Sin margen adicional */
+}
+
+.link-button:hover {
+    color: darkblue; /* Cambia el color al pasar el mouse */
+    text-decoration: none; /* Opcional: quita el subrayado al pasar el mouse */
+}

@@ -11,7 +11,7 @@ public class UsuarioService
 
     public string? ObtenerCUIT()
     {
-        var user = _httpContextAccessor.HttpContext?.User;
-        return user?.FindFirst("CUIT")?.Value;
+        var cuit = _httpContextAccessor.HttpContext?.User.FindFirst("CUIT")?.Value;
+        return cuit;
     }
 }

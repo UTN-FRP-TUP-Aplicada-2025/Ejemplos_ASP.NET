@@ -13,7 +13,8 @@
 <p role="status">Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
+<primary-button v-on:click="incrementCount">Click me</primary-button>
+@* 
 @code {
     private int currentCount = 0;
 
@@ -22,3 +23,4 @@
         currentCount++;
     }
 }
+ *@

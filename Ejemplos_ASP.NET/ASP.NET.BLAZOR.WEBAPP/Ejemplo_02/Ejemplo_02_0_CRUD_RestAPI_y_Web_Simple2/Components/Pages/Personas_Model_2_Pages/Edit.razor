@@ -1,0 +1,111 @@
+﻿@page "/personas_model_2/edit"
+
+@using Ejemplo_02_0_CRUD_RestAPI_y_Web_Simple.Models
+@using Ejemplo_02_0_CRUD_RestAPI_y_Web_Simple.Services
+
+@inject NavigationManager NavigationManager
+
+@rendermode InteractiveServer
+
+<PageTitle>Edit</PageTitle>
+
+<h1>Edit</h1>
+
+<h2>Persona</h2>
+
+<hr />
+@if (personaModel is null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm method="post" Model="personaModel" OnValidSubmit="UpdatePersona" FormName="edit" Enhance>
+
+                <DataAnnotationsValidator />
+                <ValidationSummary role="alert" />
+
+                <input type="hidden" name="personaModal.Id" value="@personaModel.Id" />
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Id:</label>
+                    <InputNumber id="id" @bind-Value="personaModel.Id" class="form-control" aria-required="true" />
+                    <ValidationMessage For="() => personaModel.Id" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="dni" class="form-label">DNI:</label>
+                    <InputNumber id="dni" @bind-Value="personaModel.DNI" class="form-control" />
+                    <ValidationMessage For="() => personaModel.DNI" class="text-danger" />
+                </div>
+                
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <InputText id="nombre" @bind-Value="personaModel.Nombre" class="form-text" />
+                    <ValidationMessage For="() => personaModel.Nombre" class="text-danger" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="fechaNacimiento" class="form-label">Fecha Nacimiento:</label>
+                    <InputDate id="usatransporteprivado" @bind-Value="personaModel.FechaNacimiento" class="form-text" />
+                    <ValidationMessage For="() => personaModel.FechaNacimiento" class="text-danger" />
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Save</button>
+            </EditForm>
+        </div>
+    </div>
+}
+
+<div>
+    <a href="/personas_model_2"><i class="fa-solid fa-arrow-left"></i></a>
+</div>
+
+@code {
+    [SupplyParameterFromQuery]
+    private int Id { get; set; }
+
+    [SupplyParameterFromForm]
+    private PersonaModel personaModel { get; set; } = new();
+
+    private PersonasService _personasService = new PersonasService();
+
+    protected override async Task OnInitializedAsync()
+    {
+        personaModel = _personasService.GetById(Id);
+
+        if (personaModel is null)
+        {
+            NavigationManager.NavigateTo("notfound");
+        }
+    }
+
+    private async Task UpdatePersona()
+    {
+        try
+        {
+            _personasService.Actualizar(personaModel);
+        }
+        catch (Exception e)
+        {
+            if (!PersonaExists(personaModel!.Id))
+            {
+                NavigationManager.NavigateTo("notfound");
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        NavigationManager.NavigateTo("/personas_model_2");
+    }
+
+    private bool PersonaExists(int id)
+    {
+        var resultado = _personasService.GetById(Id);
+        return resultado != null;
+    }
+}

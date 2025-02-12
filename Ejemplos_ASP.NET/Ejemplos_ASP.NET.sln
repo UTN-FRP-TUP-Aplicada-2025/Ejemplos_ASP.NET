@@ -523,7 +523,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00_SQLite", "00_SQLite", "{
 		SQLite\Readme.md = SQLite\Readme.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_0_CRUD_RestAPI_y_Web_Simple", "ASP.NET.BLAZOR.WEBAPP\Ejemplo_02\Ejemplo_02_0_CRUD_RestAPI_y_Web_Simple2\Ejemplo_02_0_CRUD_RestAPI_y_Web_Simple.csproj", "{2884FCA5-ECD2-4D8C-98CA-7BB0A99FE667}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_0_CRUD_RestAPI_y_Web_Simple", "ASP.NET.BLAZOR.WEBAPP\Ejemplo_02\Ejemplo_02_0_CRUD_RestAPI_y_Web_Simple\Ejemplo_02_0_CRUD_RestAPI_y_Web_Simple.csproj", "{2884FCA5-ECD2-4D8C-98CA-7BB0A99FE667}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
 using Ejemplo_02_0_CRUD_RestAPI_y_Web_Simple.Components;
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+//using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,13 +20,13 @@ builder.Services.AddCors(options =>
 });
 #endregion
 
-#region carga en caliente
-builder.Services.Configure<MvcRazorRuntimeCompilationOptions>(options =>
-{
-    options.FileProviders.Add(new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
-        builder.Environment.ContentRootPath));
-});
-#endregion
+//#region carga en caliente
+//builder.Services.Configure<MvcRazorRuntimeCompilationOptions>(options =>
+//{
+//    options.FileProviders.Add(new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
+//        builder.Environment.ContentRootPath));
+//});
+//#endregion
 
 #region configuracion de restapi y swagger
 builder.Services.AddControllers();

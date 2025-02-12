@@ -1,6 +1,8 @@
-﻿namespace Ejemplo_05_0_Integracion.Components.Pages.Admin;
+﻿using Microsoft.AspNetCore.Components;
 
-public class Counter
+namespace Ejemplo_05_0_Integracion.Components.Pages.Admin;
+
+public partial class Counter:ComponentBase
 {
     private int currentCount = 0;
 

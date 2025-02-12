@@ -17,7 +17,8 @@ public partial class Login
 
     private UsuariosService _usuarioService = new UsuariosService();
 
-    @* necesario para el acceso al contexto *@
+    
+    //necesario para el acceso al contexto
     [Inject] IHttpContextAccessor HttpContextAccessor { get; set; }
 
     private string? errorMessages;

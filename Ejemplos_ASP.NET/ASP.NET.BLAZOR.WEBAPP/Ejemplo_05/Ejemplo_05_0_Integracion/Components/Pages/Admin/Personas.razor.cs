@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace Ejemplo_05_0_Integracion.Components.Pages.Admin;
 
-public partial class Personas
+public partial class Personas:ComponentBase
 {
     private bool isLoading = true;
 
@@ -106,15 +106,5 @@ public partial class Personas
 
 
 
-    //requiere @rendermode InteractiveServer
-    [Inject] IJSRuntime JS { get; set; }
-    private bool _initialized;
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender && !_initialized)
-        {
-            _initialized = true;
-            await JS.InvokeVoidAsync("MYAPP.initializeTemplate");
-        }
-    }
+    
 }

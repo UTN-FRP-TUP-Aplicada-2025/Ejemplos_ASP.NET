@@ -517,7 +517,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00_SQLite", "00_SQLite", "{9D56412E-616B-4298-B644-3EFDB7CFC652}"
 	ProjectSection(SolutionItems) = preProject
 		SQLite\local_script.sql = SQLite\local_script.sql
-		SQLite\personas_db.db = SQLite\personas_db.db
 		SQLite\Readme.md = SQLite\Readme.md
 	EndProjectSection
 EndProject

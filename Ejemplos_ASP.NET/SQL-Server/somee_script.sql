@@ -49,7 +49,7 @@ GO
 CREATE TABLE Personas
 (
 	Id INT IDENTITY(1,1),
-	DNI INT NOT NULL,
+	DNI INT NOT NULL UNIQUE,
 	Nombre NVARCHAR(100) NOT NULL,
 	Fecha_Nacimiento DATE,
 	--
@@ -65,23 +65,30 @@ CREATE TABLE Personas
 
 GO
 
-INSERT INTO Personas(DNI,Nombre,Fecha_Nacimiento)
-VALUES 
-(35843243, 'Sebastian', '1-1-1990'),
-(35327489, 'Esteban', '1-1-1990'),
-(43323432, 'Luisa', '5-1-2000'),
-(30798132, 'Teresa', '3-26-1999'),
-(35555132, 'Eduardo', '7-3-1995'),
-(26555132, 'Rosa', '7-3-1975'),
-(28451182, 'Griselda', '7-26-1982'),
-(28733932, 'Carina', '7-23-1982'),
-(24254932, 'Arturo', '6-2-1963'),
-(28374602, 'Andres', '3-2-1980'),
-(30694152, 'Estefania', '5-2-1985'),
-(45235754, 'Norberto', '2-6-2004'),
-(32432223, 'Ricardo', '2-6-2000'),
-(23432224, 'Aurelio', '2-6-2004'),
-(37232232, 'Cesar', '2-2-1987')
+INSERT INTO Personas (DNI, Nombre, Fecha_Nacimiento) VALUES 
+(35843243, 'Sebastian', '1990-01-01'),
+(35327489, 'Esteban', '1990-01-01'),
+(43323432, 'Luisa', '2000-01-05'),
+(30798132, 'Teresa', '1999-03-26'),
+(35555132, 'Eduardo', '1995-07-03'),
+(26555132, 'Rosa', '1975-07-03'),
+(28451182, 'Griselda', '1982-07-26'),
+(28733932, 'Carina', '1982-07-23'),
+(24254932, 'Arturo', '1963-06-02'),
+(28374602, 'Andres', '1980-03-02'),
+(30694152, 'Estefania', '1985-05-02'),
+(45235754, 'Norberto', '2004-02-06'),
+(32432223, 'Ricardo', '2000-02-06'),
+(23432224, 'Aurelio', '2004-02-06'),
+(37232632, 'Cesar', '1987-02-02'),
+(37237202, 'David', '1987-02-02'),
+(37232432, 'Patricia', '1987-02-02'),
+(37232932, 'Analía', '1987-02-02'),
+(32042032, 'Dolores', '1987-02-02'),
+(34237032, 'Gustavo', '1987-02-02'),
+(42232072, 'Marianela', '1987-02-02'),
+(37234210, 'Andrea', '1987-02-02'),
+(37238236, 'Rita', '1987-02-02');
 
 INSERT INTO Usuarios(Nombre, Clave)
 VALUES('Admin', '123'),

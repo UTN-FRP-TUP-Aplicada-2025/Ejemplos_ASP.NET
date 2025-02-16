@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS Usuarios_Roles (
 -- Crear la tabla Personas
 CREATE TABLE IF NOT EXISTS Personas (
     Id INTEGER PRIMARY KEY AUTOINCREMENT,
-    DNI INT NOT NULL,
+    DNI INT NOT NULL UNIQUE,
     Nombre TEXT NOT NULL,
     Fecha_Nacimiento DATE
 );
@@ -47,7 +47,7 @@ INSERT INTO Personas (DNI, Nombre, Fecha_Nacimiento) VALUES
 (32432223, 'Ricardo', '2000-02-06'),
 (23432224, 'Aurelio', '2004-02-06'),
 (37232632, 'Cesar', '1987-02-02'),
-(37237232, 'David', '1987-02-02'),
+(37237202, 'David', '1987-02-02'),
 (37232432, 'Patricia', '1987-02-02'),
 (37232932, 'Analía', '1987-02-02'),
 (32042032, 'Dolores', '1987-02-02'),

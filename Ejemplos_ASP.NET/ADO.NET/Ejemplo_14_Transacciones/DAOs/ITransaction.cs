@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.Data.SqlClient;
 using System.Transactions;
 
 namespace Ejemplo_14_Transacciones.DAOs;
@@ -13,4 +14,6 @@ public interface ITransaction<T> : IDisposable
     Task RollbackAsync();
 
     T GetInternalTransaction();
+
+    Task BeginTransaction();
 }

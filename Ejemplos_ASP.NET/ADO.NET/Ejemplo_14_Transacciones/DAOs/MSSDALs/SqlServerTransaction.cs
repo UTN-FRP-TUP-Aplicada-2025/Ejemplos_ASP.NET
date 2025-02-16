@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Ejemplo_14_Transacciones.MSSDALs;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,7 @@ namespace Ejemplo_14_Transacciones.DAOs.MSSDALs;
 
 public class SqlServerTransaction : ITransaction<SqlTransaction>
 {
-    private readonly SqlTransaction _transaccion;
-
-    public SqlServerTransaction(SqlTransaction transaccion)
-    {
-        _transaccion = transaccion;
-    }
-
+    private SqlTransaction _transaccion;
 
     public void Commit()
     {
@@ -30,13 +25,13 @@ public class SqlServerTransaction : ITransaction<SqlTransaction>
     public async Task CommitAsync()
     {
         await Task.Run(() => _transaccion.Commit());
-        await _transaccion.Connection.CloseAsync();
+        //await _transaccion.Connection.CloseAsync();
     }
 
     public async Task RollbackAsync()
     {
         await Task.Run(() => _transaccion.Rollback());
-        await _transaccion.Connection.CloseAsync();
+        //await _transaccion?.Connection?.CloseAsync();
     }
 
     public void Dispose()
@@ -48,5 +43,18 @@ public class SqlServerTransaction : ITransaction<SqlTransaction>
     public SqlTransaction GetInternalTransaction()
     {
         return _transaccion;
+    }
+
+    private SqlConnection ObtenerConexion()
+    {
+        return new SqlConnection(ConexionString.CadenaConexion);
+    }
+
+    async public Task BeginTransaction()
+    {
+        var conexion = ObtenerConexion();
+        await conexion.OpenAsync();
+
+        _transaccion = conexion.BeginTransaction();
     }
 }

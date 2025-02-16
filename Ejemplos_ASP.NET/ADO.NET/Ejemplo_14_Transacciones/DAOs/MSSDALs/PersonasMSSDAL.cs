@@ -1,16 +1,16 @@
-﻿using Ejemplo_13_Personas.DALs;
-using Ejemplo_13_Personas.Models;
-using Ejemplo_14_Transacciones.DAOs;
+﻿using Ejemplo_14_Transacciones.DAOs;
+using Ejemplo_14_Transacciones.Models;
+using Ejemplo_14_Transacciones.MSSDALs;
 using Microsoft.Data.SqlClient;
-using System.Net.NetworkInformation;
 
-namespace Ejemplo_05_Areas.DALs.MSSDALs;
 
-public class PersonasMSSDAL : IPersonasDAL
+namespace Ejemplo_14_Transacciones.DALs.MSSDALs;
+
+public class PersonasMSSDAL : IBaseDAL<PersonaModel, int, SqlTransaction>
 {
     private SqlConnection ObtenerConexion()
     {
-        return new SqlConnection(ConexionString.Valor);
+        return new SqlConnection(ConexionString.CadenaConexion);
     }
 
     public async Task<List<PersonaModel>> GetAll(ITransaction<SqlTransaction>? transaccion = null)
@@ -21,7 +21,7 @@ public class PersonasMSSDAL : IPersonasDAL
 @"SELECT p.* 
 FROM Personas p";
 
-        using var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
         if (transaccion is null)
             await conexion.OpenAsync();
 
@@ -30,7 +30,7 @@ FROM Personas p";
         var reader = await query.ExecuteReaderAsync();
         while (await reader.ReadAsync())
         {
-            var objeto = ReadAsPersona(reader);
+            var objeto = ReadAsObjeto(reader);
             lista.Add(objeto);
         }
         return lista;
@@ -46,7 +46,7 @@ SELECT TOP 1 p.*
 FROM Personas p
 WHERE p.Id = @Id";
 
-        using var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
         if (transaccion == null)
             await conexion.OpenAsync();
 
@@ -56,7 +56,7 @@ WHERE p.Id = @Id";
         var reader = await query.ExecuteReaderAsync();
         if (await reader.ReadAsync())
         {
-            objeto = ReadAsPersona(reader);
+            objeto = ReadAsObjeto(reader);
         }
         return objeto;
     }
@@ -69,7 +69,7 @@ INSERT INTO Personas (Dni, Nombre, Fecha_Nacimiento)
 OUTPUT INSERTED.ID 
 VALUES (@Dni, @Nombre, @Fecha_Nacimiento)";
 
-        using var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
         if (transaccion == null)
         {
             await conexion.OpenAsync();
@@ -129,14 +129,8 @@ WHERE Id = @Id";
         return eliminados > 0;
     }
 
-    public SqlTransaction BeginTransaction()
-    {
-        var conexion = ObtenerConexion();
-        conexion.Open();
-        return conexion.BeginTransaction();
-    }
 
-    private PersonaModel ReadAsPersona(SqlDataReader reader)
+    private PersonaModel ReadAsObjeto(SqlDataReader reader)
     {
         int id = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0;
         int dni = reader["DNI"] != DBNull.Value ? Convert.ToInt32(reader["DNI"]) : 0;

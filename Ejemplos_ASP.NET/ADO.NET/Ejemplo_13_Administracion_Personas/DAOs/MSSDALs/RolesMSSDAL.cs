@@ -26,7 +26,7 @@ FROM Roles p";
 
         while (await reader.ReadAsync())
         {
-            var objeto = ReadAsObjecto(reader);
+            var objeto = ReadAsObjeto(reader);
             lista.Add(objeto);
         }
         return lista;
@@ -51,7 +51,7 @@ WHERE r.Nombre=@Nombre";
 
         if (await reader.ReadAsync())
         {
-            objeto = ReadAsObjecto(reader);
+            objeto = ReadAsObjeto(reader);
         }
         return objeto;
     }
@@ -80,7 +80,7 @@ VALUES (@Nombre)";
 WHERE Nombre=@Nombre";
 
         using var conexion = new SqlConnection(ConexionString.CadenaConexion);
-        conexion.Open();
+        await conexion.OpenAsync();
 
         using var query = new SqlCommand(sqlQuery, conexion);
         query.Parameters.AddWithValue("@Nombre", actualizar.Nombre);
@@ -107,7 +107,7 @@ WHERE Nombre=@Nombre";
         return eliminados > 0;
     }
 
-    protected RolModel ReadAsObjecto(SqlDataReader reader)
+    protected RolModel ReadAsObjeto(SqlDataReader reader)
     {
         string nombre = reader["Nombre"] != DBNull.Value ? Convert.ToString(reader["Nombre"]) : "";
       

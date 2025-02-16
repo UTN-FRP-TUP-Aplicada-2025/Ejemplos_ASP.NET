@@ -57,9 +57,7 @@ async Task GenerarPaginaHTMLListadoPersonas()
 
 async Task GenerarPaginaHTMLListadoUsuariosYRoles()
 {
-    UsuariosService _usuariosService = new();
-
-    var Models = await _usuariosService.GetAll();
+    
 
     // simulando la respuesta a una consulta por un recurso - genera el codigo html dinamicamente.
 
@@ -96,6 +94,8 @@ async Task GenerarPaginaHTMLListadoUsuariosYRoles()
             </div>
         </div> <br/>";
 
+    UsuariosService _usuariosService = new();
+    var Models = await _usuariosService.GetAll();
     foreach (var item in Models)
     {
         contenidoDinamicoHtml +=

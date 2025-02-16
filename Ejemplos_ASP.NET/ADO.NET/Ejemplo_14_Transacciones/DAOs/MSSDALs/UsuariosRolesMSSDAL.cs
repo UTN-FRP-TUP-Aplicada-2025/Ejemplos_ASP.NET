@@ -1,17 +1,23 @@
-﻿using Ejemplo_13.MSSDALs;
-using Ejemplo_13.Models;
+﻿using Ejemplo_14_Transacciones.MSSDALs;
+using Ejemplo_14_Transacciones.Models;
 
 using Microsoft.Data.SqlClient;
+using Ejemplo_14_Transacciones.DAOs;
 
-namespace Ejemplo_13.DALs.MSSDALs;
+namespace Ejemplo_14_Transacciones.DALs.MSSDALs;
 
 /*
  muchos metodos tienen sentido si la relacion usuario rol tuviera campos adicionales, como por ejemplo fecha de alta, fecha de baja, etc.
  */
 
-public class UsuariosRolesMSSDAL : IBaseDAL<UsuarioRolModel, UsuarioRolModel>
+public class UsuariosRolesMSSDAL : IBaseDAL<UsuarioRolModel, UsuarioRolModel, SqlTransaction>
 {
-    async public Task<List<UsuarioRolModel>> GetAll()
+    private SqlConnection ObtenerConexion()
+    {
+        return new SqlConnection(ConexionString.CadenaConexion);
+    }
+
+    async public Task<List<UsuarioRolModel>> GetAll(ITransaction<SqlTransaction>? transaccion = null)
     {
         var lista = new List<UsuarioRolModel>();
 
@@ -19,8 +25,9 @@ public class UsuariosRolesMSSDAL : IBaseDAL<UsuarioRolModel, UsuarioRolModel>
 @"SELECT u_r.* 
 FROM Usuarios_Roles u_r ";
 
-        using var conexion = new SqlConnection(ConexionString.CadenaConexion);
-        await conexion.OpenAsync();
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion is null)
+            await conexion.OpenAsync();
 
         using var query = new SqlCommand(sqlQuery, conexion);
 
@@ -28,13 +35,13 @@ FROM Usuarios_Roles u_r ";
 
         while (await reader.ReadAsync())
         {
-            var objeto = ReadAsObjeto(reader);
+            var objeto = ReadAsObjecto(reader);
             lista.Add(objeto);
         }
         return lista;
     }
 
-    async public Task<UsuarioRolModel?> GetByKey(UsuarioRolModel usuarioRol)
+    async public Task<UsuarioRolModel?> GetByKey(UsuarioRolModel usuarioRol, ITransaction<SqlTransaction>? transaccion = null)
     {
         UsuarioRolModel objeto = null;
 
@@ -44,8 +51,9 @@ FROM Usuarios_Roles u_r
 WHERE UPPER(TRIM(u_r.Nombre_Usuario)) LIKE UPPER(TRIM(@NombreUsuario))
         AND UPPER(TRIM(u_r.Nombre_Rol)) LIKE UPPER(TRIM(@NombreRol))";
 
-        using var conexion = new SqlConnection(ConexionString.CadenaConexion);
-        await conexion.OpenAsync();
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion is null)
+            await conexion.OpenAsync();
 
         using var query = new SqlCommand(sqlQuery, conexion);
         query.Parameters.AddWithValue("@NombreUsuario", usuarioRol?.NombreUsuario);
@@ -55,12 +63,12 @@ WHERE UPPER(TRIM(u_r.Nombre_Usuario)) LIKE UPPER(TRIM(@NombreUsuario))
 
         if (await reader.ReadAsync())
         {
-            objeto = ReadAsObjeto(reader);
+            objeto = ReadAsObjecto(reader);
         }
         return objeto;
     }
 
-    async public Task<List<UsuarioRolModel?>> GetByUsuario(UsuarioRolModel usuarioRol)
+    async public Task<List<UsuarioRolModel?>> GetByUsuario(UsuarioRolModel usuarioRol, ITransaction<SqlTransaction>? transaccion = null)
     {
         List<UsuarioRolModel> objetos = new List<UsuarioRolModel>();
 
@@ -70,10 +78,11 @@ FROM Usuarios_Roles u_r
 WHERE UPPER(TRIM(u_r.Nombre_Usuario)) LIKE UPPER(TRIM(@NombreUsuario))
         AND UPPER(TRIM(u_r.Nombre_Rol)) LIKE UPPER(TRIM(@NombreRol))";
 
-        using var conexion = new SqlConnection(ConexionString.CadenaConexion);
-        await conexion.OpenAsync();
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion is null)
+            await conexion.OpenAsync();
 
-        using var query = new SqlCommand(sqlQuery, conexion);
+        using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@NombreUsuario", usuarioRol?.NombreUsuario);
         query.Parameters.AddWithValue("@NombreRol", usuarioRol?.NombreRol);
 
@@ -81,22 +90,23 @@ WHERE UPPER(TRIM(u_r.Nombre_Usuario)) LIKE UPPER(TRIM(@NombreUsuario))
 
         while (await reader.ReadAsync())
         {
-            var objeto = ReadAsObjeto(reader);
+            var objeto = ReadAsObjecto(reader);
             objetos.Add(objeto);
         }
         return objetos;
     }
 
-    async public Task<bool> Insert(UsuarioRolModel nuevo)
+    async public Task<bool> Insert(UsuarioRolModel nuevo, ITransaction<SqlTransaction>? transaccion = null)
     {
         string sqlQuery =
 @"INSERT Usuarios_Roles(Nombre_Usuario, Nombre_Rol)
 VALUES (@NombreUsuario, @NombreRol)";
 
-        using var conexion = new SqlConnection(ConexionString.CadenaConexion);
-        await conexion.OpenAsync();
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion is null)
+            await conexion.OpenAsync();
 
-        using var query = new SqlCommand(sqlQuery, conexion);
+        using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@NombreUsuario", nuevo.NombreUsuario);
         query.Parameters.AddWithValue("@NombreRol", nuevo.NombreRol);
 
@@ -104,17 +114,18 @@ VALUES (@NombreUsuario, @NombreRol)";
         return cantInsertados > 0;
     }
 
-    async public Task<bool> Update(UsuarioRolModel actualizar)
+    async public Task<bool> Update(UsuarioRolModel actualizar, ITransaction<SqlTransaction>? transaccion = null)
     {
         string sqlQuery =
 @"UPDATE Usuarios_Roles SET Nombre_Usuario=@Nombre_Usuario, Nombre_Rol=@Nombre_Rol
 WHERE UPPER(TRIM(Nombre_Usuario)) LIKE UPPER(@NombreUsuario) 
         AND UPPER(TRIM(Nombre_Rol)) LIKE UPPER(@NombreRol)";
 
-        using var conexion = new SqlConnection(ConexionString.CadenaConexion);
-        await conexion.OpenAsync();
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion is null)
+            await conexion.OpenAsync();
 
-        using var query = new SqlCommand(sqlQuery, conexion);
+        using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@NombreUsuario", actualizar.NombreUsuario);
         query.Parameters.AddWithValue("@NombreRol", actualizar.NombreRol);
 
@@ -123,7 +134,7 @@ WHERE UPPER(TRIM(Nombre_Usuario)) LIKE UPPER(@NombreUsuario)
         return cantidad > 0;
     }
 
-    async public Task<bool> Delete(UsuarioRolModel usuarioRol)
+    async public Task<bool> Delete(UsuarioRolModel usuarioRol, ITransaction<SqlTransaction>? transaccion = null)
     {
         string sqlQuery =
 @"DELETE FROM Usuarios_Roles
@@ -131,10 +142,11 @@ WHERE UPPER(TRIM(Nombre_Usuario)) LIKE UPPER(@NombreUsuario)
          AND UPPER(TRIM(Nombre_Rol)) LIKE UPPER(@NombreRol)
 ";
 
-        using var conexion = new SqlConnection(ConexionString.CadenaConexion);
-        await conexion.OpenAsync();
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion is null)
+            await conexion.OpenAsync();
 
-        using var query = new SqlCommand(sqlQuery, conexion);
+        using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@NombreUsuario", usuarioRol.NombreUsuario);
         query.Parameters.AddWithValue("@NombreRol", usuarioRol.NombreRol);
 
@@ -143,7 +155,7 @@ WHERE UPPER(TRIM(Nombre_Usuario)) LIKE UPPER(@NombreUsuario)
         return eliminados > 0;
     }
 
-    protected UsuarioRolModel ReadAsObjeto(SqlDataReader reader)
+    protected UsuarioRolModel ReadAsObjecto(SqlDataReader reader)
     {
         string nombreUsuario = reader["Nombre_Usuario"] != DBNull.Value ? Convert.ToString(reader["Nombre_Usuario"]) : "";
         string nombreRol = reader["Nombre_Rol"] != DBNull.Value ? Convert.ToString(reader["Nombre_Rol"]) : "";

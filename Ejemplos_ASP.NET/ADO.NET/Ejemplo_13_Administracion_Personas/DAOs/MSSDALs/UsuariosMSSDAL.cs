@@ -24,7 +24,7 @@ FROM Usuarios u";
 
         while (await reader.ReadAsync())
         {
-            var objeto = ReadAsObjecto(reader);
+            var objeto = ReadAsObjeto(reader);
             lista.Add(objeto);
         }
         return lista;
@@ -49,7 +49,7 @@ WHERE UPPER(TRIM(u.Nombre)) LIKE UPPER(TRIM(@Nombre))";
 
         if (await reader.ReadAsync())
         {
-            objeto = ReadAsObjecto(reader);
+            objeto = ReadAsObjeto(reader);
         }
         return objeto;
     }
@@ -64,7 +64,7 @@ VALUES (@Nombre, @Clave)";
         await conexion.OpenAsync();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Nombreo", nuevo.Nombre);
+        query.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
         query.Parameters.AddWithValue("@Clave", nuevo.Clave);
 
         int cantInsertados = Convert.ToInt32(await query.ExecuteNonQueryAsync());
@@ -106,7 +106,7 @@ WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre)";
         return eliminados > 0;
     }
 
-    protected UsuarioModel ReadAsObjecto(SqlDataReader reader)
+    protected UsuarioModel ReadAsObjeto(SqlDataReader reader)
     {
         string nombre = reader["Nombre"] != DBNull.Value ? Convert.ToString(reader["Nombre"]) : "";
         string clave = reader["Clave"] != DBNull.Value ? Convert.ToString(reader["Clave"]) : "";

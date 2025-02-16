@@ -10,14 +10,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.13" />
-    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="9.0.1" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.13" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="personas_db.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

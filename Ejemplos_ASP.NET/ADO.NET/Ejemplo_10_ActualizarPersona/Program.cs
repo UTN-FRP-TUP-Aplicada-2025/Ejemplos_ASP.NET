@@ -3,10 +3,6 @@ using Ej10_ActualizarPersona.Models;
 using Ejemplo_10_ActualizarPersona.Utils;
 using Microsoft.Data.SqlClient;
 
-
-
-var cadenaConexion = ConexionString.Valor;
-
 var nuevo = new PersonaModel
 {
     Id = 1,
@@ -16,8 +12,8 @@ var nuevo = new PersonaModel
 };
 
 #region conexion al servidor
-using var conexion = new SqlConnection(ConexionString.Valor);
-conexion.Open();
+using var conexion = new SqlConnection(ConexionString.CadenaConexion);
+await conexion.OpenAsync();
 #endregion
 
 #region preparo el comando sql
@@ -33,7 +29,7 @@ query.Parameters.AddWithValue("@Id", nuevo.Id);
 #endregion
 
 #region ejecuto el comando
-int cantidad = query.ExecuteNonQuery();
+int cantidad =await query.ExecuteNonQueryAsync();
 #endregion 
 
 Console.WriteLine($"registro actualizados: {cantidad}");

@@ -28,7 +28,7 @@ List<PersonaModel> ReadAsPersonas(DataTable dt)
     return personas;
 }
 
-var cadenaconexion = ConexionString.Valor;
+var cadenaconexion = ConexionString.CadenaConexion;
 
 var query = 
 @"SELECT p.* 

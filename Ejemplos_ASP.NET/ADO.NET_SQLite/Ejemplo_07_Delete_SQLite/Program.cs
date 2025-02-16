@@ -1,20 +1,21 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Data;
+﻿
+
+using Microsoft.Data.Sqlite;
 
 var personaId = 2;
 
-string cadenaConexion = "workstation id=Ejemplos_ASP_MVC_DB.mssql.somee.com;packet size=4096;user id=fernando-dev_SQLLogin_1;pwd=bfzixu5w6p;data source=Ejemplos_ASP_MVC_DB.mssql.somee.com;persist security info=False;initial catalog=Ejemplos_ASP_MVC_DB;TrustServerCertificate=True";
+var cadenaConexion = "Data Source=../../../../Db/Personas_db.db";
 
 var query = 
 @"DELETE Personas 
 WHERE ID=@Id;";          //ojo aquí, si la condición elimina a todos
 
-using var conexion = new SqlConnection(cadenaConexion);   //hace que se cierre
-conexion.Open();
+using var conexion = new SqliteConnection(cadenaConexion);   //hace que se cierre
+await   conexion.OpenAsync();
 
-var comando = new SqlCommand(query, conexion);
+var comando = new SqliteCommand(query, conexion);
 comando.Parameters.AddWithValue("@ID", personaId);
 
-int eliminados=comando.ExecuteNonQuery();
+int eliminados=await comando.ExecuteNonQueryAsync();
 
 Console.WriteLine($"Cantidad de eliminados: {eliminados} registros");

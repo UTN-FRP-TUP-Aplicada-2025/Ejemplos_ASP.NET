@@ -523,6 +523,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00_SQLite", "00_SQLite", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_0_CRUD_RestAPI_y_Web_Simple", "ASP.NET.BLAZOR.WEBAPP\Ejemplo_02\Ejemplo_02_0_CRUD_RestAPI_y_Web_Simple\Ejemplo_02_0_CRUD_RestAPI_y_Web_Simple.csproj", "{2884FCA5-ECD2-4D8C-98CA-7BB0A99FE667}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Db", "Db", "{F1A34E16-B16E-4299-ACAD-F4BBB98DB715}"
+	ProjectSection(SolutionItems) = preProject
+		ADO.NET_SQLite\Db\personas_db.db = ADO.NET_SQLite\Db\personas_db.db
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -919,6 +924,7 @@ Global
 		{506F77C4-ECDE-4C21-BB8F-663FC63F5527} = {F490E65E-BACE-449E-B355-0FCB5AE785A3}
 		{89A5A020-4406-494A-9CEA-EC9F2078303B} = {DE9C55F0-9C76-4936-A07F-8A67519D880F}
 		{2884FCA5-ECD2-4D8C-98CA-7BB0A99FE667} = {96B5FEDE-5CCD-4DC0-95DF-C4D4C4EBB46E}
+		{F1A34E16-B16E-4299-ACAD-F4BBB98DB715} = {C7D5FF1D-C3AC-490A-8CD9-F9D31A7E0F7E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

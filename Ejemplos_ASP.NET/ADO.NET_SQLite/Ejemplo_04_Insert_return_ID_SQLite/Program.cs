@@ -1,21 +1,29 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Data;
+﻿using Microsoft.Data.Sqlite;
 
-var personaNombre = "Marianela";
 
-var cadenaDeConexion = "workstation id=GuidoAlumnoDB.mssql.somee.com;packet size=4096;user id=guidoagustin_SQLLogin_1;pwd=fmvfrm1hbh;data source=GuidoAlumnoDB.mssql.somee.com;persist security info=False;initial catalog=GuidoAlumnoDB;TrustServerCertificate=True";
+var dni = 27712333;
+var personaNombre = "Andrea";
+var fechaNacimiento = new DateTime(1990, 10, 10);
+
+var cadenaConexion = "Data Source=../../../../Db/Personas_db.db";
 
 var query =
-@"insert into Personas (Nombre) 
-  OUTPUT INSERTED.ID 
-  values (@Nombre1)";
+@"INSERT INTO Personas (DNI, Nombre, Fecha_Nacimiento) 
+  VALUES (@DNI,@Nombre,@FechaNacimiento)";
 
-using var conexion = new SqlConnection(cadenaDeConexion);   //hace que se cierre
-conexion.Open();
+//OUTPUT INSERTED.ID  no tiene esa clausula
 
-var comando = new SqlCommand(query, conexion);
-comando.Parameters.AddWithValue("@Nombre1", personaNombre);
+using var conexion = new SqliteConnection(cadenaConexion);   //hace que se cierre
+await conexion.OpenAsync();
 
-var newId = comando.ExecuteScalar();
+var comando = new SqliteCommand(query, conexion);
+comando.Parameters.AddWithValue("@DNI", dni);
+comando.Parameters.AddWithValue("@Nombre", personaNombre);
+comando.Parameters.AddWithValue("@FechaNacimiento", fechaNacimiento);
 
-Console.WriteLine(newId);
+await comando.ExecuteNonQueryAsync();
+
+var comandoId = new SqliteCommand("SELECT last_insert_rowid();", conexion);
+var newId = (long)await comandoId.ExecuteScalarAsync();
+
+Console.WriteLine($"Id: {newId}");

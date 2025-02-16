@@ -3,9 +3,6 @@ using Ejemplo_09_CrearPersona.Utils;
 
 using Microsoft.Data.SqlClient;
 
-
-var cadenaConexion = ConexionString.Valor;
-
 var nuevo = new PersonaModel
 {
     Nombre = "Marianela",
@@ -14,8 +11,8 @@ var nuevo = new PersonaModel
 };
 
 #region conexion al servidor
-using var conexion = new SqlConnection(ConexionString.Valor);
-conexion.Open();
+using var conexion = new SqlConnection(ConexionString.CadenaConexion);
+await conexion.OpenAsync();
 #endregion
 
 #region preparo el comando sql

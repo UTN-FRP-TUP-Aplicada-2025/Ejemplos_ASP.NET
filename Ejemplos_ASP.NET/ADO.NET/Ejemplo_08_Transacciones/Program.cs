@@ -40,6 +40,7 @@ var usuario = "eduardo";
 
 string cadenaConexion = "workstation id=Ejemplos_ASP_MVC_DB.mssql.somee.com;packet size=4096;user id=fernando-dev_SQLLogin_1;pwd=bfzixu5w6p;data source=Ejemplos_ASP_MVC_DB.mssql.somee.com;persist security info=False;initial catalog=Ejemplos_ASP_MVC_DB;TrustServerCertificate=True";
 
+#region consultas sql: datos del usuario eduardo
 var queryDeleteUsuarios =
 @"DELETE Usuarios
 WHERE UPPER(Nombre)=UPPER(@Nombre_Usuario);";
@@ -47,13 +48,12 @@ WHERE UPPER(Nombre)=UPPER(@Nombre_Usuario);";
 var queryDeleteUsuarios_Roles =
 @"DELETE Usuarios_Roles
 WHERE UPPER(Nombre_Usuario)=UPPER(@Nombre_Usuario);";
-
-
+#endregion
 
 using var conexion = new SqlConnection(cadenaConexion);   //hace que se cierre
 await conexion.OpenAsync();
 
-Microsoft.Data.SqlClient.SqlTransaction transaction = conexion.BeginTransaction();
+SqlTransaction transaction = conexion.BeginTransaction();
 try
 {
     var comando = conexion.CreateCommand();

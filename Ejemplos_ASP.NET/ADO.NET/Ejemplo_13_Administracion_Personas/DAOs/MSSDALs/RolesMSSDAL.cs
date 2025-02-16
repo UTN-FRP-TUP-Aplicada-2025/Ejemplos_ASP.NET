@@ -1,19 +1,21 @@
 ﻿using Ejemplo_13.MSSDALs;
+using Ejemplo_13.DALs;
 using Ejemplo_13.Models;
 
 using Microsoft.Data.SqlClient;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Ejemplo_13.DALs.MSSDALs;
 
-public class PersonasMSSDAL : IBaseDAL<PersonaModel, int>
+public class RolesMSSDAL : IBaseDAL<RolModel, string>
 {
-    async public Task<List<PersonaModel>> GetAll()
+    async public Task<List<RolModel>> GetAll()
     {
-        var lista = new List<PersonaModel>();
+        var lista = new List<RolModel>();
 
         string sqlQuery =
 @"SELECT p.* 
-FROM Personas p";
+FROM Roles p";
 
         using var conexion = new SqlConnection(ConexionString.CadenaConexion);
         await conexion.OpenAsync();
@@ -30,20 +32,20 @@ FROM Personas p";
         return lista;
     }
 
-    async public Task<PersonaModel?> GetByKey(int id)
+    async public Task<RolModel?> GetByKey(string nombre)
     {
-        PersonaModel objeto = null;
+        RolModel objeto = null;
 
         string sqlQuery =
-@"SELECT TOP 1 p.* 
-FROM Personas p
-WHERE p.Id=@Id";
+@"SELECT TOP 1 r.* 
+FROM Roles r
+WHERE r.Nombre=@Nombre";
 
         using var conexion = new SqlConnection(ConexionString.CadenaConexion);
         await conexion.OpenAsync();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Id", id);
+        query.Parameters.AddWithValue("@Nombre", nombre);
 
         var reader = await query.ExecuteReaderAsync();
 
@@ -54,73 +56,66 @@ WHERE p.Id=@Id";
         return objeto;
     }
 
-    async public Task<bool> Insert(PersonaModel nuevo)
+    async public Task<bool> Insert(RolModel nuevo)
     {
         string sqlQuery =
-@"INSERT Personas(Dni, Nombre, Fecha_Nacimiento)
-OUTPUT INSERTED.ID 
-VALUES (@Dni, @Nombre, @Fecha_Nacimiento)";
+@"INSERT Roles(Nombre)
+VALUES (@Nombre)";
 
         using var conexion = new SqlConnection(ConexionString.CadenaConexion);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Dni", nuevo.DNI);
         query.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
-        query.Parameters.AddWithValue("@Fecha_Nacimiento", nuevo.FechaNacimiento);
 
-        var respuesta = await query.ExecuteScalarAsync();
-        nuevo.Id = Convert.ToInt32(respuesta);
-        return nuevo.Id > 0;
+        var respuesta = await query.ExecuteNonQueryAsync();
+        int cantidad = Convert.ToInt32(respuesta);
+        return cantidad > 0;
     }
 
-    async public Task<bool> Update(PersonaModel actualizar)
+    async public Task<bool> Update(RolModel actualizar)
     {
         string sqlQuery =
-@"UPDATE Personas SET Dni=@Dni, Nombre=@Nombre, Fecha_Nacimiento=@Fecha_Nacimiento 
-WHERE Id=@Id";
+@"UPDATE Roles SET Nombre=@Nombre
+WHERE Nombre=@Nombre";
 
         using var conexion = new SqlConnection(ConexionString.CadenaConexion);
         conexion.Open();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Dni", actualizar.DNI);
         query.Parameters.AddWithValue("@Nombre", actualizar.Nombre);
-        query.Parameters.AddWithValue("@Fecha_Nacimiento", actualizar.FechaNacimiento);
-        query.Parameters.AddWithValue("@Id", actualizar.Id);
-
+        
         int cantidad = await query.ExecuteNonQueryAsync();
 
         return cantidad > 0;
     }
 
-    async public Task<bool> Delete(int id)
+    async public Task<bool> Delete(string nombre)
     {
         string sqlQuery =
-@"DELETE FROM Personas
-WHERE Id=@Id";
+@"DELETE FROM Roles
+WHERE Nombre=@Nombre";
 
         using var conexion = new SqlConnection(ConexionString.CadenaConexion);
         await conexion.OpenAsync();
 
         using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Id", id);
+        query.Parameters.AddWithValue("@Nombre", nombre);
 
         int? eliminados = await query.ExecuteNonQueryAsync();
 
         return eliminados > 0;
     }
 
-    protected PersonaModel ReadAsObjecto(SqlDataReader reader)
+    protected RolModel ReadAsObjecto(SqlDataReader reader)
     {
-        int id = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0;
-        int dni = reader["DNI"] != DBNull.Value ? Convert.ToInt32(reader["DNI"]) : 0;
         string nombre = reader["Nombre"] != DBNull.Value ? Convert.ToString(reader["Nombre"]) : "";
-        DateTime? nacimiento = reader["Fecha_Nacimiento"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha_Nacimiento"]) : (DateTime?)null;
-
-        var objeto = new PersonaModel { Id = id, DNI = dni, Nombre = nombre, FechaNacimiento = nacimiento };
+      
+        var objeto = new RolModel { Nombre = nombre };
 
         return objeto;
     }
+
+    
 }
 

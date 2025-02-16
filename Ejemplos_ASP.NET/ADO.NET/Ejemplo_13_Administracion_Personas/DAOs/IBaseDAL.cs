@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Ejemplo_13_Personas.DALs;
+namespace Ejemplo_13.DALs;
 
 public interface IBaseDAL<T, K>
 {
@@ -10,5 +10,5 @@ public interface IBaseDAL<T, K>
     Task<bool> Insert(T nuevo);
     Task<bool> Update(T actualizar);
 
-    Task Delete(K id);
+    Task<bool> Delete(K id);
 }

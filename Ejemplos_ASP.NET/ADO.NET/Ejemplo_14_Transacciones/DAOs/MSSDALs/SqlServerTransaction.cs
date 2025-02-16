@@ -16,6 +16,7 @@ public class SqlServerTransaction : ITransaction<SqlTransaction>
         _transaccion = transaccion;
     }
 
+
     public void Commit()
     {
         _transaccion.Commit();

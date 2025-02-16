@@ -1,14 +1,13 @@
 ﻿
 
-using Ejemplo_05_Areas.DALs.MSSDALs;
-using Ejemplo_13_Personas.DALs;
-using Ejemplo_13_Personas.Models;
+using Ejemplo_13.DALs.MSSDALs;
+using Ejemplo_13.Models;
 
-namespace Ejemplo_13_Personas.Services;
+namespace Ejemplo_13.Services;
 
 public class PersonasService
 {
-    IPersonasDAL _dao = new PersonasMSSDAL();
+    private PersonasMSSDAL _dao = new ();
 
     async public Task<List<PersonaModel>> GetAll()
     {

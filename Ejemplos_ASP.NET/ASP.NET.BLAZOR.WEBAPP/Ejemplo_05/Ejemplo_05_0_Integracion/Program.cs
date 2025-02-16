@@ -1,4 +1,5 @@
 using Ejemplo_05_0_Integracion.Components;
+using Ejemplo_05_0_Integracion.MSSDALs;
 using Ejemplo_05_0_Integracion.Services;
 using Ejemplo_05_0_Integracion.Utils;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -21,8 +22,12 @@ builder.Services.Configure<MvcRazorRuntimeCompilationOptions>(options =>
 });
 #endregion
 
+#region configuraciones
+ConexionString.CadenaConexion = builder.Configuration.GetConnectionString("DefaultConnection");
+#endregion
+
 #region entidades de negocio
-builder.Services.AddSingleton(new PersonasService());
+builder.Services.AddSingleton<PersonasService>();
 builder.Services.AddSingleton<UsuarioService>();
 #endregion
 

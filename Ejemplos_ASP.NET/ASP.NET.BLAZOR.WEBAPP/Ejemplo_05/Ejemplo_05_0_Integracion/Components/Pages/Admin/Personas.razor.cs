@@ -20,8 +20,7 @@ public partial class Personas:ComponentBase
     private bool isVisibleFormEditRegistro;
 
     //private PersonasService _personasService = new();
-    // [Inject]
-    // PersonasService _personasService;
+    [Inject] PersonasService _personasService { get; set; }
 
 
     protected override async Task OnInitializedAsync()
@@ -36,38 +35,25 @@ public partial class Personas:ComponentBase
         StateHasChanged();
     }
 
-    // protected override async Task OnAfterRenderAsync(bool firstRender)
-    // {
-    //   //  isLoading = false;
-    // }
-    // //s1 agregue este evento
-    // protected override async Task OnAfterRenderAsync(bool firstRender)
-    // {
-    //     if (firstRender && !_isLoaded)
-    //     {
-    //         personas = await _personasService.GetAll();
-    //         _isLoaded = true;
-    //         StateHasChanged(); // Notifica al componente que debe volver a renderizarse
-    //     }
-    // }
-
-    async protected Task viewFormEditRegistro(int? id)
+    async protected Task onShowFormEditRegistro(int? id)
     {
         isVisibleFormCreateRegistro = false;
         isVisibleFormEditRegistro = true;
         isVisibleFormDetailRegistro = false;
-        Model = await _personasService.GetById((int)id);
+        Model = await _personasService.GetById(id??0);
+
+       // StateHasChanged();
     }
 
-    async protected Task viewFormDetailRegistro(int? id)
+    async protected Task onShowFormDetailRegistro(int? id)
     {
         isVisibleFormCreateRegistro = false;
         isVisibleFormEditRegistro = false;
         isVisibleFormDetailRegistro = true;
-        Model = await _personasService.GetById((int)id);
+        Model = await _personasService.GetById(id??0);
     }
 
-    protected void viewFormCreateRegistro()
+    protected void onShowFormCreateRegistro()
     {
         isVisibleFormCreateRegistro = true;
         isVisibleFormEditRegistro = false;
@@ -81,7 +67,7 @@ public partial class Personas:ComponentBase
         Model.FechaNacimiento = DateTime.Now;
         await _personasService.CrearNuevo(Model);
         personas.Add(Model);
-        await viewFormDetailRegistro(Model.Id);
+        await onShowFormDetailRegistro(Model.Id);
     }
 
     private async Task onEditPersona()
@@ -90,7 +76,7 @@ public partial class Personas:ComponentBase
         {
             await _personasService.Actualizar(Model);
 
-            await viewFormDetailRegistro(Model.Id);
+            await onShowFormDetailRegistro(Model.Id);
         }
         catch (Exception e)
         {
@@ -98,13 +84,10 @@ public partial class Personas:ComponentBase
         }
     }
 
-    async private Task onEliminarPersona(int? id)
+    async private Task onDeletePersona(int? id)
     {
-        await _personasService.Eliminar((int)id);
+        await _personasService.Eliminar(id??0);
         personas = await _personasService.GetAll();
     }
-
-
-
     
 }

@@ -13,9 +13,6 @@
 
 @using Microsoft.AspNetCore.Authorization
 
-@inject PersonasService _personasService
-
-
 @inject NavigationManager NavManager
 
 <div class="pagetitle">
@@ -29,10 +26,7 @@
     </nav>
 </div>
 
-<!--
-    https://www.nuget.org/packages/Blazor.Breadcrumb
--->
-
+<!-- https://www.nuget.org/packages/Blazor.Breadcrumb-->
 
 <section class="section">
     <div class="row">
@@ -66,7 +60,7 @@
                                 <dd class="col-sm-10">@Model?.FechaNacimiento</dd>
                             </dl>
                             <div>
-                                <button class="link-button" @onclick="() => viewFormEditRegistro(Model.Id)"><i class="fa-solid fa-pen"></i></button>
+                                <button class="link-button" @onclick="async () => await onShowFormEditRegistro(Model.Id)"><i class="fa-solid fa-pen"></i></button>
                             </div>
                         }
 
@@ -154,7 +148,7 @@
                     <h5 class="card-title">Personas</h5>
 
                     <p>
-                        <button class="link-button" @onclick="() => viewFormCreateRegistro()"><i class="fa-solid fa-pen"></i></button>
+                        <button class="link-button" @onclick="() => onShowFormCreateRegistro()"><i class="fa-solid fa-pen"></i></button>
                     </p>
 
                     @if (personas == null)
@@ -163,7 +157,7 @@
                     }
                     else
                     {
-                        <table class="table datatable">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -181,9 +175,16 @@
                                         <td>@item.Nombre</td>
                                         <td>@item.FechaNacimiento?.ToShortDateString()</td>
                                         <td>
-                                            <button class="link-button" @onclick="() => viewFormEditRegistro(item.Id)"><i class="fa-solid fa-pen"></i></button>
+                                                <a class="link-button" @onclick="async () => await onShowFormEditRegistro(item.Id)">
+                                                    <i class="fa-solid fa-pen"></i></a>|
+                                                <a class="link-button" @onclick="async () => await onShowFormDetailRegistro(item.Id)">
+                                                    <i class="fa-solid fa-expand"></i></a>|
+                                                <a class="link-button" @onclick="async () => await onDeletePersona(item.Id)">
+                                                    <i class="fa-solid fa-trash"></i></a>
+                                            @* 
+                                            <button class="link-button" @onclick="() => viewFormEditRegistro(item.Id)"><i class="fa-solid fa-pen"></i></button
                                             <button class="link-button" @onclick="() => viewFormDetailRegistro(item.Id)"><i class="fa-solid fa-expand"></i></button>|
-                                            <button class="link-button" @onclick="() => onEliminarPersona(item.Id)"><i class="fa-solid fa-trash"></i></button>
+                                            <button class="link-button" @onclick="() => onEliminarPersona(item.Id)"><i class="fa-solid fa-trash"></i></button> *@
                                         </td>
                                     </tr>
                                 }
@@ -198,7 +199,7 @@
 </section>
 
 
-
+@* 
 @code{
     //requiere @rendermode InteractiveServer
     [Inject] IJSRuntime JS { get; set; }
@@ -206,10 +207,35 @@
     private bool _initialized;
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender && !_initialized)
+       // if (firstRender && !_initialized)
         {
             _initialized = true;
             await JS.InvokeVoidAsync("MYAPP.initializeTemplate");
+        }
+    }
+} *@
+
+@code {
+    [Inject] IJSRuntime JS { get; set; }
+
+    private IJSObjectReference? _module;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        //if (firstRender)
+
+        if (_module == null)
+        {
+            _module = await JS.InvokeAsync<IJSObjectReference>("import", "/admin/assets/js/main.js");
+        }
+        await _module.InvokeVoidAsync("initTemplate");
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_module is not null)
+        {
+            await _module.DisposeAsync();
         }
     }
 }

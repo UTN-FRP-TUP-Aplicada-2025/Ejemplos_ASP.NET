@@ -2,10 +2,9 @@
 @layout AdminLayout
 
 @attribute [Authorize]
-@* @rendermode InteractiveServer *@
 
+@rendermode InteractiveServer
 @attribute [StreamRendering]
-
 
 @using Ejemplo_05_0_Integracion.Components.Layout
 @using Ejemplo_05_0_Integracion.Utils
@@ -35,47 +34,52 @@ es equivalente
 
 <p>@valor</p>
 
+@* @code {
+
+    [Inject] IJSRuntime JS { get; set; }
+
+    private IJSObjectReference? _module;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender)
+        {
+            _module = await JS.InvokeAsync<IJSObjectReference>("import", "/admin/assets/js/main.js");
+            await _module.InvokeVoidAsync("initTemplate");
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_module is not null)
+        {
+            await _module.DisposeAsync();
+        }
+    }
+}
+ *@
+
 @code {
-    [Inject] UsuarioService UsuarioService { get; set; }
-    private string? cuit;
+    [Inject] IJSRuntime JS { get; set; }
 
-    protected override async Task OnInitializedAsync() {
-        cuit = UsuarioService.ObtenerCUIT();
-    }
+    private IJSObjectReference? _module;
 
-    string valor = "";
-
-    [Inject] private  IHttpContextAccessor _httpContextAccessor { get; set; }
-
-    protected  async Task OnSetCookieClick()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        var context = _httpContextAccessor.HttpContext;
+        //if (firstRender)
 
-        if (context != null)
+        if (_module == null)
         {
-            context.Response.Cookies.Append("Mi_Cookie_De_Estado", $"{"324324"}", new CookieOptions
-                {
-                    Expires = DateTime.UtcNow.AddMinutes(30), 
-                    HttpOnly = false, 
-                    Secure = true, 
-                    SameSite = SameSiteMode.Strict
-                });
+            _module = await JS.InvokeAsync<IJSObjectReference>("import", "/admin/assets/js/main.js");
         }
+        await _module.InvokeVoidAsync("initTemplate");
     }
 
-    protected async Task OnGetCookieClick()
+    public async ValueTask DisposeAsync()
     {
-        (_,valor)=GetCookie();
-    }
-
-    public (string? Nombre, string? Email) GetCookie()
-    {
-        var context = _httpContextAccessor.HttpContext;
-        if (context != null && context.Request.Cookies.TryGetValue("Mi_Cookie_De_Estado", out var valor))
+        if (_module is not null)
         {
-            var datos = valor.Split('|');
-            return ("nada", datos.Length > 1 ? datos[1] : null);
+            await _module.DisposeAsync();
         }
-        return (null, null);
     }
 }

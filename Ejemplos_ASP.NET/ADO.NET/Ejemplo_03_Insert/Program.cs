@@ -1,21 +1,25 @@
-﻿using Microsoft.Data.SqlClient;
-using System.Data;
+﻿
+using Microsoft.Data.SqlClient;
 
+var dni = 23432333;
 var personaNombre = "Marianela";
+var fechaNacimiento = new DateTime(1990, 10, 10);
 
-var cadenaDeConexion = "workstation id=GuidoAlumnoDB.mssql.somee.com;packet size=4096;user id=guidoagustin_SQLLogin_1;pwd=fmvfrm1hbh;data source=GuidoAlumnoDB.mssql.somee.com;persist security info=False;initial catalog=GuidoAlumnoDB;TrustServerCertificate=True";
+//var cadenaconexion = "Server=localhost;Database=BaseMaxima;Integrated Security=True;TrustServerCertificate=True";
+var cadenaConexion = "workstation id=Ejemplos_ASP_MVC_DB.mssql.somee.com;packet size=4096;user id=fernando-dev_SQLLogin_1;pwd=bfzixu5w6p;data source=Ejemplos_ASP_MVC_DB.mssql.somee.com;persist security info=False;initial catalog=Ejemplos_ASP_MVC_DB;TrustServerCertificate=True";
 
-var query = 
-@"insert into Personas (Nombre) 
-  OUTPUT INSERTED.ID 
-  values (@Nombre1)";
+var query =
+@"INSERT INTO Personas (DNI, Nombre, Fecha_Nacimiento) 
+VALUES (@DNI,@Nombre,@FechaNacimiento)";
 
-using var conexion = new SqlConnection(cadenaDeConexion);   //hace que se cierre
-conexion.Open();
+using var conexion = new SqlConnection(cadenaConexion);
+await conexion.OpenAsync();
 
-var comando = new SqlCommand(query, conexion);
-comando.Parameters.AddWithValue("@Nombre1", personaNombre);
+using var comando = new SqlCommand(query, conexion);
+comando.Parameters.AddWithValue("@DNI", dni);
+comando.Parameters.AddWithValue("@Nombre", personaNombre);
+comando.Parameters.AddWithValue("@FechaNacimiento", fechaNacimiento);
 
-var newId = comando.ExecuteScalar();
+var cantidad = await comando.ExecuteNonQueryAsync();
 
-Console.WriteLine(newId);
+Console.WriteLine($"cantidad de registros insertados: {cantidad}");

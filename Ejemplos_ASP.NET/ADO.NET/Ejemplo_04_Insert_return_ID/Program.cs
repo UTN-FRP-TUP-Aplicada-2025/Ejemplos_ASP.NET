@@ -1,21 +1,25 @@
 ﻿using Microsoft.Data.SqlClient;
-using System.Data;
 
-var personaNombre = "Marianela";
 
-var cadenaDeConexion = "workstation id=GuidoAlumnoDB.mssql.somee.com;packet size=4096;user id=guidoagustin_SQLLogin_1;pwd=fmvfrm1hbh;data source=GuidoAlumnoDB.mssql.somee.com;persist security info=False;initial catalog=GuidoAlumnoDB;TrustServerCertificate=True";
+var dni = 27712333;
+var personaNombre = "Andrea";
+var fechaNacimiento = new DateTime(1990, 10, 10);
+
+var cadenaConexion = "workstation id=Ejemplos_ASP_MVC_DB.mssql.somee.com;packet size=4096;user id=fernando-dev_SQLLogin_1;pwd=bfzixu5w6p;data source=Ejemplos_ASP_MVC_DB.mssql.somee.com;persist security info=False;initial catalog=Ejemplos_ASP_MVC_DB;TrustServerCertificate=True";
 
 var query =
-@"insert into Personas (Nombre) 
+@"insert into Personas (DNI, Nombre, Fecha_Nacimiento) 
   OUTPUT INSERTED.ID 
-  values (@Nombre1)";
+  VALUES (@DNI,@Nombre,@FechaNacimiento)";
 
-using var conexion = new SqlConnection(cadenaDeConexion);   //hace que se cierre
-conexion.Open();
+using var conexion = new SqlConnection(cadenaConexion);   //hace que se cierre
+await conexion.OpenAsync();
 
 var comando = new SqlCommand(query, conexion);
-comando.Parameters.AddWithValue("@Nombre1", personaNombre);
+comando.Parameters.AddWithValue("@DNI", dni);
+comando.Parameters.AddWithValue("@Nombre", personaNombre);
+comando.Parameters.AddWithValue("@FechaNacimiento", fechaNacimiento);
 
-var newId = comando.ExecuteScalar();
+var newId = await comando.ExecuteScalarAsync();
 
-Console.WriteLine(newId);
+Console.WriteLine($"Id: {newId}" );

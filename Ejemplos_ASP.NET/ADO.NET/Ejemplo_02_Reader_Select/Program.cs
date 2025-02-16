@@ -1,18 +1,31 @@
 ﻿
 using Microsoft.Data.SqlClient;
-using System.Data;
 
-var personaNombre = "Marianela";
-var cadenaconexion = "Server=localhost;Database=BaseMaxima;Integrated Security=True;TrustServerCertificate=True";
 
-var query = "INSERT INTO Personas (Nombre) Values ('@Nombre1')";
+//var cadenaConexion = "Server=localhost;Database=BaseMaxima;Integrated Security=True;TrustServerCertificate=True";
+var cadenaConexion = "workstation id=Ejemplos_ASP_MVC_DB.mssql.somee.com;packet size=4096;user id=fernando-dev_SQLLogin_1;pwd=bfzixu5w6p;data source=Ejemplos_ASP_MVC_DB.mssql.somee.com;persist security info=False;initial catalog=Ejemplos_ASP_MVC_DB;TrustServerCertificate=True";
 
-using var conexion = new SqlConnection(cadenaconexion);
-conexion.Open();
+var query = 
+@"SELECT p.* 
+FROM Personas p
+WHERE UPPER(p.Nombre) LIKE 'UPPER(@Nombre)' ";//normalizando los nombres
+
+using var conexion = new SqlConnection(cadenaConexion);
+await conexion.OpenAsync();
 
 using var comando = new SqlCommand(query, conexion);
-comando.Parameters.AddWithValue("@Nombre1", personaNombre);
+comando.Parameters.AddWithValue("@Nombre", "%ma%");
 
-var cantidad = comando.ExecuteNonQuery();
+var reader =await comando.ExecuteReaderAsync();
 
-Console.WriteLine(cantidad);
+Console.WriteLine($"{"Id",10}|{"DNI",10}|{"Nombre",30}|{"Fecha",10}");
+Console.WriteLine($"----------------------------------------------");
+while (await reader.ReadAsync())
+{
+    int id = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0;
+    int dni = reader["DNI"] != DBNull.Value ? Convert.ToInt32(reader["DNI"]) : 0;
+    string nombre = reader["Nombre"] != DBNull.Value ? Convert.ToString(reader["Nombre"]) : "";
+    DateTime? nacimiento = reader["Fecha_Nacimiento"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha_Nacimiento"]) : (DateTime?)null;
+
+    Console.WriteLine($"{id,10}|{dni,10}|{nombre,30}|{nacimiento,10}");
+}   

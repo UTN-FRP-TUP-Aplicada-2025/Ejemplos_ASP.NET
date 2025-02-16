@@ -1,7 +1,6 @@
 ﻿
 using Microsoft.Data.Sqlite;
 
-
 var cadenaConexion = "Data Source=../../../../Db/Personas_db.db";
 
 var query =

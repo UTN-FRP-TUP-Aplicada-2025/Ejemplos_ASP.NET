@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.13" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.13" />
   </ItemGroup>
 
 </Project>

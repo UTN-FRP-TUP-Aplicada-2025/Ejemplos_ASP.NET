@@ -531,6 +531,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "12_inyeccion", "12_inyeccio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo1", "Inyeccion\Ejemplo1\Ejemplo1.csproj", "{FAD0272C-6F95-4AD4-84A4-D7E2D0365675}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{2C23D76C-E766-4F6C-A3BB-7F7E8D0DEB1D}"
+	ProjectSection(SolutionItems) = preProject
+		SQL-Server\Docs\conexion_desde_vs.png = SQL-Server\Docs\conexion_desde_vs.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -933,6 +938,7 @@ Global
 		{2884FCA5-ECD2-4D8C-98CA-7BB0A99FE667} = {96B5FEDE-5CCD-4DC0-95DF-C4D4C4EBB46E}
 		{F1A34E16-B16E-4299-ACAD-F4BBB98DB715} = {C7D5FF1D-C3AC-490A-8CD9-F9D31A7E0F7E}
 		{FAD0272C-6F95-4AD4-84A4-D7E2D0365675} = {611F5023-3711-4D41-A44A-9B210FFC60FC}
+		{2C23D76C-E766-4F6C-A3BB-7F7E8D0DEB1D} = {7D8F43B2-F705-42A0-BD07-4B6939F07CF4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

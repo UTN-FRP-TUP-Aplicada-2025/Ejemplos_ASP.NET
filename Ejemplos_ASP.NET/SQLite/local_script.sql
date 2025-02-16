@@ -46,7 +46,15 @@ INSERT INTO Personas (DNI, Nombre, Fecha_Nacimiento) VALUES
 (45235754, 'Norberto', '2004-02-06'),
 (32432223, 'Ricardo', '2000-02-06'),
 (23432224, 'Aurelio', '2004-02-06'),
-(37232232, 'Cesar', '1987-02-02');
+(37232632, 'Cesar', '1987-02-02'),
+(37237232, 'David', '1987-02-02'),
+(37232432, 'Patricia', '1987-02-02'),
+(37232932, 'Analía', '1987-02-02'),
+(32042032, 'Dolores', '1987-02-02'),
+(34237032, 'Gustavo', '1987-02-02'),
+(42232072, 'Marianela', '1987-02-02'),
+(37234210, 'Andrea', '1987-02-02'),
+(37238236, 'Rita', '1987-02-02');
 
 -- Insertar datos en la tabla Usuarios
 INSERT INTO Usuarios (Nombre, Clave) VALUES

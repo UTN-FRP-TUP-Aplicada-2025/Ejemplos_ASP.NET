@@ -11,7 +11,7 @@ public class MiServicio : IMiServicio
 
     public void MostrarConexion()
     {
-        var cadenaConexion = _configuracion.GetConnectionString("MiCadenaConexion");
+        var cadenaConexion = _configuracion.GetConnectionString("CadenaConexion");
         Console.WriteLine($"Cadena de conexión: {cadenaConexion}");
     }
 }

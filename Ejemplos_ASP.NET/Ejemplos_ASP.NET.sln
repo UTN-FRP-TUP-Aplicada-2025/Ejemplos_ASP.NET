@@ -527,7 +527,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Db", "Db", "{F1A34E16-B16E-
 		ADO.NET_SQLite\Db\personas_db.db = ADO.NET_SQLite\Db\personas_db.db
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "12_inyeccion", "12_inyeccion", "{611F5023-3711-4D41-A44A-9B210FFC60FC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "12_inyeccion_de_dependencias", "12_inyeccion_de_dependencias", "{611F5023-3711-4D41-A44A-9B210FFC60FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo1", "Inyeccion\Ejemplo1\Ejemplo1.csproj", "{FAD0272C-6F95-4AD4-84A4-D7E2D0365675}"
 EndProject

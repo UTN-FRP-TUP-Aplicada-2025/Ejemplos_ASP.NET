@@ -1,6 +1,4 @@
-﻿
-
-using Ejemplo_14_Transacciones.DALs.MSSDALs;
+﻿using Ejemplo_14_Transacciones.DALs.MSSDALs;
 using Ejemplo_14_Transacciones.Models;
 
 namespace Ejemplo_14_Transacciones.Services;

@@ -5,7 +5,7 @@ using Microsoft.Data.SqlClient;
 using Ejemplo_14_Transacciones.DALs;
 using Ejemplo_14_Transacciones.DAOs;
 
-namespace Ejemplo_13.DALs.MSSDALs;
+namespace Ejemplo_14_Transacciones.DALs.MSSDALs;
 
 public class UsuariosMSSDAL : IBaseDAL<UsuarioModel, string, SqlTransaction>
 {

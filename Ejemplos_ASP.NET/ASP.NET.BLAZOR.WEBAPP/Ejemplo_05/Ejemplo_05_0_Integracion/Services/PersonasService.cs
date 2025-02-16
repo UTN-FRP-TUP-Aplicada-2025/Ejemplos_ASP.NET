@@ -7,30 +7,30 @@ namespace Ejemplo_05_0_Integracion.Services;
 
 public class PersonasService
 {
-    IPersonasDAL _dao = new PersonasMSSDAL();
+    PersonasMSSDAL _personasDao = new PersonasMSSDAL();
 
     async public Task<List<PersonaModel>> GetAll()
     {
-        return await _dao.GetAll();
+        return await _personasDao.GetAll();
     }
 
     async public Task<PersonaModel?> GetById(int id)
     {
-        return await _dao.GetByKey(id);
+        return await _personasDao.GetByKey(id);
     }
 
     async public Task<bool> CrearNuevo(PersonaModel persona)
     {
-        return await _dao.Insert(persona);
+        return await _personasDao.Insert(persona);
     }
 
     async public Task<bool> Actualizar(PersonaModel persona)
     {
-        return await _dao.Update(persona);
+        return await _personasDao.Update(persona);
     }
 
     async public Task<bool> Eliminar(int id)
     {
-        return await _dao.Delete(id);
+        return await _personasDao.Delete(id);
     }
 }

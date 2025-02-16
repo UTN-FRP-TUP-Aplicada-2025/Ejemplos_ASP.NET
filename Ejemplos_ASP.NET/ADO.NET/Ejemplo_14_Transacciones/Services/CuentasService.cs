@@ -1,14 +1,10 @@
-﻿
-
-
-using Ejemplo_13.DALs.MSSDALs;
-using Ejemplo_14_Transacciones.DALs.MSSDALs;
+﻿using Ejemplo_14_Transacciones.DALs.MSSDALs;
 using Ejemplo_14_Transacciones.DAOs.MSSDALs;
 using Ejemplo_14_Transacciones.Models;
 
 namespace Ejemplo_14_Transacciones.Services;
 
-public class UsuariosService
+public class CuentasService
 {
     UsuariosMSSDAL _usuariosDao = new ();
     UsuariosRolesMSSDAL _usuarioRolesDao = new();

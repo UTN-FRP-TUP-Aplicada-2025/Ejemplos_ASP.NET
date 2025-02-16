@@ -1,6 +1,5 @@
 ﻿using Ejemplo_05_0_Integracion.Models;
 using Ejemplo_05_0_Integracion.Services;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ejemplo_05_0_Integracion.RestControllers;

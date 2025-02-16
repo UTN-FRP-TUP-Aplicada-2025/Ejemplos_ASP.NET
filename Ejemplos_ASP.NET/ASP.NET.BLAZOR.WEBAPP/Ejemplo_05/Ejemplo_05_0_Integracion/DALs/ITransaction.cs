@@ -1,4 +1,4 @@
-﻿namespace Ejemplo_14_Transacciones.DAOs;
+﻿namespace Ejemplo_05_0_Integracion.DAOs;
 
 public interface ITransaction<T> : IDisposable
 {

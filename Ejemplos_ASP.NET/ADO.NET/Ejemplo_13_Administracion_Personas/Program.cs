@@ -94,7 +94,7 @@ async Task GenerarPaginaHTMLListadoUsuariosYRoles()
             </div>
         </div> <br/>";
 
-    UsuariosService _usuariosService = new();
+    CuentasService _usuariosService = new();
     var Models = await _usuariosService.GetAll();
     foreach (var item in Models)
     {

@@ -1,7 +1,7 @@
-﻿using Ejemplo_14_Transacciones.MSSDALs;
+﻿using Ejemplo_05_0_Integracion.MSSDALs;
 using Microsoft.Data.SqlClient;
 
-namespace Ejemplo_14_Transacciones.DAOs.MSSDALs;
+namespace Ejemplo_05_0_Integracion.DAOs.MSSDALs;
 
 public class SqlServerTransaction : ITransaction<SqlTransaction>
 {

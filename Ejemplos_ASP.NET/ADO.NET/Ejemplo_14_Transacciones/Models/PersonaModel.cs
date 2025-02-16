@@ -9,5 +9,4 @@ public class PersonaModel
     public string Nombre { get; set; }
 
     public DateTime? FechaNacimiento { get; set; }
-
 }

@@ -1,12 +1,18 @@
-﻿using Ejemplo_05_0_Integracion.Models;
-
+﻿using Ejemplo_05_0_Integracion.DAOs;
+using Ejemplo_05_0_Integracion.Models;
+using Ejemplo_05_0_Integracion.MSSDALs;
 using Microsoft.Data.SqlClient;
 
 namespace Ejemplo_05_0_Integracion.DALs.MSSDALs;
 
-public class UsuariosMSSDAL : IUsuariosDAL
+public class UsuariosMSSDAL : IBaseDAL<UsuarioModel, string, SqlTransaction>
 {
-    async public Task<List<UsuarioModel>> GetAll()
+    private SqlConnection ObtenerConexion()
+    {
+        return new SqlConnection(ConexionString.CadenaConexion);
+    }
+
+    async public Task<List<UsuarioModel>> GetAll(ITransaction<SqlTransaction>? transaccion = null)
     {
         var lista = new List<UsuarioModel>();
 
@@ -14,22 +20,23 @@ public class UsuariosMSSDAL : IUsuariosDAL
 @"SELECT u.* 
 FROM Usuarios u";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
-        await conexion.OpenAsync();
+        using var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion is null)
+            await conexion.OpenAsync();
 
-        using var query = new SqlCommand(sqlQuery, conexion);
+        using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
 
         var reader = await query.ExecuteReaderAsync();
 
         while (await reader.ReadAsync())
         {
-            var objeto = ReadAUsuario(reader);
+            var objeto = ReadAsObjecto(reader);
             lista.Add(objeto);
         }
         return lista;
     }
 
-    async public Task<UsuarioModel?> GetByKey(string nombre)
+    async public Task<UsuarioModel?> GetByKey(string nombre, ITransaction<SqlTransaction>? transaccion = null)
     {
         UsuarioModel objeto = null;
 
@@ -38,46 +45,49 @@ FROM Usuarios u";
 FROM Usuarios u
 WHERE UPPER(TRIM(u.Nombre)) LIKE UPPER(TRIM(@Nombre))";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
-        await conexion.OpenAsync();
+        using var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion is null)
+            await conexion.OpenAsync();
 
-        using var query = new SqlCommand(sqlQuery, conexion);
+        using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Nombre", nombre);
 
         var reader =await query.ExecuteReaderAsync();
 
         if (await reader.ReadAsync())
         {
-            objeto = ReadAUsuario(reader);
+            objeto = ReadAsObjecto(reader);
         }
         return objeto;
     }
 
-    async public Task<bool> Insert(UsuarioModel nuevo)
+    async public Task<bool> Insert(UsuarioModel nuevo, ITransaction<SqlTransaction>? transaccion = null)
     {
         string sqlQuery =
 @"INSERT Usuarios(Nombre, Clave)
 VALUES (@Nombre, @Clave)";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
-        await conexion.OpenAsync();
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion is null)
+            await conexion.OpenAsync();
 
-        using var query = new SqlCommand(sqlQuery, conexion);
-        query.Parameters.AddWithValue("@Nombreo", nuevo.Nombre);
+        using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
+        query.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
         query.Parameters.AddWithValue("@Clave", nuevo.Clave);
 
         int cantInsertados = Convert.ToInt32(await query.ExecuteNonQueryAsync());
         return cantInsertados > 0;
     }
 
-    async public Task<bool> Update(UsuarioModel actualizar)
+    async public Task<bool> Update(UsuarioModel actualizar, ITransaction<SqlTransaction>? transaccion = null)
     {
         string sqlQuery =
 @"UPDATE Usuarios SET Clave=@Clave
 WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre_Usuario)";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
-        await conexion.OpenAsync();
+        using var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion is null)
+            await conexion.OpenAsync();
 
         using var query = new SqlCommand(sqlQuery, conexion);
         query.Parameters.AddWithValue("@Clave", actualizar.Clave);
@@ -88,16 +98,17 @@ WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre_Usuario)";
         return cantidad > 0;
     }
 
-    async public Task<bool> Delete(string nombre)
+    async public Task<bool> Delete(string nombre, ITransaction<SqlTransaction>? transaccion = null)
     {
         string sqlQuery =
 @"DELETE FROM Usuarios
 WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre)";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
-        await conexion.OpenAsync();
+        using var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion is null)
+            await conexion.OpenAsync();
 
-        using var query = new SqlCommand(sqlQuery, conexion);
+        using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Nombre", nombre);
 
         int eliminados = await query.ExecuteNonQueryAsync();
@@ -105,7 +116,7 @@ WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre)";
         return eliminados > 0;
     }
 
-    public UsuarioModel ReadAUsuario(SqlDataReader reader)
+    protected UsuarioModel ReadAsObjecto(SqlDataReader reader, ITransaction<SqlTransaction>? transaccion = null)
     {
         string nombre = reader["Nombre"] != DBNull.Value ? Convert.ToString(reader["Nombre"]) : "";
         string clave = reader["Clave"] != DBNull.Value ? Convert.ToString(reader["Clave"]) : "";

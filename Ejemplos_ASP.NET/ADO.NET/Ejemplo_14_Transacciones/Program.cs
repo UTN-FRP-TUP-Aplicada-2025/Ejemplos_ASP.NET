@@ -7,7 +7,7 @@ using Ejemplo_14_Transacciones.Services;
 
 async Task pruebaInsertarUsuarioConRoles()
 {
-    UsuariosService _usuariosService = new();
+    CuentasService _usuariosService = new();
     var usuario = new UsuarioModel { Nombre = "Julieta", Clave = "123" };
     var roles = new List<RolModel> 
     { 
@@ -110,7 +110,7 @@ async Task GenerarPaginaHTMLListadoUsuariosYRoles()
             </div>
         </div> <br/>";
 
-    UsuariosService _usuariosService = new();
+    CuentasService _usuariosService = new();
     var Models = await _usuariosService.GetAll();
     foreach (var item in Models)
     {

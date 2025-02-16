@@ -127,9 +127,6 @@ app.UseRouting();
 app.UseCors("AllowSpecificOrigins");
 #endregion 
 
-
-
-
 app.UseAntiforgery();
 
 /*

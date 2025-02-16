@@ -5,7 +5,7 @@ using Ejemplo_13.Models;
 
 namespace Ejemplo_13.Services;
 
-public class UsuariosService
+public class CuentasService
 {
     UsuariosMSSDAL _usuariosDao = new ();
     UsuariosRolesMSSDAL _usuarioRolesDao = new();

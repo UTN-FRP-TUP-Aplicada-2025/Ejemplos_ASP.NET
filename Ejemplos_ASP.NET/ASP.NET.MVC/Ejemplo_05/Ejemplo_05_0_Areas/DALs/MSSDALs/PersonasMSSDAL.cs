@@ -1,122 +1,150 @@
-﻿using Ejemplo_05_Areas.Models;
-
+﻿using Ejemplo_05_Areas.DAOs;
+using Ejemplo_05_Areas.Models;
+using Ejemplo_05_Areas.MSSDALs;
 using Microsoft.Data.SqlClient;
+
 
 namespace Ejemplo_05_Areas.DALs.MSSDALs;
 
-public class PersonasMSSDAL : IPersonasDAL
+public class PersonasMSSDAL : IBaseDAL<PersonaModel, int, SqlTransaction>
 {
-    public List<PersonaModel> GetAll()
+    private SqlConnection ObtenerConexion()
+    {
+        return new SqlConnection(ConexionString.CadenaConexion);
+    }
+
+    public async Task<List<PersonaModel>> GetAll(ITransaction<SqlTransaction>? transaccion = null)
     {
         var lista = new List<PersonaModel>();
 
-        string sqlQuery =
+        string sqlQuery = 
 @"SELECT p.* 
 FROM Personas p";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
-        conexion.Open();
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion is null)
+            await conexion.OpenAsync();
 
-        using var query = new SqlCommand(sqlQuery, conexion);
+        using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
 
-        var reader = query.ExecuteReader();
-
-        while (reader.Read())
+        var reader = await query.ExecuteReaderAsync();
+        while (await reader.ReadAsync())
         {
-            var objeto = ReadAsPersona(reader);
+            var objeto = ReadAsObjeto(reader);
             lista.Add(objeto);
         }
         return lista;
     }
 
-    public PersonaModel? GetByKey(int id)
+    public async Task<PersonaModel?> GetByKey(int id, ITransaction<SqlTransaction>? transaccion = null)
     {
-        PersonaModel objeto = null;
+        PersonaModel? objeto = null;
 
-        string sqlQuery =
-@"SELECT TOP 1 p.* 
+        string sqlQuery = 
+@"
+SELECT TOP 1 p.* 
 FROM Personas p
-WHERE p.Id=@Id";
+WHERE p.Id = @Id";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
-        conexion.Open();
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion == null)
+            await conexion.OpenAsync();
 
-        using var query = new SqlCommand(sqlQuery, conexion);
+        using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Id", id);
 
-        var reader = query.ExecuteReader();
-
-        if (reader.Read())
+        var reader = await query.ExecuteReaderAsync();
+        if (await reader.ReadAsync())
         {
-            objeto = ReadAsPersona(reader);
+            objeto = ReadAsObjeto(reader);
         }
         return objeto;
     }
 
-    public bool Insert(PersonaModel nuevo)
+    public async Task<bool> Insert(PersonaModel nuevo, ITransaction<SqlTransaction>? transaccion = null)
     {
-        string sqlQuery =
-@"INSERT Personas(Dni, Nombre, Fecha_Nacimiento)
+        string sqlQuery = 
+@"
+INSERT INTO Personas (Dni, Nombre, Fecha_Nacimiento)
 OUTPUT INSERTED.ID 
 VALUES (@Dni, @Nombre, @Fecha_Nacimiento)";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
-        conexion.Open();
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion == null)
+        {
+            await conexion.OpenAsync();
+        }
 
-        using var query = new SqlCommand(sqlQuery, conexion);
+        using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Dni", nuevo.DNI);
         query.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
         query.Parameters.AddWithValue("@Fecha_Nacimiento", nuevo.FechaNacimiento);
 
-        var respuesta = query.ExecuteScalar();
+        var respuesta = await query.ExecuteScalarAsync();
         nuevo.Id = Convert.ToInt32(respuesta);
         return nuevo.Id > 0;
     }
 
-    public bool Update(PersonaModel actualizar)
+    public async Task<bool> Update(PersonaModel actualizar, ITransaction<SqlTransaction>? transaccion = null)
     {
-        string sqlQuery =
-@"UPDATE Personas SET Dni=@Dni, Nombre=@Nombre, Fecha_Nacimiento=@Fecha_Nacimiento 
-WHERE Id=@Id";
+        string sqlQuery = @"
+            UPDATE Personas 
+            SET Dni = @Dni, Nombre = @Nombre, Fecha_Nacimiento = @Fecha_Nacimiento 
+            WHERE Id = @Id"
+        ;
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
-        conexion.Open();
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion == null)
+        {
+            await conexion.OpenAsync();
+        }
 
-        using var query = new SqlCommand(sqlQuery, conexion);
+        using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Dni", actualizar.DNI);
         query.Parameters.AddWithValue("@Nombre", actualizar.Nombre);
         query.Parameters.AddWithValue("@Fecha_Nacimiento", actualizar.FechaNacimiento);
         query.Parameters.AddWithValue("@Id", actualizar.Id);
 
-        int cantidad = query.ExecuteNonQuery();
-
+        int cantidad = await query.ExecuteNonQueryAsync();
         return cantidad > 0;
     }
 
-    public void Delete(int id)
+    public async Task<bool> Delete(int id, ITransaction<SqlTransaction>? transaccion = null)
     {
-        string sqlQuery =
-@"DELETE FROM Personas
-WHERE Id=@Id";
+        string sqlQuery = 
+@"
+DELETE FROM Personas
+WHERE Id = @Id";
 
-        using var conexion = new SqlConnection(ConexionString.Valor);
-        conexion.Open();
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
+        if (transaccion == null)
+        {
+            await conexion.OpenAsync();
+        }
 
-        using var query = new SqlCommand(sqlQuery, conexion);
+        using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Id", id);
 
-        var eliminados = query.ExecuteScalar();
+        int eliminados = await query.ExecuteNonQueryAsync();
+        return eliminados > 0;
     }
 
-    public PersonaModel ReadAsPersona(SqlDataReader reader)
+
+    private PersonaModel ReadAsObjeto(SqlDataReader reader)
     {
         int id = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0;
         int dni = reader["DNI"] != DBNull.Value ? Convert.ToInt32(reader["DNI"]) : 0;
         string nombre = reader["Nombre"] != DBNull.Value ? Convert.ToString(reader["Nombre"]) : "";
-        DateTime? nacimiento = reader["Fecha_Nacimiento"] != DBNull.Value ? Convert.ToDateTime(reader["Fecha_Nacimiento"]) : (DateTime?)null;
+        DateTime? nacimiento = reader["Fecha_Nacimiento"] != DBNull.Value
+            ? Convert.ToDateTime(reader["Fecha_Nacimiento"])
+            : (DateTime?)null;
 
-        var objeto = new PersonaModel { Id = id, DNI = dni, Nombre = nombre, FechaNacimiento = nacimiento };
-
-        return objeto;
+        return new PersonaModel
+        {
+            Id = id,
+            DNI = dni,
+            Nombre = nombre,
+            FechaNacimiento = nacimiento
+        };
     }
 }

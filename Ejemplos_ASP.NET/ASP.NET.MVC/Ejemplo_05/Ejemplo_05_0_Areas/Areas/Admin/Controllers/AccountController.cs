@@ -1,4 +1,4 @@
-﻿using Ejemplo_05_Areas.Services;
+﻿
 using Ejemplo_05_Areas.Models;
 
 using Microsoft.AspNetCore.Authentication;
@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using System.Security.Claims;
+using Ejemplo_05_0_Integracion.Services;
 
 namespace Ejemplo_05_Areas.Admin.Controllers;
 

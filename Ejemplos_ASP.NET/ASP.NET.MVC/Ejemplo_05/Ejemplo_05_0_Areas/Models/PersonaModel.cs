@@ -1,22 +1,27 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace Ejemplo_05_Areas.Models;
 
 public class PersonaModel
 {
+    [JsonPropertyName("id")]
     [ReadOnly(true)]
-    public int? Id { get; set; }
+    public int Id { get; set; }
 
-    [Required(ErrorMessage = "Se requiere ingresar el DNI")]
+    [JsonPropertyName("dni")]
+    [Required(ErrorMessage="Se requiere ingresar el DNI")]
     [Display(Name = "DNI")]
     public int DNI { get; set; }
 
+    [JsonPropertyName("nombre")]
     [Required]
     [Display(Name = "Nombre")]
     [StringLength(50, ErrorMessage = "El primer nombre no puede ser mayor a 50 caracteres")]
-    public string? Nombre { get; set; }
+    public string Nombre { get; set; }
 
+    [JsonPropertyName("fechaNacimiento")]
     [Required(ErrorMessage = "Se requiere ingresar la Fecha de nacimiento")]
     [Display(Name = "Fecha Nacimiento")]
     [DataType(DataType.Date)]

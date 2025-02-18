@@ -360,6 +360,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00_SQL-Server", "00_SQL-Server", "{7D8F43B2-F705-42A0-BD07-4B6939F07CF4}"
 	ProjectSection(SolutionItems) = preProject
 		SQL-Server\docker_script.sql = SQL-Server\docker_script.sql
+		SQL-Server\local_encuestas_script.sql = SQL-Server\local_encuestas_script.sql
 		SQL-Server\local_script.sql = SQL-Server\local_script.sql
 		SQL-Server\Readme.md = SQL-Server\Readme.md
 		SQL-Server\somee_script.sql = SQL-Server\somee_script.sql
@@ -517,6 +518,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00_SQLite", "00_SQLite", "{9D56412E-616B-4298-B644-3EFDB7CFC652}"
 	ProjectSection(SolutionItems) = preProject
 		SQLite\local_script.sql = SQLite\local_script.sql
+		SQLite\personas_db.db = SQLite\personas_db.db
 		SQLite\Readme.md = SQLite\Readme.md
 	EndProjectSection
 EndProject
@@ -533,7 +535,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo1", "Inyeccion\Ejemp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{2C23D76C-E766-4F6C-A3BB-7F7E8D0DEB1D}"
 	ProjectSection(SolutionItems) = preProject
-		SQL-Server\Docs\conexion_desde_vs.png = SQL-Server\Docs\conexion_desde_vs.png
+		SQL-Server\Docs\0_query_desde_visual.png = SQL-Server\Docs\0_query_desde_visual.png
+		SQL-Server\Docs\1_conexion_desde_vs.png = SQL-Server\Docs\1_conexion_desde_vs.png
 	EndProjectSection
 EndProject
 Global

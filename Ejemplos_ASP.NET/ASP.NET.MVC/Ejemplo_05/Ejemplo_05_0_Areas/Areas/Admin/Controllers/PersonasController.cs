@@ -1,9 +1,8 @@
-﻿using Ejemplo_05_Areas.Services;
-
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using Ejemplo_05_Areas.Models;
+using Ejemplo_05_Areas.Services;
 
 namespace Ejemplo_05_Areas.Controllers;
 

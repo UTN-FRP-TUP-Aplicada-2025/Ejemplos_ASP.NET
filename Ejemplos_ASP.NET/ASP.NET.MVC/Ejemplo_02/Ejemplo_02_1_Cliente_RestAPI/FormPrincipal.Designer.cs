@@ -29,21 +29,63 @@
         private void InitializeComponent()
         {
             dataGridView1 = new DataGridView();
+            btnListar = new Button();
+            button1 = new Button();
+            button2 = new Button();
+            Id = new DataGridViewTextBoxColumn();
             Dni = new DataGridViewTextBoxColumn();
             Nombre = new DataGridViewTextBoxColumn();
-            btnListar = new Button();
+            FechaNacimiento = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Dni, Nombre });
-            dataGridView1.Location = new Point(13, 13);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Id, Dni, Nombre, FechaNacimiento });
+            dataGridView1.Location = new Point(2, 3);
             dataGridView1.Margin = new Padding(4);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(476, 306);
+            dataGridView1.Size = new Size(500, 350);
             dataGridView1.TabIndex = 0;
+            // 
+            // btnListar
+            // 
+            btnListar.Location = new Point(521, 13);
+            btnListar.Margin = new Padding(4);
+            btnListar.Name = "btnListar";
+            btnListar.Size = new Size(121, 102);
+            btnListar.TabIndex = 1;
+            btnListar.Text = "Listar desde API";
+            btnListar.UseVisualStyleBackColor = true;
+            btnListar.Click += btnListar_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(521, 123);
+            button1.Margin = new Padding(4);
+            button1.Name = "button1";
+            button1.Size = new Size(121, 102);
+            button1.TabIndex = 2;
+            button1.Text = "Agregar Persona";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(521, 233);
+            button2.Margin = new Padding(4);
+            button2.Name = "button2";
+            button2.Size = new Size(121, 102);
+            button2.TabIndex = 3;
+            button2.Text = "Ver Persona/Editar";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // Id
+            // 
+            Id.HeaderText = "Id";
+            Id.Name = "Id";
             // 
             // Dni
             // 
@@ -55,22 +97,18 @@
             Nombre.HeaderText = "Nombre";
             Nombre.Name = "Nombre";
             // 
-            // btnListar
+            // FechaNacimiento
             // 
-            btnListar.Location = new Point(512, 111);
-            btnListar.Margin = new Padding(4);
-            btnListar.Name = "btnListar";
-            btnListar.Size = new Size(121, 102);
-            btnListar.TabIndex = 1;
-            btnListar.Text = "Contar con API";
-            btnListar.UseVisualStyleBackColor = true;
-            btnListar.Click += btnListar_Click;
+            FechaNacimiento.HeaderText = "Fecha Nacimiento";
+            FechaNacimiento.Name = "FechaNacimiento";
             // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(655, 332);
+            ClientSize = new Size(659, 366);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Controls.Add(btnListar);
             Controls.Add(dataGridView1);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -86,8 +124,12 @@
         #endregion
 
         private DataGridView dataGridView1;
+        private Button btnListar;
+        private Button button1;
+        private Button button2;
+        private DataGridViewTextBoxColumn Id;
         private DataGridViewTextBoxColumn Dni;
         private DataGridViewTextBoxColumn Nombre;
-        private Button btnListar;
+        private DataGridViewTextBoxColumn FechaNacimiento;
     }
 }

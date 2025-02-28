@@ -38,7 +38,8 @@ public class CuentasController : Controller
     {
         var result = await _usuariosService.VerificarLogin(usuario);
 
-        if (usuario == null)
+        //if (usuario == null) error
+        if (result==null)
         {
             ModelState.AddModelError("", "Usuario o contraseña no válidos.");
             return View();

@@ -8,17 +8,16 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Ejemplo_05_0_Integracion.Services;
 
-namespace Ejemplo_05_Areas.Admin.Controllers;
+namespace Ejemplo_05_Areas.Controllers;
 
-[Area("Admin")]
-//[Authorize(Roles = "Admin")]
-public class AccountController : Controller
+[Authorize]
+public class CuentasController : Controller
 {
-    UsuariosService _service = new UsuariosService();
+    CuentasService _usuariosService = new CuentasService();
 
-    private readonly ILogger<AccountController> _logger;
+    private readonly ILogger<CuentasController> _logger;
 
-    public AccountController(ILogger<AccountController> logger)
+    public CuentasController(ILogger<CuentasController> logger)
     {
         _logger = logger;
     }
@@ -37,18 +36,25 @@ public class AccountController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(UsuarioModel usuario, string returnUrl = "/")
     {
-        var result = _service.VerificarLogin(usuario);
+        var result = await _usuariosService.VerificarLogin(usuario);
 
-        if (usuario == null)
+        if (result==false)
         {
             ModelState.AddModelError("", "Usuario o contraseña no válidos.");
             return View();
         }
-      
+
+        var roles=await _usuariosService.GetRolesByUsuario(usuario.Nombre);
+
         var claims = new List<Claim>()
         {
-             new Claim(ClaimTypes.Name, usuario.Nombre),
+             new Claim(ClaimTypes.Name, usuario.Nombre)
         };
+
+        foreach (var rol in roles)
+        {
+            claims.Add(new Claim(ClaimTypes.Role, rol.NombreRol));
+        }
 
         var identity = new ClaimsIdentity(claims, "Cookies");
         var principal = new ClaimsPrincipal(identity);
@@ -60,7 +66,7 @@ public class AccountController : Controller
 
     public async Task<RedirectResult> Logout(string returnUrl = "/")
     {
-        
+
 
         await HttpContext.SignOutAsync();
         return Redirect(returnUrl);

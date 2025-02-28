@@ -27,30 +27,28 @@ builder.Services.AddSwaggerGen(c =>
 });
 #endregion
 
-//#region  identidad
+#region  identidad
 
-//builder.Services.AddAuthentication("Cookies")
-//    .AddCookie(options =>
-//    {
-//        options.LoginPath = "/Account/Login";
-//        options.LogoutPath = "/Account/Logout";
-//        options.Cookie.Name = "Cookie_authenticacion";
-//        options.Cookie.MaxAge = TimeSpan.FromMinutes(1);
-//    });
+builder.Services.AddAuthentication("Cookies")
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Cuentas/Login";
+        options.LogoutPath = "/Cuentas/Logout";
+        options.Cookie.Name = "Cookie_authenticacion";
+        options.Cookie.MaxAge = TimeSpan.FromMinutes(1);
+    });
 
-//builder.Services.AddAuthorization();
+builder.Services.AddAuthorization();
 
-//builder.Services.AddSession(options =>
-//{
-//    options.IdleTimeout = TimeSpan.FromMinutes(1);
-//    options.Cookie.HttpOnly = true;
-//    options.Cookie.IsEssential = true;
-//    options.Cookie.Name = "Cookie_session";
-//});
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(1);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+    options.Cookie.Name = "Cookie_session";
+});
 
-//builder.Services.AddDataProtection();
-
-//#endregion
+#endregion
 
 var app = builder.Build();
 
@@ -91,10 +89,10 @@ app.MapControllerRoute(
 app.MapControllers();
 #endregion
 
-//#region habilitando middleware adicionales
-//app.UseAuthentication(); //middleware para la autenticación
+#region habilitando middleware adicionales
+app.UseAuthentication(); //middleware para la autenticación
 app.UseAuthorization();  //middleware para la autorización
-//app.UseSession();        //middleware para la sesión
-//#endregion
+app.UseSession();        //middleware para la sesión
+#endregion
 
 app.Run();

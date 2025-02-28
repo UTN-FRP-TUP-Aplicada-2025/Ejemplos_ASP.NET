@@ -7,7 +7,7 @@ using Ejemplo_05_Areas.Services;
 namespace Ejemplo_05_Areas.Controllers;
 
 [Area("Admin")]
-//[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin")]
 public class PersonasController : Controller
 {
     private PersonasService servicio = new PersonasService();

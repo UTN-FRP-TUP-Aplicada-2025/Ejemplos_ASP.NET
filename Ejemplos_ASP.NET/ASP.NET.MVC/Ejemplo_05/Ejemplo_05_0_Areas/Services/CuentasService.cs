@@ -5,9 +5,11 @@ using Ejemplo_05_Areas.Models;
 
 namespace Ejemplo_05_0_Integracion.Services;
 
-public class UsuariosService
+public class CuentasService
 {
     UsuariosMSSDAL _usuariosDao = new UsuariosMSSDAL();
+    UsuariosRolesMSSDAL _usuarioRolesDao = new();
+
 
     async public Task<bool> VerificarLogin(UsuarioModel usuarioVerificar)
     { 
@@ -38,5 +40,15 @@ public class UsuariosService
     async public Task<bool> Eliminar(string nombre)
     {
         return await _usuariosDao.Delete(nombre);
+    }
+
+    async public Task<List<UsuarioRolModel>> GetRolesByUsuario(string nombreUsuario)
+    {
+        var usuario = new UsuarioRolModel
+        {
+            NombreUsuario = nombreUsuario.ToUpper(),
+            NombreRol = "%" //todos los roles
+        };
+        return await _usuarioRolesDao.GetByUsuario(usuario);
     }
 }

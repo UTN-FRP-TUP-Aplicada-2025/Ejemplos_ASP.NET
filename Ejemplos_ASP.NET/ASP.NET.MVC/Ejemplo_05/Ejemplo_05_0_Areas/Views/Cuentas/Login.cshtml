@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Log In";
-    Layout = "_AdminLayout";
+   // Layout = "_AdminLayout";
 }
 
 <div class="container">
@@ -11,7 +11,7 @@
 
     <div class="row">
 
-        <form asp-action="Login" asp-controller="Account" method="post">
+        <form asp-action="Login" asp-controller="Cuentas" method="post">
 
             <input type="hidden" asp-for="ReturnUrl" />
 
@@ -24,7 +24,7 @@
             <div class="form-group">
                 <label asp-for="Clave"></label>
                 <div><span asp-validation-for="Clave" class="text-danger"></span></div>
-                <input asp-for="Clave" class="form-control" />
+                <input asp-for="Clave" class="form-control" type="password"/>
             </div>
 
             <button class="btn btn-primary" type="submit">Log In</button>

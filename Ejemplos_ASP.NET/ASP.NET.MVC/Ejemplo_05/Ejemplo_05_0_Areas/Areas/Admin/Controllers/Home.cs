@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Ejemplo_05_Areas.Areas.Admin.Controllers;
 
 [Area("Admin")]
-//[Authorize(Roles = "Admin")]
+[Authorize(Roles = "Admin")]
 public class Home : Controller
 {
     // GET: Home

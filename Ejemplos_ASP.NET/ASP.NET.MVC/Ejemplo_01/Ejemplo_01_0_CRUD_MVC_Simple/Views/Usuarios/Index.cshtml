@@ -43,9 +43,8 @@
                     <td>@item.Nombre</td>
                     <td>@item.Clave</td>
                     <td>
-                        <a asp-action="Index" asp-route-id="@item.Nombre" class="btn btn-danger btn-sm">Eliminar</a>
-                        <a asp-action="Index" asp-route-id="@item.Nombre" class="btn btn-info btn-sm">Ver</a>
-                        <a asp-action="Index" asp-route-id="@item.Nombre" class="btn btn-warning btn-sm">Editar</a>
+                        <a asp-action="Index" asp-route-id="@item.Nombre" class="btn btn-primary btn-sm"><i class="fa-solid fa-trash"></i></a>
+                        <a asp-action="Index" asp-route-id="@item.Nombre" class="btn btn-primary btn-sm"><i class="fa-solid fa-expand"></i></a>
                     </td>
                 </tr>
             }

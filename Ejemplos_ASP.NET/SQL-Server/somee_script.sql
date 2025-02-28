@@ -102,6 +102,7 @@ VALUES('Admin'),
 
 INSERT INTO Usuarios_Roles(Nombre_Usuario, Nombre_Rol)
 VALUES
+('Admin', 'Admin'),
 ('Eduardo', 'Admin'),
 ('Estefania', 'Supervisor'),
 ('Eduardo', 'Encuestador');
@@ -117,15 +118,9 @@ select * from Usuarios_Roles;
 GO
 
 --roles de estafania
-DECLARE @Estefania NVARCHAR(50)='Estefania';
 
-SELECT r.Nombre
-FROM Usuarios u
-INNER JOIN Usuarios_Roles u_r ON u_r.Nombre_Usuario=u.Nombre
-INNER JOIN Roles r ON r.Nombre=u_r.Nombre_Rol
-WHERE UPPER(u.Nombre)=UPPER(@Estefania)
-
-GO
-
-
-
+DECLARE @Usuario NVARCHAR(50)='Admin';
+SELECT u_r.* 
+FROM Usuarios_Roles u_r
+WHERE UPPER(TRIM(u_r.Nombre_Usuario)) LIKE UPPER(TRIM(@Usuario))
+      AND UPPER(TRIM(u_r.Nombre_Rol)) LIKE UPPER(TRIM('%'))

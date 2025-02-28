@@ -11,15 +11,15 @@ using System.Security.Claims;
 namespace Ejemplo_03_0_Login_Simple.Controllers;
 
 [Authorize]
-public class AccountController : Controller
+public class CuentasController : Controller
 {
-    UsuariosService _usuariosService = new UsuariosService();
+    readonly UsuariosService _usuariosService;
+    readonly ILogger<HomeController> _logger;
 
-    private readonly ILogger<HomeController> _logger;
-
-    public AccountController(ILogger<HomeController> logger)
+    public CuentasController(ILogger<HomeController> logger, UsuariosService usuariosService)
     {
         _logger = logger;
+        _usuariosService = usuariosService;
     }
 
     [AllowAnonymous]
@@ -36,7 +36,7 @@ public class AccountController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(UsuarioModel usuario, string returnUrl = "/")
     {
-        var result = _usuariosService.VerificarLogin(usuario);
+        var result = await _usuariosService.VerificarLogin(usuario);
 
         if (usuario == null)
         {
@@ -59,8 +59,6 @@ public class AccountController : Controller
 
     public async Task<RedirectResult> Logout(string returnUrl = "/")
     {
-        
-
         await HttpContext.SignOutAsync();
         return Redirect(returnUrl);
     }

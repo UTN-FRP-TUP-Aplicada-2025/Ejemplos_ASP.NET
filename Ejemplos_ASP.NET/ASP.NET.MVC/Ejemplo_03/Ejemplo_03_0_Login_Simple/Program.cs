@@ -1,16 +1,26 @@
+using Ejemplo_03_0_Login_Simple.DALs.MSSDALs;
+using Ejemplo_03_0_Login_Simple.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+//creando el contexto
+builder.Services.AddSingleton<PersonasMSSDAL>();
+builder.Services.AddSingleton<UsuariosMSSDAL>();
+builder.Services.AddSingleton<UsuariosRolesMSSDAL>();
+builder.Services.AddSingleton<PersonasService>();
+builder.Services.AddSingleton<UsuariosService>();
+builder.Services.AddSingleton<RolesService>();
 
-#region  identidad
+#region identidad
 
 builder.Services.AddAuthentication("Cookies")
     .AddCookie(options =>
     {
-        options.LoginPath = "/Account/Login";
-        options.LogoutPath = "/Account/Logout";
+        options.LoginPath = "/Cuentas/Login";
+        options.LogoutPath = "/Cuentas/Logout";
         options.Cookie.Name = "Cookie_authenticacion"; 
         options.Cookie.MaxAge = TimeSpan.FromMinutes(1);
     });

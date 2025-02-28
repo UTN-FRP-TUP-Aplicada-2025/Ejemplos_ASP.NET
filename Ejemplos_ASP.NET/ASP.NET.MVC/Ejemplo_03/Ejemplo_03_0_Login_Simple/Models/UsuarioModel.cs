@@ -8,5 +8,4 @@ public class UsuarioModel
 
     public string ReturnUrl { get; set; }
     
-
 }

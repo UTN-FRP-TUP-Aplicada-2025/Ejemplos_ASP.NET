@@ -12,18 +12,26 @@
  -Servicios personalizados
 */
 
+using Ejemplo_01_0_CRUD_MVC_Simple.DALs.MSSDALs;
+using Ejemplo_01_0_CRUD_MVC_Simple.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Ejemplo: registrando servicios para el uso de controladores MVC
 builder.Services.AddControllersWithViews();
 
+//creando el contexto
+builder.Services.AddSingleton<PersonasMSSDAL>();
+builder.Services.AddSingleton<UsuariosMSSDAL>();
+builder.Services.AddSingleton<UsuariosRolesMSSDAL>();
+builder.Services.AddSingleton<PersonasService>();
+builder.Services.AddSingleton<CuentasService>();
+builder.Services.AddSingleton<RolesService>();
 
 /* 2- Construcción de la aplicación
  
 app es el objeto que va a manejar las solicitudes y las respuestas de los usuarios. Construye la aplicación, conectando todos esos servicios y configuraciones en un pipeline de middleware.
-
  */
-
 
 var app = builder.Build();
 

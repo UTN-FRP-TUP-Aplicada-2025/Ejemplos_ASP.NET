@@ -1,12 +1,12 @@
-﻿namespace Ejemplo_01_0_CRUD_MVC_Simple.DALs;
+﻿using Ejemplo_01_0_CRUD_MVC_Simple.DAOs;
 
-public interface IBaseDAL<T, K>
+namespace Ejemplo_01_0_CRUD_MVC_Simple.DALs;
+
+public interface IBaseDAL<T, K, M>
 {
-    List<T> GetAll();
-    T? GetByKey(K key);
-
-    bool Insert(T nuevo);
-    bool Update(T actualizar);
-
-    void Delete(K id);
+    Task<List<T>> GetAll(ITransaction<M>? transaccion = null);
+    Task<T?> GetByKey(K id, ITransaction<M>? transaccion = null);
+    Task<bool> Insert(T nuevo, ITransaction<M>? transaccion = null);
+    Task<bool> Update(T actualizar, ITransaction<M>? transaccion = null);
+    Task<bool> Delete(K id, ITransaction<M>? transaccion = null);
 }

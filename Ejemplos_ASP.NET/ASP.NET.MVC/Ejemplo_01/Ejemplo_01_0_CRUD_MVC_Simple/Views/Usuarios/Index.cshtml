@@ -1,0 +1,54 @@
+﻿@using Ejemplo_01_CRUD_MVC_Simple.ViewModels
+@model UsuarioViewModel
+
+@{
+    bool modoEdicion = Model.Usuario != null;
+}
+
+<div class="card">
+    <h3>@(modoEdicion ? "Editar Usuario" : "Nuevo Usuario")</h3>
+    <form method="post" asp-action="@(modoEdicion ? "Actualizar" : "Guardar")">
+      
+        <div class="form-group">
+            <label asp-for="Usuario.Nombre">Nombre</label>
+            <input asp-for="Usuario.Nombre" type="text" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Usuario.Clave">Clave</label>
+            <input asp-for="Usuario.Clave" type="text" class="form-control" required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">@(modoEdicion ? "Actualizar" : "Guardar")</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+<div class="card mt-4">
+    <h3>Lista de Usuarios</h3>
+    <a asp-action="Index" class="btn btn-success mb-2">Nuevo</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Clave</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Usuarios)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Clave</td>
+                    <td>
+                        <a asp-action="Index" asp-route-id="@item.Nombre" class="btn btn-danger btn-sm">Eliminar</a>
+                        <a asp-action="Index" asp-route-id="@item.Nombre" class="btn btn-info btn-sm">Ver</a>
+                        <a asp-action="Index" asp-route-id="@item.Nombre" class="btn btn-warning btn-sm">Editar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

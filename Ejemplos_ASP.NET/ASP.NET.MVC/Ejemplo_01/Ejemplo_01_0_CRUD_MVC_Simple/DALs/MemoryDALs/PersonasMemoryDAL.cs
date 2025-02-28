@@ -1,8 +1,9 @@
-﻿using Ejemplo_01_0_CRUD_MVC_Simple.Models;
+﻿using Ejemplo_01_0_CRUD_MVC_Simple.DAOs;
+using Ejemplo_01_0_CRUD_MVC_Simple.Models;
 
 namespace Ejemplo_01_0_CRUD_MVC_Simple.DALs.MemoryDALs;
 
-public class PersonasMemoryDAL : IPersonasDAL
+public class PersonasMemoryDAL : IBaseDAL<PersonaModel, int, object>
 {
     static int GEN=0;
     static public List<PersonaModel> personas = new List<PersonaModel>
@@ -11,43 +12,50 @@ public class PersonasMemoryDAL : IPersonasDAL
         new PersonaModel(){ Id=2,DNI=3343243, Nombre="Betiana"}
     };
 
-
-    public List<PersonaModel> GetAll()
+    async public Task<List<PersonaModel>> GetAll(ITransaction<object>? transaccion = null)
     {
         return personas;
     }
 
-    public PersonaModel? GetByKey(int id)
+    async public Task<PersonaModel?> GetByKey(int id, ITransaction<object>? transaccion = null)
     {
-        return personas.Where(p => p.Id == id).FirstOrDefault();
+        
+        return personas.Where(p=>p.Id==id).FirstOrDefault();
     }
 
-    public bool Insert(PersonaModel nuevo)
+    async public Task<bool> Insert(PersonaModel nuevo, ITransaction<object>? transaccion = null)
     {
-        nuevo.Id = ++GEN;
-        personas.Add(nuevo);
+        PersonaModel? model = await GetByKey(nuevo.Id);
 
-        return true;
-    }
-    
-    public bool Update(PersonaModel actualizar)
-    {
-        var p = GetByKey(actualizar.Id);
-
-        if (p != null)
+        if (model == null)
         {
-            p.DNI = actualizar.DNI;
-            p.Nombre = actualizar.Nombre;
-
+            personas.Add(model);
             return true;
         }
         return false;
     }
 
-    public void Delete(int id)
+    async public Task<bool> Update(PersonaModel actualizar, ITransaction<object>? transaccion = null)
     {
-        var persona = GetByKey(id);
-        if(persona!=null)
-            personas.Remove(persona);
+        PersonaModel? model = await GetByKey(actualizar.Id);
+
+        if (model != null)
+        {
+            personas.Add(model);
+            return true;
+        }
+        return false;
     }
+
+    async public Task<bool> Delete(int id, ITransaction<object>? transaccion = null)
+    {
+        PersonaModel? model = await GetByKey(id);
+
+        if (model != null)
+        {
+            personas.Remove(model);
+            return true;
+        }
+        return false;
+    } 
 }

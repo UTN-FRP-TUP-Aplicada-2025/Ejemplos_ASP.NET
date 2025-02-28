@@ -7,26 +7,31 @@ namespace Ejemplo_01_0_CRUD_MVC_Simple.Controllers;
 
 public class PersonasController : Controller
 {
-    private PersonasService _personasService = new PersonasService();
+    readonly private PersonasService _personasService;
+
+    public PersonasController(PersonasService personaService)
+    {
+        _personasService = personaService;
+    }
 
     // GET: PersonasController
     [HttpGet]
-    public IActionResult Index()
+    async public Task<IActionResult> Index()
     {
-        return View(_personasService.GetAll());
+        return View(await _personasService.GetAll());
     }
 
     // GET: PruebaController1/Details/5
     [HttpGet]
-    public ActionResult Details(int id)
+    async public Task<ActionResult> Details(int id)
     {
-        var persona = _personasService.GetById(id);
+        var persona = await _personasService.GetById(id);
         return View(persona);
     }
 
     // GET: PruebaController1/Create
     [HttpGet]
-    public ActionResult Create()
+    async public Task<ActionResult> Create()
     {
         return View();
     }
@@ -36,11 +41,11 @@ public class PersonasController : Controller
     [ValidateAntiForgeryToken]
     //https://learn.microsoft.com/es-es/aspnet/core/security/anti-request-forgery?view=aspnetcore-9.0
     // http://go.microsoft.com/fwlink/?LinkId=317598
-    public ActionResult Create(PersonaModel nuevo)
+    async public Task<ActionResult> Create(PersonaModel nuevo)
     {
         try
         {
-            _personasService.CrearNuevo(nuevo);
+            await _personasService.CrearNuevo(nuevo);
             return RedirectToAction(nameof(Index));
         }
         catch
@@ -52,19 +57,19 @@ public class PersonasController : Controller
     // GET: PersonaController1/Edit/5
     //http://localhost:5033/Personas/Editar/1
     [HttpGet]
-    public IActionResult Edit(int? id)
+    async public Task<IActionResult> Edit(int? id)
     {
         if (id == null)
             return BadRequest();
 
-        var persona = _personasService.GetById(Convert.ToInt32(id));
+        var persona = await _personasService.GetById(Convert.ToInt32(id));
         return View(persona);
     }
 
     // POST: PersonaController/Edit/1
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id, PersonaModel? persona)
+    async public Task<ActionResult> Edit(int id, PersonaModel? persona)
     {
         if (persona != null || id<=0)
             return BadRequest();
@@ -76,7 +81,7 @@ public class PersonasController : Controller
         {
             try
             {
-                _personasService.Actualizar(persona);
+                await _personasService.Actualizar(persona);
             }
             catch(Exception ex)
             {
@@ -89,12 +94,12 @@ public class PersonasController : Controller
 
     // GET: PruebaController1/Delete/5
     [HttpGet]
-    public ActionResult Delete(int? id)
+    async public Task<ActionResult> Delete(int? id)
     {
         if (id == null || id <= 0)
             return BadRequest();
 
-        var persona = _personasService.GetById(Convert.ToInt32(id));
+        var persona = await _personasService.GetById(Convert.ToInt32(id));
 
         if (persona == null)
             return NotFound();
@@ -105,7 +110,7 @@ public class PersonasController : Controller
     // POST: PruebaController1/Delete/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Delete(int? id,  PersonaModel persona)
+    async public Task<ActionResult> Delete(int? id,  PersonaModel persona)
     {
         if (id == null || id <= 0)
             return BadRequest();
@@ -115,7 +120,7 @@ public class PersonasController : Controller
             if (_personasService.GetById(Convert.ToInt32(id)) == null)
                 return NotFound();
 
-            _personasService.Eliminar(Convert.ToInt32(id));
+            await _personasService.Eliminar(Convert.ToInt32(id));
 
             return RedirectToAction(nameof(Index));
         }

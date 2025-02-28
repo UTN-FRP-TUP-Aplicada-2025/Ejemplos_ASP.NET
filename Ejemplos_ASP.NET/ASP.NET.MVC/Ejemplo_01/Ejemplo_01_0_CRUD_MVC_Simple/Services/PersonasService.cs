@@ -1,35 +1,60 @@
-﻿using Ejemplo_01_0_CRUD_MVC_Simple.DALs;
+﻿
+
 using Ejemplo_01_0_CRUD_MVC_Simple.DALs.MSSDALs;
+using Ejemplo_01_0_CRUD_MVC_Simple.DAOs.MSSDALs;
 using Ejemplo_01_0_CRUD_MVC_Simple.Models;
 
 namespace Ejemplo_01_0_CRUD_MVC_Simple.Services;
 
 public class PersonasService
 {
-    IPersonasDAL _dao = new PersonasMSSDAL();
+    readonly private PersonasMSSDAL _personasDao;
 
-    public List<PersonaModel> GetAll()
+    public PersonasService(PersonasMSSDAL personasDao)
     {
-        return _dao.GetAll();
+        _personasDao = personasDao;
     }
 
-    public PersonaModel? GetById(int id)
+    async public Task<List<PersonaModel>> GetAll()
     {
-        return _dao.GetByKey(id);
+        return await _personasDao.GetAll();
     }
 
-    public void CrearNuevo(PersonaModel persona)
+    async public Task<PersonaModel?> GetById(int id)
     {
-        _dao.Insert(persona);
+        return await _personasDao.GetByKey(id);
     }
 
-    public void Actualizar(PersonaModel persona)
+    async public Task CrearNuevo(PersonaModel objeto)
     {
-        _dao.Update(persona);
+        await _personasDao.Insert(objeto);
     }
 
-    public void Eliminar(int id)
+    async public Task Actualizar(PersonaModel objeto)
     {
-        _dao.Delete(id);
+        await _personasDao.Update(objeto);
+    }
+
+    async public Task Eliminar(int id)
+    {
+
+        SqlServerTransaction tx = new();
+        try
+        {
+            await tx.BeginTransaction();
+
+            var objeto = await _personasDao.GetByKey(id, tx);
+            if (objeto != null)
+            {
+                await _personasDao.Delete(id, tx);
+            }
+
+            await tx.CommitAsync();
+        }
+        catch (Exception ex)
+        {
+            await tx.RollbackAsync();
+            throw ex;
+        }
     }
 }

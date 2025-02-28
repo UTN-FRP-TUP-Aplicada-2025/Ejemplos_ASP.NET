@@ -37,7 +37,6 @@ public class PersonasService
 
     async public Task Eliminar(int id)
     {
-
         SqlServerTransaction tx = new();
         try
         {

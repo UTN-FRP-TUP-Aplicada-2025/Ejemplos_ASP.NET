@@ -1,25 +1,23 @@
-﻿
-using Ejemplo_05_Areas.Models;
-
+﻿using Ejemplo_15_personas_datoslib.Models;
+using Ejemplo_15_personas_datoslib.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using System.Security.Claims;
-using Ejemplo_05_0_Integracion.Services;
 
 namespace Ejemplo_05_Areas.Controllers;
 
 [Authorize]
 public class CuentasController : Controller
 {
-    CuentasService _usuariosService = new CuentasService();
+    readonly CuentasService _usuariosService;
+    readonly ILogger<HomeController> _logger;
 
-    private readonly ILogger<CuentasController> _logger;
-
-    public CuentasController(ILogger<CuentasController> logger)
+    public CuentasController(ILogger<HomeController> logger, CuentasService usuariosService)
     {
         _logger = logger;
+        _usuariosService = usuariosService;
     }
 
     [AllowAnonymous]
@@ -38,19 +36,18 @@ public class CuentasController : Controller
     {
         var result = await _usuariosService.VerificarLogin(usuario);
 
-        if (result==false)
+        if (result==null)
         {
             ModelState.AddModelError("", "Usuario o contraseña no válidos.");
             return View();
         }
-
-        var roles=await _usuariosService.GetRolesByUsuario(usuario.Nombre);
 
         var claims = new List<Claim>()
         {
              new Claim(ClaimTypes.Name, usuario.Nombre)
         };
 
+        var roles = await _usuariosService.GetRolesByUsuario(usuario.Nombre);
         foreach (var rol in roles)
         {
             claims.Add(new Claim(ClaimTypes.Role, rol.NombreRol));

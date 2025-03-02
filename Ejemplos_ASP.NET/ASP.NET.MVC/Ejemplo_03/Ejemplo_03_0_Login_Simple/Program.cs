@@ -1,20 +1,23 @@
-using Ejemplo_03_0_Login_Simple.DALs.MSSDALs;
-using Ejemplo_03_0_Login_Simple.Services;
+
+using Ejemplo_15_personas_datoslib.DALs.MSSDALs;
+using Ejemplo_15_personas_datoslib.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//creando el contexto
+#region creando el contexto
 builder.Services.AddSingleton<PersonasMSSDAL>();
 builder.Services.AddSingleton<UsuariosMSSDAL>();
 builder.Services.AddSingleton<RolesMSSDAL>();
 builder.Services.AddSingleton<UsuariosRolesMSSDAL>();
 //
 builder.Services.AddSingleton<PersonasService>();
-builder.Services.AddSingleton<UsuariosService>();
+builder.Services.AddSingleton<CuentasService>();
 builder.Services.AddSingleton<RolesService>();
+//
+#endregion
 
 #region identidad
 

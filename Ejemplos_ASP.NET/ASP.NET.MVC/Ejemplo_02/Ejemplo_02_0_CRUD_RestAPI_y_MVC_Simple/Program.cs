@@ -1,9 +1,23 @@
+using Ejemplo_15_personas_datoslib.DALs.MSSDALs;
+using Ejemplo_15_personas_datoslib.Services;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+#region creando el contexto
+builder.Services.AddSingleton<PersonasMSSDAL>();
+builder.Services.AddSingleton<UsuariosMSSDAL>();
+builder.Services.AddSingleton<RolesMSSDAL>();
+builder.Services.AddSingleton<UsuariosRolesMSSDAL>();
+//
+builder.Services.AddSingleton<PersonasService>();
+builder.Services.AddSingleton<CuentasService>();
+builder.Services.AddSingleton<RolesService>();
+//
+#endregion
 
 #region configuracion de restapi y swagger
 builder.Services.AddControllers();
@@ -29,6 +43,8 @@ builder.Services.AddSwaggerGen(c =>
 #endregion
 
 var app = builder.Build();
+
+
 
 if (!app.Environment.IsDevelopment())
 {

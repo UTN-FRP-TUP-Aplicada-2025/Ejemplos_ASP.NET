@@ -12,15 +12,16 @@
  -Servicios personalizados
 */
 
-using Ejemplo_01_0_CRUD_MVC_Simple.DALs.MSSDALs;
-using Ejemplo_01_0_CRUD_MVC_Simple.Services;
+
+using Ejemplo_15_personas_datoslib.DALs.MSSDALs;
+using Ejemplo_15_personas_datoslib.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Ejemplo: registrando servicios para el uso de controladores MVC
 builder.Services.AddControllersWithViews();
 
-//creando el contexto
+#region creando el contexto
 builder.Services.AddSingleton<PersonasMSSDAL>();
 builder.Services.AddSingleton<UsuariosMSSDAL>();
 builder.Services.AddSingleton<RolesMSSDAL>();
@@ -30,6 +31,7 @@ builder.Services.AddSingleton<PersonasService>();
 builder.Services.AddSingleton<CuentasService>();
 builder.Services.AddSingleton<RolesService>();
 //
+#endregion
 
 /* 2- Construcción de la aplicación
  

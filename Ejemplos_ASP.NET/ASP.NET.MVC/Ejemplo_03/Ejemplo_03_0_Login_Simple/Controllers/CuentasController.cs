@@ -1,9 +1,9 @@
-﻿using Ejemplo_03_0_Login_Simple.Models;
-using Ejemplo_03_0_Login_Simple.Services;
+﻿
 
+using Ejemplo_15_personas_datoslib.Models;
+using Ejemplo_15_personas_datoslib.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 
 using System.Security.Claims;
@@ -13,10 +13,10 @@ namespace Ejemplo_03_0_Login_Simple.Controllers;
 [Authorize]
 public class CuentasController : Controller
 {
-    readonly UsuariosService _usuariosService;
+    readonly CuentasService _usuariosService;
     readonly ILogger<HomeController> _logger;
 
-    public CuentasController(ILogger<HomeController> logger, UsuariosService usuariosService)
+    public CuentasController(ILogger<HomeController> logger, CuentasService usuariosService)
     {
         _logger = logger;
         _usuariosService = usuariosService;

@@ -1,0 +1,46 @@
+﻿@using Ejemplo_15_personas_datoslib.Models
+
+@model UsuarioModel
+
+@{
+    ViewBag.Title = "";
+    Layout = "_LoginLayout";
+}
+
+<div class="container">
+
+    <div class="text-danger" asp-validation-summary="All"></div>
+
+    <form asp-action="Login" asp-controller="Cuentas" method="post">
+
+        <div class="row h-100 justify-content-center align-items-center">
+
+            <div class="card col-12 col-sm-8 col-md-6 col-lg-4 m-3 p-3">
+
+                <h4 class="card-head">Inicio de sesión</h4>
+
+                <div class="card-body">
+                    <input type="hidden" asp-for="ReturnUrl" />
+
+                    <div class="form-group">
+                        <label asp-for="Nombre" class="form-label">Usuario</label>
+                        <input asp-for="Nombre" class="form-control" />
+                        <div><span asp-validation-for="Nombre" class="text-danger"></span></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Clave" class="form-label">Clave</label>
+                        <input asp-for="Clave" class="form-control" type="passowrd" />
+                        <div><span asp-validation-for="Clave" class="text-danger"></span></div>
+                    </div>
+                </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-primary" type="submit">Ingresar</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+

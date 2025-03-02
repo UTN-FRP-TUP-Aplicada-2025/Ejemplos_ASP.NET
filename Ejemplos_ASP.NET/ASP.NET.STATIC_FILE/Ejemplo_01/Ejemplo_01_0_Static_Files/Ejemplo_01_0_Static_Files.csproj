@@ -10,9 +10,14 @@
     <Folder Include="wwwroot\Admin\css\" />
     <Folder Include="wwwroot\Admin\imgs\" />
     <Folder Include="wwwroot\Admin\js\" />
-    <Folder Include="wwwroot\css\" />
-    <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\Usuario\imgs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\mapas2.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

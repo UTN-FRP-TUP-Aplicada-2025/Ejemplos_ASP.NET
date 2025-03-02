@@ -61,7 +61,6 @@ public partial class Personas:ComponentBase
         Model = new();
     }
 
-
     private async Task onCreatePersona()
     {
         Model.FechaNacimiento = DateTime.Now;

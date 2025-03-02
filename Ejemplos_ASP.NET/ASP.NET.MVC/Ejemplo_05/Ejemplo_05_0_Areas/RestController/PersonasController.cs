@@ -1,53 +1,60 @@
-﻿using Ejemplo_05_Areas.Models;
-using Ejemplo_05_Areas.Services;
-
+﻿using Ejemplo_15_personas_datoslib.Models;
+using Ejemplo_15_personas_datoslib.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Ejemplo_02_CRUD_RestAPI_y_MVC_Simple.RestControllers;
+namespace Ejemplo_05_Areas.RestControllers;
 
 [Route("api/[controller]")]
 [ApiController]
 public class PersonasController : ControllerBase
 {
-    private PersonasService _servicio = new PersonasService();
+    private readonly ILogger<PersonasController> _logger;
+
+    private readonly PersonasService _personasService;
+
+    public PersonasController(ILogger<PersonasController> logger, PersonasService personasService)
+    {
+        _logger = logger;
+        _personasService = personasService;
+    }
 
     // GET: api/<PersonasController>
     [HttpGet]
-    public IActionResult Get()
+    async public Task<IActionResult> Get()
     {
-        return Ok(_servicio.GetAll());
+        return Ok(await _personasService.GetAll());
     }
 
     // GET api/<PersonasController>/5
     [HttpGet("{id}")]
-    public IActionResult Get(int id)
+    async public Task<IActionResult> Get(int id)
     {
-        var persona = _servicio.GetById(id);
+        var persona = await _personasService.GetById(id);
         return Ok(persona);
     }
 
     // POST api/<PersonasController>
     [HttpPost]
-    public IActionResult Post([FromBody] PersonaModel persona)
+    async public Task<IActionResult> Post([FromBody] PersonaModel persona)
     {
-        _servicio.CrearNuevo(persona);
+        await _personasService.CrearNuevo(persona);
         return RedirectToAction(nameof(Index));
     }
 
     // PUT api/<PersonasController>/5
     [HttpPut("{id}")]
-    public void Put(int id, [FromBody] string value)
+    async public Task Put(int id, [FromBody] string value)
     {
     }
 
     // DELETE api/<PersonasController>/5
     [HttpDelete("{id}")]
-    public IActionResult Delete(int? id)
+    async public Task<IActionResult> Delete(int? id)
     {
         if (id == null || id <= 0)
             return BadRequest();
 
-        var persona = _servicio.GetById(Convert.ToInt32(id));
+        var persona =await _personasService.GetById(Convert.ToInt32(id));
 
         if (persona == null)
             return NotFound();

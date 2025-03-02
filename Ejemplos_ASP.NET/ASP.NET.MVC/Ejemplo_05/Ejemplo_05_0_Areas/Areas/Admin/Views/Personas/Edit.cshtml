@@ -1,7 +1,9 @@
-﻿@model PersonaModel
+﻿@using Ejemplo_15_personas_datoslib.Models
+@model PersonaModel
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "_AdminLayout";
 }
 
 <h1>Edit</h1>
@@ -12,11 +14,13 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
                 <label asp-for="Id" class="control-label"></label>
                 <input asp-for="Id" class="form-control" readonly />
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="DNI" class="control-label"></label>
                 <input asp-for="DNI" class="form-control" />

@@ -1,9 +1,24 @@
+using Ejemplo_15_personas_datoslib.DALs.MSSDALs;
+using Ejemplo_15_personas_datoslib.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
+#region creando el contexto
+builder.Services.AddSingleton<PersonasMSSDAL>();
+builder.Services.AddSingleton<UsuariosMSSDAL>();
+builder.Services.AddSingleton<RolesMSSDAL>();
+builder.Services.AddSingleton<UsuariosRolesMSSDAL>();
+//
+builder.Services.AddSingleton<PersonasService>();
+builder.Services.AddSingleton<CuentasService>();
+builder.Services.AddSingleton<RolesService>();
+//
+#endregion
+
+
+#region swagger
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -17,6 +32,7 @@ builder.Services.AddCors(options =>
                   .AllowAnyHeader(); // Permitir cualquier encabezado
         });
 });
+#endregion
 
 //builder.Services.AddCors(options =>
 //{

@@ -1,4 +1,4 @@
-﻿using Ejemplo_01_0_CRUD_MVC_Simple.DALs.MSSDALs;
+﻿using Ejemplo_15_personas_datoslib.DALs.MSSDALs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ejemplo_01_CRUD_MVC_Simple.Controllers;

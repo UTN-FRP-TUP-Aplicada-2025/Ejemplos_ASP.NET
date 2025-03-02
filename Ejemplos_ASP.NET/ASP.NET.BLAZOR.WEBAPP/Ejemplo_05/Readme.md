@@ -1,4 +1,15 @@
 
+# signal r
+
+https://learn.microsoft.com/en-us/answers/questions/1613062/reload-the-page-to-restore-functionality-blazor-se?page=1#answers
+
+https://learn.microsoft.com/en-us/answers/questions/1613062/reload-the-page-to-restore-functionality-blazor-se
+
+https://stackoverflow.com/questions/78991856/blazor-server-fix-could-not-reconnect-to-the-server-problem
+
+https://learn.microsoft.com/en-us/aspnet/core/blazor/fundamentals/signalr?view=aspnetcore-3.1#reflect-the-server-side-connection-state-in-the-ui
+
+
 
 ## Tamplates open source
 

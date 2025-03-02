@@ -1,15 +1,31 @@
+using Ejemplo_15_personas_datoslib.DALs.MSSDALs;
+using Ejemplo_15_personas_datoslib.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+#region creando el contexto
+builder.Services.AddSingleton<PersonasMSSDAL>();
+builder.Services.AddSingleton<UsuariosMSSDAL>();
+builder.Services.AddSingleton<RolesMSSDAL>();
+builder.Services.AddSingleton<UsuariosRolesMSSDAL>();
+//
+builder.Services.AddSingleton<PersonasService>();
+builder.Services.AddSingleton<CuentasService>();
+builder.Services.AddSingleton<RolesService>();
+//
+#endregion
 
 #region  identidad
 
 builder.Services.AddAuthentication("Cookies")
     .AddCookie(options =>
     {
-        options.LoginPath = "/Account/Login";
-        options.LogoutPath = "/Account/Logout";
+        options.LoginPath = "/Cuentas/Login";
+        options.LogoutPath = "/Cuentas/Logout";
+        options.AccessDeniedPath = "/Cuentas/Login";
     });
 
 builder.Services.AddAuthorization();

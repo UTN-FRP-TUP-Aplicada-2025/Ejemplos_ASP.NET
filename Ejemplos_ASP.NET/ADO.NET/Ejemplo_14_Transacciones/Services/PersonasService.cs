@@ -1,4 +1,5 @@
 ﻿using Ejemplo_14_Transacciones.DALs.MSSDALs;
+using Ejemplo_14_Transacciones.DAOs.MSSDALs;
 using Ejemplo_14_Transacciones.Models;
 
 namespace Ejemplo_14_Transacciones.Services;
@@ -29,10 +30,24 @@ public class PersonasService
 
     async public Task Eliminar(int id)
     {
-        var objeto = await GetById(id);
-        if (objeto != null)
+
+        SqlServerTransaction tx = new();
+        try
         {
-            await _dao.Delete(id);
+            await tx.BeginTransaction();
+
+            var objeto = await _dao.GetByKey(id,tx;
+            if (objeto != null)
+            {
+                await _dao.Delete(id,tx);
+            }
+
+            await tx.CommitAsync();
+        }
+        catch (Exception ex)
+        {
+            await tx.RollbackAsync();
+            throw ex;
         }
     }
 }

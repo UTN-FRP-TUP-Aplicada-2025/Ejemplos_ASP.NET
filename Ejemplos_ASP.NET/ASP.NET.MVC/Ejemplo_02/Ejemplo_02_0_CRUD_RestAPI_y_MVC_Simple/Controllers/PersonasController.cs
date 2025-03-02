@@ -1,32 +1,39 @@
-﻿using Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple.Models;
-using Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple.Services;
-
+﻿using Ejemplo_15_personas_datoslib.Models;
+using Ejemplo_15_personas_datoslib.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ejemplo_02_0_CRUD_RestAPI_y_MVC_Simple.Controllers;
 
 public class PersonasController : Controller
 {
-    private PersonasService _servicio = new PersonasService();
+    private readonly ILogger<PersonasController> _logger;
+
+    private readonly PersonasService _personasService;
+
+    public PersonasController(ILogger<PersonasController> logger, PersonasService personasService)
+    {
+        _logger = logger;
+        _personasService = personasService;
+    }
 
     // GET: PersonasController
     [HttpGet]
-    public IActionResult Index()
+    async public Task<IActionResult> Index()
     {
-        return View(_servicio.GetAll());
+        return View(await _personasService.GetAll());
     }
 
     // GET: PruebaController1/Details/5
     [HttpGet]
-    public ActionResult Details(int id)
+    async public Task<IActionResult> Details(int id)
     {
-        var persona = _servicio.GetById(id);
+        var persona =await _personasService.GetById(id);
         return View(persona);
     }
 
     // GET: PruebaController1/Create
     [HttpGet]
-    public ActionResult Create()
+    async public Task<IActionResult> Create()
     {
         return View();
     }
@@ -36,11 +43,11 @@ public class PersonasController : Controller
     [ValidateAntiForgeryToken]
     //https://learn.microsoft.com/es-es/aspnet/core/security/anti-request-forgery?view=aspnetcore-9.0
     // http://go.microsoft.com/fwlink/?LinkId=317598
-    public ActionResult Create(PersonaModel nuevo)
+    async public Task<IActionResult> Create(PersonaModel nuevo)
     {
         try
         {
-            _servicio.CrearNuevo(nuevo);
+            await _personasService.CrearNuevo(nuevo);
             return RedirectToAction(nameof(Index));
         }
         catch
@@ -52,32 +59,32 @@ public class PersonasController : Controller
     // GET: PersonaController1/Edit/5
     //http://localhost:5033/Personas/Editar/1
     [HttpGet]
-    public IActionResult Edit(int? id)
+    async public Task<IActionResult> Edit(int? id)
     {
         if (id == null)
             return BadRequest();
 
-        var persona = _servicio.GetById(Convert.ToInt32(id));
+        var persona = await _personasService.GetById(Convert.ToInt32(id));
         return View(persona);
     }
 
     // POST: PersonaController/Edit/1
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id, PersonaModel persona)
+    async public Task<IActionResult> Edit(int id, PersonaModel persona)
     {
-        if(id != persona.Id)
+        if (id != persona.Id)
             return NotFound();
 
         if (ModelState.IsValid)
         {
             try
             {
-                _servicio.Actualizar(persona);
+                await _personasService.Actualizar(persona);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                ModelState.AddModelError("","Error");
+                ModelState.AddModelError("", "Error");
             }
             return RedirectToAction(nameof(Index));
         }
@@ -86,12 +93,12 @@ public class PersonasController : Controller
 
     // GET: PruebaController1/Delete/5
     [HttpGet]
-    public ActionResult Delete(int? id)
+    async public Task<IActionResult> Delete(int? id)
     {
         if (id == null || id <= 0)
             return BadRequest();
 
-        var persona = _servicio.GetById(Convert.ToInt32(id));
+        var persona = await _personasService.GetById(Convert.ToInt32(id));
 
         if (persona == null)
             return NotFound();
@@ -102,17 +109,17 @@ public class PersonasController : Controller
     // POST: PruebaController1/Delete/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Delete(int? id,  PersonaModel persona)
+    async public Task<IActionResult> Delete(int? id, PersonaModel persona)
     {
         if (id == null || id <= 0)
             return BadRequest();
 
         try
         {
-            if (_servicio.GetById(Convert.ToInt32(id)) == null)
+            if (await _personasService.GetById(Convert.ToInt32(id)) == null)
                 return NotFound();
 
-            _servicio.Eliminar(Convert.ToInt32(id));
+            await _personasService.Eliminar(Convert.ToInt32(id));
 
             return RedirectToAction(nameof(Index));
         }

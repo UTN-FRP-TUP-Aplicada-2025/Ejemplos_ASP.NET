@@ -1,4 +1,4 @@
-﻿using Ejemplo_01_0_CRUD_MVC_Simple.Models;
+﻿using Ejemplo_15_personas_datoslib.Models;
 
 namespace Ejemplo_01_CRUD_MVC_Simple.ViewModels;
 

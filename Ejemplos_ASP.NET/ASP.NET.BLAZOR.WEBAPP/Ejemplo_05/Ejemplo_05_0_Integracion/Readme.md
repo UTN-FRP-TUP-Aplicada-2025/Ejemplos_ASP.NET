@@ -1,5 +1,9 @@
 ﻿
 
+https://learn.microsoft.com/en-us/answers/questions/1613062/reload-the-page-to-restore-functionality-blazor-se?page=1#answers
+
+
+
 mudblazor
 https://www.youtube.com/watch?v=9Q2fL7iJvdo
 

@@ -7,9 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Admin\css\" />
-    <Folder Include="wwwroot\Admin\imgs\" />
-    <Folder Include="wwwroot\Admin\js\" />
+    <Folder Include="wwwroot\Backoffice\imgs\" />
     <Folder Include="wwwroot\Usuario\imgs\" />
   </ItemGroup>
 

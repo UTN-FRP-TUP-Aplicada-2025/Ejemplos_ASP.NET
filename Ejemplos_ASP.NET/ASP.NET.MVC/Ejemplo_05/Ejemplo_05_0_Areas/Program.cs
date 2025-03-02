@@ -42,7 +42,7 @@ builder.Services.AddSwaggerGen(c =>
 #endregion
 
 
-#region  identidad
+#region manejo de sesion
 
 builder.Services.AddAuthentication("Cookies")
     .AddCookie(options =>

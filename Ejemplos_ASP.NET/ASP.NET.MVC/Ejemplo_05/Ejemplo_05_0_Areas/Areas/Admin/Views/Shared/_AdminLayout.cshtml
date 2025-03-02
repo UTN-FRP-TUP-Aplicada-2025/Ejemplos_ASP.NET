@@ -20,9 +20,8 @@
     
 </head>
 <body>
-    <div class="wrapper">
-        <header>
-            <div class="wrapper">
+    <div class="d-flex">
+     
                 <aside id="sidebar">
                     <div class="d-flex">
                         <button class="toggle-btn" type="button">
@@ -97,14 +96,13 @@
                         </li>
                     </ul>
                     <div class="sidebar-footer">
-                        <a href="#" class="sidebar-link">
+                        <a href="~/Cuentas/Logout" class="sidebar-link">
                             <i class="lni lni-exit"></i>
                             <span>Logout</span>
                         </a>
                     </div>
                 </aside>
-            </div>
-        </header>
+           
      
         <main class="main p-3">
             <div class="media">
@@ -123,7 +121,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    <script src="/Admin/js/script.js" asp-append-version="true"></script>
+    <script src="/Admin/js/main.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

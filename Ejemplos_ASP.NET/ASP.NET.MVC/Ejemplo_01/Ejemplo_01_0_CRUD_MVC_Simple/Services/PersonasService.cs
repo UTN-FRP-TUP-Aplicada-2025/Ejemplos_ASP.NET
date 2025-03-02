@@ -1,6 +1,4 @@
-﻿
-
-using Ejemplo_01_0_CRUD_MVC_Simple.DALs.MSSDALs;
+﻿using Ejemplo_01_0_CRUD_MVC_Simple.DALs.MSSDALs;
 using Ejemplo_01_0_CRUD_MVC_Simple.DAOs.MSSDALs;
 using Ejemplo_01_0_CRUD_MVC_Simple.Models;
 
@@ -10,7 +8,9 @@ public class PersonasService
 {
     readonly private PersonasMSSDAL _personasDao;
 
-    public PersonasService(PersonasMSSDAL personasDao)
+    private readonly IConfiguration _configuracion;
+
+    public PersonasService(PersonasMSSDAL personasDao, IConfiguration configuracion)
     {
         _personasDao = personasDao;
     }
@@ -37,7 +37,7 @@ public class PersonasService
 
     async public Task Eliminar(int id)
     {
-        SqlServerTransaction tx = new();
+        SqlServerTransaction tx = new SqlServerTransaction(_configuracion);
         try
         {
             await tx.BeginTransaction();

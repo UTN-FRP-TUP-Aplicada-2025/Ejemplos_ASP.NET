@@ -5,7 +5,12 @@ namespace Ejemplo_01_CRUD_MVC_Simple.Controllers;
 
 public class RolesController : Controller
 {
-    RolesMSSDAL _rolesDao = new RolesMSSDAL();
+    private RolesMSSDAL _rolesDao;
+
+    public RolesController(RolesMSSDAL rolesDao)
+    {
+        _rolesDao= rolesDao;
+    }
 
     async public Task<IActionResult> Index()
     {

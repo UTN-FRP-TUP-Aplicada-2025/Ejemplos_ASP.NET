@@ -23,10 +23,13 @@ builder.Services.AddControllersWithViews();
 //creando el contexto
 builder.Services.AddSingleton<PersonasMSSDAL>();
 builder.Services.AddSingleton<UsuariosMSSDAL>();
+builder.Services.AddSingleton<RolesMSSDAL>();
 builder.Services.AddSingleton<UsuariosRolesMSSDAL>();
+//
 builder.Services.AddSingleton<PersonasService>();
 builder.Services.AddSingleton<CuentasService>();
 builder.Services.AddSingleton<RolesService>();
+//
 
 /* 2- Construcción de la aplicación
  

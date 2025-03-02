@@ -1,11 +1,17 @@
-﻿using Ejemplo_01_0_CRUD_MVC_Simple.MSSDALs;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 
 namespace Ejemplo_01_0_CRUD_MVC_Simple.DAOs.MSSDALs;
 
 public class SqlServerTransaction : ITransaction<SqlTransaction>
 {
     private SqlTransaction _transaccion;
+
+    private readonly IConfiguration _configuracion;
+
+    public SqlServerTransaction(IConfiguration configuracion)
+    {
+        _configuracion = configuracion;
+    }
 
     public void Commit()
     {
@@ -42,7 +48,7 @@ public class SqlServerTransaction : ITransaction<SqlTransaction>
 
     private SqlConnection ObtenerConexion()
     {
-        return new SqlConnection(ConexionString.CadenaConexion);
+        return new SqlConnection(_configuracion.GetConnectionString("CadenaConexion"));
     }
 
     async public Task BeginTransaction()

@@ -1,16 +1,22 @@
 ﻿
 using Ejemplo_01_0_CRUD_MVC_Simple.DAOs;
 using Ejemplo_01_0_CRUD_MVC_Simple.Models;
-using Ejemplo_01_0_CRUD_MVC_Simple.MSSDALs;
 using Microsoft.Data.SqlClient;
 
 namespace Ejemplo_01_0_CRUD_MVC_Simple.DALs.MSSDALs;
 
 public class RolesMSSDAL : IBaseDAL<RolModel, string, SqlTransaction>
 {
+    private readonly IConfiguration _configuracion;
+
+    public RolesMSSDAL(IConfiguration configuracion)
+    {
+        _configuracion = configuracion;
+    }
+
     private SqlConnection ObtenerConexion()
     {
-        return new SqlConnection(ConexionString.CadenaConexion);
+        return new SqlConnection(_configuracion.GetConnectionString("CadenaConexion"));
     }
 
     public async Task<List<RolModel>> GetAll(ITransaction<SqlTransaction>? transaccion = null)

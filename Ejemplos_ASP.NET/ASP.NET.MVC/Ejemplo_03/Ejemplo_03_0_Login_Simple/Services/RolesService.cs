@@ -7,8 +7,13 @@ namespace Ejemplo_03_0_Login_Simple.Services;
 
 public class RolesService
 {
-    RolesMSSDAL _rolesDao = new();
-    
+    readonly private RolesMSSDAL _rolesDao;
+
+    public RolesService(RolesMSSDAL rolesDao)
+    {
+        _rolesDao = rolesDao;
+    }
+
 
     async public Task<List<RolModel>> GetAll()
     {

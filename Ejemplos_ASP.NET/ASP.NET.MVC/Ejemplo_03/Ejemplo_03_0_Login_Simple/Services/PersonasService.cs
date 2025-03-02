@@ -2,6 +2,7 @@
 using Ejemplo_03_0_Login_Simple.DALs.MSSDALs;
 using Ejemplo_03_0_Login_Simple.DAOs.MSSDALs;
 using Ejemplo_03_0_Login_Simple.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace Ejemplo_03_0_Login_Simple.Services;
 
@@ -9,7 +10,9 @@ public class PersonasService
 {
     readonly private PersonasMSSDAL _personasDao;
 
-    public PersonasService(PersonasMSSDAL personasDao)
+    private readonly IConfiguration _configuracion;
+
+    public PersonasService(PersonasMSSDAL personasDao, IConfiguration configuracion)
     {
         _personasDao = personasDao;
     }
@@ -36,7 +39,7 @@ public class PersonasService
 
     async public Task Eliminar(int id)
     {
-        SqlServerTransaction tx = new();
+        SqlServerTransaction tx = new SqlServerTransaction(_configuracion);
         try
         {
             await tx.BeginTransaction();

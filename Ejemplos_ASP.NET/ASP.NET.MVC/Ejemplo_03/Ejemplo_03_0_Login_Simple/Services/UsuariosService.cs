@@ -7,8 +7,14 @@ namespace Ejemplo_03_0_Login_Simple.Services;
 
 public class UsuariosService
 {
-    UsuariosMSSDAL _usuariosDao = new ();
-    UsuariosRolesMSSDAL _usuarioRolesDao = new();
+    UsuariosMSSDAL _usuariosDao;
+    UsuariosRolesMSSDAL _usuarioRolesDao;
+
+    public UsuariosService(UsuariosMSSDAL usuariosDao, UsuariosRolesMSSDAL usuariosRolesDao)
+    {
+        _usuariosDao = usuariosDao;
+        _usuarioRolesDao = usuariosRolesDao;
+    }
 
     async public Task<List<UsuarioModel>> GetAll()
     {

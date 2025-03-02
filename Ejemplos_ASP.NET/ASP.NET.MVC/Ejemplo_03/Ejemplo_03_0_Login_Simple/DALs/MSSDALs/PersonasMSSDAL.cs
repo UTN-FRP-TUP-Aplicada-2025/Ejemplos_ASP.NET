@@ -1,15 +1,21 @@
 ﻿using Ejemplo_03_0_Login_Simple.DAOs;
 using Ejemplo_03_0_Login_Simple.Models;
-using Ejemplo_03_0_Login_Simple.MSSDALs;
 using Microsoft.Data.SqlClient;
 
 namespace Ejemplo_03_0_Login_Simple.DALs.MSSDALs;
 
 public class PersonasMSSDAL : IBaseDAL<PersonaModel, int, SqlTransaction>
 {
+    private readonly IConfiguration _configuracion;
+
+    public PersonasMSSDAL(IConfiguration configuracion)
+    {
+        _configuracion = configuracion;
+    }
+
     private SqlConnection ObtenerConexion()
     {
-        return new SqlConnection(ConexionString.CadenaConexion);
+        return new SqlConnection(_configuracion.GetConnectionString("CadenaConexion"));
     }
 
     public async Task<List<PersonaModel>> GetAll(ITransaction<SqlTransaction>? transaccion = null)

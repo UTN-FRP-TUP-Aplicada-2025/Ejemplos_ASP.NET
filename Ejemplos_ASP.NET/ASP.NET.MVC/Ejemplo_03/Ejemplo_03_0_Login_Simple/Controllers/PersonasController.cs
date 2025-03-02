@@ -3,31 +3,35 @@ using Ejemplo_03_0_Login_Simple.Models;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.DataProtection;
 
 namespace Ejemplo_03_0_Login_Simple.Controllers;
 
 [Authorize]
 public class PersonasController : Controller
 {
-    private readonly PersonasService _serviciosService;
+    private readonly ILogger<HomeController> _logger;
 
-    public PersonasController(PersonasService serviciosService)
+    private readonly PersonasService _personasService;
+
+    public PersonasController(ILogger<HomeController> logger, PersonasService personasService)
     {
-        _serviciosService = serviciosService;
+        _logger = logger;
+        _personasService = personasService;
     }
 
     // GET: PersonasController
     [HttpGet]
     async public Task<IActionResult> Index()
     {
-        return View(await _serviciosService.GetAll());
+        return View(await _personasService.GetAll());
     }
 
     // GET: PruebaController1/Details/5
     [HttpGet]
     async public Task<IActionResult> Details(int id)
     {
-        var persona = await _serviciosService.GetById(id);
+        var persona = await _personasService.GetById(id);
         return View(persona);
     }
 
@@ -47,7 +51,7 @@ public class PersonasController : Controller
     {
         try
         {
-            await _serviciosService.CrearNuevo(nuevo);
+            await _personasService.CrearNuevo(nuevo);
             return RedirectToAction(nameof(Index));
         }
         catch
@@ -64,7 +68,7 @@ public class PersonasController : Controller
         if (id == null)
             return BadRequest();
 
-        var persona = await _serviciosService.GetById(Convert.ToInt32(id));
+        var persona = await _personasService.GetById(Convert.ToInt32(id));
         return View(persona);
     }
 
@@ -80,7 +84,7 @@ public class PersonasController : Controller
         {
             try
             {
-                await _serviciosService.Actualizar(persona);
+                await _personasService.Actualizar(persona);
             }
             catch (Exception ex)
             {
@@ -98,7 +102,7 @@ public class PersonasController : Controller
         if (id == null || id <= 0)
             return BadRequest();
 
-        var persona = await _serviciosService.GetById(Convert.ToInt32(id));
+        var persona = await _personasService.GetById(Convert.ToInt32(id));
         
         if (persona == null)
             return NotFound();
@@ -116,10 +120,10 @@ public class PersonasController : Controller
 
         try
         {
-            if (await _serviciosService.GetById(Convert.ToInt32(id)) == null)
+            if (await _personasService.GetById(Convert.ToInt32(id)) == null)
                 return NotFound();
 
-            await _serviciosService.Eliminar(Convert.ToInt32(id));
+            await _personasService.Eliminar(Convert.ToInt32(id));
 
             return RedirectToAction(nameof(Index));
         }

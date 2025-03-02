@@ -7,8 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\Usuario\**" />
+    <Content Remove="wwwroot\Usuario\**" />
+    <EmbeddedResource Remove="wwwroot\Usuario\**" />
+    <None Remove="wwwroot\Usuario\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\Backoffice\imgs\" />
-    <Folder Include="wwwroot\Usuario\imgs\" />
   </ItemGroup>
 
   <ItemGroup>

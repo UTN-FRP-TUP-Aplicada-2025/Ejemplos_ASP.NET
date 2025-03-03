@@ -2,21 +2,22 @@
 
 TAG='v0.1'
 
-NOMBRE_IMAGEN='ejemplo05_mssql_image'
-NOMBRE_CONTENEDOR='ejemplo05_mssql_container'
-EJEMPLO='Ejemplo_05'
-DOCKER_FILE='Dockerfile.mssql'
-SOLUCION_PATH='/workspaces/Ejemplos_ASP.NET_MVC6/Ejemplo_ASP.NET_MVC6/'$EJEMPLO
+NOMBRE_IMAGEN='mssql_database_image'
+NOMBRE_CONTENEDOR='mssql_database_container'
+DOCKER_FILE='/workspaces/Ejemplos_ASP.NET/Ejemplos_ASP.NET/CONTENEDORES/dockerfiles/Dockerfile.mssql'
 
+SOLUCION_PATH='./'
 
 # paro el contenedor - por si esta corriendo
 docker stop $NOMBRE_CONTENEDOR
 
 # borro el contenedor por si ya estaba
-docker rm $NOMBRE_CONTENEDOR
+# docker rm $NOMBRE_CONTENEDOR
 
 # borro la imagen
-docker rmi $NOMBRE_IMAGEN:$TAG
+if docker images | grep -q "$NOMBRE_IMAGEN.*$TAG"; then
+  docker rmi $NOMBRE_IMAGEN:$TAG
+FI
 
 # construyo la imagen
 docker build  --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
@@ -40,7 +41,7 @@ docker exec -it $NOMBRE_CONTENEDOR /opt/mssql-tools/bin/sqlcmd -S localhost -U s
 #docker exec -it ejemplo05_mssql_container /bin/bash
 
 # consulta de la ip
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'  ejemplo05_mssql_container
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'  $NOMBRE_CONTENEDOR
 
 #IP_CONTENEDOR=docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $NOMBRE_CONTENEDOR
 # configurando la base de datos

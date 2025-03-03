@@ -8,7 +8,7 @@ docker image
 borrando contenedores detenidas e imagenes no utilizadas
 
 ```
-docker containter prune
+docker container prune
 docker image prune -a
 docker network prune
 ```

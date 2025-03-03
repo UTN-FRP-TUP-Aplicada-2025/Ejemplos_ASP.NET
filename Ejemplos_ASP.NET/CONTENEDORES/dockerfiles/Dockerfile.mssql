@@ -38,23 +38,18 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN ln -s /opt/mssql-tools18 /opt/mssql-tools
 
 
+# path script base
 
-# directorio de trabajo para los scripts
-
-ARG EJEMPLO="Ejemplo_05"
-ARG PROJECT_DIR="Ejemplo_05_0_database_MSSQL"
-ARG BASE_PATH="/workspaces/Ejemplos_ASP.NET_MVC6/Ejemplo_ASP.NET_MVC6"
-ARG PROJECT_PATH="${BASE_PATH}/${EJEMPLO}/${PROJECT_DIR}"
+ARG SCRIPT_SQL_PATH="/workspaces/Ejemplos_ASP.NET/Ejemplos_ASP.NET/SQL-Server/docker_script.sql"                     
 ARG BUILD_ROOT="/src/sql_script"
-ARG SRC_APP=./"${PROJECT_DIR}"
-
 
 # WORKDIR ${BUILD_ROOT}
 WORKDIR /src/sql_script/
 
 # copiando el script para crear la base de datos
 # COPY ${PROJECT_PATH}/. ${BUILD_ROOT}
-COPY ${SRC_APP}/. /src/sql_script
+RUN mkdir -f /src/sql_script
+COPY ${SCRIPT_SQL_PATH} /src/sql_script
 
 # puerto del servicio 
 EXPOSE 1433

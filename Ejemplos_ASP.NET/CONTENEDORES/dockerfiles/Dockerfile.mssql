@@ -48,7 +48,6 @@ WORKDIR /src/sql_script/
 
 # copiando el script para crear la base de datos
 # COPY ${PROJECT_PATH}/. ${BUILD_ROOT}
-RUN mkdir -f /src/sql_script
 COPY ${SCRIPT_SQL_PATH} /src/sql_script
 
 # puerto del servicio 

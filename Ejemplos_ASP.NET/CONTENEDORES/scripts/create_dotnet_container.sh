@@ -4,20 +4,23 @@
 
 TAG='v0.1'
 
-NOMBRE_IMAGEN='ejemplo05_dotnet_image'
-NOMBRE_CONTENEDOR='ejemplo05_dotnet_container'
-EJEMPLO='Ejemplo_05'
-DOCKER_FILE='Dockerfile.dotnet'
-SOLUCION_PATH='/workspaces/Ejemplos_ASP.NET_MVC6/Ejemplo_ASP.NET_MVC6/'$EJEMPLO
+NOMBRE_IMAGEN='ejemplo_asp_net_image'
+NOMBRE_CONTENEDOR='ejemplo_asp_net_container'
+PROYECTO_DIR='/workspaces/Ejemplos_ASP.NET/Ejemplos_ASP.NET/ASP.NET.MVC/Ejemplo_05/Ejemplo_05_0_Areas'
+PROYECTO_FILE='/workspaces/Ejemplos_ASP.NET/Ejemplos_ASP.NET/ASP.NET.MVC/Ejemplo_05/Ejemplo_05_0_Areas/Ejemplo_05_Areas.csproj'
+DOCKER_FILE='/workspaces/Ejemplos_ASP.NET/Ejemplos_ASP.NET/CONTENEDORES/dockerfiles/Dockerfile.dotnet'
+SOLUCION_PATH='/'
 
 # paro el contenedor - por si esta corriendo
-docker stop $NOMBRE_CONTENEDOR
-
+#docker stop $NOMBRE_CONTENEDOR
 # borro el contenedor por si ya estaba
-docker rm $NOMBRE_CONTENEDOR
+#docker rm $NOMBRE_CONTENEDOR
+docker stop $NOMBRE_CONTENEDOR 2>/dev/null && docker rm $NOMBRE_CONTENEDOR 2>/dev/null
 
 # borro la imagen
-docker rmi $NOMBRE_IMAGEN:$TAG
+if docker images | grep -q "$NOMBRE_IMAGEN.*$TAG"; then
+  docker rmi $NOMBRE_IMAGEN:$TAG
+fi
 
 # construyo la imagen
 docker build --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH

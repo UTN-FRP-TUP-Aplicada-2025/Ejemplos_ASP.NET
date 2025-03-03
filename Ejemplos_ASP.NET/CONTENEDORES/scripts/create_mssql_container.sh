@@ -6,18 +6,19 @@ NOMBRE_IMAGEN='mssql_database_image'
 NOMBRE_CONTENEDOR='mssql_database_container'
 DOCKER_FILE='/workspaces/Ejemplos_ASP.NET/Ejemplos_ASP.NET/CONTENEDORES/dockerfiles/Dockerfile.mssql'
 
-SOLUCION_PATH='./'
+SOLUCION_PATH='/'
 
 # paro el contenedor - por si esta corriendo
-docker stop $NOMBRE_CONTENEDOR
-
+#docker stop $NOMBRE_CONTENEDOR
 # borro el contenedor por si ya estaba
 # docker rm $NOMBRE_CONTENEDOR
+docker stop $NOMBRE_CONTENEDOR 2>/dev/null && docker rm $NOMBRE_CONTENEDOR 2>/dev/null
+
 
 # borro la imagen
 if docker images | grep -q "$NOMBRE_IMAGEN.*$TAG"; then
   docker rmi $NOMBRE_IMAGEN:$TAG
-FI
+fi
 
 # construyo la imagen
 docker build  --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH

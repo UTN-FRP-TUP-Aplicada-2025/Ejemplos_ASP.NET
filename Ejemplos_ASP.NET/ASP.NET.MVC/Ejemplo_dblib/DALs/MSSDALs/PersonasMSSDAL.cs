@@ -1,22 +1,15 @@
-﻿using Ejemplo_15_personas_datoslib.DALs;
-using Ejemplo_15_personas_datoslib.Models;
+﻿using Ejemplo_15_personas_datoslib.Models;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 
 namespace Ejemplo_15_personas_datoslib.DALs.MSSDALs;
 
 public class PersonasMSSDAL : IBaseDAL<PersonaModel, int, SqlTransaction>
 {
-    private readonly IConfiguration _configuracion;
-
-    public PersonasMSSDAL(IConfiguration configuracion)
+    private readonly SqlConnection _sqlConnection;
+    
+    public PersonasMSSDAL(SqlConnection sqlConnection)
     {
-        _configuracion = configuracion;
-    }
-
-    private SqlConnection ObtenerConexion()
-    {
-        return new SqlConnection(_configuracion.GetConnectionString("CadenaConexion"));
+        _sqlConnection = sqlConnection;
     }
 
     public async Task<List<PersonaModel>> GetAll(ITransaction<SqlTransaction>? transaccion = null)
@@ -27,13 +20,11 @@ public class PersonasMSSDAL : IBaseDAL<PersonaModel, int, SqlTransaction>
 @"SELECT p.* 
 FROM Personas p";
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion =await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
 
-        var reader = await query.ExecuteReaderAsync();
+        using var reader = await query.ExecuteReaderAsync();
         while (await reader.ReadAsync())
         {
             var objeto = ReadAsObjeto(reader);
@@ -52,14 +43,12 @@ SELECT TOP 1 p.*
 FROM Personas p
 WHERE p.Id = @Id";
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion == null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Id", id);
 
-        var reader = await query.ExecuteReaderAsync();
+        using var reader = await query.ExecuteReaderAsync();
         if (await reader.ReadAsync())
         {
             objeto = ReadAsObjeto(reader);
@@ -75,11 +64,7 @@ INSERT INTO Personas (Dni, Nombre, Fecha_Nacimiento)
 OUTPUT INSERTED.ID 
 VALUES (@Dni, @Nombre, @Fecha_Nacimiento)";
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion == null)
-        {
-            await conexion.OpenAsync();
-        }
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Dni", nuevo.DNI);
@@ -99,11 +84,7 @@ VALUES (@Dni, @Nombre, @Fecha_Nacimiento)";
             WHERE Id = @Id"
         ;
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion == null)
-        {
-            await conexion.OpenAsync();
-        }
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Dni", actualizar.DNI);
@@ -122,17 +103,23 @@ VALUES (@Dni, @Nombre, @Fecha_Nacimiento)";
 DELETE FROM Personas
 WHERE Id = @Id";
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion == null)
-        {
-            await conexion.OpenAsync();
-        }
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Id", id);
 
         int eliminados = await query.ExecuteNonQueryAsync();
         return eliminados > 0;
+    }
+
+    private async Task<SqlConnection> GetOpenedConnectionAsync(ITransaction<SqlTransaction>? transaccion)
+    {
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? _sqlConnection;
+        if (conexion.State == System.Data.ConnectionState.Closed)
+        {
+            await conexion.OpenAsync();
+        }
+        return conexion;
     }
 
     private PersonaModel ReadAsObjeto(SqlDataReader reader)

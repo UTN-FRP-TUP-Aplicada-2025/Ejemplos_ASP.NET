@@ -1,6 +1,4 @@
-﻿
-
-using Ejemplo_15_personas_datoslib.Models;
+﻿using Ejemplo_15_personas_datoslib.Models;
 using Ejemplo_15_personas_datoslib.DALs.MSSDALs;
 
 namespace Ejemplo_15_personas_datoslib.Services;

@@ -1,25 +1,18 @@
 ﻿using Ejemplo_15_personas_datoslib.Models;
 
 using Microsoft.Data.SqlClient;
-using Ejemplo_15_personas_datoslib.DALs;
-using Microsoft.Extensions.Configuration;
 
 namespace Ejemplo_15_personas_datoslib.DALs.MSSDALs;
 
 public class UsuariosMSSDAL : IBaseDAL<UsuarioModel, string, SqlTransaction>
 {
-    private readonly IConfiguration _configuracion;
+    private readonly SqlConnection _sqlConnection;
 
-    public UsuariosMSSDAL(IConfiguration configuracion)
+    public UsuariosMSSDAL(SqlConnection sqlConnection)
     {
-        _configuracion = configuracion;
+        _sqlConnection = sqlConnection;
     }
-
-    private SqlConnection ObtenerConexion()
-    {
-        return new SqlConnection(_configuracion.GetConnectionString("CadenaConexion"));
-    }
-
+    
     async public Task<List<UsuarioModel>> GetAll(ITransaction<SqlTransaction>? transaccion = null)
     {
         var lista = new List<UsuarioModel>();
@@ -28,13 +21,11 @@ public class UsuariosMSSDAL : IBaseDAL<UsuarioModel, string, SqlTransaction>
 @"SELECT u.* 
 FROM Usuarios u";
 
-        using var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
 
-        var reader = await query.ExecuteReaderAsync();
+        using var reader = await query.ExecuteReaderAsync();
 
         while (await reader.ReadAsync())
         {
@@ -53,14 +44,12 @@ FROM Usuarios u";
 FROM Usuarios u
 WHERE UPPER(TRIM(u.Nombre)) LIKE UPPER(TRIM(@Nombre))";
 
-        using var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Nombre", nombre);
 
-        var reader =await query.ExecuteReaderAsync();
+        using var reader =await query.ExecuteReaderAsync();
 
         if (await reader.ReadAsync())
         {
@@ -75,9 +64,7 @@ WHERE UPPER(TRIM(u.Nombre)) LIKE UPPER(TRIM(@Nombre))";
 @"INSERT Usuarios(Nombre, Clave)
 VALUES (@Nombre, @Clave)";
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
@@ -93,9 +80,7 @@ VALUES (@Nombre, @Clave)";
 @"UPDATE Usuarios SET Clave=@Clave
 WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre_Usuario)";
 
-        using var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion);
         query.Parameters.AddWithValue("@Clave", actualizar.Clave);
@@ -112,9 +97,7 @@ WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre_Usuario)";
 @"DELETE FROM Usuarios
 WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre)";
 
-        using var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Nombre", nombre);
@@ -122,6 +105,16 @@ WHERE UPPER(TRIM(Nombre)) LIKE UPPER(@Nombre)";
         int eliminados = await query.ExecuteNonQueryAsync();
 
         return eliminados > 0;
+    }
+
+    private async Task<SqlConnection> GetOpenedConnectionAsync(ITransaction<SqlTransaction>? transaccion)
+    {
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? _sqlConnection;
+        if (conexion.State == System.Data.ConnectionState.Closed)
+        {
+            await conexion.OpenAsync();
+        }
+        return conexion;
     }
 
     protected UsuarioModel ReadAsObjecto(SqlDataReader reader, ITransaction<SqlTransaction>? transaccion = null)

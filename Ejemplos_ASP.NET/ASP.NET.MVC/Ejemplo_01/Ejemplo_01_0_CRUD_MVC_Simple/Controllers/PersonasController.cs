@@ -48,9 +48,10 @@ public class PersonasController : Controller
             await _personasService.CrearNuevo(nuevo);
             return RedirectToAction(nameof(Index));
         }
-        catch
+        catch(Exception ex)
         {
-            return View();
+            ModelState.AddModelError("", "Error al crear la persona. " + ex.Message);
+            return View(nuevo);
         }
     }
 
@@ -71,7 +72,7 @@ public class PersonasController : Controller
     [ValidateAntiForgeryToken]
     async public Task<ActionResult> Edit(int id, PersonaModel? persona)
     {
-        if (persona != null || id<=0)
+        if (persona == null || id<=0)
             return BadRequest();
 
         if (id != persona.Id)
@@ -82,13 +83,16 @@ public class PersonasController : Controller
             try
             {
                 await _personasService.Actualizar(persona);
+                return RedirectToAction(nameof(Index));
             }
             catch(Exception ex)
-            {
-                ModelState.AddModelError("","Error");
+            { 
+                ModelState.AddModelError("", "Error al actualizar la persona. " + ex.Message);
+                return View(persona);
             }
-            return RedirectToAction(nameof(Index));
         }
+
+        ModelState.AddModelError("", "Error en el modelo");
         return View(persona);
     }
 
@@ -115,18 +119,21 @@ public class PersonasController : Controller
         if (id == null || id <= 0)
             return BadRequest();
 
+        PersonaModel objeto = null;
         try
         {
-            if (_personasService.GetById(Convert.ToInt32(id)) == null)
+            objeto = await _personasService.GetById(Convert.ToInt32(id));
+            if (objeto == null)
                 return NotFound();
 
             await _personasService.Eliminar(Convert.ToInt32(id));
 
             return RedirectToAction(nameof(Index));
         }
-        catch
+        catch(Exception ex)
         {
-            return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+            ModelState.AddModelError("", "Error al eliminar la persona. " + ex.Message);
+            return View(objeto); 
         }
     }
 }

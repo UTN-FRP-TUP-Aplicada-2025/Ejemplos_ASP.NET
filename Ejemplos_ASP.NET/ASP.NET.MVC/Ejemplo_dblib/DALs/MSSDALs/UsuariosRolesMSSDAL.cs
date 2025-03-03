@@ -12,16 +12,11 @@ namespace Ejemplo_15_personas_datoslib.DALs.MSSDALs;
 
 public class UsuariosRolesMSSDAL : IBaseDAL<UsuarioRolModel, UsuarioRolModel, SqlTransaction>
 {
-    private readonly IConfiguration _configuracion;
+    private readonly SqlConnection _sqlConnection;
 
-    public UsuariosRolesMSSDAL(IConfiguration configuracion)
+    public UsuariosRolesMSSDAL(SqlConnection sqlConnection)
     {
-        _configuracion = configuracion;
-    }
-
-    private SqlConnection ObtenerConexion()
-    {
-        return new SqlConnection(_configuracion.GetConnectionString("CadenaConexion"));
+        _sqlConnection = sqlConnection;
     }
 
     async public Task<List<UsuarioRolModel>> GetAll(ITransaction<SqlTransaction>? transaccion = null)
@@ -32,13 +27,11 @@ public class UsuariosRolesMSSDAL : IBaseDAL<UsuarioRolModel, UsuarioRolModel, Sq
 @"SELECT u_r.* 
 FROM Usuarios_Roles u_r ";
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion);
 
-        var reader = await query.ExecuteReaderAsync();
+        using var reader = await query.ExecuteReaderAsync();
 
         while (await reader.ReadAsync())
         {
@@ -58,15 +51,13 @@ FROM Usuarios_Roles u_r
 WHERE UPPER(TRIM(u_r.Nombre_Usuario)) LIKE UPPER(TRIM(@NombreUsuario))
         AND UPPER(TRIM(u_r.Nombre_Rol)) LIKE UPPER(TRIM(@NombreRol))";
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion);
         query.Parameters.AddWithValue("@NombreUsuario", usuarioRol?.NombreUsuario);
         query.Parameters.AddWithValue("@NombreRol", usuarioRol?.NombreRol);
 
-        var reader =await query.ExecuteReaderAsync();
+        using var reader =await query.ExecuteReaderAsync();
 
         if (await reader.ReadAsync())
         {
@@ -85,15 +76,13 @@ FROM Usuarios_Roles u_r
 WHERE UPPER(TRIM(u_r.Nombre_Usuario)) LIKE UPPER(TRIM(@NombreUsuario))
         AND UPPER(TRIM(u_r.Nombre_Rol)) LIKE UPPER(TRIM(@NombreRol))";
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@NombreUsuario", usuarioRol?.NombreUsuario);
         query.Parameters.AddWithValue("@NombreRol", usuarioRol?.NombreRol);
 
-        var reader = await query.ExecuteReaderAsync();
+        using var reader = await query.ExecuteReaderAsync();
 
         while (await reader.ReadAsync())
         {
@@ -109,9 +98,7 @@ WHERE UPPER(TRIM(u_r.Nombre_Usuario)) LIKE UPPER(TRIM(@NombreUsuario))
 @"INSERT Usuarios_Roles(Nombre_Usuario, Nombre_Rol)
 VALUES (@NombreUsuario, @NombreRol)";
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@NombreUsuario", nuevo.NombreUsuario);
@@ -128,9 +115,7 @@ VALUES (@NombreUsuario, @NombreRol)";
 WHERE UPPER(TRIM(Nombre_Usuario)) LIKE UPPER(@NombreUsuario) 
         AND UPPER(TRIM(Nombre_Rol)) LIKE UPPER(@NombreRol)";
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@NombreUsuario", actualizar.NombreUsuario);
@@ -148,10 +133,7 @@ WHERE UPPER(TRIM(Nombre_Usuario)) LIKE UPPER(@NombreUsuario)
 WHERE UPPER(TRIM(Nombre_Usuario)) LIKE UPPER(@NombreUsuario)
          AND UPPER(TRIM(Nombre_Rol)) LIKE UPPER(@NombreRol)
 ";
-
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@NombreUsuario", usuarioRol.NombreUsuario);
@@ -160,6 +142,16 @@ WHERE UPPER(TRIM(Nombre_Usuario)) LIKE UPPER(@NombreUsuario)
         int eliminados = await query.ExecuteNonQueryAsync();
 
         return eliminados > 0;
+    }
+
+    private async Task<SqlConnection> GetOpenedConnectionAsync(ITransaction<SqlTransaction>? transaccion)
+    {
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? _sqlConnection;
+        if (conexion.State == System.Data.ConnectionState.Closed)
+        {
+            await conexion.OpenAsync();
+        }
+        return conexion;
     }
 
     protected UsuarioRolModel ReadAsObjecto(SqlDataReader reader)

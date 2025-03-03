@@ -13,8 +13,10 @@
 */
 
 
+using Ejemplo_15_personas_datoslib.DALs;
 using Ejemplo_15_personas_datoslib.DALs.MSSDALs;
 using Ejemplo_15_personas_datoslib.Services;
+using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,15 +24,25 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 #region creando el contexto
-builder.Services.AddSingleton<PersonasMSSDAL>();
-builder.Services.AddSingleton<UsuariosMSSDAL>();
-builder.Services.AddSingleton<RolesMSSDAL>();
-builder.Services.AddSingleton<UsuariosRolesMSSDAL>();
+builder.Services.AddTransient<SqlConnection>(sp =>
+      {
+          var configuration = sp.GetService<IConfiguration>();
+          var connectionString = configuration.GetConnectionString("CadenaConexion");
+          return new SqlConnection(connectionString);
+      });
+
+//La conexión se mantiene viva solo durante la duración de una solicitud HTTP.
+//Es más eficiente en aplicaciones con múltiples solicitudes simultáneas.
+builder.Services.AddScoped<ITransaction<SqlTransaction>, SqlServerTransaction>();
+
+builder.Services.AddScoped<PersonasMSSDAL>();
+builder.Services.AddScoped<UsuariosMSSDAL>();
+builder.Services.AddScoped<RolesMSSDAL>();
+builder.Services.AddScoped<UsuariosRolesMSSDAL>();
 //
-builder.Services.AddSingleton<PersonasService>();
-builder.Services.AddSingleton<CuentasService>();
-builder.Services.AddSingleton<RolesService>();
-//
+builder.Services.AddScoped<PersonasService>();
+builder.Services.AddScoped<CuentasService>();
+builder.Services.AddScoped<RolesService>();
 #endregion
 
 /* 2- Construcción de la aplicación

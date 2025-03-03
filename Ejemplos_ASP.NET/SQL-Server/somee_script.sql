@@ -88,7 +88,8 @@ INSERT INTO Personas (DNI, Nombre, Fecha_Nacimiento) VALUES
 (34237032, 'Gustavo', '1987-02-02'),
 (42232072, 'Marianela', '1987-02-02'),
 (37234210, 'Andrea', '1987-02-02'),
-(37238236, 'Rita', '1987-02-02');
+(37238236, 'Rita', '1987-02-02'), 
+(32432432, 'Gimena', '1987-02-02');
 
 INSERT INTO Usuarios(Nombre, Clave)
 VALUES('Admin', '123'),

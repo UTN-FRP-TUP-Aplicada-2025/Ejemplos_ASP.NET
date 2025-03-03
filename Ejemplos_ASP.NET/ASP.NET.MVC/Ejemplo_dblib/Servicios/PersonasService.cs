@@ -1,5 +1,7 @@
-﻿using Ejemplo_15_personas_datoslib.DALs.MSSDALs;
+﻿using Ejemplo_15_personas_datoslib.DALs;
+using Ejemplo_15_personas_datoslib.DALs.MSSDALs;
 using Ejemplo_15_personas_datoslib.Models;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
 namespace Ejemplo_15_personas_datoslib.Services;
@@ -9,10 +11,13 @@ public class PersonasService
     readonly private PersonasMSSDAL _personasDao;
 
     private readonly IConfiguration _configuracion;
+    private readonly ITransaction<SqlTransaction> _transaction;
 
-    public PersonasService(PersonasMSSDAL personasDao, IConfiguration configuracion)
+    public PersonasService(PersonasMSSDAL personasDao, IConfiguration configuracion, ITransaction<SqlTransaction> transaction)
     {
         _personasDao = personasDao;
+        _configuracion = configuracion;
+        _transaction = transaction;
     }
 
     async public Task<List<PersonaModel>> GetAll()
@@ -37,22 +42,21 @@ public class PersonasService
 
     async public Task Eliminar(int id)
     {
-        SqlServerTransaction tx = new SqlServerTransaction(_configuracion);
         try
         {
-            await tx.BeginTransaction();
+            await _transaction.BeginTransaction();
 
-            var objeto = await _personasDao.GetByKey(id, tx);
+            var objeto = await _personasDao.GetByKey(id, _transaction);
             if (objeto != null)
             {
-                await _personasDao.Delete(id, tx);
+                await _personasDao.Delete(id, _transaction);
             }
 
-            await tx.CommitAsync();
+            await _transaction.CommitAsync();
         }
         catch (Exception ex)
         {
-            await tx.RollbackAsync();
+            await _transaction.RollbackAsync();
             throw ex;
         }
     }

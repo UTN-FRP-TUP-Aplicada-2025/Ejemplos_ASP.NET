@@ -1,21 +1,15 @@
 ﻿using Ejemplo_15_personas_datoslib.Models;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 
 namespace Ejemplo_15_personas_datoslib.DALs.MSSDALs;
 
 public class RolesMSSDAL : IBaseDAL<RolModel, string, SqlTransaction>
 {
-    private readonly IConfiguration _configuracion;
+    private readonly SqlConnection _sqlConnection;
 
-    public RolesMSSDAL(IConfiguration configuracion)
+    public RolesMSSDAL(SqlConnection sqlConnection)
     {
-        _configuracion = configuracion;
-    }
-
-    private SqlConnection ObtenerConexion()
-    {
-        return new SqlConnection(_configuracion.GetConnectionString("CadenaConexion"));
+        _sqlConnection = sqlConnection;
     }
 
     public async Task<List<RolModel>> GetAll(ITransaction<SqlTransaction>? transaccion = null)
@@ -26,13 +20,11 @@ public class RolesMSSDAL : IBaseDAL<RolModel, string, SqlTransaction>
 @"SELECT r.* 
 FROM Roles r";
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
 
-        var reader = await query.ExecuteReaderAsync();
+        using var reader = await query.ExecuteReaderAsync();
         while (await reader.ReadAsync())
         {
             var objeto = ReadAsObjeto(reader);
@@ -51,14 +43,12 @@ FROM Roles r
 WHERE r.Nombre=@Nombre"
         ;
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Nombre", nombre);
 
-        var reader = await query.ExecuteReaderAsync();
+        using var reader = await query.ExecuteReaderAsync();
 
         if (await reader.ReadAsync())
         {
@@ -73,9 +63,7 @@ WHERE r.Nombre=@Nombre"
 @"INSERT Roles(Nombre)
 VALUES (@Nombre)";
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Nombre", nuevo.Nombre);
@@ -91,9 +79,7 @@ VALUES (@Nombre)";
 @"UPDATE Roles SET Nombre=@Nombre
 WHERE Nombre=@Nombre";
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
+        var conexion = await GetOpenedConnectionAsync(transaccion);
 
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Nombre", actualizar.Nombre);
@@ -109,10 +95,8 @@ WHERE Nombre=@Nombre";
 @"DELETE FROM Roles
 WHERE Nombre=@Nombre";
 
-        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? ObtenerConexion();
-        if (transaccion is null)
-            await conexion.OpenAsync();
-
+        var conexion = await GetOpenedConnectionAsync(transaccion); 
+        
         using var query = new SqlCommand(sqlQuery, conexion, transaccion?.GetInternalTransaction());
         query.Parameters.AddWithValue("@Nombre", nombre);
 
@@ -121,15 +105,21 @@ WHERE Nombre=@Nombre";
         return eliminados > 0;
     }
 
-    protected RolModel ReadAsObjeto(SqlDataReader reader)
+    private async Task<SqlConnection> GetOpenedConnectionAsync(ITransaction<SqlTransaction>? transaccion)
     {
-        string nombre = reader["Nombre"] != DBNull.Value ? Convert.ToString(reader["Nombre"]) : "";
-      
-        var objeto = new RolModel { Nombre = nombre };
-
-        return objeto;
+        var conexion = transaccion?.GetInternalTransaction()?.Connection ?? _sqlConnection;
+        if (conexion.State == System.Data.ConnectionState.Closed)
+        {
+            await conexion.OpenAsync();
+        }
+        return conexion;
     }
 
-    
+    protected RolModel ReadAsObjeto(SqlDataReader reader)
+    {
+        string nombre = reader["Nombre"] != DBNull.Value ? Convert.ToString(reader["Nombre"]) : "";      
+        var objeto = new RolModel { Nombre = nombre };
+        return objeto;
+    }
 }
 

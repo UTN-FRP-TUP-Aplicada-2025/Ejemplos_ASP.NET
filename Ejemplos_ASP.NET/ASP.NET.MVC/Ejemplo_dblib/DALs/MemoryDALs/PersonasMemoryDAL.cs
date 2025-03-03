@@ -1,5 +1,4 @@
-﻿using Ejemplo_15_personas_datoslib.DALs;
-using Ejemplo_15_personas_datoslib.Models;
+﻿using Ejemplo_15_personas_datoslib.Models;
 
 namespace Ejemplo_15_personas_datoslib.DALs.MemoryDALs;
 

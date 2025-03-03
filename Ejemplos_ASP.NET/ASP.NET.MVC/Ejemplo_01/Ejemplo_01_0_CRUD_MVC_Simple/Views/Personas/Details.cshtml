@@ -42,3 +42,9 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     <a asp-action="Index"><i class="fa-solid fa-arrow-left"></i></a>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

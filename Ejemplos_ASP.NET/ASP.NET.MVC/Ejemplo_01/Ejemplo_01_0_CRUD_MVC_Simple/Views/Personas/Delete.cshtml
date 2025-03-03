@@ -1,4 +1,5 @@
 ﻿@using Ejemplo_15_personas_datoslib.Models
+
 @model PersonaModel
 
 @{
@@ -7,7 +8,8 @@
 
 <h1>Elimando registros de la persona</h1>
 
-<h3>Esta seguro de eliminar el registro de la persona?</h3>
+<h3>¿Esta seguro de eliminar el registro de la persona?</h3>
+
 
 <div>
     <h4>PersonaModel</h4>
@@ -40,7 +42,13 @@
     </dl>
     
     <form asp-action="Delete" asp-antiforgery="true">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
         <a asp-action="Index"><i class="fa-solid fa-arrow-left"></i></a>
     </form>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

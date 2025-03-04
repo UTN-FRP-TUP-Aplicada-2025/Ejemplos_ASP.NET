@@ -36,7 +36,7 @@ public class PersonasService
         {
             await tx.BeginTransaction();
 
-            var objeto = await _dao.GetByKey(id,tx;
+            var objeto = await _dao.GetByKey(id,tx);
             if (objeto != null)
             {
                 await _dao.Delete(id,tx);

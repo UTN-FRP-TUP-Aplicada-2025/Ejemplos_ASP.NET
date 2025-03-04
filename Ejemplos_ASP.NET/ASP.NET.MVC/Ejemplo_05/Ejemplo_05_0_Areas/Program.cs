@@ -4,6 +4,8 @@ using Ejemplo_15_personas_datoslib.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 
+using Microsoft.AspNetCore.HttpOverrides; // <-- Importante
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
@@ -107,7 +109,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-#region configuraci�n api y swagger
+#region configuracion api y swagger
 //if (app.Environment.IsDevelopment()) //comentar para que corra en modo release
 {
     app.UseSwagger();
@@ -122,4 +124,21 @@ app.UseAuthorization();  //middleware para la autorizacion
 app.UseSession();        //middleware para la sesion
 #endregion
 
+#region proxy docker
+//configuración encabezados proxy inverso
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
+// Configurar redirección HTTPS
+app.UseHttpsRedirection();
+#endregion
+
 app.Run();
+
+
+
+
+
+
+

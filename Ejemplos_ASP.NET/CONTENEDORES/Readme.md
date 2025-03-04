@@ -3,7 +3,7 @@
 
 | Comando  | Descripción                                                    |
 |----------|----------------------------------------------------------------|
-| ``COPY`` | Copia los archivos desde el host al contenedor                 |
+|``COPY``  | Copia los archivos desde el host al contenedor                 |
 |``ARG``   | variables solo visibles durante el proceso de construcción     |
 |``ENV``   | variables disponibles en tiempo de ejecución                   |
 |``RUN``   | ejecuta comandos durante la construcción de la imagen          |
@@ -80,8 +80,6 @@ R:
 ```bash
 /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/ej02/script.sql
 ```
-
-
 
 ### Referencias
 

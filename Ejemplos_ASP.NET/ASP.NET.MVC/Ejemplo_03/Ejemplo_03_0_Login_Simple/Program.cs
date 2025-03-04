@@ -6,6 +6,9 @@ using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//proxy github
+//builder.WebHost.UseUrls("http://0.0.0.0:8080");
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -17,8 +20,8 @@ builder.Services.AddTransient<SqlConnection>(sp =>
     return new SqlConnection(connectionString);
 });
 
-//La conexión se mantiene viva solo durante la duración de una solicitud HTTP.
-//Es más eficiente en aplicaciones con múltiples solicitudes simultáneas.
+//La conexiï¿½n se mantiene viva solo durante la duraciï¿½n de una solicitud HTTP.
+//Es mï¿½s eficiente en aplicaciones con mï¿½ltiples solicitudes simultï¿½neas.
 builder.Services.AddScoped<ITransaction<SqlTransaction>, SqlServerTransaction>();
 
 builder.Services.AddScoped<PersonasMSSDAL>();
@@ -70,9 +73,9 @@ app.UseStaticFiles();
 app.UseRouting();
 
 #region habilitando middleware adicionales
-app.UseAuthentication(); //middleware para la autenticación
-app.UseAuthorization();  //middleware para la autorización
-app.UseSession();        //middleware para la sesión
+app.UseAuthentication(); //middleware para la autenticaciï¿½n
+app.UseAuthorization();  //middleware para la autorizaciï¿½n
+app.UseSession();        //middleware para la sesiï¿½n
 #endregion
 
 app.MapControllerRoute(

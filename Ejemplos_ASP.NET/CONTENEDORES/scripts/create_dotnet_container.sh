@@ -33,10 +33,17 @@ docker run --restart always --name $NOMBRE_CONTENEDOR -p 8080:8080 -d $NOMBRE_IM
 docker ps 
 
 # observo el status del contenedor
-docker logs ejemplo_asp_net_image
+docker logs ejemplo_asp_net_container
+
+# docker run -it ejemplo_asp_net_container /bin/bash
+
 
 # docker restart $NOMBRE_CONTENEDOR
 
 # Conexion desde el host
 #docker exec -it ejemplo_asp_net_container /bin/bash
 #docker run --rm -it ejemplo_asp_net_container /bin/sh
+# docker logs --tail=100 -f ejemplo_asp_net_container
+
+# entrar en forma interativa cuando no lo lanza
+#docker run -it --entrypoint /bin/bash ejemplo_asp_net_image:v0.1

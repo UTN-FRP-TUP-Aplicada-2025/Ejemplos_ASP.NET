@@ -31,8 +31,8 @@ RUN dotnet restore "${BUILD_ROOT}/Ejemplo_05/${PROJECT_NAME}/${PROJECT_NAME}.csp
 RUN dotnet build "${BUILD_ROOT}/Ejemplo_05/${PROJECT_NAME}/${PROJECT_NAME}.csproj" -c Release -o /app/build
 
 # Publicar
-RUN dotnet publish "${BUILD_ROOT}/Ejemplo_05/${PROJECT_NAME}/${PROJECT_NAME}.csproj" -c Release -o /app/publish -v d
-
+RUN dotnet publish "${BUILD_ROOT}/Ejemplo_05/${PROJECT_NAME}/${PROJECT_NAME}.csproj" -c Release -o /app/publish -v d  > /app/publish.log 2>&1
+RUN cat /app/publish.log
 RUN ls -la /app/publish
 # RUN cat /app/publish/msbuild.binlog
 
@@ -50,12 +50,8 @@ EXPOSE 8080
 
 # punto de entrada de la aplicación
 
-ENTRYPOINT ["dotnet", "Ejemplo_05_0_Areas.dll"]
-# ENTRYPOINT ["/bin/sh"]
+ENTRYPOINT ["dotnet", "Ejemplo_05_Areas.dll"]
+                         
 
-#ENV NOMBRE_DLL="${PROJECT_NAME}.DLL"
-#ENTRYPOINT ["dotnet", $NOMBRE_DLL]
 
-#ARG NOMBRE_DLL="${PROJECT_NAME}.DLL"
-#ENV NOMBRE_DLL=$NOMBRE_DLL
-#ENTRYPOINT ["sh", "-c", "dotnet $NOMBRE_DLL"]
+# ENTRYPOINT ["/bin/bash"]

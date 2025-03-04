@@ -16,8 +16,8 @@ builder.Services.AddTransient<SqlConnection>(sp =>
     return new SqlConnection(connectionString);
 });
 
-//La conexión se mantiene viva solo durante la duración de una solicitud HTTP.
-//Es más eficiente en aplicaciones con múltiples solicitudes simultáneas.
+//La conexion se mantiene viva solo durante la duracion de una solicitud HTTP.
+//Es mas eficiente en aplicaciones con multiples solicitudes simultaneas.
 builder.Services.AddScoped<ITransaction<SqlTransaction>, SqlServerTransaction>();
 
 builder.Services.AddScoped<PersonasMSSDAL>();
@@ -30,7 +30,7 @@ builder.Services.AddScoped<CuentasService>();
 builder.Services.AddScoped<RolesService>();
 #endregion
 
-#region configuración de restapi y swagger
+#region configuracion de restapi y swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen(); //este alcanza si solo es restapi
@@ -107,7 +107,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-#region configuración api y swagger
+#region configuraciï¿½n api y swagger
 //if (app.Environment.IsDevelopment()) //comentar para que corra en modo release
 {
     app.UseSwagger();
@@ -117,9 +117,9 @@ app.MapControllers();
 #endregion
 
 #region habilitando middleware adicionales
-app.UseAuthentication(); //middleware para la autenticación
-app.UseAuthorization();  //middleware para la autorización
-app.UseSession();        //middleware para la sesión
+app.UseAuthentication(); //middleware para la autenticacion
+app.UseAuthorization();  //middleware para la autorizacion
+app.UseSession();        //middleware para la sesion
 #endregion
 
 app.Run();

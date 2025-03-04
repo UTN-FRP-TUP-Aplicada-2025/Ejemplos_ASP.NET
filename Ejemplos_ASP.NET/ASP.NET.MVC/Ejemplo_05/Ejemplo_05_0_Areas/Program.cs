@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.HttpOverrides; // <-- Importante
 
 var builder = WebApplication.CreateBuilder(args);
 
+//proxy github
+//builder.WebHost.UseUrls("http://0.0.0.0:8080");
+
 builder.Services.AddControllersWithViews();
 
 #region creando el contexto
@@ -90,10 +93,10 @@ if (!app.Environment.IsDevelopment())
 
 #region proxy docker
 //configuración encabezados proxy inverso
-app.UseForwardedHeaders(new ForwardedHeadersOptions
-{
-    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-});
+//app.UseForwardedHeaders(new ForwardedHeadersOptions
+//{
+//    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+//});
 // Configurar redirección HTTPS
 app.UseHttpsRedirection();
 #endregion
@@ -134,7 +137,6 @@ app.UseAuthentication(); //middleware para la autenticacion
 app.UseAuthorization();  //middleware para la autorizacion
 app.UseSession();        //middleware para la sesion
 #endregion
-
 
 
 app.Run();

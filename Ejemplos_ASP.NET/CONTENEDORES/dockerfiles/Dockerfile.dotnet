@@ -9,9 +9,15 @@ RUN apt-get install -y gss-ntlmssp krb5-user libkrb5-dev openssl libssl-dev libg
 RUN apt-get install -y iputils-ping
 
 RUN rm -rf /var/lib/apt/lists/*
-                  
+
+# ejemplo mvc 03 - login
+# ARG PROJECT_NAME="Ejemplo_03_0_Login_Simple"
+# ARG PROJECT_DIR="/workspaces/Ejemplos_ASP.NET/Ejemplos_ASP.NET/ASP.NET.MVC/Ejemplo_03/Ejemplo_03_0_Login_Simple"                  
+
+# ejemplo mvc 05 - login - area
 ARG PROJECT_NAME="Ejemplo_05_Areas"
 ARG PROJECT_DIR="/workspaces/Ejemplos_ASP.NET/Ejemplos_ASP.NET/ASP.NET.MVC/Ejemplo_05/Ejemplo_05_0_Areas"                  
+
 ARG LIBRARY_DIR="/workspaces/Ejemplos_ASP.NET/Ejemplos_ASP.NET/ASP.NET.MVC/Ejemplo_dblib" 
 ARG BUILD_ROOT="/src/app_dotnet"
 ARG NOMBRE_DLL="${PROJECT_NAME}.DLL"
@@ -19,19 +25,19 @@ ARG NOMBRE_DLL="${PROJECT_NAME}.DLL"
 
 # copiando archivos desde la carpeta actual
 # copia el proyecto 1. 
-COPY "${PROJECT_DIR}/." "${BUILD_ROOT}/Ejemplo_05/${PROJECT_NAME}/"
+COPY "${PROJECT_DIR}/." "${BUILD_ROOT}/Solutions/${PROJECT_NAME}/"
 COPY "${LIBRARY_DIR}/." "${BUILD_ROOT}/Ejemplo_dblib/"
 
 WORKDIR $BUILD_ROOT
 
 # Restaurar dependencias
-RUN dotnet restore "${BUILD_ROOT}/Ejemplo_05/${PROJECT_NAME}/${PROJECT_NAME}.csproj"
+RUN dotnet restore "${BUILD_ROOT}/Solutions/${PROJECT_NAME}/${PROJECT_NAME}.csproj"
 
 # Compilar
-RUN dotnet build "${BUILD_ROOT}/Ejemplo_05/${PROJECT_NAME}/${PROJECT_NAME}.csproj" -c Release -o /app/build
+RUN dotnet build "${BUILD_ROOT}/Solutions/${PROJECT_NAME}/${PROJECT_NAME}.csproj" -c Release -o /app/build
 
 # Publicar
-RUN dotnet publish "${BUILD_ROOT}/Ejemplo_05/${PROJECT_NAME}/${PROJECT_NAME}.csproj" -c Release -o /app/publish -v d  > /app/publish.log 2>&1
+RUN dotnet publish "${BUILD_ROOT}/Solutions/${PROJECT_NAME}/${PROJECT_NAME}.csproj" -c Release -o /app/publish -v d  > /app/publish.log 2>&1
 RUN cat /app/publish.log
 RUN ls -la /app/publish
 # RUN cat /app/publish/msbuild.binlog
@@ -48,7 +54,10 @@ COPY --from=build /app/publish .
 # exponiendo el puerto 8080 para acceder - activar el public en forwader port
 EXPOSE 8080
 
+ENV ASPNETCORE_URLS http://0.0.0.0:8082
+
 # punto de entrada de la aplicación
+# ENTRYPOINT ["dotnet", "Ejemplo_03_0_Login_Simple.dll"]
 ENTRYPOINT ["dotnet", "Ejemplo_05_Areas.dll"]
                          
 

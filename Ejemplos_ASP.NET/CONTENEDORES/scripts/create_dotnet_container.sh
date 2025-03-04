@@ -23,7 +23,7 @@ docker build --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH | 
 
 # genero el contenedor y lo corro
 # restart always permite el reinicio automatico
-docker run --restart always --name $NOMBRE_CONTENEDOR -p 8080:8080 -d $NOMBRE_IMAGEN:$TAG
+docker run --restart always --name $NOMBRE_CONTENEDOR -p 8082:8082 -d $NOMBRE_IMAGEN:$TAG
 
 # listo los contenedores corriendo
 docker ps 

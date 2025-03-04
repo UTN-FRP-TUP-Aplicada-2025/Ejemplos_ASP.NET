@@ -74,12 +74,22 @@ R:
 172.17.0.2
 ```
 
-## Comandos de adminitración
 
-### correr sql desde la terminal
+## Limpieza! -  borrando contenedores detenidas e imagenes no utilizadas
+
 ```bash
-/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/ej02/script.sql
+docker container prune
+docker image prune -a
+docker network prune
 ```
+
+borra hasta la cache
+```
+docker system prune -a --volumes
+docker system prune --all --force
+```
+
+
 
 ### Referencias
 
@@ -129,5 +139,54 @@ Ejemplo:
 docker pull fernandofilipuzzidev/ejemplo_asp_net:v0.1
 docker run --name ejemplo_asp_net_container -p 8082:8082 -d fernandofililipuzzidev/ejemplo_asp_net_image:v0.1
 ```
+
+
+
+
+## Comandos de adminitración
+
+### correr sql desde la terminal
+```bash
+/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P 'MSS-fernando-123' -i /src/ej02/script.sql
+```
+
+```
+sqlcmd -S Server=172.17.0.2,1433 -U sa -P MSS-fernando-123 -C
+```
+
+```
+/opt/mssql-tools/bin/sqlcmd -S 172.17.0.2 -U sa -P 'MSS-fernando-123'  -C "Encrypt=False" 
+```
+
+```
+sqlcmd -S Server=ejemplo02_mssql_container,1433 -U sa -P MSS-fernando-123 -C
+```
+
+ /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P MSS-fernando-123
+
+
+ habilitar remoto
+
+1> EXEC sp_configure 'show advanced options', 1;
+2> RECONFIGURE;
+3> EXEC sp_configure 'remote access';
+4> go
+
+
+sqls
+
+1> use EjemploCRUDSimpleLoginDB
+2> go
+Changed database context to 'EjemploCRUDSimpleLoginDB'.
+1> select * from personas
+2> go
+Id          DNI         Nombre                                                                                               Fecha_Nacimiento
+----------- ----------- ---------------------------------------------------------------------------------------------------- ----------------
+          1   353432432 Sebastian                                                                                                  1990-01-01
+          2    35327489 Esteban                                                                                                    1990-01-01
+          3    43323432 Luisa                                                                                                      2000-01-01
+
+
+
 
 

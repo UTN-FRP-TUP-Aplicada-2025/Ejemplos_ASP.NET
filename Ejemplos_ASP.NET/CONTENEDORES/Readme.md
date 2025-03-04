@@ -67,7 +67,10 @@ docker exec -it name_container /bin/bash
 
 ### Mostrar la ip del contenedor
 ```bash
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ejemplo02_mssql_container
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' name_container
+```
+R:
+```bash
 172.17.0.2
 ```
 

@@ -58,20 +58,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_03_0_Login_Simple",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{F06EDEE0-AE17-4D7B-854D-22EAA0E92127}"
 	ProjectSection(SolutionItems) = preProject
-		CONTENEDORES\Docker\clear.all.sh = CONTENEDORES\Docker\clear.all.sh
-		CONTENEDORES\create_dotnet_container.sh = CONTENEDORES\create_dotnet_container.sh
-		CONTENEDORES\create_mssql_container.sh = CONTENEDORES\create_mssql_container.sh
-		CONTENEDORES\Dockerfile.dotnet = CONTENEDORES\Dockerfile.dotnet
-		CONTENEDORES\Dockerfile.mssql = CONTENEDORES\Dockerfile.mssql
-		CONTENEDORES\Docker\install.sh = CONTENEDORES\Docker\install.sh
-		CONTENEDORES\Docker\Readme.md = CONTENEDORES\Docker\Readme.md
-		CONTENEDORES\Readme1.md = CONTENEDORES\Readme1.md
-		CONTENEDORES\stop.sh = CONTENEDORES\stop.sh
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "imgs", "imgs", "{636DB9F1-79BC-43B0-804F-580CB1CE751E}"
-	ProjectSection(SolutionItems) = preProject
-		Tools\Docker\imgs\workflow.png = Tools\Docker\imgs\workflow.png
+		CONTENEDORES\Readme.md = CONTENEDORES\Readme.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_05_Areas", "ASP.NET.MVC\Ejemplo_05\Ejemplo_05_0_Areas\Ejemplo_05_Areas.csproj", "{95225434-9AB7-4C85-8206-81AAE7C38038}"
@@ -331,6 +318,20 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_13_Persona", "ADO.NET_SQLite\Ejemplo_13_Eliminar_Persona_SQLite\Ejemplo_13_Persona.csproj", "{7901D9A8-17DF-40E0-A7C4-FB81975F6491}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet_windowsform", "dotnet_windowsform", "{4B3CECE0-967F-4CC4-B511-B168C8E7AA76}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{1F2A4CB8-1A93-4ECA-A407-920982419214}"
+	ProjectSection(SolutionItems) = preProject
+		CONTENEDORES\scripts\clean_all.sh = CONTENEDORES\scripts\clean_all.sh
+		CONTENEDORES\scripts\create_dotnet_container.sh = CONTENEDORES\scripts\create_dotnet_container.sh
+		CONTENEDORES\scripts\create_mssql_container.sh = CONTENEDORES\scripts\create_mssql_container.sh
+		CONTENEDORES\scripts\stop_containers.sh = CONTENEDORES\scripts\stop_containers.sh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dockerfiles", "dockerfiles", "{D84845A5-D76F-4A1A-86D9-A9D2FE25D95A}"
+	ProjectSection(SolutionItems) = preProject
+		CONTENEDORES\dockerfiles\Dockerfile.dotnet = CONTENEDORES\dockerfiles\Dockerfile.dotnet
+		CONTENEDORES\dockerfiles\Dockerfile.mssql = CONTENEDORES\dockerfiles\Dockerfile.mssql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -598,7 +599,6 @@ Global
 		{06857E11-13E3-4034-8F3A-0C4B2A7E6831} = {3EC89F98-6C96-4E97-98B1-5760672759AA}
 		{656D64E4-E622-4DE6-B908-C6957D8FE2EE} = {174558DB-A114-4637-8CA2-5EC3AE9EFE68}
 		{F06EDEE0-AE17-4D7B-854D-22EAA0E92127} = {A2247E79-E6C4-4ED0-94AC-09E29CDC2A3D}
-		{636DB9F1-79BC-43B0-804F-580CB1CE751E} = {F06EDEE0-AE17-4D7B-854D-22EAA0E92127}
 		{95225434-9AB7-4C85-8206-81AAE7C38038} = {4C0374E9-0451-45D2-A989-10A7B01636C5}
 		{96A18C08-C52B-485C-A1FD-11FDA92D277F} = {349F2EED-424B-4141-927C-E1FADDA6922A}
 		{1CF903DB-9D91-4C81-9262-8BF9E516A5C4} = {349F2EED-424B-4141-927C-E1FADDA6922A}
@@ -683,6 +683,8 @@ Global
 		{E92BA42A-ED66-4910-892A-CF356979531E} = {ABFBE55D-D4E2-4BB8-9635-B0C3B61B8FF1}
 		{7901D9A8-17DF-40E0-A7C4-FB81975F6491} = {F490E65E-BACE-449E-B355-0FCB5AE785A3}
 		{4B3CECE0-967F-4CC4-B511-B168C8E7AA76} = {3EC89F98-6C96-4E97-98B1-5760672759AA}
+		{1F2A4CB8-1A93-4ECA-A407-920982419214} = {F06EDEE0-AE17-4D7B-854D-22EAA0E92127}
+		{D84845A5-D76F-4A1A-86D9-A9D2FE25D95A} = {F06EDEE0-AE17-4D7B-854D-22EAA0E92127}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6388EAFE-4A13-4380-B471-718F5688C05E}

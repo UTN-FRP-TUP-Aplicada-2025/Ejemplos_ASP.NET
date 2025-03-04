@@ -95,6 +95,7 @@ INSERT INTO Personas (DNI, Nombre, Fecha_Nacimiento) VALUES
 
 INSERT INTO Usuarios(Nombre, Clave)
 VALUES('Admin', '123'),
+('Maxima', 'maxima'),
 ('Eduardo', 'eduardo'),
 ('Estefania', 'estefania');
 
@@ -106,7 +107,8 @@ VALUES('Admin'),
 INSERT INTO Usuarios_Roles(Nombre_Usuario, Nombre_Rol)
 VALUES
 ('Admin', 'Admin'),
-('Maxima', 'maxima'),
+('Maxima', 'Admin'),
+('Maxima', 'Supervisor'),
 ('Eduardo', 'Admin'),
 ('Estefania', 'Supervisor'),
 ('Eduardo', 'Encuestador');

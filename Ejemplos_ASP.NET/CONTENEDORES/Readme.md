@@ -87,7 +87,47 @@ R:
 
 
 
+## DockerHub 
+
+### login 
+
+```bash
+docker login -u fernandofilipuzzidev -p clave ***
+```
+
+### Baja la imagen del repositorio
+```bash
+docker pull <nombre-del-repositorio>/<nombre-de-la-imagen>:<etiqueta>
+```
+
+### Sube la imagen al repositorio
+```bash
+docker push <nombre-del-repositorio>/<nombre-de-la-imagen>:<etiqueta>
+```
+--all-tags empuja todas las etiquetas
+
+## subir la imagen al repositorio
 
 
+Ejemplo:
+```bash
+docker login -u fernandofilipuzzidev -p clave ***
+```
+
+crear el repositorio en dockerhub
+https://hub.docker.com/repositories/fernandofilipuzzidev
+
+```bash
+docker tag ejemplo_asp_net_image:v0.1 fernandofilipuzzidev/ejemplo_asp_net:v0.1
+docker push fernandofilipuzzidev/ejemplo_asp_net:v0.1
+```
+
+## bajar la imagen y crear el contenedor 
+
+Ejemplo: 
+```bash 
+docker pull fernandofilipuzzidev/ejemplo_asp_net:v0.1
+docker run --name ejemplo_asp_net_container -p 8082:8082 -d fernandofililipuzzidev/ejemplo_asp_net_image:v0.1
+```
 
 

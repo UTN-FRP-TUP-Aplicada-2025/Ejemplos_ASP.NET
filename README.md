@@ -85,18 +85,7 @@ docker ps
 ```
 
 
-## entrar en un contenedor
 
-```
-docker exec -it ejemplo02_mssql_container /bin/bash
-```
-
-
-
-1> 
-
-ntpq -p
-chronyc tracking
 
 
 

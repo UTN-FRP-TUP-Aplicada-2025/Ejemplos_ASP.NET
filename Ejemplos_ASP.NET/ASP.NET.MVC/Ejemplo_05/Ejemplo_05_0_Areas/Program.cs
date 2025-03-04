@@ -87,7 +87,18 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+#region proxy docker
+//configuración encabezados proxy inverso
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
+// Configurar redirección HTTPS
 app.UseHttpsRedirection();
+#endregion
+
+//app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
@@ -124,15 +135,7 @@ app.UseAuthorization();  //middleware para la autorizacion
 app.UseSession();        //middleware para la sesion
 #endregion
 
-#region proxy docker
-//configuración encabezados proxy inverso
-app.UseForwardedHeaders(new ForwardedHeadersOptions
-{
-    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-});
-// Configurar redirección HTTPS
-app.UseHttpsRedirection();
-#endregion
+
 
 app.Run();
 

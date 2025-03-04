@@ -23,7 +23,7 @@ if docker images | grep -q "$NOMBRE_IMAGEN.*$TAG"; then
 fi
 
 # construyo la imagen
-docker build --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH
+docker build --no-cache -f $DOCKER_FILE -t $NOMBRE_IMAGEN:$TAG $SOLUCION_PATH | tee build.log
 
 # genero el contenedor y lo corro
 # restart always permite el reinicio automatico
@@ -33,9 +33,10 @@ docker run --restart always --name $NOMBRE_CONTENEDOR -p 8080:8080 -d $NOMBRE_IM
 docker ps 
 
 # observo el status del contenedor
-docker logs $NOMBRE_CONTENEDOR
+docker logs ejemplo_asp_net_image
 
 # docker restart $NOMBRE_CONTENEDOR
 
 # Conexion desde el host
-#docker exec -it ejemplo05_dotnet_container /bin/bash
+#docker exec -it ejemplo_asp_net_container /bin/bash
+#docker run --rm -it ejemplo_asp_net_container /bin/sh

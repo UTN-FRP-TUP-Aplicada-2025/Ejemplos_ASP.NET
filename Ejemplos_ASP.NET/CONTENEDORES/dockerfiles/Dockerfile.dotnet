@@ -9,31 +9,32 @@ RUN apt-get install -y gss-ntlmssp krb5-user libkrb5-dev openssl libssl-dev libg
 RUN apt-get install -y iputils-ping
 
 RUN rm -rf /var/lib/apt/lists/*
-
-ARG PROJECT_NAME="Ejemplo_05_0_Areas"
-ARG PROJECT_DIR="/workspaces/Ejemplos_ASP.NET/Ejemplos_ASP.NET/ASP.NET.MVC/Ejemplo_05/Ejemplo_05_0_Areas"                   
+                  
+ARG PROJECT_NAME="Ejemplo_05_Areas"
+ARG PROJECT_DIR="/workspaces/Ejemplos_ASP.NET/Ejemplos_ASP.NET/ASP.NET.MVC/Ejemplo_05/Ejemplo_05_0_Areas"                  
+ARG LIBRARY_DIR="/workspaces/Ejemplos_ASP.NET/Ejemplos_ASP.NET/ASP.NET.MVC/Ejemplo_dblib" 
 ARG BUILD_ROOT="/src/app_dotnet"
 ARG NOMBRE_DLL="${PROJECT_NAME}.DLL"
 
 
 # copiando archivos desde la carpeta actual
 # copia el proyecto 1. 
-COPY "${PROJECT_DIR}/." "${BUILD_ROOT}/${PROJECT_NAME}/"
+COPY "${PROJECT_DIR}/." "${BUILD_ROOT}/Ejemplo_05/${PROJECT_NAME}/"
+COPY "${LIBRARY_DIR}/." "${BUILD_ROOT}/Ejemplo_dblib/"
 
 WORKDIR $BUILD_ROOT
 
-RUN dotnet add "${PROJECT_DIR}/${PROJECT_NAME}.csproj" package Microsoft.Data.SqlClient
+# Restaurar dependencias
+RUN dotnet restore "${BUILD_ROOT}/Ejemplo_05/${PROJECT_NAME}/${PROJECT_NAME}.csproj"
 
-RUN dotnet clean ${PROJECT_NAME}
+# Compilar
+RUN dotnet build "${BUILD_ROOT}/Ejemplo_05/${PROJECT_NAME}/${PROJECT_NAME}.csproj" -c Release -o /app/build
 
-# restaurando dependencias
-RUN dotnet restore "${PROJECT_DIR}/${PROJECT_NAME}.csproj"
+# Publicar
+RUN dotnet publish "${BUILD_ROOT}/Ejemplo_05/${PROJECT_NAME}/${PROJECT_NAME}.csproj" -c Release -o /app/publish -v d
 
-# compilando
-RUN dotnet build "${PROJECT_DIR}/${PROJECT_NAME}.csproj" -c Release -o /app/build
-
-# publicando
-RUN dotnet publish "${PROJECT_DIR}/${PROJECT_NAME}.csproj" -c Release -o /app/publish
+RUN ls -la /app/publish
+# RUN cat /app/publish/msbuild.binlog
 
 # etapa: ejecución
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
@@ -50,6 +51,7 @@ EXPOSE 8080
 # punto de entrada de la aplicación
 
 ENTRYPOINT ["dotnet", "Ejemplo_05_0_Areas.dll"]
+# ENTRYPOINT ["/bin/sh"]
 
 #ENV NOMBRE_DLL="${PROJECT_NAME}.DLL"
 #ENTRYPOINT ["dotnet", $NOMBRE_DLL]

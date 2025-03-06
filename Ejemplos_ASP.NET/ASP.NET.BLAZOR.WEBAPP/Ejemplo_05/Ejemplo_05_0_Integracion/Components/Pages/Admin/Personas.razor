@@ -169,18 +169,21 @@
                             <tbody>
                                 @foreach (var item in personas)
                                 {
+                                    string variable = "";
+
                                     <tr>
                                         <td>@item.Id</td>
                                         <td>@item.DNI</td>
                                         <td>@item.Nombre</td>
                                         <td>@item.FechaNacimiento?.ToShortDateString()</td>
                                         <td>
-                                                <a class="link-button" @onclick="async () => await onShowFormEditRegistro(item.Id)">
-                                                    <i class="fa-solid fa-pen"></i></a>|
-                                                <a class="link-button" @onclick="async () => await onShowFormDetailRegistro(item.Id)">
-                                                    <i class="fa-solid fa-expand"></i></a>|
-                                                <a class="link-button" @onclick="async () => await onDeletePersona(item.Id)">
-                                                    <i class="fa-solid fa-trash"></i></a>
+                                            <a class="link-button" @onclick="async () => await onShowFormEditRegistro(item.Id)">
+                                                <i class="fa-solid fa-pen"></i></a>|
+                                            <a class="link-button" @onclick="async () => await onShowFormDetailRegistro(item.Id)">
+                                                <i class="fa-solid fa-expand"></i></a>|
+                                            <a class="link-button" @onclick="async () => await onDeletePersona(item.Id)">
+                                                <i class="fa-solid fa-trash"></i></a>
+                                            
                                             @* 
                                             <button class="link-button" @onclick="() => viewFormEditRegistro(item.Id)"><i class="fa-solid fa-pen"></i></button
                                             <button class="link-button" @onclick="() => viewFormDetailRegistro(item.Id)"><i class="fa-solid fa-expand"></i></button>|

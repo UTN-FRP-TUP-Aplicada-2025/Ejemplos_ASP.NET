@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Ejemplo_03_1_Login_Cooki.Models;
+namespace Ejemplo_03_1_Login_Cookie.Models;
 
 public class PersonaModel
 {

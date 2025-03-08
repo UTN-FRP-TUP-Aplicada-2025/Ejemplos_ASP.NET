@@ -1,9 +1,9 @@
 ﻿
-using EEjemplo_03_2_Login_Controller_Cookie.DALs;
-using EEjemplo_03_2_Login_Controller_Cookie.DALs.MSSDALs;
-using EEjemplo_03_2_Login_Controller_Cookie.Models;
+using Ejemplo_03_2_Login_controller_Cookie.DALs;
+using Ejemplo_03_2_Login_controller_Cookie.DALs.MSSDALs;
+using Ejemplo_03_2_Login_controller_Cookie.Models;
 
-namespace EEjemplo_03_0_Login_Controller_Cookie.Services;
+namespace Ejemplo_03_2_Login_controller_Cookie.Services;
 
 public class PersonasService
 {

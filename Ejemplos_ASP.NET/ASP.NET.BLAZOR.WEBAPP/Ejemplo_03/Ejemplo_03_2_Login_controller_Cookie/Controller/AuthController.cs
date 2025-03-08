@@ -1,18 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.NetworkInformation;
-
-// esta using hace visible a SignOutAsync
-using Microsoft.AspNetCore.Authentication;
-
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 //[Route("auth")]
-namespace Ejemplo_03_2_Login_Controller_Cookie.Controller;
+namespace Ejemplo_03_2_Login_controller_Cookie.Controller;
 
 public class AuthController : Controller
 {

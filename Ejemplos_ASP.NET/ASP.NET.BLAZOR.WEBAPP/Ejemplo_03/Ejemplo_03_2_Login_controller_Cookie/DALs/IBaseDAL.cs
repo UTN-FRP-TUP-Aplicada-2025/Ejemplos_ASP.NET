@@ -1,4 +1,4 @@
-﻿namespace Ejemplo_03_2_Login_Cookie.DALs;
+﻿namespace Ejemplo_03_2_Login_controller_Cookie.DALs;
 
 public interface IBaseDAL<T, K>
 {

@@ -67,7 +67,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_ADO.NET_SQL_SERVER", "01
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos_01_Queries_Simple", "Ejemplos_01_Queries_Simple", "{96A18C08-C52B-485C-A1FD-11FDA92D277F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos_03_DAOs", "Ejemplos_03_DAOs", "{1CF903DB-9D91-4C81-9262-8BF9E516A5C4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos_DAOs", "Ejemplos_DAOs", "{1CF903DB-9D91-4C81-9262-8BF9E516A5C4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos_02_Obj_A_Relacional", "Ejemplos_02_Obj_A_Relacional", "{93C7DF73-0540-4666-90C9-86CFBED82FB3}"
 EndProject
@@ -205,7 +205,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Embedded", "02_Embedded"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_02_Personas", "EF.NET\Ejemplo_02_Personas\Ejemplo_02_Personas.csproj", "{A4260498-C637-44BD-9127-3711F6C55237}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos_04_DAOs_transacciones", "Ejemplos_04_DAOs_transacciones", "{2A9008E5-7371-4276-A148-B898EF8F8218}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos_DAOs_transacciones", "Ejemplos_DAOs_transacciones", "{2A9008E5-7371-4276-A148-B898EF8F8218}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_14_Transacciones", "ADO.NET_SQL_SERVER\Ejemplo_14_Transacciones\Ejemplo_14_Transacciones.csproj", "{42491090-A440-41A1-895A-1E22CA011697}"
 EndProject
@@ -305,9 +305,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{2C23D76C-E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_15_personas_datoslib", "ASP.NET.MVC\Ejemplo_dblib\Ejemplo_15_personas_datoslib.csproj", "{0A7F438F-551E-4808-86CF-E4F225B1718A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos_05_FINAL", "Ejemplos_05_FINAL", "{C8B35278-3233-4B28-ABAF-E484D8F0BE93}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos_FINAL", "Ejemplos_FINAL", "{C8B35278-3233-4B28-ABAF-E484D8F0BE93}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos_06_Inyeccion", "Ejemplos_06_Inyeccion", "{E98B070F-50F8-40F3-865D-AFFA6145CB0B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos_Inyeccion", "Ejemplos_Inyeccion", "{E98B070F-50F8-40F3-865D-AFFA6145CB0B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejemplo_16_inyeccion", "ADO.NET_SQL_SERVER\Ejemplo_16_Inyeccion\Ejemplo_16_inyeccion\Ejemplo_16_inyeccion.csproj", "{01B00E93-B766-4976-9C65-084496FABE43}"
 EndProject

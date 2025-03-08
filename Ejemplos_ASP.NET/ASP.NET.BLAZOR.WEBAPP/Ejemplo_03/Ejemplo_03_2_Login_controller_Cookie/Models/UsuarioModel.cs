@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Ejemplo_03_2_Login_Controller_Cookie.Models;
+namespace Ejemplo_03_2_Login_controller_Cookie.Models;
 
 public class UsuarioModel
 {

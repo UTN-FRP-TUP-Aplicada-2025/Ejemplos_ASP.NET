@@ -2,14 +2,14 @@
 @layout LoginLayout
 
 @* esta using hace visible a SignOutAsync*@
+@using Ejemplo_03_1_Login_Cookie.Components.Layout
 @using Microsoft.AspNetCore.Authentication; 
-
-@using Ejemplo_03_0_Login_Cookie.Components.Layout
 
 
 @* si se activa este falla porque necesita enviar el request http - sino trabaja con el websocker
      y no puede escribir la cabecera con la cookie
 *@
+
 @* @rendermode InteractiveServer *@
 
 @* @inject SignInManager<IdentityUser> SignInManager

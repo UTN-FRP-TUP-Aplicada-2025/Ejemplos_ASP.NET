@@ -1,9 +1,9 @@
 ﻿
-using Ejemplo_03_2_Login_Controller_Cookie.DALs;
-using Ejemplo_03_2_Login_Controller_Cookie.DALs.MSSDALs;
-using Ejemplo_03_2_Login_Controller_Cookie.Models;
+using Ejemplo_03_2_Login_controller_Cookie.DALs;
+using Ejemplo_03_2_Login_controller_Cookie.DALs.MSSDALs;
+using Ejemplo_03_2_Login_controller_Cookie.Models;
 
-namespace Ejemplo_03_2_Login_Controller_Cookie.Services;
+namespace Ejemplo_03_2_Login_controller_Cookie.Services;
 
 public class UsuariosService
 {

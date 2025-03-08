@@ -1,8 +1,8 @@
-﻿using Ejemplo_03_2_Login_Cookie.Models;
+﻿using Ejemplo_03_2_Login_controller_Cookie.Models;
 
 using Microsoft.Data.SqlClient;
 
-namespace Ejemplo_03_2_Login_Controller_Cookie.DALs.MSSDALs;
+namespace Ejemplo_03_2_Login_controller_Cookie.DALs.MSSDALs;
 
 public class UsuariosMSSDAL : IUsuariosDAL
 {

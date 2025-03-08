@@ -1,4 +1,4 @@
-﻿namespace Ejemplo_03_2_Login_Controller_Cookie.DALs.MSSDALs;
+﻿namespace Ejemplo_03_2_Login_controller_Cookie.DALs.MSSDALs;
 
 public class ConexionString
 {

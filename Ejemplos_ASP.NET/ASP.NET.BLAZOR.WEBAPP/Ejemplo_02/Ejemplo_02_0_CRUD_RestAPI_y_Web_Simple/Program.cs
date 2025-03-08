@@ -73,7 +73,7 @@ app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.MapControllers();
+app.MapControllers(); //mapea los controladores de la api
 #endregion
 
 #region cors

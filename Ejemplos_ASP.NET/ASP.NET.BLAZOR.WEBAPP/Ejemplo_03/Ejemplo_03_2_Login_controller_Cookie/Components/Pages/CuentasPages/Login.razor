@@ -13,9 +13,13 @@
 
 @* necesario para el acceso al contexto *@
 @using Microsoft.AspNetCore.Authentication
+@using System.Text.Json
+@using System.Text
 @inject IHttpContextAccessor HttpContextAccessor
 
 @* @rendermode InteractiveServer *@
+
+@inject HttpClient Http
 
 <PageTitle>Login</PageTitle>
 
@@ -62,31 +66,24 @@
 
     async private Task onValidarLogin()
     {
-        if (await _usuarioService.VerificarLogin(Model)==false)
-        {
-            errorMessages = " Usuario o Contraseña no válidos!";
+        string apiUrl = $"{Navigation.BaseUri}auth/login";
+
+        var request = new HttpRequestMessage();
+        request.Method = HttpMethod.Post;
+        request.Content = new StringContent(JsonSerializer.Serialize(Model), Encoding.UTF8, "application/json");
+        request.RequestUri = new Uri(apiUrl);
+
+        var response = await Http.SendAsync(request);
+        
+
+        if (response.IsSuccessStatusCode)
+        { 
+            string json = await response.Content.ReadAsStringAsync();
+            errorMessages = JsonSerializer.Deserialize<string>(json);
             return;
         }
 
-        var claims = new List<Claim>
-        { 
-            new Claim(ClaimTypes.Name, Model.Nombre)
-        };
+        StateHasChanged();
 
-        var identity = new ClaimsIdentity(claims, "Cookies");
-        var principal = new ClaimsPrincipal(identity);
-
-        // Acceder a HttpContext a través de IHttpContextAccessor
-        var httpContext = HttpContextAccessor.HttpContext;
-        if (httpContext != null)
-        {
-            await httpContext.SignInAsync("Cookies", principal);
-            Navigation.NavigateTo("/");
-        }
-        else
-        {
-            errorMessages = "No se pudo iniciar sesión debido a un error interno.";
-        }
-       
     }
 }

@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddControllers();
+
 #region login - esquema de autentificación por cookie
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options => {
@@ -22,6 +24,8 @@ builder.Services.AddCascadingAuthenticationState();
 //necesario para acceder al contexto httpcontext
 builder.Services.AddHttpContextAccessor();
 #endregion
+
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
@@ -40,5 +44,8 @@ app.UseAntiforgery();
 
 // Mapear los componentes Razor
 app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
+
+
+app.MapControllers();
 
 app.Run();

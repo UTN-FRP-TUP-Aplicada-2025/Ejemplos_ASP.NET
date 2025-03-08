@@ -82,17 +82,20 @@ INSERT INTO Personas (DNI, Nombre, Fecha_Nacimiento) VALUES
 (23432224, 'Aurelio', '2004-02-06'),
 (37232632, 'Cesar', '1987-02-02'),
 (37237202, 'David', '1987-02-02'),
-(37232432, 'Patricia', '1987-02-02'),
+(37232435, 'Patricia', '1987-02-02'),
 (37232932, 'Analía', '1987-02-02'),
 (32042032, 'Dolores', '1987-02-02'),
 (34237032, 'Gustavo', '1987-02-02'),
 (42232072, 'Marianela', '1987-02-02'),
 (37234210, 'Andrea', '1987-02-02'),
 (37238236, 'Rita', '1987-02-02'), 
-(32432432, 'Gimena', '1987-02-02');
+(32432432, 'Gimena', '1987-02-02'),
+(33132440, 'Manuel', '1981-07-23'),
+(33432532, 'Renata', '1982-12-01');
 
 INSERT INTO Usuarios(Nombre, Clave)
 VALUES('Admin', '123'),
+('Maxima', 'maxima'),
 ('Eduardo', 'eduardo'),
 ('Estefania', 'estefania');
 
@@ -104,6 +107,8 @@ VALUES('Admin'),
 INSERT INTO Usuarios_Roles(Nombre_Usuario, Nombre_Rol)
 VALUES
 ('Admin', 'Admin'),
+('Maxima', 'Admin'),
+('Maxima', 'Supervisor'),
 ('Eduardo', 'Admin'),
 ('Estefania', 'Supervisor'),
 ('Eduardo', 'Encuestador');

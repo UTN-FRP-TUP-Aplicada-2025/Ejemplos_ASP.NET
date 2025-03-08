@@ -88,5 +88,11 @@ public partial class Personas:ComponentBase
         await _personasService.Eliminar(id??0);
         personas = await _personasService.GetAll();
     }
-    
+
+    async private Task onPrueba(string? nombre)
+    {
+        Console.WriteLine(nombre);
+
+    }
+
 }

@@ -4,7 +4,12 @@ using Ejemplo_15_personas_datoslib.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 
+using Microsoft.AspNetCore.HttpOverrides; // <-- Importante
+
 var builder = WebApplication.CreateBuilder(args);
+
+//proxy github
+//builder.WebHost.UseUrls("http://0.0.0.0:8080");
 
 builder.Services.AddControllersWithViews();
 
@@ -16,8 +21,8 @@ builder.Services.AddTransient<SqlConnection>(sp =>
     return new SqlConnection(connectionString);
 });
 
-//La conexión se mantiene viva solo durante la duración de una solicitud HTTP.
-//Es más eficiente en aplicaciones con múltiples solicitudes simultáneas.
+//La conexion se mantiene viva solo durante la duracion de una solicitud HTTP.
+//Es mas eficiente en aplicaciones con multiples solicitudes simultaneas.
 builder.Services.AddScoped<ITransaction<SqlTransaction>, SqlServerTransaction>();
 
 builder.Services.AddScoped<PersonasMSSDAL>();
@@ -30,7 +35,7 @@ builder.Services.AddScoped<CuentasService>();
 builder.Services.AddScoped<RolesService>();
 #endregion
 
-#region configuración de restapi y swagger
+#region configuracion de restapi y swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen(); //este alcanza si solo es restapi
@@ -85,7 +90,18 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+#region proxy docker
+//configuraciÃ³n encabezados proxy inverso
+//app.UseForwardedHeaders(new ForwardedHeadersOptions
+//{
+//    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+//});
+// Configurar redirecciÃ³n HTTPS
 app.UseHttpsRedirection();
+#endregion
+
+//app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
@@ -107,7 +123,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-#region configuración api y swagger
+#region configuracion api y swagger
 //if (app.Environment.IsDevelopment()) //comentar para que corra en modo release
 {
     app.UseSwagger();
@@ -117,9 +133,17 @@ app.MapControllers();
 #endregion
 
 #region habilitando middleware adicionales
-app.UseAuthentication(); //middleware para la autenticación
-app.UseAuthorization();  //middleware para la autorización
-app.UseSession();        //middleware para la sesión
+app.UseAuthentication(); //middleware para la autenticacion
+app.UseAuthorization();  //middleware para la autorizacion
+app.UseSession();        //middleware para la sesion
 #endregion
 
+
 app.Run();
+
+
+
+
+
+
+

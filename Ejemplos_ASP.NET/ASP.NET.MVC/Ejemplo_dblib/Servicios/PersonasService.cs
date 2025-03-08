@@ -1,4 +1,5 @@
-﻿using Ejemplo_15_personas_datoslib.DALs;
+﻿using Ejemplo_15_personas_datoslib.Common;
+using Ejemplo_15_personas_datoslib.DALs;
 using Ejemplo_15_personas_datoslib.DALs.MSSDALs;
 using Ejemplo_15_personas_datoslib.Models;
 using Microsoft.Data.SqlClient;
@@ -46,6 +47,26 @@ public class PersonasService
         {
             await _transaction.BeginTransaction();
 
+            var objeto = await _personasDao.GetByKey(id, _transaction);
+            if (objeto != null)
+            {
+                await _personasDao.Delete(id, _transaction);
+            }
+
+            await _transaction.CommitAsync();
+        }
+        catch (Exception ex)
+        {
+            await _transaction.RollbackAsync();
+            throw ex;
+        }
+    }
+
+    [Transaction(Propagation = "Required", RollbackFor = "Exception")]
+    async public Task Eliminar2(int id)
+    {
+        try
+        {
             var objeto = await _personasDao.GetByKey(id, _transaction);
             if (objeto != null)
             {

@@ -1,7 +1,16 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
+
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Http
+
+
+@rendermode InteractiveServer
+
+
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">Ejemplo_01_CRUD_Blazor_webapp</a>
+        <a class="navbar-brand" href="">Ejemplo_03_1_Login_Cookie</a>
     </div>
 </div>
 
@@ -50,9 +59,7 @@
 
             <Authorized>
                 <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="/logout">
-                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Logout
-                    </NavLink>
+                    <button class="btn btn-primary" @onclick="Logout">Click me</button>
                 </div>
             </Authorized>
 
@@ -61,4 +68,22 @@
     </nav>
 </div>
 
+@code{
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+
+    [Inject]
+    private IHttpContextAccessor HttpContextAccessor { get; set; }
+
+    private async Task Logout()
+    {
+        if (HttpContextAccessor.HttpContext != null)
+        {
+            await HttpContextAccessor.HttpContext.SignOutAsync();
+        }
+
+        NavigationManager.NavigateTo("/"); 
+    }
+
+}
 

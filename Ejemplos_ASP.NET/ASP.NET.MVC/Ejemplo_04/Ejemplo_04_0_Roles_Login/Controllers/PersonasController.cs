@@ -58,7 +58,7 @@ public class PersonasController : Controller
     }
 
     // GET: PersonaController1/Edit/5
-    //http://localhost:5033/Personas/Editar/1
+    //http://localhost:5033/Personas/Edit/1
     [HttpGet]
     async public Task<IActionResult> Edit(int? id)
     {

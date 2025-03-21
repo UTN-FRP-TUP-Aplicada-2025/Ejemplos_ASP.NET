@@ -1,0 +1,50 @@
+﻿@page "/personas"
+@using Ejemplo_15_personas_datoslib.Models
+@using Ejemplo_15_personas_datoslib.Services
+
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<PageTitle>Persona</PageTitle>
+
+<h1>Registro de personas</h1>
+
+
+@if (personasModel == null)
+{
+    <p><em>Espere un momento...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in personasModel)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Nombre</td>
+                    <td>@item.FechaNacimiento</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<PersonaModel?>? personasModel;
+
+    [Inject] private PersonasService _personasService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        personasModel = await _personasService.GetAll();
+    }
+
+}

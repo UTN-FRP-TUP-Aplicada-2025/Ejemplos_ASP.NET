@@ -1,0 +1,100 @@
+﻿@page "/ejemplo"
+
+@attribute [StreamRendering]
+@rendermode InteractiveServer
+
+@implements IAsyncDisposable
+
+<PageTitle>Subir archivos</PageTitle>
+
+<div @ref="fileDropContainer" class="file-drop-zone @HoverClass"
+     @ondragenter="OnDragEnter"
+     @ondragleave="OnDragLeave"
+     @ondragover="OnDragEnter">
+    <InputFile @ref="inputFile" multiple OnChange="@OnChange"></InputFile>
+</div>
+
+<div class="image-container">
+    @foreach (var imageSource in imageSources)
+    {
+        <img src="@imageSource" />
+    }
+</div>
+
+@code
+{
+    string salida { get; set; }
+
+    private InputFile? inputFile;
+    [Inject] IJSRuntime JS { get; set; }
+
+    private const int maxAllowedFiles = 2 * 1024 * 1024;
+    private List<string> imageSources = new List<string>();
+
+    private string HoverClass { get; set; } = "";
+
+    IJSObjectReference? _filePasteModule;
+    IJSObjectReference? _filePasteFunctionReference;
+
+    void OnDragEnter(DragEventArgs e) => HoverClass = "hover";
+    void OnDragLeave(DragEventArgs e) => HoverClass = string.Empty;
+    private ElementReference fileDropContainer;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        
+        // if (firstRender)
+        // {
+        //     _filePasteModule = await JS.InvokeAsync<IJSObjectReference>("import", "./js/filePaste.js");
+
+        //     if (_filePasteModule is not null)
+        //     {
+        //         _filePasteFunctionReference = await _filePasteModule.InvokeAsync<IJSObjectReference>("initializeFilePaste", new object[] { fileDropContainer, inputFile?.Element });
+        //     }
+        // }
+        
+    }
+
+    private async Task OnChange(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            salida = "";
+
+            foreach( var file in e.GetMultipleFiles())
+            {
+                using var stream = file.OpenReadStream(maxAllowedFiles);
+                using var ms = new MemoryStream();
+                await stream.CopyToAsync(ms);
+                imageSources.Add($"data:{file.ContentType};base64,{Convert.ToBase64String(ms.ToArray())}");
+            }
+
+
+            // foreach (var file in e.GetMultipleFiles())
+            // {
+            //     var buffer = new byte[file.Size];
+            //     await file.OpenReadStream().ReadAsync(buffer);
+            //     var base64 = Convert.ToBase64String(buffer);
+            //     salida += base64;
+            // }
+        }
+        catch (Exception ex)
+        {
+            salida = ex.Message;
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_filePasteFunctionReference is not null)
+        {
+            await _filePasteFunctionReference.InvokeVoidAsync("dispose");
+            await _filePasteFunctionReference.DisposeAsync();
+        }
+
+        if (_filePasteModule is not null)
+        {
+            await _filePasteModule.DisposeAsync();
+        }
+    }
+}

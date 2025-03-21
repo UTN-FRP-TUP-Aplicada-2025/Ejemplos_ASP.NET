@@ -21,7 +21,7 @@ public class PersonasService
         _transaction = transaction;
     }
 
-    async public Task<List<PersonaModel>> GetAll()
+    async public Task<List<PersonaModel?>?> GetAll()
     {
         return await _personasDao.GetAll();
     }

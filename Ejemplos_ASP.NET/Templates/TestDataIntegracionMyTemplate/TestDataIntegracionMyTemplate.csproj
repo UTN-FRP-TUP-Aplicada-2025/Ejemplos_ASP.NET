@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ASP.NET.MVC\Ejemplo_dblib\Ejemplo_15_personas_datoslib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\assets\fonts\" />
   </ItemGroup>
 

@@ -1,15 +1,10 @@
-﻿@page "/ejemplo"
+﻿@implements IAsyncDisposable
 
 @attribute [StreamRendering]
 @rendermode InteractiveServer
 
-@implements IAsyncDisposable
-
-<PageTitle>Subir archivos</PageTitle>
-
 <div @ref="fileDropContainer" class="file-drop-zone @HoverClass"
-     @ondragenter="OnDragEnter"
-     @ondragleave="OnDragLeave"
+     @ondragenter="OnDragEnter" @ondragleave="OnDragLeave"
      @ondragover="OnDragEnter">
     <InputFile @ref="inputFile" multiple OnChange="@OnChange"></InputFile>
 </div>
@@ -23,7 +18,10 @@
 
 @code
 {
-    string salida { get; set; }
+    private List<IBrowserFile> archivosSeleccionados = new();
+
+    public IReadOnlyList<IBrowserFile> Archivos => archivosSeleccionados;
+
 
     private InputFile? inputFile;
     [Inject] IJSRuntime JS { get; set; }
@@ -42,45 +40,61 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        
-        // if (firstRender)
-        // {
-        //     _filePasteModule = await JS.InvokeAsync<IJSObjectReference>("import", "./js/filePaste.js");
+        if (firstRender)
+        {
+            _filePasteModule = await JS.InvokeAsync<IJSObjectReference>("import", "./js/filePaste.js");
 
-        //     if (_filePasteModule is not null)
-        //     {
-        //         _filePasteFunctionReference = await _filePasteModule.InvokeAsync<IJSObjectReference>("initializeFilePaste", new object[] { fileDropContainer, inputFile?.Element });
-        //     }
-        // }
-        
+            if (_filePasteModule is not null)
+            {
+                _filePasteFunctionReference = await _filePasteModule.InvokeAsync<IJSObjectReference>("initializeFilePaste", new object[] { fileDropContainer, inputFile?.Element });
+            }
+        }
     }
 
     private async Task OnChange(InputFileChangeEventArgs e)
     {
         try
         {
-            salida = "";
+            //salida = "";
 
-            foreach( var file in e.GetMultipleFiles())
+            foreach (var file in e.GetMultipleFiles())
             {
                 using var stream = file.OpenReadStream(maxAllowedFiles);
                 using var ms = new MemoryStream();
                 await stream.CopyToAsync(ms);
                 imageSources.Add($"data:{file.ContentType};base64,{Convert.ToBase64String(ms.ToArray())}");
             }
-
-
-            // foreach (var file in e.GetMultipleFiles())
-            // {
-            //     var buffer = new byte[file.Size];
-            //     await file.OpenReadStream().ReadAsync(buffer);
-            //     var base64 = Convert.ToBase64String(buffer);
-            //     salida += base64;
-            // }
         }
         catch (Exception ex)
         {
-            salida = ex.Message;
+            //salida = ex.Message;
+        }
+    }
+
+    public async Task EnviarArchivosAlServidor(HttpClient http)
+    {
+        if (archivosSeleccionados.Count == 0)
+        {
+            Console.WriteLine("No hay archivos seleccionados.");
+            return;
+        }
+
+        using var content = new MultipartFormDataContent();
+        foreach (var archivo in archivosSeleccionados)
+        {
+            var stream = archivo.OpenReadStream(maxAllowedFiles);
+            var streamContent = new StreamContent(stream);
+            content.Add(streamContent, "files", archivo.Name);
+        }
+
+        var response = await http.PostAsync("/api/upload", content);
+        if (response.IsSuccessStatusCode)
+        {
+            Console.WriteLine("Archivos subidos correctamente.");
+        }
+        else
+        {
+            Console.WriteLine("Error al subir los archivos.");
         }
     }
 

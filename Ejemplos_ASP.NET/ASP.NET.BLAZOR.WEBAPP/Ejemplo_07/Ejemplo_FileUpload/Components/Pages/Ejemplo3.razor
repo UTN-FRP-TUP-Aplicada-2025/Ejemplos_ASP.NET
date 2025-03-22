@@ -1,0 +1,36 @@
+﻿@page "/ejemplo3"
+
+@using Ejemplo_FileUpload.Components.Components
+@using System.Net.Http
+
+@attribute [StreamRendering]
+@rendermode InteractiveServer
+
+<h3>Ejemplo3</h3>
+
+<FileUpload @ref="fileUploadRef" ></FileUpload>
+
+
+<button @onclick="EnviarArchivos">Enviar archivos</button>
+
+
+<div>
+    @Mensaje
+</div>
+
+@code {
+    private FileUpload? fileUploadRef;
+    private string Mensaje;
+
+    [Inject] HttpClient Http { get; set;}
+
+    private async void EnviarArchivos(MouseEventArgs e)
+    {
+        if (fileUploadRef is null || fileUploadRef.Archivos.Count == 0)
+        {
+            Mensaje = "Te falta seleccionar archivos";
+        }
+
+        await fileUploadRef.EnviarArchivosAlServidor(Http);
+    }
+}

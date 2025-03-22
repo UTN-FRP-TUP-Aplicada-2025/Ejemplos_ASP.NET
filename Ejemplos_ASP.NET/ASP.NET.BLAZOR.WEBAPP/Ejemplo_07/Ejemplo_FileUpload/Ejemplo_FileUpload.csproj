@@ -6,4 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Upload\TextFile.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Upload\TextFile.txt" />
+  </ItemGroup>
+
 </Project>

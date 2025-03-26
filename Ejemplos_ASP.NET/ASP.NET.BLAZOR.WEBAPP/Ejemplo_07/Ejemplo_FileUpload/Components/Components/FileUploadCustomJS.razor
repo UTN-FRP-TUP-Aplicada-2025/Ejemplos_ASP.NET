@@ -1,31 +1,21 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿
+   
+    <div  id="dropzone" class="d-flex text-center p-2 m-2" style="width: 100%; height: 100%;">
+        <div class="col">
+            <div class="align-items-center" style="background-color: yellow;">
+                <i class="fas fa-cloud-upload-alt" style="font-size: 50px;"></i>
+            </div>
+            <div class="align-items-center">
+                Arrastre los archivos aquí o <a href="#" onclick="document.getElementById('fileInput').click(); return false;">Elige tus archivos</a>
+                <input type="file" id="fileInput" multiple style="display: none;">
+            </div>
+        </div>
+    </div>
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="/" />
-    <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
-    <link rel="stylesheet" href="app.css" />
-    <link rel="stylesheet" href="Ejemplo_FileUpload.styles.css" />
+    <div id="file-info" style="margin-top: 20px;"></div>
 
-    <link rel="icon" type="image/png" href="favicon.png" />
-
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
-    <style>
-        #dropzone {
-            background-color: rgb(252, 252, 252);
-        }
-    </style>
-
-    <HeadOutlet />
-</head>
-
-<body>
-    <Routes />
+    <button id="btnEnviar">Enviar</button>
+    
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -38,18 +28,18 @@
         const dropzone = document.getElementById("dropzone");
         const fileInfo = document.getElementById("file-info");
 
-        dropzone.addEventListener("dragenter", function(event)
+        dropzone.addEventListener("dragenter", function(event) 
         {
            // dropzone.innerHTML = "drag enter";
         });
 
-        dropzone.addEventListener("dragleave", function(event)
+        dropzone.addEventListener("dragleave", function(event) 
         {
-
+            
            // dropzone.innerHTML = "saliendo del elemento";
         });
 
-        dropzone.addEventListener("drop", function(event)
+        dropzone.addEventListener("drop", function(event) 
         {
             //dropzone.innerHTML = "soltando elemento";
 
@@ -59,20 +49,20 @@
 
             // Obtener archivo
             let files = Array.from(event.dataTransfer.files);
-
+            
             fileInfo.innerHTML +='';
-            if(files.length>0)
+            if(files.length>0) 
             {
                 //dropzone.innerHTML = "Se detectaron archivos";
                 fileInfo.innerHTML += `<div style="display: flex; align-items: center; margin-bottom: 10px;" style="border: 1px solid gray; padding: 10px;">`;
-
+                    
                 files.forEach( function(file)
                 {
                     let elementFILE=fileInfo.getElementsByTagName(file.name);
 
                     if(elementFILE.length<=0)
                     {
-                        archivos.push(file);
+                        archivos.push(file);    
 
                         fileInfo.innerHTML += `<div name="${file.name}" style="display: flex; border: 1px solid gray; align-items: center; margin-bottom: 10px;">
                             <i class="fas fa-file" style="margin-right: 10px;"></i>
@@ -87,8 +77,8 @@
                 });
 
                 fileInfo.innerHTML += `<\div`;
-            }
-            else
+            } 
+            else 
             {
                // dropzone.innerHTML = "No se detectaron archivos";
             }
@@ -99,7 +89,7 @@
             event.stopPropagation();
         });
 
-        function onEliminar(element, fileName)
+        function onEliminar(element, fileName) 
         {
             archivos = archivos.filter(f => f.name !== fileName);
             element.parentElement.parentElement.remove();
@@ -113,7 +103,7 @@
             console.log(archivos);
         }
 
-        btnEnviar.addEventListener("click", function()
+        btnEnviar.addEventListener("click", function() 
         {
             if (archivos.length === 0) {
                 alert("No hay archivos para subir.");
@@ -164,13 +154,13 @@
         }
 
         /*
-        function ondragstart(event)
+        function ondragstart(event) 
         {
             event.target.style.backgroundColor = "blue";
             console.log('drag start');
         }
 
-        function ondrop(event)
+        function ondrop(event) 
         {
             console.log('soltó elemento');
             event.preventDefault();
@@ -178,15 +168,10 @@
             //event.target.style.backgroundColor = "red";
         }
 
-        function ondragleave(event)
+        function ondragleave(event) 
         {
             console.log('se salio');
             event.preventDefault();
         }
         */
     </script>
-
-    <script src="_framework/blazor.web.js"></script>
-</body>
-
-</html>

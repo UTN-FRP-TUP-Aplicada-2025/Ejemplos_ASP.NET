@@ -4,7 +4,8 @@
 @rendermode InteractiveServer
 
 <div @ref="fileDropContainer" class="file-drop-zone @HoverClass"
-     @ondragenter="OnDragEnter" @ondragleave="OnDragLeave"
+     @ondragenter="OnDragEnter" 
+     @ondragleave="OnDragLeave"
      @ondragover="OnDragEnter">
     <InputFile @ref="inputFile" multiple OnChange="@OnChange"></InputFile>
 </div>

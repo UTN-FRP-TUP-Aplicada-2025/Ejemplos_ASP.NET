@@ -14,4 +14,8 @@
     <Resource Include="Upload\TextFile.txt" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\upload\" />
+  </ItemGroup>
+
 </Project>

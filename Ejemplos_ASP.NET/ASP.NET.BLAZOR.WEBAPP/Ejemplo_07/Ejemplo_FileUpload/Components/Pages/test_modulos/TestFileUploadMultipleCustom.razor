@@ -1,0 +1,42 @@
+﻿@page "/testfileuploadmultiplecustom"
+
+@inject ILogger<InputMultipleFileSimple> Logger
+@inject IWebHostEnvironment Env
+
+@using Ejemplo_FileUpload.Components.Components
+@using Ejemplo_FileUpload.Components.Pages.no_modulos
+@using Microsoft.AspNetCore.Components.Forms
+
+@attribute [StreamRendering]
+@rendermode InteractiveServer
+
+<FileUploadMultipleCustom @ref="fileUpload" ></FileUploadMultipleCustom>
+
+<button @onclick="@OnUpload" class="btn btn-primary">Enviar</button>
+
+<div class="col">
+    @if (archivos.Any())
+    {
+        @foreach(var nombre in archivos)
+        {
+            <div>@nombre</div>
+        }
+    }
+</div>
+
+@code
+{
+    List<string> archivos = new List<string>();
+    FileUploadMultipleCustom fileUpload;
+
+    async public Task OnUpload()
+    {
+        archivos.Clear();
+        foreach (var f in fileUpload.selectedFiles)
+        {
+            archivos.Add(f.Name);
+        }
+        fileUpload.UploadFiles();
+    }
+
+}

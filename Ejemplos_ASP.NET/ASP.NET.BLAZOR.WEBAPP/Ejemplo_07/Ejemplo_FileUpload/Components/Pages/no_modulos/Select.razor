@@ -1,0 +1,39 @@
+﻿@page "/ejemplo-select"
+
+@using Ejemplo_FileUpload.Components.Components
+@using System.Net.Http
+
+@attribute [StreamRendering]
+@rendermode InteractiveServer
+
+
+<select @onchange="OnSelectedChange"  class="form-select">
+    <option value="">-- Seleccionar --</option>
+    @foreach (var pais in Paises)
+    {
+        <option value="@pais">@pais</option>
+    }
+</select>
+
+<div>
+    @PaisSeleccionado
+</div>
+
+<select @bind="PaisSeleccionado" class="form-select">
+    <option value="">-- Seleccionar --</option>
+    @foreach (var pais in Paises)
+    {
+        <option value="@pais">@pais</option>
+    }
+</select>
+
+
+@code {
+    private List<string> Paises = new() { "Argentina", "México", "España", "Colombia", "Chile" };
+    private string PaisSeleccionado { get;set; }
+
+    async private Task OnSelectedChange(ChangeEventArgs e)
+    {
+        PaisSeleccionado = e.Value?.ToString() ?? "";
+    }
+}

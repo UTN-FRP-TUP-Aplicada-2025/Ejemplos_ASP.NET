@@ -1,0 +1,58 @@
+﻿@page "/ejemplo1"
+
+@attribute [StreamRendering]
+@rendermode InteractiveServer
+@page "/upload"
+@using Microsoft.AspNetCore.Components.Forms
+@inject IWebHostEnvironment Env
+
+
+<h3>Subir Archivo</h3>
+
+<InputFile OnChange="HandleFileSelection" />
+
+<br />
+@if (selectedFile != null)
+{
+    <p>Archivo seleccionado: @selectedFile.Name</p>
+    <button @onclick="UploadFile">Subir Archivo</button>
+    <p>@message</p>
+}
+
+@code {
+    private IBrowserFile? selectedFile;
+    private string message = "";
+
+    private void HandleFileSelection(InputFileChangeEventArgs e)
+    {
+        selectedFile = e.File;
+    }
+
+    private async Task UploadFile()
+    {
+        if (selectedFile == null)
+        {
+            message = "No se ha seleccionado ningún archivo.";
+            return;
+        }
+
+        try
+        {
+            var uploadPath = Path.Combine(Env.WebRootPath, "upload");
+            if (!Directory.Exists(uploadPath))
+            {
+                Directory.CreateDirectory(uploadPath);
+            }
+
+            var filePath = Path.Combine(uploadPath, selectedFile.Name);
+            await using var stream = new FileStream(filePath, FileMode.Create);
+            await selectedFile.OpenReadStream().CopyToAsync(stream);
+
+            message = "Archivo subido correctamente.";
+        }
+        catch (Exception ex)
+        {
+            message = $"Error: {ex.Message}";
+        }
+    }
+}

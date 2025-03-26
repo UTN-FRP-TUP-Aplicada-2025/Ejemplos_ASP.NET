@@ -1,0 +1,177 @@
+@page "/ejemplo6-js"
+
+<div id="dropzone" class="d-flex text-center p-2 m-2" style="width: 100%; height: 100%;">
+    <div class="col">
+        <div class="align-items-center" style="background-color: yellow;">
+            <i class="fas fa-cloud-upload-alt" style="font-size: 50px;"></i>
+        </div>
+        <div class="align-items-center">
+            Arrastre los archivos aquí o <a href="#" onclick="document.getElementById('fileInput').click(); return false;">Elige tus archivos</a>
+            <input type="file" id="fileInput" multiple style="display: none;">
+        </div>
+    </div>
+</div>
+
+<div id="file-info" style="margin-top: 20px;"></div>
+
+<button id="btnEnviar">Enviar</button>
+
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+    let archivos = [];
+
+    const dropzone = document.getElementById("dropzone");
+    const fileInfo = document.getElementById("file-info");
+
+    dropzone.addEventListener("dragenter", function(event)
+    {
+       // dropzone.innerHTML = "drag enter";
+    });
+
+    dropzone.addEventListener("dragleave", function(event)
+    {
+
+       // dropzone.innerHTML = "saliendo del elemento";
+    });
+
+    dropzone.addEventListener("drop", function(event)
+    {
+        //dropzone.innerHTML = "soltando elemento";
+
+        //previene que se abra una pestaña nueva
+        event.preventDefault();
+        event.stopPropagation();
+
+        // Obtener archivo
+        let files = Array.from(event.dataTransfer.files);
+
+        fileInfo.innerHTML +='';
+        if(files.length>0)
+        {
+            //dropzone.innerHTML = "Se detectaron archivos";
+            fileInfo.innerHTML += `<div style="display: flex; align-items: center; margin-bottom: 10px;" style="border: 1px solid gray; padding: 10px;">`;
+
+            files.forEach( function(file)
+            {
+                let elementFILE=fileInfo.getElementsByTagName(file.name);
+
+                if(elementFILE.length<=0)
+                {
+                    archivos.push(file);
+
+                    fileInfo.innerHTML += `<div name="${file.name}" style="display: flex; border: 1px solid gray; align-items: center; margin-bottom: 10px;">
+                        <i class="fas fa-file" style="margin-right: 10px;"></i>
+                        <div>${file.name}</div>
+                        <div style="margin-left: auto;">
+                            <button onclick="onEliminar(this, '${file.name}')" style="border: none; padding: 10px; background: none; color: red; cursor: pointer;">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>`;
+                }
+            });
+
+            fileInfo.innerHTML += `<\div`;
+        }
+        else
+        {
+           // dropzone.innerHTML = "No se detectaron archivos";
+        }
+    });
+
+    document.getElementById("dropzone").addEventListener("dragover", function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+    });
+
+    function onEliminar(element, fileName)
+    {
+        archivos = archivos.filter(f => f.name !== fileName);
+        element.parentElement.parentElement.remove();
+
+       // if (uploadedFiles.length === 0) {
+       //     uploadBtn.style.display = "none"; // Oculta el botón si no hay archivos
+       // }
+    }
+
+    function sendFiles() {
+        console.log(archivos);
+    }
+
+    btnEnviar.addEventListener("click", function()
+    {
+        if (archivos.length === 0) {
+            alert("No hay archivos para subir.");
+            return;
+        }
+
+        let formData = new FormData();
+        archivos.forEach(file => {
+            formData.append("files", file);
+        });
+
+        fetch("/api/upload", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Archivos subidos correctamente");
+            fileInfo.innerHTML = ""; // Limpia la lista después de subir
+            btnEnviar.style.display = "none"; // Oculta el botón después de subir
+        })
+        .catch(error => console.error("Error al subir archivos:", error));
+    });
+
+    document.getElementById("fileInput").addEventListener("change", function(event) {
+        let files = Array.from(event.target.files);
+        agregarArchivos(files);
+    });
+
+    function agregarArchivos(files) {
+        fileInfo.innerHTML += '';
+        files.forEach(file => {
+            let elementFILE = fileInfo.querySelector(`[name="${file.name}"]`);
+            if (!elementFILE) {
+                archivos.push(file);
+
+                fileInfo.innerHTML += `<div name="${file.name}" style="display: flex; border: 1px solid gray; align-items: center; margin-bottom: 10px;">
+                    <i class="fas fa-file" style="margin-right: 10px;"></i>
+                    <div>${file.name}</div>
+                    <div style="margin-left: auto;">
+                        <button onclick="onEliminar(this, '${file.name}')" style="border: none; padding: 10px; background: none; color: red; cursor: pointer;">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>`;
+            }
+        });
+    }
+
+    /*
+    function ondragstart(event)
+    {
+        event.target.style.backgroundColor = "blue";
+        console.log('drag start');
+    }
+
+    function ondrop(event)
+    {
+        console.log('soltó elemento');
+        event.preventDefault();
+        //event.stopPropagation();
+        //event.target.style.backgroundColor = "red";
+    }
+
+    function ondragleave(event)
+    {
+        console.log('se salio');
+        event.preventDefault();
+    }
+    */
+</script>

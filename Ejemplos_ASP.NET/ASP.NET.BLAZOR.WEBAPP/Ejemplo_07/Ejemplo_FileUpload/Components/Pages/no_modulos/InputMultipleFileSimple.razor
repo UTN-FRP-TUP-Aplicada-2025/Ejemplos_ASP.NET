@@ -1,0 +1,133 @@
+﻿@page "/inputmultiplefiles"
+
+@inject ILogger<InputMultipleFileSimple> Logger
+@inject IWebHostEnvironment Env
+
+@using Microsoft.AspNetCore.Components.Forms
+
+@attribute [StreamRendering]
+@rendermode InteractiveServer
+
+<h3>Subir Archivos</h3>
+
+
+<div class="col">
+    <div class="row">
+        <InputFile key="@inputFileKey" OnChange="HandleFilesSelection"
+                   multiple class="form-control" MaxAllowedSize="100485760" accept=".jpg,.png,.pdf" />
+    @if (selectedFiles.Count > 0)
+        {
+            <button @onclick="UploadFiles" class="btn btn-primary">Subir Archivos</button>
+        }
+    </div>
+    @if (selectedFiles.Count > 0)
+    {
+        <p>Archivos seleccionados:</p>
+        <div id="file-info" class="mt-3">
+            @foreach (var file in selectedFiles)
+            {
+                <div class="d-flex border align-items-center mb-2">
+                    <i class="fas fa-file mr-2"></i>
+                    <div>@file.Name</div>
+                    <div class="ml-auto">
+                        <button @onclick="() => RemoveFile(file.Name)" class="btn btn-link text-danger">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    <p>@message</p>
+</div>
+
+<br />
+
+@code {
+    private List<FileWrapper> selectedFiles = new();
+    private int inputFileKey = 0;
+
+    private string message = "";
+
+    private class FileWrapper
+    {
+        public IBrowserFile File { get; set; }
+        public string FullPath { get; set; }
+        public string Name => File.Name;
+    }
+
+    private void HandleFilesSelection(InputFileChangeEventArgs e)
+    {
+        message = "";
+        if (e.GetMultipleFiles() != null)
+        {
+            var nuevosArchivos = e.GetMultipleFiles()
+                .Where(nuevoArchivo =>
+                    !selectedFiles.Any(archivoSeleccionado =>
+                        archivoSeleccionado.Name == nuevoArchivo.Name))
+                .Select(file => new FileWrapper
+                    {
+                        File = file,
+                        FullPath = file.Name 
+                    });
+
+            selectedFiles.AddRange(nuevosArchivos);
+        }
+    }
+
+    private void RemoveFile(string fileName)
+    {
+        message = "";
+        selectedFiles.RemoveAll(f => f.Name == fileName);
+        inputFileKey++;
+    }
+
+    private async Task UploadFiles()
+    {
+        message = "";
+        if (selectedFiles.Count == 0)
+        {
+            message = "No se han seleccionado archivos.";
+            return;
+        }
+        try
+        {
+            var uploadPath = Path.Combine(Env.WebRootPath, "upload");
+            if (!Directory.Exists(uploadPath))
+            {
+                Directory.CreateDirectory(uploadPath);
+            }
+
+            foreach (var fileWrapper in selectedFiles)
+            {
+                var uniqueFileName = $"{Guid.NewGuid()}_{fileWrapper.Name}";
+                var filePath = Path.Combine(uploadPath, uniqueFileName);
+
+                await using var stream = new FileStream(filePath, FileMode.Create);
+                await fileWrapper.File.OpenReadStream(maxAllowedSize: 100 * 1024 * 1024).CopyToAsync(stream);
+            }
+
+            message = $"Se han subido {selectedFiles.Count} archivos correctamente.";
+            selectedFiles.Clear();
+            inputFileKey++;
+        }
+        catch (Exception ex)
+        {
+            message = $"Error: {ex.Message}";
+            Logger.LogError(ex, "Error uploading files");
+        }
+    }
+
+    /*control 
+    var permittedTypes = new HashSet<string> { "image/png", "image/jpeg", "application/pdf" };
+
+    foreach (var fileWrapper in selectedFiles)
+    {
+        if (!permittedTypes.Contains(fileWrapper.File.ContentType))
+        {
+            message = $"El archivo {fileWrapper.Name} tiene un formato no permitido.";
+            return;
+        }
+    }
+         */
+}

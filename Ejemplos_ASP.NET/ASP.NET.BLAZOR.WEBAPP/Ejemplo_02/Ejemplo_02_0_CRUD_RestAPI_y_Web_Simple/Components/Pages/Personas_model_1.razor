@@ -65,9 +65,9 @@ else
                     <td>
                       @*   <button @onclick="() => editar(item.Id)"><i class="fa-solid fa-pen"></i></button>|
                         <button @onclick="() => eliminar(item.Id)"><i class="fa-solid fa-trash"></i></button> *@
-                        <a href="./#" @onclick="() => editar(item.Id)"><i class="fa-solid fa-pen"></i></a> |
-                        <a href="./#" @onclick="() => ver(item.Id)"> <i class="fa-solid fa-expand"></i></a> |
-                        <a href="./" @onclick="() => eliminar(item.Id)"><i class="fa-solid fa-trash"></i></a>
+                        <a href="javascript:void(0);" @onclick="() => editar(item.Id)"><i class="fa-solid fa-pen"></i></a> |
+                        <a href="javascript:void(0);" @onclick="() => ver(item.Id)"> <i class="fa-solid fa-expand"></i></a> |
+                        <a href="javascript:void(0);" @onclick="() => eliminar(item.Id)"><i class="fa-solid fa-trash"></i></a>
                     </td>
                 </tr>
             }

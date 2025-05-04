@@ -34,7 +34,7 @@
 
     private List<UsuarioModel?> UsuariosModel { get; set; } = new();
 
-    public UsuariosService usuariosService = new();
+    [Inject] public UsuariosService usuariosService { get; set; }
 
     async protected override void OnInitialized()
     {

@@ -5,17 +5,19 @@
 @using Ejemplo_03_1_Login_Cookie.Models
 @using Ejemplo_03_1_Login_Cookie.Services
 
+@using Microsoft.AspNetCore.Authentication.Cookies
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Identity
 @using System.Security.Claims
-
-@inject NavigationManager Navigation
+@* 
+@inject NavigationManager Navigation *@
 
 @* necesario para el acceso al contexto *@
 @using Microsoft.AspNetCore.Authentication
-@inject IHttpContextAccessor HttpContextAccessor
+@* @inject IHttpContextAccessor HttpContextAccessor *@
 
-@* @rendermode InteractiveServer *@
+@rendermode InteractiveServer
+
 
 <PageTitle>Login</PageTitle>
 
@@ -25,7 +27,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <EditForm method="post" Model="Model" OnValidSubmit="onValidarLogin" FormName="LoginForm" Enhance>
+        <EditForm method="post" Model="Model" OnValidSubmit="onValidarLogin" FormName="LoginForm">
 
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" role="alert" />
@@ -45,48 +47,93 @@
             <button type="submit" class="btn btn-primary">Login</button>
         </EditForm>
     </div>
+
+
+    <div>@errorMessages</div>
 </div>
 
 
+
 @code {
-    // [CascadingParameter]
-    // public HttpContext? httpContext { get; set; }
-
     [SupplyParameterFromForm]
-    private UsuarioModel Model { get; set; } = new();
-
-    private UsuariosService _usuarioService = new UsuariosService();
-
+    private UsuarioModel Model { get; set; } = new(); // Probablemente necesites adaptar esto a tu modelo de login
 
     private string? errorMessages;
 
+    [Inject]
+    private SignInManager<ApplicationUser> SignInManager { get; set; }
+
+    [Inject]
+    private NavigationManager Navigation { get; set; }
+
     async private Task onValidarLogin()
     {
-        if (await _usuarioService.VerificarLogin(Model)==false)
+        try
         {
-            errorMessages = " Usuario o Contraseña no válidos!";
-            return;
-        }
+            var result = await SignInManager.PasswordSignInAsync(Model.Nombre, Model.Clave, false, lockoutOnFailure: false); // Ajusta los parámetros según tu modelo y necesidades
 
-        var claims = new List<Claim>
-        { 
+            if (result.Succeeded)
+            {
+                Navigation.NavigateTo("/");
+            }
+            else
+            {
+                errorMessages = "Usuario o contraseña no válidos.";
+            }
+        }
+        catch (Exception ex)
+        {
+
+            errorMessages = ex.Message + "|" + ex.StackTrace.ToString();
+        }
+    }
+
+}
+
+
+@* 
+@code {
+
+        [SupplyParameterFromForm]
+        private UsuarioModel Model { get; set; } = new();
+
+        private UsuariosService _usuarioService = new UsuariosService();
+
+        private string? errorMessages;
+
+        [Inject]
+        private NavigationManager Navigation { get; set; }
+
+        [Inject]
+        private IHttpContextAccessor HttpContextAccessor { get; set; }
+
+        async private Task onValidarLogin()
+        {
+            if (await _usuarioService.VerificarLogin(Model) == false)
+            {
+                errorMessages = " Usuario o Contraseña no válidos!";
+                return;
+            }
+
+            var claims = new List<Claim>
+        {
             new Claim(ClaimTypes.Name, Model.Nombre)
         };
 
-        var identity = new ClaimsIdentity(claims, "Cookies");
-        var principal = new ClaimsPrincipal(identity);
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
 
-        // Acceder a HttpContext a través de IHttpContextAccessor
-        var httpContext = HttpContextAccessor.HttpContext;
-        if (httpContext != null)
-        {
-            await httpContext.SignInAsync("Cookies", principal);
-            Navigation.NavigateTo("/");
+            var httpContext = HttpContextAccessor.HttpContext;
+            if (httpContext != null)
+            {
+                await httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                Navigation.NavigateTo("/"); // Redirigir para que la cookie se establezca en la nueva respuesta
+            }
+            else
+            {
+                errorMessages = "No se pudo iniciar sesión debido a un error interno.";
+            }
         }
-        else
-        {
-            errorMessages = "No se pudo iniciar sesión debido a un error interno.";
-        }
-       
-    }
+    
 }
+ *@

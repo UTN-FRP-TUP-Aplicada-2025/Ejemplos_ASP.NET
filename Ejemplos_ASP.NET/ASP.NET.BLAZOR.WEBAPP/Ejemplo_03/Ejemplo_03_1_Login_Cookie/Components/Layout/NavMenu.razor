@@ -55,11 +55,19 @@
             </NavLink>
         </div>
 
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="redirigir">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Redirigir
+            </NavLink>
+        </div>
+
+
         <AuthorizeView>
 
             <Authorized>
                 <div class="nav-item px-3">
-                    <button class="btn btn-primary" @onclick="Logout">Click me</button>
+                    <button class="btn btn-primary" @onclick="Logout">logout</button>
                 </div>
             </Authorized>
 
@@ -77,12 +85,12 @@
 
     private async Task Logout()
     {
-        if (HttpContextAccessor.HttpContext != null)
-        {
-            await HttpContextAccessor.HttpContext.SignOutAsync();
-        }
+        // if (HttpContextAccessor.HttpContext != null)
+        // {
+        //     await HttpContextAccessor.HttpContext.SignOutAsync();
+        // }
 
-        NavigationManager.NavigateTo("/"); 
+        NavigationManager.NavigateTo("/logout",true); 
     }
 
 }

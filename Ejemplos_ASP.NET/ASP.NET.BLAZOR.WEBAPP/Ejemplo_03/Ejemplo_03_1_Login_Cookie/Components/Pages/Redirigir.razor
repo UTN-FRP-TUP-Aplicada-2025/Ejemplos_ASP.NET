@@ -1,0 +1,24 @@
+﻿@page "/redirigir"
+@using Microsoft.AspNetCore.Authorization
+
+<h3>Redirigir</h3>
+
+@attribute [Authorize]
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<div class="content">
+    <InputText @bind-Value="url" class="form-control"/>
+    <button @onclick="OnClick" class="btn btn-primary">Redirigir</button>
+</div>
+
+@code {
+    string url;
+
+    @inject NavigationManager Navigation
+
+    private void OnClick()
+    {
+        Navigation.NavigateTo(url, true);
+    }
+}

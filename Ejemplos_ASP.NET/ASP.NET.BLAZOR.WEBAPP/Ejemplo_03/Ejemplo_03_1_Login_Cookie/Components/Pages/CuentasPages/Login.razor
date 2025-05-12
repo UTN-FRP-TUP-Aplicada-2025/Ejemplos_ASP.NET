@@ -17,7 +17,7 @@
 @using Microsoft.AspNetCore.Authentication
 @* @inject IHttpContextAccessor HttpContextAccessor *@
 
-@rendermode InteractiveServer
+@* @rendermode InteractiveServer *@
 
 
 <PageTitle>Login</PageTitle>
@@ -41,7 +41,7 @@
 
             <div class="mb-3">
                 <label for="clave" class="form-label">Clave:</label>
-                <InputText id="clave" @bind-Value="Model.Clave" class="form-control" type="password"/>
+                <InputText id="clave" @bind-Value="Model.Clave" class="form-control" type="password" />
                 <ValidationMessage For="() => Model.Clave" class="text-danger" />
             </div>
 
@@ -53,8 +53,7 @@
     <div>@errorMessages</div>
 </div>
 
-
-
+@* 
 @code {
     [SupplyParameterFromForm]
     private UsuarioModel Model { get; set; } = new(); // Probablemente necesites adaptar esto a tu modelo de login
@@ -90,51 +89,48 @@
     }
 
 }
+*@
 
-
-@* 
 @code {
 
-        [SupplyParameterFromForm]
-        private UsuarioModel Model { get; set; } = new();
+    [SupplyParameterFromForm]
+    private UsuarioModel Model { get; set; } = new();
 
-        private UsuariosService _usuarioService = new UsuariosService();
+    [Inject] private UsuariosService _usuarioService { get; set; }
 
-        private string? errorMessages;
+    private string? errorMessages;
 
-        [Inject]
-        private NavigationManager Navigation { get; set; }
+    [Inject]
+    private NavigationManager Navigation { get; set; }
 
-        [Inject]
-        private IHttpContextAccessor HttpContextAccessor { get; set; }
+    [Inject]
+    private IHttpContextAccessor HttpContextAccessor { get; set; }
 
-        async private Task onValidarLogin()
+    async private Task onValidarLogin()
+    {
+        if (await _usuarioService.VerificarLogin(Model) == false)
         {
-            if (await _usuarioService.VerificarLogin(Model) == false)
-            {
-                errorMessages = " Usuario o Contraseña no válidos!";
-                return;
-            }
+            errorMessages = " Usuario o Contraseña no válidos!";
+            return;
+        }
 
-            var claims = new List<Claim>
+        var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, Model.Nombre)
         };
 
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var principal = new ClaimsPrincipal(identity);
+        var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        var principal = new ClaimsPrincipal(identity);
 
-            var httpContext = HttpContextAccessor.HttpContext;
-            if (httpContext != null)
-            {
-                await httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                Navigation.NavigateTo("/"); // Redirigir para que la cookie se establezca en la nueva respuesta
-            }
-            else
-            {
-                errorMessages = "No se pudo iniciar sesión debido a un error interno.";
-            }
+        var httpContext = HttpContextAccessor.HttpContext;
+        if (httpContext != null)
+        {
+            await httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+            Navigation.NavigateTo("/"); // Redirigir para que la cookie se establezca en la nueva respuesta
         }
-    
+        else
+        {
+            errorMessages = "No se pudo iniciar sesión debido a un error interno.";
+        }
+    }
 }
- *@

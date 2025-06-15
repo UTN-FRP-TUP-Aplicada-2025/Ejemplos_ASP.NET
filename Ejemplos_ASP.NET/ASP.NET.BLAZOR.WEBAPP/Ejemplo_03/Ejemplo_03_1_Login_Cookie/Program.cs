@@ -4,12 +4,6 @@ using Ejemplo_03_1_Login_Cookie.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 
-
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
-using Ejemplo_03_1_Login_Cookie.Models;
-using Ejemplo_03_1_Login_Cookie.Services;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Agregar servicios al contenedor.
@@ -42,8 +36,7 @@ builder.Services.AddHttpContextAccessor();
 // Registro de Identity con tu CustomUserStore y PasswordHasher
 builder.Services.AddScoped<PasswordHasher<ApplicationUser>>();
 builder.Services.AddScoped<UsuariosService>();
-builder.Services.AddIdentityCore<ApplicationUser>()
-    .AddUserStore<CustomUserStore>();
+builder.Services.AddIdentityCore<ApplicationUser>().AddUserStore<CustomUserStore>();
 
 // Configuración del esquema de cookies para Identity
 builder.Services.AddAuthentication()
